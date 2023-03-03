@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/berandaFragment">
+
+    <fragment
+        android:id="@+id/berandaFragment"
+        android:name="com.example.dsmabsen.ui.fragment.BerandaFragment"
+        android:label="fragment_beranda"
+        tools:layout="@layout/fragment_beranda" >
+        <action
+            android:id="@+id/action_berandaFragment_to_scanFragment"
+            app:destination="@id/scanFragment" />
+        <action
+            android:id="@+id/action_berandaFragment_to_dataAbsensiFragment"
+            app:destination="@id/dataAbsensiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dataAbsensiFragment"
+        android:name="com.example.dsmabsen.ui.fragment.DataAbsensiFragment"
+        android:label="fragment_data_absensi"
+        tools:layout="@layout/fragment_data_absensi" >
+        <action
+            android:id="@+id/action_dataAbsensiFragment_to_scanFragment"
+            app:destination="@id/scanFragment" />
+        <action
+            android:id="@+id/action_dataAbsensiFragment_to_berandaFragment"
+            app:destination="@id/berandaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scanFragment"
+        android:name="com.example.dsmabsen.ui.fragment.ScanFragment"
+        android:label="fragment_scan"
+        tools:layout="@layout/fragment_scan" >
+        <action
+            android:id="@+id/action_scanFragment_to_berandaFragment"
+            app:destination="@id/berandaFragment" />
+        <action
+            android:id="@+id/action_scanFragment_to_dataAbsensiFragment"
+            app:destination="@id/dataAbsensiFragment" />
+        <action
+            android:id="@+id/action_scanFragment_to_berandaFragment2"
+            app:destination="@id/berandaFragment" />
+    </fragment>
+</navigation>

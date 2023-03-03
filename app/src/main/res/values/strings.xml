@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DSM Absen</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="failed_connect">failed_connect</string>
+    <string name="bad_connection">bad_connection</string>
+</resources>
