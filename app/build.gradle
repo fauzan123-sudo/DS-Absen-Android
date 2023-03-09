@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-android-extensions'
+//    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id "androidx.navigation.safeargs.kotlin"
@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.dsmabsen"
-        minSdk 23
+        minSdk 22
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -107,4 +107,20 @@ dependencies {
 //    ui responsive
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
+    implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
+
+//    Paper Db
+    implementation 'io.github.pilgr:paperdb:2.7.2'
+
+//    MpChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+//    DateTime under api 26
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.3.0'
+
+//    Loading
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.airbnb.android:lottie:4.2.0'
+
 }

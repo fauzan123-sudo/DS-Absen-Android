@@ -2,27 +2,21 @@ package com.example.dsmabsen.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
+import com.example.dsmabsen.model.DataX
 
 @Dao
-class MyDao {
+interface MyDao {
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun InsertAlbum(user : User)
+//    @Insert
+//    suspend fun insert(user: DataX)
 //
-//    @Query("Select * From users")
-//    fun getAllData(): Flow<List<User>>
+//    @Query("SELECT * FROM user ORDER BY id DESC")
+//    fun getAllUsers(): LiveData<List<DataX>>
 //
-//    @Update
-//    suspend fun updateUser(user: User)
+//    @Query("DELETE FROM user")
+//    suspend fun deleteAll(): Int
 //
-//    @Query("Delete from users")
-//    suspend fun deleteAllUser()
-//
-//    @Delete
-//    suspend fun delete(user: User)
-//
-//    @Query("SELECT * FROM users WHERE firstName LIKE :searchQuery OR lastName LIKE :searchQuery")
-//    fun searchDatabase(searchQuery: String): Flow<List<User>>
+//    @Query("SELECT * FROM Register_users_table WHERE user_name LIKE :userName")
+//    suspend fun getUsername(userName: String): RegisterEntity?
 
 }

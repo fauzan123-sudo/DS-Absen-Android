@@ -1,7 +1,7 @@
 package com.example.dsmabsen.ui.activity
 
 import android.Manifest
-import android.content.pm.PackageManager
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.telephony.TelephonyManager
@@ -11,16 +11,17 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.example.dsmabsen.databinding.ActivityLoginBinding
+import com.example.dsmabsen.helper.CacheManager
 import com.example.dsmabsen.helper.Constans.TAG
 import com.example.dsmabsen.helper.TokenManager
 import com.example.dsmabsen.helper.handleApiError
+import com.example.dsmabsen.model.DataX
 import com.example.dsmabsen.repository.NetworkResult
 import com.example.dsmabsen.ui.viewModel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import io.paperdb.Paper
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -28,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
     private val viewModel: AuthViewModel by viewModels()
     private lateinit var imei: String
     private lateinit var telephonyManager: TelephonyManager
-
     @Inject
     lateinit var tokenManager: TokenManager
 
@@ -38,6 +38,9 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (tokenManager.getToken() != null) {
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        }
         telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
         val mId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -48,15 +51,14 @@ class LoginActivity : AppCompatActivity() {
         }
 
         with(binding) {
-
             btnLogin.setOnClickListener {
-            val myUserName = username.text.toString()
-            val myPassword = password.text.toString()
+                val myUserName = nip.text.toString()
+                val myPassword = password.text.toString()
                 when {
-                    myUserName.isEmpty() ->{
+                    myUserName.isEmpty() -> {
                         Toast.makeText(
                             this@LoginActivity,
-                            "$myUserName",
+                            myUserName,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -82,10 +84,18 @@ class LoginActivity : AppCompatActivity() {
                 when (it) {
                     is NetworkResult.Success -> {
                         Log.d(TAG, "simpan : ${it.data!!.access_token}")
+                        Log.d(TAG, "dataNip : ${it.data}")
 
                         if (it.data.status) {
                             Toast.makeText(this@LoginActivity, "berhasil login", Toast.LENGTH_SHORT)
                                 .show()
+                            tokenManager.saveToken(it.data.access_token)
+//                            cacheManager.setNip(it.data.data.nip)
+                            
+//                            Log.d("isi data", data)
+                        val data = it.data.data
+                            saveDataNip(data)
+                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         } else {
                             Toast.makeText(
                                 this@LoginActivity,
@@ -93,15 +103,6 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-//                    val check = it.data.success
-//                    if (check == 0) {
-//                        Log.d("wrong username or password", "redirect to login again")
-//                    } else {
-//                        Log.d("successfully login", it.data.username)
-//                        tokenManager.saveToken(it.data.id)
-//                        startActivity(Intent(this, MainActivity::class.java))
-//                    }
-
                     }
                     is NetworkResult.Error -> {
                         val error = it.message.toString()
@@ -111,13 +112,17 @@ class LoginActivity : AppCompatActivity() {
 
                     else -> Toast.makeText(
                         this@LoginActivity,
-                        "Hey ada masalah i ${it.data}",
+                        "Loading",
                         Toast.LENGTH_SHORT
                     )
                         .show()
                 }
             }
         }
+    }
+
+    private fun saveDataNip(data: DataX) {
+        Paper.book().write("user",data)
     }
 
 
@@ -133,8 +138,4 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Permission Denied ", Toast.LENGTH_SHORT).show()
             }
         }
-
-//    private fun checkInput(getUsername: Any?, getPassword: Any?): Any {
-//        return if (!TextUtils.isEmpty(getUsername as CharSequence?) && TextUtils.isEmpty(getPassword as CharSequence?))
-//    }
 }

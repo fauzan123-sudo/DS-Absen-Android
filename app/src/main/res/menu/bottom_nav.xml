@@ -5,17 +5,16 @@
         android:id="@+id/berandaFragment"
         android:enabled="true"
         android:icon="@drawable/beranda"
-        android:title="Home"/>
+        android:title="BERANDA"/>
     <item
         android:id="@+id/scanFragment"
         android:enabled="true"
-        android:title="Keranjang"/>
+        android:title=""/>
 
     <item
-        android:id="@+id/dataAbsensiFragment"
+        android:id="@+id/dataAbsenFragment"
         android:enabled="true"
         android:icon="@drawable/data_absensi"
-        android:title="Pesanan"/>
-
+        android:title="DATA ABSENSI"/>
 
 </menu>

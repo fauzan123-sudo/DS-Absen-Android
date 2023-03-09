@@ -9,39 +9,133 @@
         android:id="@+id/berandaFragment"
         android:name="com.example.dsmabsen.ui.fragment.BerandaFragment"
         android:label="fragment_beranda"
-        tools:layout="@layout/fragment_beranda" >
+        tools:layout="@layout/fragment_beranda">
         <action
             android:id="@+id/action_berandaFragment_to_scanFragment"
             app:destination="@id/scanFragment" />
         <action
-            android:id="@+id/action_berandaFragment_to_dataAbsensiFragment"
-            app:destination="@id/dataAbsensiFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/dataAbsensiFragment"
-        android:name="com.example.dsmabsen.ui.fragment.DataAbsensiFragment"
-        android:label="fragment_data_absensi"
-        tools:layout="@layout/fragment_data_absensi" >
+            android:id="@+id/action_berandaFragment_to_dataAbsenFragment"
+            app:destination="@id/dataAbsenFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="false" />
         <action
-            android:id="@+id/action_dataAbsensiFragment_to_scanFragment"
-            app:destination="@id/scanFragment" />
+            android:id="@+id/action_berandaFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/berandaFragment" />
         <action
-            android:id="@+id/action_dataAbsensiFragment_to_berandaFragment"
-            app:destination="@id/berandaFragment" />
+            android:id="@+id/action_berandaFragment_to_attendanceFragment"
+            app:destination="@id/attendanceFragment"
+            app:popUpTo="@id/berandaFragment" />
+        <action
+            android:id="@+id/action_berandaFragment_to_allMenuFragment"
+            app:destination="@id/allMenuFragment" />
+        <action
+            android:id="@+id/action_berandaFragment_to_sallaryFragment"
+            app:destination="@id/sallaryFragment" />
+        <action
+            android:id="@+id/action_berandaFragment_to_reimbursementFragment"
+            app:destination="@id/reimbursementFragment" />
     </fragment>
     <fragment
         android:id="@+id/scanFragment"
         android:name="com.example.dsmabsen.ui.fragment.ScanFragment"
         android:label="fragment_scan"
-        tools:layout="@layout/fragment_scan" >
+        tools:layout="@layout/fragment_scan">
         <action
             android:id="@+id/action_scanFragment_to_berandaFragment"
             app:destination="@id/berandaFragment" />
         <action
-            android:id="@+id/action_scanFragment_to_dataAbsensiFragment"
-            app:destination="@id/dataAbsensiFragment" />
-        <action
             android:id="@+id/action_scanFragment_to_berandaFragment2"
             app:destination="@id/berandaFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/dataAbsenFragment"
+        android:name="com.example.dsmabsen.ui.fragment.DataAbsenFragment"
+        android:label="fragment_data_absen"
+        tools:layout="@layout/fragment_data_absen">
+        <action
+            android:id="@+id/action_dataAbsenFragment_to_berandaFragment"
+            app:destination="@id/berandaFragment" />
+        <action
+            android:id="@+id/action_dataAbsenFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.dsmabsen.ui.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_berandaFragment"
+            app:destination="@id/berandaFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_dataAbsenFragment"
+            app:destination="@id/dataAbsenFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_allProfileFragment"
+            app:destination="@id/allProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noInternetConnection"
+        android:name="com.example.dsmabsen.ui.fragment.NoInternetConnection"
+        android:label="fragment_no_internet_connection"
+        tools:layout="@layout/fragment_no_internet_connection" />
+    <fragment
+        android:id="@+id/attendanceFragment"
+        android:name="com.example.dsmabsen.ui.fragment.AttendanceFragment"
+        android:label="fragment_attendance"
+        tools:layout="@layout/fragment_attendance" >
+        <action
+            android:id="@+id/action_attendanceFragment_to_berandaFragment"
+            app:destination="@id/berandaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allMenuFragment"
+        android:name="com.example.dsmabsen.ui.fragment.AllMenuFragment"
+        android:label="fragment_all_menu"
+        tools:layout="@layout/fragment_all_menu" >
+        <action
+            android:id="@+id/action_allMenuFragment_to_berandaFragment"
+            app:destination="@id/berandaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allProfileFragment"
+        android:name="com.example.dsmabsen.ui.fragment.AllProfileFragment"
+        android:label="fragment_all_profile"
+        tools:layout="@layout/fragment_all_profile" >
+        <action
+            android:id="@+id/action_allProfileFragment_to_personalDataFragment"
+            app:destination="@id/personalDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.dsmabsen.ui.fragment.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/personalDataFragment"
+        android:name="com.example.dsmabsen.ui.fragment.PersonalDataFragment"
+        android:label="fragment_personal_data"
+        tools:layout="@layout/fragment_personal_data" >
+        <action
+            android:id="@+id/action_personalDataFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sallaryFragment"
+        android:name="com.example.dsmabsen.ui.fragment.SallaryFragment"
+        android:label="fragment_sallary"
+        tools:layout="@layout/fragment_sallary" />
+    <fragment
+        android:id="@+id/reimbursementFragment"
+        android:name="com.example.dsmabsen.ui.fragment.ReimbursementFragment"
+        android:label="fragment_reimbursement"
+        tools:layout="@layout/fragment_reimbursement" />
 </navigation>

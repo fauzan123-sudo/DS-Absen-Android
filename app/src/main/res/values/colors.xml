@@ -16,6 +16,14 @@
     <color name="secondary">#DBBA6B</color>
     <color name="grey">#7F838B</color>
     <color name="black_text">#252832</color>
+    <color name="danger">#DC3545</color>
+    <color name="grey_shimmer">#DDDDDD</color>
 
+    <color name="_primary">#0950A2</color>
+    <color name="_secondary">#DBBA6B</color>
+    <color name="_muted">#D1D2D2</color>
+    <color name="_success">#198754</color>
+    <color name="_danger">#DC3545</color>
 
 </resources>
+
