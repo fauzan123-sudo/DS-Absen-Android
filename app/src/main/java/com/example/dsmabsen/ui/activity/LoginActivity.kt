@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
     private val viewModel: AuthViewModel by viewModels()
     private lateinit var imei: String
     private lateinit var telephonyManager: TelephonyManager
+
     @Inject
     lateinit var tokenManager: TokenManager
 
@@ -91,9 +92,9 @@ class LoginActivity : AppCompatActivity() {
                                 .show()
                             tokenManager.saveToken(it.data.access_token)
 //                            cacheManager.setNip(it.data.data.nip)
-                            
+
 //                            Log.d("isi data", data)
-                        val data = it.data.data
+                            val data = it.data.data
                             saveDataNip(data)
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         } else {
@@ -122,7 +123,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun saveDataNip(data: DataX) {
-        Paper.book().write("user",data)
+        Paper.book().write("user", data)
     }
 
 

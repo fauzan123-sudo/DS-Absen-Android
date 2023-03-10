@@ -22,11 +22,13 @@ interface AuthApi {
     @POST("logout")
     suspend fun logOut(
         @Field("nip") nip:String
-    ) : Response<Logout>
+    ) : Response<ResponseBody>
 
-
+    @FormUrlEncoded
     @POST("logout")
     suspend fun logOuts(
         @Field("nip") nip:String
     ) : ResponseBody
+
+
 }

@@ -43,18 +43,20 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 findNavController().navigate(R.id.action_profileFragment_to_allProfileFragment)
             }
 
+
+
             llLogout.setOnClickListener {
                 val nips = RequestNip(
                     nipUser
                 )
 
                 Toast.makeText(requireContext(), "$nips", Toast.LENGTH_SHORT).show()
-                viewModels.requestlogout(nipUser)
+                viewModels.requestLogout(nipUser)
                 viewModels.logOutLiveData.observe(viewLifecycleOwner) {
                     when (it) {
                         is NetworkResult.Success -> {
                             val data = it.data!!
-                            if (data.status) {
+
                                 requireActivity().startActivity(
                                     Intent(
                                         requireActivity(),
@@ -63,9 +65,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                                 )
                                 Paper.book().delete("user")
                                 tokenManager.deleteToken()
-                            }else{
-                                Toast.makeText(requireContext(), "Gagal Logout", Toast.LENGTH_SHORT).show()
-                            }
                         }
 
                         is NetworkResult.Loading -> {

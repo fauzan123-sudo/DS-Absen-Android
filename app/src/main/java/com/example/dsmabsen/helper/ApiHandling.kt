@@ -12,15 +12,15 @@ fun Fragment.handleApiError(
         getString(R.string.failed_connect) -> Toast.makeText(
             context,
             "can`t connect to server, maybe server is bad server",
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_LONG
         ).show()
         getString(R.string.bad_connection) -> Toast.makeText(
             context,
             "Bad connection, check your connection",
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_LONG
         )
             .show()
-        else -> Toast.makeText(context, "$error", Toast.LENGTH_SHORT).show()
+        else -> Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
     }
 }
 
@@ -31,14 +31,14 @@ fun Activity.handleApiError(
         getString(R.string.failed_connect) -> Toast.makeText(
             this,
             "can`t connect to server, maybe server is bad server",
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_LONG
         ).show()
         getString(R.string.bad_connection) -> Toast.makeText(
             this,
             "Bad connection, check your connection",
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_LONG
         )
             .show()
-        else -> Toast.makeText(this, "$error", Toast.LENGTH_SHORT).show()
+        else -> Toast.makeText(this, "$error", Toast.LENGTH_LONG).show()
     }
 }

@@ -24,8 +24,8 @@ class AuthViewModel @Inject constructor(private val repository: AuthRepository) 
     private val _userResponseLiveData = MutableLiveData<NetworkResult<LoginResponse>>()
     val userResponseLiveData: LiveData<NetworkResult<LoginResponse>> = _userResponseLiveData
 
-    private val _logOutLiveData = MutableLiveData<NetworkResult<Logout>>()
-    val logOutLiveData: LiveData<NetworkResult<Logout>> = _logOutLiveData
+    private val _logOutLiveData = MutableLiveData<NetworkResult<ResponseBody>>()
+    val logOutLiveData: LiveData<NetworkResult<ResponseBody>> = _logOutLiveData
 
     fun login(email: String, password: String, imei: String) {
         viewModelScope.launch {
@@ -39,7 +39,7 @@ class AuthViewModel @Inject constructor(private val repository: AuthRepository) 
 
     }
 
-    fun requestlogout(nip: String) {
+    fun requestLogout(nip: String) {
         viewModelScope.launch {
             val connected = CheckInternet().check()
             if (connected) {
@@ -50,7 +50,9 @@ class AuthViewModel @Inject constructor(private val repository: AuthRepository) 
         }
     }
 
-    fun logout(nip: String) {
-
+    suspend fun logout(nip:String?) = withContext(Dispatchers.IO) {
+        if (nip != null) {
+            repository.logOuts(nip)
+        }
     }
 }

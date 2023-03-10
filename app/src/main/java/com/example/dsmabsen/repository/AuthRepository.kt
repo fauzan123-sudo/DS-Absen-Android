@@ -13,7 +13,7 @@ class AuthRepository @Inject constructor(private val api: AuthApi) : BaseReposit
     suspend fun logOut(nip: String) =
         safeApiCall { api.logOut(nip) }
 
-    suspend fun logOuts(nip: String): ResponseBody {
-        return api.logOuts(nip)
-    }
+    suspend fun logOuts(nip: String) =
+        api.logOuts(nip)
+
 }
