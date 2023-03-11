@@ -22,19 +22,19 @@
     <!--        android:id="@+id/toolbar"-->
     <!--        layout="@layout/toolbar_layout"/>-->
 
-<!--        <com.airbnb.lottie.LottieAnimationView-->
-<!--            android:id="@+id/loading"-->
-<!--            android:background="@color/white"-->
-<!--            app:lottie_rawRes="@raw/bounce_loading"-->
-<!--            app:lottie_autoPlay="true"-->
-<!--            app:lottie_loop="true"-->
-<!--            android:visibility="gone"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"/>-->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading"
+            android:background="@color/white"
+            app:lottie_rawRes="@raw/bounce_loading"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/homeVisible"
@@ -97,6 +97,7 @@
                     android:id="@+id/custom_analog_clock"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/wall_clock"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="1:1"
