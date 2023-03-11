@@ -26,15 +26,15 @@ class CustomAnalogClock(context: Context, attrs: AttributeSet?) : View(context, 
     init {
         paintDetik.color = ContextCompat.getColor(context, R.color._danger)
         paintDetik.style = Paint.Style.STROKE
-        paintDetik.strokeWidth = 1f
+        paintDetik.strokeWidth = 5f
 
         paintMenit.color = ContextCompat.getColor(context, R.color._dark)
         paintMenit.style = Paint.Style.STROKE
-        paintMenit.strokeWidth = 1f
+        paintMenit.strokeWidth = 5f
 
         paintJam.color = ContextCompat.getColor(context, R.color._primary)
         paintJam.style = Paint.Style.STROKE
-        paintJam.strokeWidth = 1f
+        paintJam.strokeWidth = 5f
 
 //        paintCircle.color = ContextCompat.getColor(context, R.color.teal_700)
 //        paintCircle.style = Paint.Style.STROKE
