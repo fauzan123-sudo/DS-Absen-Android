@@ -18,9 +18,9 @@
     <!--                layout="@layout/shimmer_beranda"-->
     <!--                />-->
     <!--        </com.facebook.shimmer.ShimmerFrameLayout>-->
-    <!--    <include-->
-    <!--        android:id="@+id/toolbar"-->
-    <!--        layout="@layout/toolbar_layout"/>-->
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_layout"/>
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loading"
