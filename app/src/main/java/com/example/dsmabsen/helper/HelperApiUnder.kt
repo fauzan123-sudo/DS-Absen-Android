@@ -21,6 +21,17 @@ class HelperApiUnder {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
+    fun getTimeDetail(): String {
+        val indonesia = Locale("in", "ID")
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        val today = LocalDate.now(ZoneId.systemDefault())
+        val hariIni = today.dayOfWeek.getDisplayName(TextStyle.FULL, indonesia)
+        val tanggal = today.format(formatter)
+        val hasil = "$hariIni, $tanggal"
+        return hariIni
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getDate(): String? {
         val formatter = DateTimeFormatter.ofPattern("dd")
         val today = LocalDate.now(ZoneId.systemDefault())

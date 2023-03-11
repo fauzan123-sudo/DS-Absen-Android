@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="@dimen/_14sdp"
+    android:layout_marginBottom="@dimen/_15sdp"
+    android:outlineProvider="bounds">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rv_lembur"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_101sdp"
+            android:background="@drawable/retangle_stroke"
+            android:padding="@dimen/_15sdp"
+            android:elevation="@dimen/_15sdp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_tanggal_lembur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Senin, 22 Maret 2023"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_8ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_approve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diterima"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/_success"
+                android:textSize="@dimen/_8ssp"
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold"/>
+
+            <View
+                android:id="@+id/vi_1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/secondary"
+                android:layout_below="@+id/tv_tanggal_lembur"
+                android:layout_marginTop="5.5dp"/>
+
+            <TextView
+                android:id="@+id/tv_keterangan_lembur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Acara Ketemu Keluarga Jauh"
+                android:fontFamily="@font/poppins"
+                android:layout_above="@+id/tv_durasi"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black_text"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_below="@+id/vi_1"/>
+
+            <TextView
+                android:id="@+id/tv_durasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Durasi izin :"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_8ssp"
+                android:textColor="@color/_dark"
+                android:textStyle="bold"
+                android:layout_above="@+id/tv_untuk_tanggal"
+                android:layout_marginBottom="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/tv_untuk_tanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Untuk tanggal :"
+                android:fontFamily="@font/poppins"
+                android:layout_alignParentBottom="true"
+                android:textSize="@dimen/_8ssp"
+                android:textColor="@color/_dark"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/jam_lembur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_above="@+id/tanggal_lembur"
+                android:fontFamily="@font/poppins"
+                android:text="12:00 - 18:00"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_8ssp"
+                android:layout_marginBottom="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/tanggal_lembur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="@font/poppins"
+                android:text="14/02/03"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_8ssp"/>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

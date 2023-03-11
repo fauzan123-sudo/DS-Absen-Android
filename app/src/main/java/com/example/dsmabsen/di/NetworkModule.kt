@@ -82,4 +82,22 @@ object NetworkModule {
     ): ReimbursementApi {
         return retrofitBuilder.client(okHttpClient).build().create(ReimbursementApi::class.java)
     }
+    @Singleton
+    @Provides
+    fun providesPerizinan(
+        retrofitBuilder: Retrofit.Builder,
+        okHttpClient: OkHttpClient
+    ): PerizinanApi {
+        return retrofitBuilder.client(okHttpClient).build().create(PerizinanApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providesShift(
+        retrofitBuilder: Retrofit.Builder,
+        okHttpClient: OkHttpClient
+    ): ShiftApi {
+        return retrofitBuilder.client(okHttpClient).build().create(ShiftApi::class.java)
+    }
+
 }

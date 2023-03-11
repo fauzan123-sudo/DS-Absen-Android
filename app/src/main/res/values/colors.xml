@@ -24,6 +24,9 @@
     <color name="_muted">#D1D2D2</color>
     <color name="_success">#198754</color>
     <color name="_danger">#DC3545</color>
+    <color name="_grey">#7F838B</color>
+    <color name="_info">#0660C7</color>
+    <color name="_dark">#252832</color>
 
 </resources>
 

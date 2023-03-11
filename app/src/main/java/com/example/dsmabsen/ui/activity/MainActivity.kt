@@ -2,8 +2,14 @@ package com.example.dsmabsen.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.fragment.findNavController
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.dsmabsen.ui.fragment.AttendanceFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -29,13 +36,55 @@ class MainActivity : AppCompatActivity() {
 //        Bottom Navigation
         with(binding) {
             bottomNavigationView.setupWithNavController(navController)
-            bottomNavigationView.menu.getItem(1).isEnabled = false
+//            bottomNavigationView.menu.getItem(1).isEnabled = false
 
-            fab.setOnClickListener {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerView2, AttendanceFragment())
-                    .commit()
+            navController.addOnDestinationChangedListener { _, destination, _ ->
             }
+
+            val callback = object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (navController.currentDestination?.id == R.id.berandaFragment) {
+                        val builder = AlertDialog.Builder(this@MainActivity)
+                        builder.setTitle("Konfirmasi")
+                        builder.setMessage("Apakah Anda yakin ingin keluar dari aplikasi?")
+                        builder.setPositiveButton("Ya") { _, _ ->
+                            finish()
+                        }
+
+                        builder.setNegativeButton("Tidak") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+
+                        val dialog = builder.create()
+                        dialog.show()
+                    } else {
+                        navController.navigateUp()
+                    }
+                }
+            }
+            onBackPressedDispatcher.addCallback(this@MainActivity, callback)
+        }
+
+//            navController.addOnDestinationChangedListener { _, destination, _ ->
+//                if (destination.id != R.id.berandaFragment) {
+//                    onBackPressedDispatcher.addCallback(this@MainActivity) {
+//                        val builder = AlertDialog.Builder(this@MainActivity)
+//                        builder.setTitle("Konfirmasi Keluar")
+//                            .setMessage("Apakah Anda yakin ingin keluar dari aplikasi?")
+//                            .setPositiveButton("Ya") { _, _ ->
+//                                finish()
+//                            }
+//                            .setNegativeButton("Tidak") { dialog, _ ->
+//                                dialog.dismiss()
+//                            }
+//                        builder.create().show()
+//
+//                    }
+//                } else {
+//                    onBackPressedDispatcher.onBackPressed()
+//
+//                }
+//            }
 
 //            bottomNavigationView.setOnItemSelectedListener { item ->
 //                when (item.itemId) {
@@ -72,9 +121,29 @@ class MainActivity : AppCompatActivity() {
 //
 //            }
 
-        }
     }
-
+//        //Tambahkan kode berikut untuk menangani event tombol kembali di fragment Beranda
+//        val callback = object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+//                val builder = AlertDialog.Builder(this@MainActivity)
+//                builder.setTitle("Konfirmasi Keluar")
+//                    .setMessage("Apakah Anda yakin ingin keluar dari aplikasi?")
+//                    .setPositiveButton("Ya") { _, _ ->
+//                        finish()
+//                    }
+//                    .setNegativeButton("Tidak") { dialog, _ ->
+//                        dialog.dismiss()
+//                    }
+//                builder.create().show()
+//            }
+//        }
+//        navController.addOnDestinationChangedListener { _, destination, _ ->
+//            if (destination.id == R.id.berandaFragment) {
+//                onBackPressedDispatcher.addCallback(this@MainActivity, callback)
+//            } else {
+//                onBackPressedDispatcher.onBackPressed()
+//            }
+//        }
 
 
     override fun onSupportNavigateUp(): Boolean {

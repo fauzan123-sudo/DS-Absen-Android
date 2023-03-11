@@ -1,8 +1,6 @@
 package com.example.dsmabsen.network
 
-import com.example.dsmabsen.model.AttendanceHistory
-import com.example.dsmabsen.model.Presensi
-import com.example.dsmabsen.model.TotalAttendance
+import com.example.dsmabsen.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -13,14 +11,14 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface DataAttendanceApi {
-
 
     @GET("riwayat-presensi/{nip}")
     suspend fun attendanceHistory(
         @Path("nip") nip: String
-    ): Response<AttendanceHistory>
+    ): Response<List<DataXXXXXXXXXX>>
 
     @GET("total-presensi/{nip}")
     suspend fun attendanceTotal(
@@ -38,4 +36,27 @@ interface DataAttendanceApi {
         @Part("kode_shift") kode_shift: RequestBody,
         @Part("kode_tingkat") kode_tingkat: RequestBody,
     ): Response<Presensi>
+
+    @GET("payroll-client/index")
+    suspend fun getSallary(
+        @Query("nip") nip: String
+    ): Response<DataSallary>
+
+    @GET("pengajuan/lembur/lists")
+    suspend fun getListLembur(
+        @Query("nip") nip: String
+    ) : Response<DataLembur>
+
+    @FormUrlEncoded
+    @POST("pengajuan/lembur/store")
+    suspend fun pengajuanLembur(
+        @Field("nip") nip:String,
+        @Field("jam_mulai") jam_mulai:String,
+        @Field("jam_selesai") jam_selesai:String,
+        @Field("file") file:String,
+        @Field("tanggal") tanggal:String,
+        @Field("keterangan") keterangan:String
+
+    ) : Response<PengajuanLembur>
+
 }

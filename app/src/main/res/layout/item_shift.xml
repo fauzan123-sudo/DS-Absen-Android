@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/shadow_bg"
+    android:layout_marginBottom="@dimen/_15sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rv_shift"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_82sdp"
+            android:background="@drawable/shadow_bg"
+            android:padding="@dimen/_15sdp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_tanggal_shift"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Senin, 22 Maret 2023"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_8ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_approve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diterima"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/_success"
+                android:textSize="@dimen/_8ssp"
+                android:layout_alignParentEnd="true"/>
+
+            <View
+                android:id="@+id/vi_1"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/secondary"
+                android:layout_below="@+id/tv_tanggal_shift"
+                android:layout_marginTop="5.5dp"/>
+
+            <TextView
+                android:id="@+id/tv_keterangan_shift"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Acara Ketemu Keluarga Jauh"
+                android:fontFamily="@font/poppins"
+                android:layout_above="@+id/tv_shift1"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black_text"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_below="@+id/vi_1"/>
+
+            <TextView
+                android:id="@+id/tv_shift1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shift :"
+                android:fontFamily="@font/poppins"
+                android:layout_alignParentBottom="true"
+                android:textSize="@dimen/_8ssp"
+                android:textColor="@color/_primary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_shift2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tv_shift1"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="@font/poppins_light"
+                android:text="shift malam"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_8ssp" />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

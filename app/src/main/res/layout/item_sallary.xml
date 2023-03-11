@@ -17,14 +17,17 @@
             android:padding="@dimen/_10sdp">
 
             <TextView
-                android:id="@+id/id"
-                android:layout_width="wrap_content"
+                android:id="@+id/idGaji"
+                android:layout_width="0dp"
+                android:maxLines="1"
                 android:layout_height="wrap_content"
-                android:textColor="@color/crown"
                 android:fontFamily="@font/poppins_bold"
-                android:textSize="@dimen/_12ssp"
                 android:text="TextView"
-                app:layout_constraintBottom_toTopOf="@+id/tanggal"
+                android:textColor="@color/crown"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toTopOf="@+id/tanggals"
+                app:layout_constraintEnd_toStartOf="@+id/sallary"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +44,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tanggal"
+                android:id="@+id/tanggals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
@@ -50,7 +53,7 @@
                 android:textColor="@color/black_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/id" />
+                app:layout_constraintTop_toBottomOf="@+id/idGaji" />
 
             <ImageView
                 android:id="@+id/imageView31"

@@ -39,8 +39,10 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         if (tokenManager.getToken() != null) {
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            finish()
         }
         telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
         val mId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
@@ -50,6 +52,8 @@ class LoginActivity : AppCompatActivity() {
             val permission = Manifest.permission.READ_PHONE_STATE
             singlePermissionLaunch.launch(permission)
         }
+
+
 
         with(binding) {
             btnLogin.setOnClickListener {
@@ -81,22 +85,17 @@ class LoginActivity : AppCompatActivity() {
             }
 
             viewModel.userResponseLiveData.observe(this@LoginActivity) {
-                binding.progressCircular.isVisible = false
+                loading.isVisible = false
                 when (it) {
                     is NetworkResult.Success -> {
-                        Log.d(TAG, "simpan : ${it.data!!.access_token}")
-                        Log.d(TAG, "dataNip : ${it.data}")
-
-                        if (it.data.status) {
+                        if (it.data!!.status) {
                             Toast.makeText(this@LoginActivity, "berhasil login", Toast.LENGTH_SHORT)
                                 .show()
                             tokenManager.saveToken(it.data.access_token)
-//                            cacheManager.setNip(it.data.data.nip)
-
-//                            Log.d("isi data", data)
                             val data = it.data.data
                             saveDataNip(data)
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            finish()
                         } else {
                             Toast.makeText(
                                 this@LoginActivity,
@@ -111,12 +110,9 @@ class LoginActivity : AppCompatActivity() {
                         Log.d(TAG, (it.message.toString()))
                     }
 
-                    else -> Toast.makeText(
-                        this@LoginActivity,
-                        "Loading",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
+                    is NetworkResult.Loading ->{
+                        binding.loading.isVisible = true
+                    }
                 }
             }
         }

@@ -54,20 +54,26 @@ class DataAbsenFragment :
             val savedUser = Paper.book().read<DataX>("user")
             viewModel.attendanceHistoryRequest(savedUser!!.nip)
             viewModel.attendanceHistoryLiveData.observe(viewLifecycleOwner) {
+                binding.loading.isVisible = false
                 when (it) {
                     is NetworkResult.Success -> {
-                        val attendance = it.data!!.data
-                        Toast.makeText(requireContext(), "$attendance disini", Toast.LENGTH_SHORT).show()
+                        binding.loading.isVisible = false
+                        binding.constrain.isVisible = true
+                        val attendance = it.data!!
+                        Toast.makeText(requireContext(), "$attendance disini", Toast.LENGTH_SHORT)
+                            .show()
                         adapter.differ.submitList(attendance)
 
                     }
 
                     is NetworkResult.Loading -> {
-//                        spinKit.isVisible = true
+//                        binding.loading.isVisible = true
+//                        binding.constrain.isVisible = false
                         Toast.makeText(requireContext(), "Sedang proses", Toast.LENGTH_SHORT).show()
                     }
 
                     is NetworkResult.Error -> {
+                        binding.loading.isVisible = false
                         handleApiError(it.message)
                     }
                 }
@@ -75,62 +81,23 @@ class DataAbsenFragment :
 
             viewModel.attendanceTotalRequest(savedUser.nip)
             viewModel.totalAttendanceLiveData.observe(viewLifecycleOwner) {
+                binding.loading.isVisible = false
                 when (it) {
                     is NetworkResult.Success -> {
+                        binding.constrain.isVisible = true
+                        binding.loading.isVisible = false
                         val data = it.data!!.data
                         setPieChart(data)
-//                        val entries = listOf(
-//                            PieEntry(data.masuk.toFloat(), "Masuk"),
-//                            PieEntry(data.telat.toFloat(), "Telat"),
-//                            PieEntry(data.alfa.toFloat(), "Alfa"),
-//                            PieEntry(data.izin.toFloat(), "Izin")
-//                        )
-//
-//                        val colors = listOf(
-//                            Color.parseColor("#FFC107"),
-//                            Color.parseColor("#F44336"),
-//                            Color.parseColor("#9E9E9E"),
-//                            Color.parseColor("#4CAF50")
-//                        )
-//
-//                        // Atur warna untuk setiap data
-////                        val colors = ArrayList<Int>()
-////                        colors.add(ContextCompat.getColor(requireContext(), R.color._success))
-////                        colors.add(ContextCompat.getColor(requireContext(), R.color._primary))
-////                        colors.add(ContextCompat.getColor(requireContext(), R.color._danger))
-////                        colors.add(ContextCompat.getColor(requireContext(), R.color._secondary))
-//
-//                        // Buat objek PieDataSet dengan data dan warna yang sudah ditentukan
-//                        val pieDataSet = PieDataSet(entries, "")
-//                        pieDataSet.colors = colors
-//                        pieDataSet.valueTextColor = Color.WHITE
-//
-//
-//                        // Buat objek PieData dan atur dataset yang sudah dibuat sebelumnya
-//                        val pieData = PieData(pieDataSet)
-//                        pieData.setValueTextColor(Color.WHITE)
-//                        pieData.setValueTextSize(15f)
-//                        pieData.setValueTypeface(Typeface.DEFAULT_BOLD)
-//
-//                        val dataSet = PieDataSet(entries, "")
-//                        dataSet.colors = colors
-//                        dataSet.valueTextSize = 14f
-//
-//                        val dataPie = PieData(dataSet)
-//                        pieChart.data = dataPie
-//                        pieChart.setDrawEntryLabels(false)
-//                        pieChart.description.isEnabled = false
-//
-//                        pieChart.invalidate()
-
-
                     }
 
                     is NetworkResult.Loading -> {
+                        binding.constrain.isVisible = false
+                        binding.loading.isVisible = true
                         Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
                     }
 
                     is NetworkResult.Error -> {
+                        binding.loading.isVisible = false
                         handleApiError(it.message)
                     }
                 }

@@ -10,19 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dsmabsen.R
 import com.example.dsmabsen.databinding.ItemRekapAbsensiBinding
 import com.example.dsmabsen.helper.Helper
-import com.example.dsmabsen.model.DataXXX
+import com.example.dsmabsen.model.DataXXXXXXXXXX
 
 class AttendanceAdapter(private val context: Context) :
     RecyclerView.Adapter<AttendanceAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemRekapAbsensiBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun setData(item: DataXXX) {
+        fun setData(item: DataXXXXXXXXXX) {
             binding.apply {
                 with(item) {
                     val newFormat = "kk:mm:ss"
                     textView29.text = tanggal
-                    textView31.text = Helper().convertTanggal(absen, newFormat)
+                    textView31.text = Helper().convertTanggal(absen!!, newFormat)
 
                     if (status == 1) {
                         imageView11.setImageResource(R.drawable.round_icon1)
@@ -50,12 +50,12 @@ class AttendanceAdapter(private val context: Context) :
 
     override fun getItemCount() = differ.currentList.size
 
-    private val differCallback = object : DiffUtil.ItemCallback<DataXXX>() {
-        override fun areItemsTheSame(oldItem: DataXXX, newItem: DataXXX): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXXXXX>() {
+        override fun areItemsTheSame(oldItem: DataXXXXXXXXXX, newItem: DataXXXXXXXXXX): Boolean {
             return oldItem.absen == newItem.absen
         }
 
-        override fun areContentsTheSame(oldItem: DataXXX, newItem: DataXXX): Boolean {
+        override fun areContentsTheSame(oldItem: DataXXXXXXXXXX, newItem: DataXXXXXXXXXX): Boolean {
             return oldItem.absen == newItem.absen
         }
     }

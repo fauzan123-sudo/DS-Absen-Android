@@ -98,15 +98,32 @@ class Helper {
         return currentDate.format(DateTimeFormatter.ofPattern("MM - yyyy"))
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getMYDetail(): String {
+        val currentDate = LocalDate.now()
+        return currentDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+    }
+
     fun convertTanggal(
         tgl: String,
         newFormat: String,
         oldFormat: String = "yyyy-MM-dd hh:mm:ss"
-    ): String? {
+    ): String {
         val dateFormat = SimpleDateFormat(oldFormat)
         val convert = dateFormat.parse(tgl)
         dateFormat.applyPattern(newFormat)
-        return convert?.let { dateFormat.format(it) }
+        return convert.let { dateFormat.format(it!!) }
+    }
+
+    fun convertDate(
+        tgl: String,
+        newFormat: String,
+        oldFormat: String = "dd-MM-yyyy"
+    ): String {
+        val dateFormat = SimpleDateFormat(oldFormat)
+        val convert = dateFormat.parse(tgl)
+        dateFormat.applyPattern(newFormat)
+        return convert.let { dateFormat.format(it) }
     }
 
     fun loadGlideImage(context: Context, url: String, imageView: ImageView) {
@@ -115,7 +132,7 @@ class Helper {
             .into(imageView)
     }
 
-    fun permission(){
+    fun permission() {
 
     }
 

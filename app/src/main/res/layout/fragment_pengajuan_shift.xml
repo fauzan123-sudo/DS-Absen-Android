@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:background="@drawable/gradiend_background"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.PengajuanShiftFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rv_pilih_shift"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_15sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/rounded_menu"
+        android:layout_marginTop="@dimen/_30sdp">
+
+        <TextView
+            android:id="@+id/tv_pilih_shift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih Izin"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/black_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_47sdp"
+            android:background="@drawable/rounded_menu"
+            android:layout_below="@+id/tv_pilih_shift"
+            android:backgroundTint="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pilih_shift"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_15sdp"
+            android:textAlignment="textEnd"
+            android:layout_marginTop="@dimen/_5sdp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rv_keterangan_perizinan_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_15sdp"
+        app:layout_constraintTop_toBottomOf="@+id/rv_pilih_shift"
+        android:background="@drawable/rounded_menu"
+        android:layout_marginTop="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/tv_keterangan_perizinan_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Keterangan"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/black_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_109sdp"
+            android:background="@drawable/rounded_menu"
+            app:layout_constraintTop_toBottomOf="@+id/tv_keterangan_perizinan_create"
+            android:backgroundTint="@color/white"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_15sdp"
+            android:lines="4"
+            android:textAlignment="textEnd"
+            android:layout_marginTop="@dimen/_5sdp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

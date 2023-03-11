@@ -2,9 +2,13 @@ package com.example.dsmabsen.ui.fragment
 
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -18,12 +22,21 @@ import com.example.dsmabsen.repository.NetworkResult
 import com.example.dsmabsen.ui.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBinding::inflate) {
     private val viewModel: HomeViewModel by viewModels()
     private val cacheManager = CacheManager()
+    private lateinit var customAnalogClock: CustomAnalogClock
+
+    private val handler = Handler()
+    private lateinit var runnable: Runnable
 
     @Inject
     lateinit var tokenManager: TokenManager
@@ -36,8 +49,70 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
 //        val token = tokenManager.getToken()
 
         with(binding) {
+
+            materialCardView8.setOnClickListener {
+                findNavController().navigate(R.id.action_berandaFragment_to_sallaryFragment)
+            }
+
+            materialCardView5.setOnClickListener {
+                findNavController().navigate(R.id.action_berandaFragment_to_menuPerizinanFragment)
+            }
+
+            materialCardView9.setOnClickListener {
+                findNavController().navigate(R.id.action_berandaFragment_to_reimbursementFragment)
+            }
+
+            materialCardView6.setOnClickListener {
+                findNavController().navigate(R.id.action_berandaFragment_to_lemburFragment)
+            }
+
+            materialCardView7.setOnClickListener {
+                findNavController().navigate(R.id.action_berandaFragment_to_shiftFragment)
+            }
+
             constraint.setOnClickListener {
                 findNavController().navigate(R.id.action_berandaFragment_to_allMenuFragment)
+            }
+
+            loading.isVisible = false
+
+            val customAnalogClock = binding.customAnalogClock
+            // Set waktu pada custom analog clock
+            val calendar = Calendar.getInstance()
+            customAnalogClock.setTime(
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                calendar.get(Calendar.SECOND)
+            )
+
+            // Update waktu setiap detik
+            val timer = Timer()
+            timer.scheduleAtFixedRate(object : TimerTask() {
+                override fun run() {
+                    activity?.runOnUiThread {
+                        val calendar = Calendar.getInstance()
+                        customAnalogClock.setTime(
+                            calendar.get(Calendar.HOUR_OF_DAY),
+                            calendar.get(Calendar.MINUTE),
+                            calendar.get(Calendar.SECOND)
+                        )
+                    }
+                }
+            }, 0, 1000)
+
+            runnable = object : Runnable {
+                override fun run() {
+                    val timestamp = System.currentTimeMillis()
+
+                    // Create a SimpleDateFormat object with the system timezone
+                    val sdfJam = SimpleDateFormat("HH", Locale.getDefault())
+                    val sdfMenit = SimpleDateFormat("mm", Locale.getDefault())
+                    val sdfDetik = SimpleDateFormat("ss", Locale.getDefault())
+                    sdfJam.timeZone = TimeZone.getDefault()
+                    sdfMenit.timeZone = TimeZone.getDefault()
+                    sdfDetik.timeZone = TimeZone.getDefault()
+                    handler.postDelayed(this, 1000)
+                }
             }
 
             materialCardView9.setOnClickListener {
@@ -46,13 +121,12 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
         }
         viewModel.homeRequest(savedUser!!.nip)
         viewModel.homeLiveData.observe(viewLifecycleOwner) {
-            binding.loading.isVisible = false
+            binding.loading.isVisible = true
             when (it) {
                 is NetworkResult.Success -> {
+                    binding.loading.isVisible = false
                     binding.homeVisible.isVisible = true
-//                        binding.shimmerViewContainer.stopShimmer()
-//                        binding.shimmerViewContainer.visibility = View.GONE
-
+                    binding.materialCardView11.isVisible = true
                     binding.apply {
                         val dataHome = it.data!!.data
                         textView6.text = dataHome.nama
@@ -84,28 +158,58 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
 
                     val status = it.data!!.status
                     if (status) {
-//                            Toast.makeText(requireContext(), "Hi..", Toast.LENGTH_LONG).show()
                         Log.d("hi", "hi")
                     } else {
                         handleApiError(it.message)
                     }
                 }
                 is NetworkResult.Error -> {
-//                        Toast.makeText(requireContext(), "tres", Toast.LENGTH_SHORT).show()
-//                        binding.shimmerViewContainer.stopShimmer()
+                    binding.loading.isVisible = false
                     handleApiError(it.message)
                 }
 
                 is NetworkResult.Loading -> {
                     binding.loading.isVisible = true
                     binding.homeVisible.isVisible = false
-//                        binding.shimmerViewContainer.startShimmer()
-//                        binding.shimmerViewContainer.isVisible = true
+                    binding.materialCardView11.isVisible = false
                 }
 
                 else -> Log.d("else", "else")
 
             }
         }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Navigasi kembali ke halaman sebelumnya jika tidak berada di halaman awal (DefaultFragment)
+                val navController = findNavController()
+                if (navController.currentDestination?.id == R.id.berandaFragment) {
+//                    activity?.finish()
+                    showExitConfirmationDialog()
+                } else {
+                    navController.navigateUp()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
+
+    fun showExitConfirmationDialog(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Konfirmasi")
+        builder.setMessage("Apakah Anda yakin ingin keluar dari aplikasi?")
+        builder.setPositiveButton("Ya") { _, _ ->
+            activity?.finish()
+        }
+
+        builder.setNegativeButton("Tidak") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+
+    }
+
+
 }

@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -29,6 +31,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
 
     private val viewModel: UserProfileViewModel by viewModels()
     private val viewModels: AuthViewModel by viewModels()
+
     @Inject
     lateinit var tokenManager: TokenManager
 
@@ -46,38 +49,53 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
 
 
             llLogout.setOnClickListener {
-                val nips = RequestNip(
-                    nipUser
-                )
+                AlertDialog.Builder(requireContext())
+                    .setTitle("LogOut")
+                    .setMessage("Anda Yakin ingin logout")
+                //    .setIcon(R.drawable.ic_warning)
+                    .setPositiveButton("Ya"){ _, _ ->
+                        val nips = RequestNip(
+                            nipUser
+                        )
 
-                Toast.makeText(requireContext(), "$nips", Toast.LENGTH_SHORT).show()
-                viewModels.requestLogout(nipUser)
-                viewModels.logOutLiveData.observe(viewLifecycleOwner) {
-                    when (it) {
-                        is NetworkResult.Success -> {
-                            val data = it.data!!
-
-                                requireActivity().startActivity(
-                                    Intent(
-                                        requireActivity(),
-                                        LoginActivity::class.java
+                        Toast.makeText(requireContext(), "$nips", Toast.LENGTH_SHORT).show()
+                        viewModels.requestLogout(nipUser)
+                        viewModels.logOutLiveData.observe(viewLifecycleOwner) {
+                            binding.loading.isVisible = false
+                            when (it) {
+                                is NetworkResult.Success -> {
+                                    val data = it.data!!
+                                    binding.loading.isVisible = false
+                                    binding.constraintLayout3.isVisible = true
+                                    requireActivity().startActivity(
+                                        Intent(
+                                            requireActivity(),
+                                            LoginActivity::class.java
+                                        )
                                     )
-                                )
-                                Paper.book().delete("user")
-                                tokenManager.deleteToken()
-                        }
+                                    Paper.book().delete("user")
+                                    tokenManager.deleteToken()
+                                }
 
-                        is NetworkResult.Loading -> {
-                            Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-                        }
+                                is NetworkResult.Loading -> {
+                                    binding.constraintLayout3.isVisible = false
+                                    binding.loading.isVisible = true
+                                }
 
-                        is NetworkResult.Error -> {
-                            handleApiError(it.message)
-                            Log.d("TAG", it.message.toString())
+                                is NetworkResult.Error -> {
+                                    handleApiError(it.message)
+                                    Log.d("TAG", it.message.toString())
+                                    binding.loading.isVisible = false
 //                            Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG).show()
+                                }
+                            }
                         }
                     }
-                }
+                    .setNegativeButton("Kembali"){_,_ ->
+//                        Toast.makeText(requireContext(), "Kembali", Toast.LENGTH_SHORT).show()
+                    }
+                    .create().show()
+
             }
         }
 

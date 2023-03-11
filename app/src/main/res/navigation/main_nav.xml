@@ -32,7 +32,7 @@
         <action
             android:id="@+id/action_berandaFragment_to_attendanceFragment"
             app:destination="@id/attendanceFragment"
-            app:popUpTo="@id/berandaFragment" />
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_berandaFragment_to_allMenuFragment"
             app:destination="@id/allMenuFragment" />
@@ -42,6 +42,15 @@
         <action
             android:id="@+id/action_berandaFragment_to_reimbursementFragment"
             app:destination="@id/reimbursementFragment" />
+        <action
+            android:id="@+id/action_berandaFragment_to_menuPerizinanFragment"
+            app:destination="@id/menuPerizinanFragment" />
+        <action
+            android:id="@+id/action_berandaFragment_to_lemburFragment"
+            app:destination="@id/lemburFragment" />
+        <action
+            android:id="@+id/action_berandaFragment_to_shiftFragment"
+            app:destination="@id/shiftFragment" />
     </fragment>
     <fragment
         android:id="@+id/scanFragment"
@@ -138,4 +147,49 @@
         android:name="com.example.dsmabsen.ui.fragment.ReimbursementFragment"
         android:label="fragment_reimbursement"
         tools:layout="@layout/fragment_reimbursement" />
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.dsmabsen.ui.fragment.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" />
+    <fragment
+        android:id="@+id/formPerizinanFragment"
+        android:name="com.example.dsmabsen.ui.fragment.FormPerizinanFragment"
+        android:label="fragment_form_perizinan"
+        tools:layout="@layout/fragment_form_perizinan" >
+        <action
+            android:id="@+id/action_formPerizinanFragment_to_menuPerizinanFragment"
+            app:destination="@id/menuPerizinanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuPerizinanFragment"
+        android:name="com.example.dsmabsen.ui.fragment.MenuPerizinanFragment"
+        android:label="fragment_menu_perizinan"
+        tools:layout="@layout/fragment_menu_perizinan" >
+        <action
+            android:id="@+id/action_menuPerizinanFragment_to_formPerizinanFragment"
+            app:destination="@id/formPerizinanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lemburFragment"
+        android:name="com.example.dsmabsen.ui.fragment.LemburFragment"
+        android:label="fragment_lembur"
+        tools:layout="@layout/fragment_lembur" >
+        <action
+            android:id="@+id/action_lemburFragment_to_berandaFragment"
+            app:destination="@id/berandaFragment" />
+        <action
+            android:id="@+id/action_lemburFragment_to_pengajuanLemburFragment"
+            app:destination="@id/pengajuanLemburFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pengajuanLemburFragment"
+        android:name="com.example.dsmabsen.ui.fragment.PengajuanLemburFragment"
+        android:label="fragment_pengajuan_lembur"
+        tools:layout="@layout/fragment_pengajuan_lembur" />
+    <fragment
+        android:id="@+id/shiftFragment"
+        android:name="com.example.dsmabsen.ui.fragment.ShiftFragment"
+        android:label="fragment_shift"
+        tools:layout="@layout/fragment_shift" />
 </navigation>
