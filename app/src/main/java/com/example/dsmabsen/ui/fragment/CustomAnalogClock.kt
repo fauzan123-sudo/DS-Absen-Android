@@ -26,15 +26,15 @@ class CustomAnalogClock(context: Context, attrs: AttributeSet?) : View(context, 
     init {
         paintDetik.color = ContextCompat.getColor(context, R.color._danger)
         paintDetik.style = Paint.Style.STROKE
-        paintDetik.strokeWidth = 15f
+        paintDetik.strokeWidth = 1f
 
         paintMenit.color = ContextCompat.getColor(context, R.color._dark)
         paintMenit.style = Paint.Style.STROKE
-        paintMenit.strokeWidth = 15f
+        paintMenit.strokeWidth = 1f
 
         paintJam.color = ContextCompat.getColor(context, R.color._primary)
         paintJam.style = Paint.Style.STROKE
-        paintJam.strokeWidth = 15f
+        paintJam.strokeWidth = 1f
 
 //        paintCircle.color = ContextCompat.getColor(context, R.color.teal_700)
 //        paintCircle.style = Paint.Style.STROKE
@@ -58,7 +58,7 @@ class CustomAnalogClock(context: Context, attrs: AttributeSet?) : View(context, 
                 .toFloat(),
             centerY + (radius * 0.5f) * kotlin.math.sin(Math.toRadians((getHour() * 30).toDouble() - 90))
                 .toFloat(),
-            paintDetik
+            paintJam
         )
         canvas.drawLine(
             centerX, centerY,
@@ -76,7 +76,7 @@ class CustomAnalogClock(context: Context, attrs: AttributeSet?) : View(context, 
                 .toFloat(),
             centerY + (radius * 0.8f) * kotlin.math.sin(Math.toRadians((second * 6).toDouble() - 90))
                 .toFloat(),
-            paintJam
+            paintDetik
         )
 
         val clock = findViewById<CustomAnalogClock>(R.id.custom_analog_clock)
