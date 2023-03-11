@@ -22,19 +22,19 @@
     <!--        android:id="@+id/toolbar"-->
     <!--        layout="@layout/toolbar_layout"/>-->
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/loading"
-            android:background="@color/white"
-            app:lottie_rawRes="@raw/bounce_loading"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+<!--        <com.airbnb.lottie.LottieAnimationView-->
+<!--            android:id="@+id/loading"-->
+<!--            android:background="@color/white"-->
+<!--            app:lottie_rawRes="@raw/bounce_loading"-->
+<!--            app:lottie_autoPlay="true"-->
+<!--            app:lottie_loop="true"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/homeVisible"
@@ -93,19 +93,30 @@
                 android:background="@color/white"
                 android:padding="@dimen/_15sdp">
 
-                <com.example.dsmabsen.ui.fragment.CustomAnalogClock
-                    android:id="@+id/custom_analog_clock"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/box_custon_analog"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/wall_clock"
+                    android:background="@drawable/clock_background"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toStartOf="@+id/view"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <com.example.dsmabsen.ui.fragment.CustomAnalogClock
+                        android:id="@+id/custom_analog_clock"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
                 <View
                     android:id="@+id/view"
                     android:layout_width="0.5dp"
@@ -114,7 +125,7 @@
                     android:background="#7F838B36"
                     app:layout_constraintEnd_toStartOf="@+id/textView8"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/custom_analog_clock"
+                    app:layout_constraintStart_toEndOf="@+id/box_custon_analog"
                     tools:layout_editor_absoluteY="26dp" />
 
                 <TextView
@@ -129,7 +140,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/textView9"
                     app:layout_constraintStart_toEndOf="@+id/view"
                     app:layout_constraintStart_toStartOf="@+id/textView9"
-                    app:layout_constraintTop_toTopOf="@+id/custom_analog_clock" />
+                    app:layout_constraintTop_toTopOf="@+id/box_custon_analog" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -139,10 +150,10 @@
                     android:text="23:00 - 07:00"
                     android:textColor="@color/black_text"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/custom_analog_clock"
+                    app:layout_constraintBottom_toBottomOf="@+id/box_custon_analog"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/custom_analog_clock"
+                    app:layout_constraintStart_toEndOf="@+id/box_custon_analog"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
