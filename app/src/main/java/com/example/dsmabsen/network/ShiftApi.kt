@@ -1,6 +1,7 @@
 package com.example.dsmabsen.network
 
 import com.example.dsmabsen.model.PengajuanLembur
+import com.example.dsmabsen.model.PengajuanShift
 import com.example.dsmabsen.model.Shift
 import com.example.dsmabsen.model.SpinnerShift
 import retrofit2.Response
@@ -24,7 +25,7 @@ interface ShiftApi {
         @Field("kode_cuti") kode_cuti: String,
         @Field("file") file: String,
         @Field("keterangan") keterangan: String
-    ) : Response<PengajuanLembur>
+    ) : Response<PengajuanShift>
 
     @GET("pengajuan/shift")
     suspend fun spinnerShift(

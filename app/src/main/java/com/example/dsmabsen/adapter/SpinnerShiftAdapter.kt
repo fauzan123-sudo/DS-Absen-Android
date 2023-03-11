@@ -8,9 +8,10 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.dsmabsen.R
 import com.example.dsmabsen.model.DataXXXXXXXXXXXXX
+import com.example.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXX
 
-class SpinnerShiftAdapter(context: Context, list: List<DataXXXXXXXXXXXXX>) :
-    ArrayAdapter<DataXXXXXXXXXXXXX>(context, 0, list) {
+class SpinnerShiftAdapter(context: Context, list: List<DataXXXXXXXXXXXXXXXXXXXXXXX>) :
+    ArrayAdapter<DataXXXXXXXXXXXXXXXXXXXXXXX>(context, 0, list) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         return myView(position, convertView, parent)

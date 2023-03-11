@@ -1,20 +1,68 @@
 package com.example.dsmabsen.ui.fragment
 
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dsmabsen.R
+import com.example.dsmabsen.adapter.ReimbursementAdapter
+import com.example.dsmabsen.adapter.SallaryAdapter
 import com.example.dsmabsen.databinding.FragmentReimbursementBinding
+import com.example.dsmabsen.helper.handleApiError
+import com.example.dsmabsen.model.DataX
+import com.example.dsmabsen.repository.NetworkResult
+import com.example.dsmabsen.ui.viewModel.ReimbursementViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import io.paperdb.Paper
 
 @AndroidEntryPoint
-class ReimbursementFragment : BaseFragment<FragmentReimbursementBinding>(FragmentReimbursementBinding::inflate){
+class ReimbursementFragment :
+    BaseFragment<FragmentReimbursementBinding>(FragmentReimbursementBinding::inflate) {
 
+    val viewModel: ReimbursementViewModel by viewModels()
+    private lateinit var adapter: ReimbursementAdapter
+    private lateinit var recyclerView: RecyclerView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val savedUser = Paper.book().read<DataX>("user")
+        with(binding) {
+            adapter = ReimbursementAdapter(requireContext())
+            recyclerView = recReimbursement
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.setHasFixedSize(true)
+
+            viewModel.requestReimbursement(savedUser!!.nip)
+            viewModel.getReimbursementLiveData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is NetworkResult.Success -> {
+                        val response = it.data!!
+                        val status = response.status
+                        if (status) {
+                            adapter.differ.submitList(response.data.data)
+                        }
+                    }
+
+                    is NetworkResult.Loading -> {
+                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                    }
+
+                    is NetworkResult.Error -> {
+                        handleApiError(it.message)
+                    }
+                }
+
+            }
+        }
+
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         setupToolbar("Reimbursement")
@@ -32,6 +80,7 @@ class ReimbursementFragment : BaseFragment<FragmentReimbursementBinding>(Fragmen
             }
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
@@ -67,5 +116,6 @@ class ReimbursementFragment : BaseFragment<FragmentReimbursementBinding>(Fragmen
         }
         return super.onOptionsItemSelected(item)
     }
+
 
 }

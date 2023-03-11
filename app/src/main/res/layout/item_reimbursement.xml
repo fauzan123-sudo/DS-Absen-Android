@@ -17,7 +17,7 @@
         android:padding="@dimen/_5sdp">
 
         <TextView
-            android:id="@+id/tanggal"
+            android:id="@+id/tanggalRembursement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
@@ -38,7 +38,7 @@
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tanggal"
+            app:layout_constraintTop_toBottomOf="@+id/tanggalRembursement"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 

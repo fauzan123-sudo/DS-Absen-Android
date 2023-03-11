@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:background="@drawable/gradiend_background"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.PengajuanShiftFragment">
+    tools:context=".ui.fragment.PengajuanReimbursementFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rv_pilih_shift"
@@ -22,7 +20,7 @@
             android:id="@+id/tv_pilih_shift"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pilih Izin"
+            android:text="Nama Reimbursement"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/_11ssp"
             android:textColor="@color/black_text"
@@ -58,7 +56,7 @@
             android:id="@+id/tv_keterangan_perizinan_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Keterangan"
+            android:text="Nominal"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/_11ssp"
             android:textColor="@color/black_text"
@@ -66,7 +64,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <EditText
-            android:id="@+id/edtKeterangan"
+            android:id="@+id/edtNominal"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_109sdp"
             android:background="@drawable/rounded_menu"
@@ -80,6 +78,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <EditText
+        android:id="@+id/edtKeterangan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="keterangan"
+        app:layout_constraintBottom_toTopOf="@+id/btnKirim"
+        app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_perizinan_create" />
+
     <Button
         android:id="@+id/btnKirim"
         android:layout_width="wrap_content"
@@ -87,6 +93,7 @@
         android:layout_marginTop="72dp"
         android:layout_marginEnd="24dp"
         android:text="Kirim"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_perizinan_create" />
 

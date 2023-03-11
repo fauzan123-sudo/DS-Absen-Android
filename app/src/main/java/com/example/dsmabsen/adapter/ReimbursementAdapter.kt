@@ -8,39 +8,47 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dsmabsen.R
+import com.example.dsmabsen.databinding.ItemReimbursementBinding
 import com.example.dsmabsen.databinding.ItemRekapAbsensiBinding
 import com.example.dsmabsen.helper.Helper
+import com.example.dsmabsen.model.DataXXXXXXX
 import com.example.dsmabsen.model.DataXXXXXXXXXX
 
 class ReimbursementAdapter(private val context: Context) :
     RecyclerView.Adapter<ReimbursementAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: ItemRekapAbsensiBinding) :
+    inner class ViewHolder(private val binding: ItemReimbursementBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun setData(item: DataXXXXXXXXXX) {
+        fun setData(item: DataXXXXXXX) {
             binding.apply {
                 with(item) {
-                    val newFormat = "kk:mm:ss"
-                    textView29.text = tanggal
-                    textView31.text = Helper().convertTanggal(absen!!, newFormat)
+                    tanggalRembursement.text = created_at
+                    akomodasi.text = reimbursement
+                    sallary.text = nilai
 
-                    if (status == 1) {
-                        imageView11.setImageResource(R.drawable.round_icon1)
-                        textView30.text = "Check In"
-                        textView31.setTextColor(ContextCompat.getColor(context, R.color._success))
 
-                    } else {
-                        imageView11.setBackgroundResource(R.drawable.round_icon2)
-                        textView30.text = "Check out"
-                        textView31.setTextColor(ContextCompat.getColor(context, R.color.danger))
+                    when (status) {
+                        "Diajukan" -> {
+                            tvApprove.text = status
+                            tvApprove.setTextColor(ContextCompat.getColor(context, R.color._info))
+                        }
+                        "Diterima" -> {
+                            tvApprove.text = status
+                            tvApprove.setTextColor(ContextCompat.getColor(context, R.color._success))
+                        }
+                        "Ditolak" -> {
+                            tvApprove.text = status
+                            tvApprove.setTextColor(ContextCompat.getColor(context, R.color._danger))
+                        }
                     }
+
                 }
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        ItemRekapAbsensiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        ItemReimbursementBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -50,13 +58,13 @@ class ReimbursementAdapter(private val context: Context) :
 
     override fun getItemCount() = differ.currentList.size
 
-    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXXXXX>() {
-        override fun areItemsTheSame(oldItem: DataXXXXXXXXXX, newItem: DataXXXXXXXXXX): Boolean {
-            return oldItem.absen == newItem.absen
+    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXX>() {
+        override fun areItemsTheSame(oldItem: DataXXXXXXX, newItem: DataXXXXXXX): Boolean {
+            return oldItem.created_at == newItem.created_at
         }
 
-        override fun areContentsTheSame(oldItem: DataXXXXXXXXXX, newItem: DataXXXXXXXXXX): Boolean {
-            return oldItem.absen == newItem.absen
+        override fun areContentsTheSame(oldItem: DataXXXXXXX, newItem: DataXXXXXXX): Boolean {
+            return oldItem.created_at == newItem.created_at
         }
     }
 

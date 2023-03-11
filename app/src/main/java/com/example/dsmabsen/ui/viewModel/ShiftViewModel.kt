@@ -21,11 +21,11 @@ class ShiftViewModel @Inject constructor(private val repository: ShiftRepository
     private val _getShift = MutableLiveData<NetworkResult<Shift>>()
     val getShiftLiveData: LiveData<NetworkResult<Shift>> = _getShift
 
-    private val _spinnerShift = MutableLiveData<NetworkResult<Shift>>()
-    val spinnerShiftLiveData: LiveData<NetworkResult<Shift>> = _spinnerShift
+    private val _spinnerShift = MutableLiveData<NetworkResult<SpinnerShift>>()
+    val spinnerShiftLiveData: LiveData<NetworkResult<SpinnerShift>> = _spinnerShift
 
-    private val _getPengajuanShift = MutableLiveData<NetworkResult<SpinnerShift>>()
-    val pengajuanShiftLiveData: LiveData<NetworkResult<SpinnerShift>> = _getPengajuanShift
+    private val _getPengajuanShift = MutableLiveData<NetworkResult<PengajuanShift>>()
+    val pengajuanShiftLiveData: LiveData<NetworkResult<PengajuanShift>> = _getPengajuanShift
 
     private var _isDataLoaded = false
     fun requestShift(nip: String) {
@@ -40,12 +40,12 @@ class ShiftViewModel @Inject constructor(private val repository: ShiftRepository
         }
     }
 
-    fun spinnerShift() {
+    fun requestSpinnerShift() {
         viewModelScope.launch {
             val connected = CheckInternet().check()
             if (connected) {
                 _spinnerShift.postValue(NetworkResult.Loading())
-//                _spinnerShift.postValue(repository.spinnerShift())
+                _spinnerShift.postValue(repository.spinnerShift())
 
             } else
                 _spinnerShift.postValue(NetworkResult.Error("No Internet Connection"))
@@ -58,21 +58,21 @@ class ShiftViewModel @Inject constructor(private val repository: ShiftRepository
         file: String,
         keterangan: String
     ) {
-//        viewModelScope.launch {
-//            val connected = CheckInternet().check()
-//            if (connected) {
-//                _getPengajuanShift.postValue(NetworkResult.Loading())
-//                _getPengajuanShift.postValue(
-//                    repository.pengajuanShift(
-//                        nip,
-//                        kode_cuti,
-//                        file,
-//                        keterangan
-//                    )
-//                )
-//
-//            } else
-//                _getPengajuanShift.postValue(NetworkResult.Error("No Internet Connection"))
-//        }
+        viewModelScope.launch {
+            val connected = CheckInternet().check()
+            if (connected) {
+                _getPengajuanShift.postValue(NetworkResult.Loading())
+                _getPengajuanShift.postValue(
+                    repository.pengajuanShift(
+                        nip,
+                        kode_cuti,
+                        file,
+                        keterangan
+                    )
+                )
+
+            } else
+                _getPengajuanShift.postValue(NetworkResult.Error("No Internet Connection"))
+        }
     }
 }

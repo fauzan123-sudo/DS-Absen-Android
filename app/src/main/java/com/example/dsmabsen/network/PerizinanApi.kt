@@ -21,16 +21,16 @@ interface PerizinanApi {
 
     @GET("pengajuan/cuti")
     suspend fun getSpinner(
-    ) : Response<SpinnerIzin>
+    ): Response<SpinnerIzin>
 
     @FormUrlEncoded
     @POST("pengajuan/cuti/store")
     suspend fun sendPermission(
-        @Field("nip") nip:String,
-        @Field("kode_cuti") kode_cuti:String,
-        @Field("tanggal_mulai") tanggal_mulai:String,
-        @Field("tanggal_selesai") tanggal_selesai:String,
-        @Field("file") file:String,
-        @Field("keterangan") keterangan:String,
-    ) : Response<ResponsePengajuanIzin>
+        @Field("nip") nip: String,
+        @Field("kode_cuti") kode_cuti: String,
+        @Field("tanggal_mulai") tanggal_mulai: String,
+        @Field("tanggal_selesai") tanggal_selesai: String,
+        @Field("file") file: String,
+        @Field("keterangan") keterangan: String
+    ): Response<ResponsePengajuanIzin>
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dsmabsen.model.AttendanceHistory
 import com.example.dsmabsen.model.ListReimbursement
+import com.example.dsmabsen.model.PengajuanReimbusement
 import com.example.dsmabsen.model.TotalAttendance
 import com.example.dsmabsen.repository.AttendanceRepository
 import com.example.dsmabsen.repository.NetworkResult
@@ -22,6 +23,10 @@ class ReimbursementViewModel @Inject constructor(private val repository: Reimbur
     private val _getReimbursement = MutableLiveData<NetworkResult<ListReimbursement>>()
     val getReimbursementLiveData: LiveData<NetworkResult<ListReimbursement>> = _getReimbursement
 
+    private val _getPengajuanReimbursement = MutableLiveData<NetworkResult<PengajuanReimbusement>>()
+    val getPengajuanLiveData: LiveData<NetworkResult<PengajuanReimbusement>> =
+        _getPengajuanReimbursement
+
     private var _isDataLoaded = false
     fun requestReimbursement(nip: String) {
         viewModelScope.launch {
@@ -32,6 +37,32 @@ class ReimbursementViewModel @Inject constructor(private val repository: Reimbur
 
             } else
                 _getReimbursement.postValue(NetworkResult.Error("No Internet Connection"))
+        }
+    }
+
+    fun requestPengajuanReimbursement(
+        nip: String,
+        kode_reimbursement: String,
+        nilai: String,
+        file: String,
+        keterangan: String
+    ) {
+        viewModelScope.launch {
+            val connected = CheckInternet().check()
+            if (connected) {
+                _getPengajuanReimbursement.postValue(NetworkResult.Loading())
+                _getPengajuanReimbursement.postValue(
+                    repository.pengajuanReimbursement(
+                        nip,
+                        kode_reimbursement,
+                        nilai,
+                        file,
+                        keterangan
+                    )
+                )
+
+            } else
+                _getPengajuanReimbursement.postValue(NetworkResult.Error("No Internet Connection"))
         }
     }
 }
