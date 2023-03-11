@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/_20sdp">
+
+    <include
+        android:id="@+id/include_profile_lengkap"
+        layout="@layout/layout_appbar_center"/>
+
+    <RelativeLayout
+        android:id="@+id/rv_data_pribadi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@drawable/rounded_menu"
+        app:layout_constraintTop_toBottomOf="@+id/include_profile_lengkap"
+        android:padding="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data Pribadi"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vector"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rv_jabatan"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@drawable/rounded_menu"
+        app:layout_constraintTop_toBottomOf="@+id/rv_data_pribadi"
+        android:padding="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jabatan dan Posisi"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vector"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rv_lokasi_kerja"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@drawable/rounded_menu"
+        app:layout_constraintTop_toBottomOf="@+id/rv_jabatan"
+        android:padding="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lokasi Kerja"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vector"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rv_pendidikan"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@drawable/rounded_menu"
+        app:layout_constraintTop_toBottomOf="@+id/rv_lokasi_kerja"
+        android:padding="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pendidikan"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vector"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rv_penguasaan_bahasa"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@drawable/rounded_menu"
+        app:layout_constraintTop_toBottomOf="@+id/rv_pendidikan"
+        android:padding="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Penguasaan Bahasa"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vector"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rv_pengalaman_kerja"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@drawable/rounded_menu"
+        app:layout_constraintTop_toBottomOf="@+id/rv_penguasaan_bahasa"
+        android:padding="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pengalaman Kerja"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vector"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

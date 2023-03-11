@@ -43,6 +43,8 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
+        hideToolbar()
 
         val data = cacheManager.getPass()
         val savedUser = Paper.book().read<DataX>("user")

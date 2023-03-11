@@ -113,6 +113,9 @@
         <action
             android:id="@+id/action_allMenuFragment_to_berandaFragment"
             app:destination="@id/berandaFragment" />
+        <action
+            android:id="@+id/action_allMenuFragment_to_reimbursementFragment"
+            app:destination="@id/reimbursementFragment" />
     </fragment>
     <fragment
         android:id="@+id/allProfileFragment"

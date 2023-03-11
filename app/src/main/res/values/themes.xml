@@ -23,4 +23,9 @@
         <item name="android:textSize">8sp</item>
 <!--        <item name="fontFamily">@font/roboto_medium</item>-->
     </style>
+
+    <style name="toolbar_menu" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/_primary</item> <!-- ganti dengan warna yang diinginkan -->
+    </style>
+
 </resources>

@@ -1,0 +1,23 @@
+<!-- layout for menu item -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="8dp"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:theme="@style/toolbar_menu"
+    android:focusable="true">
+
+    <TextView
+        android:id="@+id/textSimpan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/_primary"
+        android:clickable="true"
+        android:text="@string/simpan"
+        android:focusableInTouchMode="true"
+        android:focusable="true" />
+
+</LinearLayout>
