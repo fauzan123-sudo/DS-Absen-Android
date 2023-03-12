@@ -5,26 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/gradiend_background"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".ui.activity.LoginActivity">
 
-    <com.github.ybq.android.spinkit.SpinKitView
-        android:indeterminate="true"
-        style="@style/SpinKitView.ThreeBounce"
-        app:SpinKit_Color="@color/black"
-        android:id="@+id/loading"
-        android:background="@color/white"
-        app:lottie_rawRes="@raw/bounce_loading"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <include
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constrain"
@@ -121,13 +108,15 @@
         android:background="@color/white"
         app:startIconDrawable="@drawable/user"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:boxStrokeColor="@android:color/transparent"
         android:hint="Nomor Induk Pegawai">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nip"
-            android:background="@color/white"
+            android:imeOptions="actionNone"
+            android:background="@drawable/shadow_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -139,14 +128,17 @@
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         app:layout_constraintTop_toBottomOf="@+id/username"
         tools:layout_editor_absoluteX="26dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:hint="Password"
+            android:imeOptions="actionNone"
             android:id="@+id/password"
-            android:background="@color/white"
+            android:inputType="textPassword"
+            app:boxStrokeColor="@android:color/transparent"
+            android:background="@drawable/shadow_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -181,10 +173,11 @@
         android:background="@color/blue"
         android:fontFamily="@font/poppins_bold"
         android:text="Login"
+        app:cornerRadius="@dimen/_2sdp"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_14ssp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         app:layout_constraintVertical_bias="0.0"

@@ -13,9 +13,9 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout" />
 
-    <include
-        android:id="@+id/loadingInclude"
-        layout="@layout/loading" />
+<!--    <include-->
+<!--        android:id="@+id/loadingInclude"-->
+<!--        layout="@layout/loading" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"

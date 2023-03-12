@@ -85,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             viewModel.userResponseLiveData.observe(this@LoginActivity) {
-                loading.isVisible = false
+                loadingInclude.loading.isVisible = false
                 when (it) {
                     is NetworkResult.Success -> {
                         if (it.data!!.status) {
@@ -111,7 +111,7 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     is NetworkResult.Loading ->{
-                        binding.loading.isVisible = true
+                        binding.loadingInclude.loading.isVisible = true
                     }
                 }
             }
