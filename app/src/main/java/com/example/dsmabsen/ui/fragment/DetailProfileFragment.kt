@@ -64,7 +64,7 @@ class DetailProfileFragment : BaseFragment<FragmentDetailProfileBinding>(Fragmen
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
 
-        menuSave?.isVisible = true // menyembunyikan menu tertentu
+        menuSave?.isVisible = false // menyembunyikan menu tertentu
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
         val item = menu.findItem(R.id.save)

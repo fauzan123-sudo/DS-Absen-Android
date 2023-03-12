@@ -28,12 +28,12 @@ class PengajuanLemburFragment :
     BaseFragment<FragmentPengajuanLemburBinding>(FragmentPengajuanLemburBinding::inflate) {
 
     private val viewModel: AttendanceViewModel by viewModels()
-
+    val savedUser = Paper.book().read<DataX>("user")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            val savedUser = Paper.book().read<DataX>("user")
+
             tanggalPenggajuan.setOnClickListener {
                 openCalendar()
             }
@@ -46,61 +46,56 @@ class PengajuanLemburFragment :
                 openTimePickerUntil()
             }
 
-            btnSend.setOnClickListener {
-                viewModel.requestPengajuanLembur(
-                    savedUser!!.nip,
-                    jamMulai.text.toString(),
-                    jamSelesai.text.toString(),
-                    "",
-                    tanggalPenggajuan.text.toString(),
-                    keteranganPenggajuan.text.toString()
-                )
-                viewModel.pengajuanLemburLiveData.observe(viewLifecycleOwner) {
-                    when (it) {
-                        is NetworkResult.Success -> {
-                            val response = it.data!!
-                            val status = response.status
-                            val statusPengajuan = response.data.status
-                            if (status && statusPengajuan) {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Berhasil Mengajukan Lembur",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            } else {
-                                Toast.makeText(
-                                    requireContext(),
-                                    response.data.messages,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-
-                        is NetworkResult.Loading -> {
-                            Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-                        }
-
-                        is NetworkResult.Error -> {
-                            handleApiError(it.message)
-                        }
-                    }
-                }
-            }
-
         }
         setHasOptionsMenu(true)
         setupToolbar("Ajukan Lembur")
-        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
-            toolbar.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.save -> {
-                        // Handle add menu item click
-//                        saveReimbursement(savedUser)
-                        true
-                    }
 
-                    else -> false
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.save -> {
+                    // Handle add menu item click
+                    viewModel.requestPengajuanLembur(
+                        savedUser!!.nip,
+                        binding.jamMulai.text.toString(),
+                        binding.jamSelesai.text.toString(),
+                        "",
+                        binding.tanggalPenggajuan.text.toString(),
+                        binding.keteranganPenggajuan.text.toString()
+                    )
+                    viewModel.pengajuanLemburLiveData.observe(viewLifecycleOwner) {
+                        when (it) {
+                            is NetworkResult.Success -> {
+                                val response = it.data!!
+                                val status = response.status
+                                val statusPengajuan = response.data.status
+                                if (status && statusPengajuan) {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Berhasil Mengajukan Lembur",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                } else {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        response.data.messages,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+
+                            is NetworkResult.Loading -> {
+                                Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                            }
+
+                            is NetworkResult.Error -> {
+                                handleApiError(it.message)
+                            }
+                        }
+                    }
+                    true
                 }
+
+                else -> false
             }
         }
     }
@@ -109,8 +104,8 @@ class PengajuanLemburFragment :
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
 
-        menuSave?.isVisible = true // menyembunyikan menu tertentu
-        menuPlus?.isVisible = false // menyembunyikan menu tertentu
+        menuSave?.isVisible = false // menyembunyikan menu tertentu
+        menuPlus?.isVisible = true // menyembunyikan menu tertentu
 
         val item = menu.findItem(R.id.save)
         item.setActionView(R.layout.item_menu_toolbar)

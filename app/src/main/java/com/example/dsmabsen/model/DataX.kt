@@ -3,7 +3,7 @@ package com.example.dsmabsen.model
 data class DataX(
     val email: String,
     val eselon: String,
-    val images: String,
+    val image: String,
     val nama_jabatan: String,
     val name: String,
     val nip: String,

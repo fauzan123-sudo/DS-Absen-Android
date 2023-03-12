@@ -45,7 +45,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
+
         hideToolbar()
 
         val data = cacheManager.getPass()
@@ -129,7 +129,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
             when (it) {
                 is NetworkResult.Success -> {
                     binding.loadingInclude.loading.isVisible = false
-                    binding.homeVisible.isVisible = true
+                    binding.infoUser.isVisible = true
                     binding.materialCardView11.isVisible = true
                     binding.apply {
                         val dataHome = it.data!!.data
@@ -138,7 +138,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                         textView6.requestLayout()
                         textView7.text = dataHome.jabatan
                         Glide.with(requireContext())
-                            .load(IMAGE_URL + dataHome.foto)
+                            .load(IMAGE_URL + "/" +dataHome.foto)
                             .into(imageView3)
 
                         textView8.text = dataHome.nama_shift
@@ -174,7 +174,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
 
                 is NetworkResult.Loading -> {
                     binding.loadingInclude.loading.isVisible = true
-                    binding.homeVisible.isVisible = false
+                    binding.infoUser.isVisible = false
                     binding.materialCardView11.isVisible = false
                 }
 

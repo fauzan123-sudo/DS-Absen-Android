@@ -36,6 +36,7 @@ import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.dsmabsen.R
 import com.example.dsmabsen.databinding.FragmentAttendanceBinding
 import com.example.dsmabsen.helper.*
@@ -68,20 +69,9 @@ class AttendanceFragment :
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setHasOptionsMenu(true)
-        setupToolbar("Presensi")
-        toolbar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.save -> {
-                    // Handle add menu item click
-//                        saveReimbursement(savedUser)
-                    true
-                }
 
-                else -> false
-            }
-        }
         super.onViewCreated(view, savedInstanceState)
+        hideToolbar()
 
         binding.apply {
 
@@ -95,30 +85,16 @@ class AttendanceFragment :
             btnAbsen.setOnClickListener {
                 camera()
             }
-
+            namaUser.text = savedUser!!.name
+            jabatan.text = savedUser!!.nama_jabatan
+            Glide.with(requireContext())
+                .load(Constans.IMAGE_URL + savedUser!!.image)
+                .into(imageUser)
+            Log.d("gambar",savedUser!!.image)
         }
 
     }
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.toolbar_menu, menu)
-        val menuSave = menu.findItem(R.id.save)
-        val menuPlus = menu.findItem(R.id.add)
 
-        menuSave?.isVisible = true // menyembunyikan menu tertentu
-        menuPlus?.isVisible = false // menyembunyikan menu tertentu
-
-        val item = menu.findItem(R.id.save)
-        item.setActionView(R.layout.item_menu_toolbar)
-
-        val actionView = item.actionView
-        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
-        btnSimpan?.setOnClickListener {
-            // your code here
-//            saveReimbursement(savedUser)
-
-        }
-
-    }
     override fun onStart() {
         super.onStart()
 
@@ -331,6 +307,8 @@ class AttendanceFragment :
                 }
             }
         }
+
+
     }
 
     private fun uriToMultipartBody(bitmap: Bitmap): MultipartBody.Part {

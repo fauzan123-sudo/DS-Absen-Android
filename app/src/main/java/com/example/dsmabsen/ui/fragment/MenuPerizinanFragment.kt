@@ -1,7 +1,11 @@
 package com.example.dsmabsen.ui.fragment
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -65,6 +69,26 @@ class MenuPerizinanFragment :
                 }
             }
         }
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.add -> {
+                    // Handle add menu item click
+                    findNavController().navigate(R.id.action_menuPerizinanFragment_to_formPerizinanFragment)
+                    true
+                }
+
+                else -> false
+            }
+        }
 
     }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+        val menuSave = menu.findItem(R.id.save)
+        val menuPlus = menu.findItem(R.id.add)
+
+        menuSave?.isVisible = false // menyembunyikan menu tertentu
+        menuPlus?.isVisible = true // menyembunyikan menu tertentu
+    }
+
 }

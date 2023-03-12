@@ -88,8 +88,8 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
 
-        menuSave?.isVisible = true // menyembunyikan menu tertentu
-        menuPlus?.isVisible = false // menyembunyikan menu tertentu
+        menuSave?.isVisible = false // menyembunyikan menu tertentu
+        menuPlus?.isVisible = true // menyembunyikan menu tertentu
 
         val item = menu.findItem(R.id.save)
         item.setActionView(R.layout.item_menu_toolbar)

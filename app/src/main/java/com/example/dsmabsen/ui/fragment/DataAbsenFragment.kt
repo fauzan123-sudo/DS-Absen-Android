@@ -14,9 +14,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.dsmabsen.R
 import com.example.dsmabsen.adapter.AttendanceAdapter
 import com.example.dsmabsen.databinding.FragmentDataAbsenBinding
+import com.example.dsmabsen.helper.Constans
 import com.example.dsmabsen.helper.TokenManager
 import com.example.dsmabsen.helper.handleApiError
 import com.example.dsmabsen.model.DataX
@@ -40,6 +42,7 @@ class DataAbsenFragment :
 
     @Inject
     lateinit var tokenManager: TokenManager
+    private val savedUser = Paper.book().read<DataX>("user")
 
     private lateinit var adapter: AttendanceAdapter
     private lateinit var recyclerView: RecyclerView
@@ -47,8 +50,15 @@ class DataAbsenFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        hideToolbar()
 
         binding.apply {
+            namaUser.text = savedUser!!.name
+            jabatan.text = savedUser!!.nama_jabatan
+            Glide.with(requireContext())
+                .load(Constans.IMAGE_URL + savedUser!!.image)
+                .into(imageUser)
+            Log.d("gambar",savedUser!!.image)
 
             adapter = AttendanceAdapter(requireContext())
             recyclerView = recAttendance

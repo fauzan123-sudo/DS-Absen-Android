@@ -56,47 +56,9 @@ class FormPerizinanFragment :
                 getCalendarEnd()
             }
 
-            kirim.setOnClickListener {
-                viewModel.requestSendPermission(
-                    savedUser!!.nip,
-                    "1",
-                    etTanggalMulai.toString(),
-                    etTanggalSelesai.toString(),
-                    "",
-                    etKeterangan.toString()
-                )
-
-                viewModel.sendPermissionLiveData.observe(viewLifecycleOwner) {
-                    when (it) {
-                        is NetworkResult.Success -> {
-                            val response = it.data!!
-                            val status = response.status
-
-                            if (status) {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "berhasil menambhakan data",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            } else {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "berhasil menambhakan data",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-
-                        is NetworkResult.Loading -> {
-                            Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-                        }
-
-                        is NetworkResult.Error -> {
-                            handleApiError(it.message)
-                        }
-                    }
-                }
-            }
+//            kirim.setOnClickListener {
+//                savePerizinan(savedUser)
+//            }
             viewModel.requestgetSpinner()
             viewModel.getSpinnerLiveData.observe(viewLifecycleOwner) {
                 when (it) {
@@ -165,6 +127,49 @@ class FormPerizinanFragment :
         }
 
     }
+
+    private fun FragmentFormPerizinanBinding.savePerizinan(savedUser: DataX?) {
+        viewModel.requestSendPermission(
+            savedUser!!.nip,
+            "1",
+            etTanggalMulai.toString(),
+            etTanggalSelesai.toString(),
+            "",
+            etKeterangan.toString()
+        )
+
+        viewModel.sendPermissionLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is NetworkResult.Success -> {
+                    val response = it.data!!
+                    val status = response.status
+
+                    if (status) {
+                        Toast.makeText(
+                            requireContext(),
+                            "berhasil menambhakan data",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "berhasil menambhakan data",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                is NetworkResult.Loading -> {
+                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                }
+
+                is NetworkResult.Error -> {
+                    handleApiError(it.message)
+                }
+            }
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
