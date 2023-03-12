@@ -18,6 +18,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
@@ -81,6 +82,7 @@ class AttendanceFragment :
         super.onViewCreated(view, savedInstanceState)
         hideToolbar()
         timeRun()
+
         binding.apply {
 
             val permission =
@@ -89,6 +91,9 @@ class AttendanceFragment :
             requestLocationPermission()
             locationManager =
                 requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            Toast.makeText(context, "$locationManager", Toast.LENGTH_SHORT).show()
+
+            cekGPS()
 
             btnAbsen.setOnClickListener {
                 camera()
@@ -98,10 +103,13 @@ class AttendanceFragment :
             Glide.with(requireContext())
                 .load(Constans.IMAGE_URL + savedUser!!.image)
                 .into(imageUser)
-            Log.d("gambar",savedUser!!.image)
+
 
             imageUser.setOnClickListener {
                 findNavController().navigate(R.id.action_attendanceFragment_to_profileFragment)
+            }
+            btnRefresh.setOnClickListener {
+                cekGPS()
             }
         }
 
@@ -111,11 +119,7 @@ class AttendanceFragment :
     override fun onStart() {
         super.onStart()
 
-        locationManager =
-            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        fusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(requireContext())
-        getLocationUser()
+        getLocation()
     }
 
     private val permissionMultiRequest =
@@ -140,11 +144,13 @@ class AttendanceFragment :
                     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
 
                     override fun onProviderEnabled(provider: String) {
-                        Toast.makeText(
-                            requireContext(),
-                            "Provider $provider enabled",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        if (provider == LocationManager.GPS_PROVIDER) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Provider $provider enabled",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
 
                     override fun onProviderDisabled(provider: String) {
@@ -162,7 +168,8 @@ class AttendanceFragment :
                     0f,
                     locationListener
                 )
-                getLocationUser()
+
+                getLocation()
             } else {
                 Toast.makeText(
                     requireContext(),
@@ -174,6 +181,8 @@ class AttendanceFragment :
 
 
     private fun getLocationUser() {
+        locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
         val task = fusedLocationProviderClient.lastLocation
         task.addOnSuccessListener {
             if (it != null) {
@@ -189,7 +198,36 @@ class AttendanceFragment :
             }
         }
     }
+    private fun getLocation() {
+        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        locationManager.requestLocationUpdates(
+            LocationManager.NETWORK_PROVIDER,
+            0L,
+            0f,
+            locationListener
+        )
+        getLocationUser()
+    }
+    private val locationListener: LocationListener = object : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            // Mendapatkan latitude dan longitude
+            val latitude = location.latitude
+            val longitude = location.longitude
 
+            binding.lattitudeUser.text = latitude.toString()
+            binding.longitudeUser.text = longitude.toString()
+
+        }
+
+        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
+        override fun onProviderEnabled(provider: String) {
+            getLocationUser()
+            enableAbsen()
+        }
+        override fun onProviderDisabled(provider: String) {
+            cekGPS()
+        }
+    }
     override fun onStop() {
         super.onStop()
         locationManager
@@ -383,6 +421,7 @@ class AttendanceFragment :
 
                     binding.currentLocation.text =
                         "$address"
+                    Toast.makeText(context, "$address", Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -421,6 +460,7 @@ class AttendanceFragment :
 
     private fun requestLocationPermission() {
         if (isLocationPermissionGranted()) {
+
             Toast.makeText(requireContext(), "Anda telah memberikan izin lokasi", Toast.LENGTH_SHORT).show()
         }
         if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {
@@ -485,6 +525,58 @@ class AttendanceFragment :
             }
         }
     }
+    fun cekGPS(){
+        // Cek apakah GPS sedang aktif
+        val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        if (isGpsEnabled) {
+
+            getLocation()
+        } else {
+            // GPS tidak aktif, tampilkan dialog untuk meminta pengguna mengaktifkannya
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setMessage("GPS tidak aktif, aktifkan GPS?")
+                .setCancelable(false)
+                .setPositiveButton("Ya") { _, _ ->
+                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                    enableAbsen()
+                }
+                .setNegativeButton("Tidak") { dialog, _ ->
+                    disableAbsen()
+                    dialog.cancel()
+                }
+            val alert = builder.create()
+            alert.show()
+        }
+    }
+
+
+    fun mematikanGPS(){
+        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)?.let { isGPSOn ->
+            if (isGPSOn) {
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent)
+            }
+        }
+    }
+    fun menyalakanGPS(){
+        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)?.let { isGPSOn ->
+            if (!isGPSOn) {
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent)
+            }
+        }
+    }
+    fun enableAbsen(){
+        binding.imgFinger.background = resources.getDrawable(R.color._danger)
+        binding.btnAbsen.isClickable = true
+    }
+    private fun disableAbsen() {
+        binding.imgFinger.background = resources.getDrawable(R.color._grey)
+        binding.btnAbsen.isClickable = false
+    }
+
     override fun onResume() {
         super.onResume()
         handler.postDelayed(runnable, 0)

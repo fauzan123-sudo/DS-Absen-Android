@@ -72,17 +72,13 @@ class DataAbsenFragment :
             Toast.makeText(requireContext(), "Mecoba Ambil data", Toast.LENGTH_SHORT).show()
 
             val savedUser = Paper.book().read<DataX>("user")
-            viewModel.attendanceHistoryRequest(savedUser!!.nip)
-            viewModel.attendanceHistoryLiveData.observe(viewLifecycleOwner) {
-                Toast.makeText(requireContext(), "Masuk Viemodel", Toast.LENGTH_SHORT).show()
-
+            viewModel.attendanceHistoryRequest2(savedUser!!.nip)
+            viewModel.attendanceHistoryLiveData2.observe(viewLifecycleOwner) {
                 when (it) {
                     is NetworkResult.Success -> {
                         binding.loading.isVisible = false
 
-                        val attendance = it.data!!
-                        Toast.makeText(requireContext(), "$attendance disini", Toast.LENGTH_SHORT)
-                            .show()
+                        val attendance = it.data!!.data
                         Log.d("data_absen",attendance.toString())
                         if(attendance.isEmpty()){
                             binding.recAttendance.visibility = View.GONE

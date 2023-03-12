@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dsmabsen.model.AttendanceHistory
-import com.example.dsmabsen.model.ListReimbursement
-import com.example.dsmabsen.model.PengajuanReimbusement
-import com.example.dsmabsen.model.TotalAttendance
+import com.example.dsmabsen.model.*
 import com.example.dsmabsen.repository.AttendanceRepository
 import com.example.dsmabsen.repository.NetworkResult
 import com.example.dsmabsen.repository.ReimbursementRepository
@@ -23,6 +20,10 @@ class ReimbursementViewModel @Inject constructor(private val repository: Reimbur
     private val _getReimbursement = MutableLiveData<NetworkResult<ListReimbursement>>()
     val getReimbursementLiveData: LiveData<NetworkResult<ListReimbursement>> = _getReimbursement
 
+    private val _getSpinnerReimbursement = MutableLiveData<NetworkResult<SpinnerReimbursement>>()
+    val getSpinnerReimbursementLiveData: LiveData<NetworkResult<SpinnerReimbursement>>
+    get() = _getSpinnerReimbursement
+
     private val _getPengajuanReimbursement = MutableLiveData<NetworkResult<PengajuanReimbusement>>()
     val getPengajuanLiveData: LiveData<NetworkResult<PengajuanReimbusement>> =
         _getPengajuanReimbursement
@@ -37,6 +38,13 @@ class ReimbursementViewModel @Inject constructor(private val repository: Reimbur
 
             } else
                 _getReimbursement.postValue(NetworkResult.Error("No Internet Connection"))
+        }
+    }
+
+    fun requestSpinnerReimbursement(){
+        viewModelScope.launch {
+            _getSpinnerReimbursement.postValue(NetworkResult.Loading())
+            _getSpinnerReimbursement.postValue(repository.spinnerReimbursement())
         }
     }
 

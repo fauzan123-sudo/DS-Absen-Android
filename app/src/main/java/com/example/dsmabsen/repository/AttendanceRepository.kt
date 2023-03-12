@@ -16,6 +16,10 @@ class AttendanceRepository @Inject constructor(private val api: DataAttendanceAp
     suspend fun getSallary(nip: String) =
         safeApiCall { api.getSallary(nip) }
 
+    suspend fun getAttendanceHistory(nip: String) =
+        safeApiCall { api.getAttendanceHistory(nip) }
+
+
     suspend fun attendanceHistory(nip: String) =
         safeApiCall { api.attendanceHistory(nip) }
 

@@ -11,13 +11,14 @@ import com.example.dsmabsen.R
 import com.example.dsmabsen.databinding.ItemRekapAbsensiBinding
 import com.example.dsmabsen.helper.Helper
 import com.example.dsmabsen.model.DataXXXXXXXXXX
+import com.example.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 class AttendanceAdapter(private val context: Context) :
     RecyclerView.Adapter<AttendanceAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemRekapAbsensiBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun setData(item: DataXXXXXXXXXX) {
+        fun setData(item: DataXXXXXXXXXXXXXXXXXXXXXXXXXX) {
             binding.apply {
                 with(item) {
                     val newFormat = "kk:mm:ss"
@@ -50,12 +51,12 @@ class AttendanceAdapter(private val context: Context) :
 
     override fun getItemCount() = differ.currentList.size
 
-    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXXXXX>() {
-        override fun areItemsTheSame(oldItem: DataXXXXXXXXXX, newItem: DataXXXXXXXXXX): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXXXXXXXXXXXXXXXXXXXXX>() {
+        override fun areItemsTheSame(oldItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXX): Boolean {
             return oldItem.absen == newItem.absen
         }
 
-        override fun areContentsTheSame(oldItem: DataXXXXXXXXXX, newItem: DataXXXXXXXXXX): Boolean {
+        override fun areContentsTheSame(oldItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXX): Boolean {
             return oldItem.absen == newItem.absen
         }
     }

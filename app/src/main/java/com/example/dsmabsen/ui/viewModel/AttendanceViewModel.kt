@@ -1,5 +1,7 @@
 package com.example.dsmabsen.ui.viewModel
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,9 +24,13 @@ class AttendanceViewModel @Inject constructor(private val repository: Attendance
     private val _totalAttendance = MutableLiveData<NetworkResult<TotalAttendance>>()
     val totalAttendanceLiveData: LiveData<NetworkResult<TotalAttendance>> = _totalAttendance
 
-    private val _attendanceHistory = MutableLiveData<NetworkResult<List<DataXXXXXXXXXX>>>()
-    val attendanceHistoryLiveData: LiveData<NetworkResult<List<DataXXXXXXXXXX>>> =
-        _attendanceHistory
+    private val _attendanceHistory = MutableLiveData<NetworkResult<ResponseRiwayat>>()
+    val attendanceHistoryLiveData: LiveData<NetworkResult<ResponseRiwayat>>
+        get() = _attendanceHistory
+
+    private val _attendanceHistoryLiveData = MutableLiveData<NetworkResult<ResponseRiwayat>>()
+    val attendanceHistoryLiveData2: LiveData<NetworkResult<ResponseRiwayat>>
+        get() = _attendanceHistoryLiveData
 
     private val _attendanceToday = MutableLiveData<NetworkResult<Presensi>>()
     val attendanceTodayLiveData: LiveData<NetworkResult<Presensi>> = _attendanceToday
@@ -37,6 +43,13 @@ class AttendanceViewModel @Inject constructor(private val repository: Attendance
 
     private val _pengajuanLembur = MutableLiveData<NetworkResult<PengajuanLembur>>()
     val pengajuanLemburLiveData: LiveData<NetworkResult<PengajuanLembur>> = _pengajuanLembur
+
+    fun attendanceHistoryRequest2(nip: String) {
+        viewModelScope.launch {
+            _attendanceHistoryLiveData.value = NetworkResult.Loading()
+            _attendanceHistoryLiveData.value = repository.getAttendanceHistory(nip)
+        }
+    }
 
     fun attendanceTotalRequest(nip: String) {
         viewModelScope.launch {
@@ -104,14 +117,11 @@ class AttendanceViewModel @Inject constructor(private val repository: Attendance
 
     fun attendanceHistoryRequest(nip: String) {
         viewModelScope.launch {
-//            val connected = CheckInternet().check()
-//            if (connected) {
+
             if (!_isDataLoaded) {
                 _attendanceHistory.postValue(repository.attendanceHistory(nip))
                 _attendanceHistory.postValue(NetworkResult.Loading())
             }
-//            } else
-//                _attendanceHistory.postValue(NetworkResult.Error("No Internet Connection"))
         }
 
     }

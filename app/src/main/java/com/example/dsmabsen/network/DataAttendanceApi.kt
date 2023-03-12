@@ -18,7 +18,12 @@ interface DataAttendanceApi {
     @GET("riwayat-presensi/{nip}")
     suspend fun attendanceHistory(
         @Path("nip") nip: String
-    ): Response<List<DataXXXXXXXXXX>>
+    ): Response<ResponseRiwayat>
+
+    @GET("riwayat-presensi/{nip}")
+    suspend fun getAttendanceHistory(
+        @Path("nip") nip: String
+    ): Response<ResponseRiwayat>
 
     @GET("total-presensi/{nip}")
     suspend fun attendanceTotal(
@@ -45,18 +50,18 @@ interface DataAttendanceApi {
     @GET("pengajuan/lembur/lists")
     suspend fun getListLembur(
         @Query("nip") nip: String
-    ) : Response<DataLembur>
+    ): Response<DataLembur>
 
     @FormUrlEncoded
     @POST("pengajuan/lembur/store")
     suspend fun pengajuanLembur(
-        @Field("nip") nip:String,
-        @Field("jam_mulai") jam_mulai:String,
-        @Field("jam_selesai") jam_selesai:String,
-        @Field("file") file:String,
-        @Field("tanggal") tanggal:String,
-        @Field("keterangan") keterangan:String
+        @Field("nip") nip: String,
+        @Field("jam_mulai") jam_mulai: String,
+        @Field("jam_selesai") jam_selesai: String,
+        @Field("file") file: String,
+        @Field("tanggal") tanggal: String,
+        @Field("keterangan") keterangan: String
 
-    ) : Response<PengajuanLembur>
+    ): Response<PengajuanLembur>
 
 }

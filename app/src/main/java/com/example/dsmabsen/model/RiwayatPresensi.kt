@@ -1,7 +1,7 @@
 package com.example.dsmabsen.model
 
 data class RiwayatPresensi(
-    val `data`: List<DataXXXXXXXXXX>,
+    val status: Boolean,
     val message: String,
-    val status: Boolean
+    val `data`: List<DataXXXXXXXXXX>
 )

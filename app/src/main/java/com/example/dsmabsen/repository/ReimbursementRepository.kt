@@ -21,4 +21,9 @@ class ReimbursementRepository @Inject constructor(private val api: Reimbursement
         safeApiCall {
             api.pengajuanReimbursement(nip, kode_reimbursement, nilai, file, keterangan)
         }
+
+    suspend fun spinnerReimbursement() =
+        safeApiCall {
+            api.spinnerReimbursement()
+        }
 }

@@ -2,6 +2,7 @@ package com.example.dsmabsen.network
 
 import com.example.dsmabsen.model.ListReimbursement
 import com.example.dsmabsen.model.PengajuanReimbusement
+import com.example.dsmabsen.model.SpinnerReimbursement
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -21,4 +22,12 @@ interface ReimbursementApi {
         @Field("file") file: String,
         @Field("keterangan") keterangan: String
     ) : Response<PengajuanReimbusement>
+
+    @GET("pengajuan/reimbursement")
+    suspend fun spinnerReimbursement(
+
+    ):Response<SpinnerReimbursement>
+
+
+
 }

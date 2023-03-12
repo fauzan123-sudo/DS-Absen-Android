@@ -33,6 +33,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs = ['-Xjvm-default=enable'] //enable or compatibility
     }
 
     buildFeatures {
@@ -128,4 +129,9 @@ dependencies {
 
 //    flex box
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
+
+    implementation "com.android.volley:volley:1.2.0"
+
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+
 }

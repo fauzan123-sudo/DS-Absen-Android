@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
 //        Bottom Navigation
         with(binding) {
             bottomNavigationView.setupWithNavController(navController)
-//            bottomNavigationView.menu.getItem(1).isEnabled = false
 
             navController.addOnDestinationChangedListener { _, destination, _ ->
             }

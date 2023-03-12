@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
         val mId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
         } else {
             val permission = Manifest.permission.READ_PHONE_STATE
             singlePermissionLaunch.launch(permission)
@@ -75,10 +75,10 @@ class LoginActivity : AppCompatActivity() {
                     else -> {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             viewModel.login(myUserName, myPassword, mId)
-                            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
                         } else {
                             viewModel.login(myUserName, myPassword, imei)
-                            Toast.makeText(this@LoginActivity, imei, Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(this@LoginActivity, imei, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
