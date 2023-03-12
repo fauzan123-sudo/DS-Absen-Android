@@ -16,20 +16,22 @@
     <RelativeLayout
         android:id="@+id/rv_nama_reimbursement"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_90sdp"
+        android:layout_height="wrap_content"
         android:paddingVertical="@dimen/_10sdp"
         android:paddingHorizontal="@dimen/_15sdp"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        android:background="@drawable/rounded_menu">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/rounded_menu"
+        android:layout_marginTop="@dimen/_30sdp">
 
         <TextView
             android:id="@+id/label_jenis_izin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jenis Reimbursement"
+            android:text="Nama Reimbursement"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/_11ssp"
-            android:textColor="@color/black_text"/>
+            android:textColor="@color/black_text"
+            android:layout_marginBottom="@dimen/_5sdp"/>
 
         <Spinner
             android:id="@+id/spinner_jenis_reimbursement"
@@ -41,8 +43,7 @@
             android:dropDownSelector="@drawable/arrow_bottom"
             android:paddingHorizontal="@dimen/_10sdp"
             android:paddingVertical="@dimen/_15sdp"
-            android:textAlignment="textEnd"
-            />
+            android:textAlignment="textEnd"/>
 
     </RelativeLayout>
 
@@ -60,41 +61,39 @@
             android:id="@+id/label_tanggal_mulai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tanggal Mulai"
+            android:text="Nominal"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/_11ssp"
-            android:textColor="@color/black_text"/>
+            android:textColor="@color/black_text"
+            android:layout_marginBottom="@dimen/_5sdp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_47sdp"
             android:background="@drawable/rounded_menu"
             android:backgroundTint="@color/white"
-            android:orientation="horizontal"
             android:layout_below="@+id/label_tanggal_mulai"
             android:paddingHorizontal="@dimen/_10sdp"
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_weight="12"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/poppins"
                 android:text="Rp."
-                android:textColor="@color/_dark"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_11ssp"
                 android:layout_marginEnd="@dimen/_10sdp"/>
 
             <EditText
                 android:layout_weight="2"
                 android:id="@+id/edtNominal"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_47sdp"
-                android:fontFamily="@font/poppins_light"
-                android:textSize="@dimen/_12sdp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
                 android:background="@null"
                 android:textAlignment="textEnd"
-                android:hint="0"/>
+                android:text="300.000"
+                android:textSize="@dimen/_11ssp"/>
 
         </LinearLayout>
 
@@ -103,7 +102,7 @@
     <RelativeLayout
         android:id="@+id/rv_keterangan_perizinan_create"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_152sdp"
+        android:layout_height="wrap_content"
         android:paddingVertical="@dimen/_10sdp"
         android:paddingHorizontal="@dimen/_15sdp"
         app:layout_constraintTop_toBottomOf="@+id/rv_nominal"
@@ -117,7 +116,8 @@
             android:text="Keterangan"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/_11ssp"
-            android:textColor="@color/black_text"/>
+            android:textColor="@color/black_text"
+            android:layout_marginBottom="@dimen/_5sdp"/>
 
         <EditText
             android:id="@+id/edtKeterangan"
@@ -133,16 +133,5 @@
             android:textAlignment="textEnd"/>
 
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/btnKirim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="24dp"
-        android:text="Kirim"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_perizinan_create" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

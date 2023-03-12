@@ -1,69 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/shadow_bg"
+    android:layout_marginBottom="@dimen/_15sdp">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rv_nip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_profile_lengkap1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_10sdp">
+            android:text="ID : "
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/_grey"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-            <TextView
-                android:id="@+id/idGaji"
-                android:layout_width="0dp"
-                android:maxLines="1"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="TextView"
-                android:textColor="@color/crown"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toTopOf="@+id/tanggals"
-                app:layout_constraintEnd_toStartOf="@+id/sallary"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/idGaji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20221703dw8U01t..."
+            android:fontFamily="@font/poppins_bold"
+            app:layout_constraintStart_toEndOf="@+id/tv_profile_lengkap1"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/_grey"/>
 
-            <TextView
-                android:id="@+id/sallary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView31"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tanggals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20-Maret-2023"
+            android:fontFamily="@font/poppins_light"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_lengkap1"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/_grey"/>
 
-            <TextView
-                android:id="@+id/tanggals"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:fontFamily="@font/poppins_light"
-                android:textSize="@dimen/_10ssp"
-                android:textColor="@color/black_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/idGaji" />
+        <TextView
+            android:id="@+id/sallary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:fontFamily="@font/poppins"
+            android:text="Rp5.300.000"
+            android:textColor="@color/black_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/arrow1"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/_11ssp"
+            app:layout_goneMarginEnd="@dimen/_4sdp"/>
 
-            <ImageView
-                android:id="@+id/imageView31"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_sheft_row_right" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+        <ImageView
+            android:id="@+id/arrow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

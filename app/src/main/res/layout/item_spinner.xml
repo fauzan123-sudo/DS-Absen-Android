@@ -1,11 +1,22 @@
-<TextView
-    android:layout_margin="10dp"
-    android:id="@+id/permissions"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textColor="@color/black"
-    android:textSize="14sp"
-    android:text="saya sedang sakit sekarang ya "
-    android:textAlignment="textEnd"
-    android:textStyle="bold"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="@dimen/_15sdp">
+
+    <TextView
+        android:id="@+id/permissions"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12ssp"
+        android:text="saya sedang sakit sekarang ya "
+        android:textAlignment="textEnd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
