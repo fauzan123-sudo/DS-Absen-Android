@@ -10,6 +10,7 @@
     tools:context=".ui.fragment.EditProfileFragment">
 
    <include
+       app:layout_constraintTop_toTopOf="parent"
        android:id="@+id/toolbar"
        layout="@layout/toolbar_layout"/>
 

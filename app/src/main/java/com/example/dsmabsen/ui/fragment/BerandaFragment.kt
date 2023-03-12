@@ -78,7 +78,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                 findNavController().navigate(R.id.action_berandaFragment_to_allMenuFragment)
             }
 
-            loading.isVisible = false
+            loadingInclude.loading.isVisible = false
 
             val customAnalogClock = binding.customAnalogClock
             // Set waktu pada custom analog clock
@@ -125,10 +125,10 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
         }
         viewModel.homeRequest(savedUser!!.nip)
         viewModel.homeLiveData.observe(viewLifecycleOwner) {
-            binding.loading.isVisible = true
+            binding.loadingInclude.loading.isVisible = true
             when (it) {
                 is NetworkResult.Success -> {
-                    binding.loading.isVisible = false
+                    binding.loadingInclude.loading.isVisible = false
                     binding.homeVisible.isVisible = true
                     binding.materialCardView11.isVisible = true
                     binding.apply {
@@ -168,12 +168,12 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                     }
                 }
                 is NetworkResult.Error -> {
-                    binding.loading.isVisible = false
+                    binding.loadingInclude.loading.isVisible = false
                     handleApiError(it.message)
                 }
 
                 is NetworkResult.Loading -> {
-                    binding.loading.isVisible = true
+                    binding.loadingInclude.loading.isVisible = true
                     binding.homeVisible.isVisible = false
                     binding.materialCardView11.isVisible = false
                 }

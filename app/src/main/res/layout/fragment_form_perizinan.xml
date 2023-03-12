@@ -8,12 +8,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.FormPerizinanFragment">
 
-    <!--
-spinner_jenis_izin
-et_tanggal_mulai
-et_tanggal_selesai
-et_keterangan
--->
+    <include
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"/>
 
     <RelativeLayout
         android:id="@+id/rv_nama_reimbursement"

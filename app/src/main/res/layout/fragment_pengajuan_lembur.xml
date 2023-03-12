@@ -10,12 +10,9 @@
     tools:context=".ui.fragment.PengajuanLemburFragment">
 
     <include
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"/>
-
-<!--    <include-->
-<!--        android:id="@+id/include_lembur_create"-->
-<!--        layout="@layout/layout_appbar_create"/>-->
 
     <RelativeLayout
         android:id="@+id/rv_tanggal_mulai"
@@ -23,7 +20,7 @@
         android:layout_height="wrap_content"
         android:paddingVertical="@dimen/_10sdp"
         android:paddingHorizontal="@dimen/_15sdp"
-        app:layout_constraintTop_toBottomOf="@+id/include_lembur_create"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         android:background="@drawable/rounded_menu"
         android:layout_marginTop="@dimen/_10sdp">
 

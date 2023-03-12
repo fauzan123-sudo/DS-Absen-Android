@@ -8,6 +8,7 @@
     tools:context=".ui.fragment.AllProfileFragment">
 
     <include
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"/>
 

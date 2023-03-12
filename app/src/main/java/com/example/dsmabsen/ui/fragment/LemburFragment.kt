@@ -50,9 +50,9 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
 
             val savedUser = Paper.book().read<DataX>("user")
 
-            ajukanLembur.setOnClickListener {
-                findNavController().navigate(R.id.action_lemburFragment_to_pengajuanLemburFragment)
-            }
+//            ajukanLembur.setOnClickListener {
+//                findNavController().navigate(R.id.action_lemburFragment_to_pengajuanLemburFragment)
+//            }
             adapter = LemburAdapter(requireContext())
             recyclerView = reclembur
             recyclerView.adapter = adapter

@@ -92,7 +92,7 @@ class AttendanceFragment :
             locationManager =
                 requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-            imageView23.setOnClickListener {
+            btnAbsen.setOnClickListener {
                 camera()
             }
 
@@ -235,8 +235,8 @@ class AttendanceFragment :
                 val uri = it?.data?.data
                 absen(selectedImageUris!!)
 
-                binding.photo.setImageBitmap(selectedImageUris)            /* imgPhoto.load(bitmap) */
-                binding.photo.isVisible = true
+//                binding.photo.setImageBitmap(selectedImageUris)            /* imgPhoto.load(bitmap) */
+//                binding.photo.isVisible = true
             } else if (it == null) {
                 Toast.makeText(requireContext(), "Gambar tida dapat di set", Toast.LENGTH_SHORT)
                     .show()
@@ -278,7 +278,7 @@ class AttendanceFragment :
         viewModel.attendanceTodayLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
-                    binding.loading.isVisible = false
+                    binding.loadingInclude.loading.isVisible = false
                     if (it.data!!.data.status == "Success") {
                         Toast.makeText(requireContext(), "success upload file", Toast.LENGTH_LONG)
                             .show()
@@ -322,7 +322,7 @@ class AttendanceFragment :
                     }
                 }
                 is NetworkResult.Loading -> {
-                    binding.loading.isVisible = true
+                    binding.loadingInclude.loading.isVisible = true
                     Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
                 }
 

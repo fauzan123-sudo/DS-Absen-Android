@@ -62,7 +62,6 @@ class DataAbsenFragment :
             viewModel.attendanceHistoryLiveData.observe(viewLifecycleOwner) {
                 Toast.makeText(requireContext(), "Masuk Viemodel", Toast.LENGTH_SHORT).show()
 
-                binding.loading.isVisible = false
                 when (it) {
                     is NetworkResult.Success -> {
                         binding.loading.isVisible = false
@@ -77,22 +76,20 @@ class DataAbsenFragment :
                         }else{
 
                             adapter.differ.submitList(attendance)
-                            Toast.makeText(requireContext(), "Set Adabter Suskes", Toast.LENGTH_SHORT)
                             binding.recAttendance.visibility = View.VISIBLE
                             binding.imgNoData.visibility = View.GONE
                         }
+                        Toast.makeText(requireContext(), "Set Adabter Suskes", Toast.LENGTH_SHORT)
 
 
                     }
 
                     is NetworkResult.Loading -> {
-//                        binding.loading.isVisible = true
-//                        binding.constrain.isVisible = false
+
                         Toast.makeText(requireContext(), "Sedang proses", Toast.LENGTH_SHORT).show()
                     }
 
                     is NetworkResult.Error -> {
-                        binding.loading.isVisible = false
                         Toast.makeText(requireContext(), "Set Adabter Error", Toast.LENGTH_SHORT)
                         handleApiError(it.message)
                     }
@@ -101,23 +98,23 @@ class DataAbsenFragment :
 
             viewModel.attendanceTotalRequest(savedUser.nip)
             viewModel.totalAttendanceLiveData.observe(viewLifecycleOwner) {
-                binding.loading.isVisible = false
+
                 when (it) {
                     is NetworkResult.Success -> {
-                        binding.constrain.isVisible = true
-                        binding.loading.isVisible = false
+//                        binding.constrain.isVisible = true
+//                        binding.loading.isVisible = false
                         val data = it.data!!.data
                         setPieChart(data)
                     }
 
                     is NetworkResult.Loading -> {
-                        binding.constrain.isVisible = false
-                        binding.loading.isVisible = true
+//                        binding.constrain.isVisible = false
+//                        binding.loading.isVisible = true
                         Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
                     }
 
                     is NetworkResult.Error -> {
-                        binding.loading.isVisible = false
+//                        binding.loading.isVisible = false
                         handleApiError(it.message)
                     }
                 }
