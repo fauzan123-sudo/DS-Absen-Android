@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.FormPerizinanFragment">
+    tools:context=".ui.fragment.FormPerizinanFragment"
+    android:padding="@dimen/_20sdp"
+    android:background="@drawable/gradiend_background">
 
     <!--
 spinner_jenis_izin
@@ -15,14 +16,20 @@ et_tanggal_selesai
 et_keterangan
 -->
 
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"/>
+
     <RelativeLayout
         android:id="@+id/rv_nama_reimbursement"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_90sdp"
         android:paddingVertical="@dimen/_10sdp"
         android:paddingHorizontal="@dimen/_15sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/rounded_menu">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:background="@drawable/rounded_menu"
+        android:layout_marginTop="@dimen/_30sdp">
 
         <TextView
             android:id="@+id/label_jenis_izin"
@@ -31,11 +38,11 @@ et_keterangan
             android:text="Jenis Izin"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/_11ssp"
-            android:textColor="@color/black_text"/>
+            android:textColor="@color/black_text"
+            android:layout_marginBottom="@dimen/_5sdp"/>
 
         <Spinner
-            android:id="@+id/spinner_jenis_izin"
-            android:layout_width="match_parent"
+            android:id="@+id/spinner_jenis_izin"            android:layout_width="match_parent"
             android:layout_height="@dimen/_47sdp"
             android:background="@drawable/rounded_menu"
             android:layout_below="@+id/label_jenis_izin"
@@ -64,7 +71,8 @@ et_keterangan
             android:text="Tanggal Mulai"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/_11ssp"
-            android:textColor="@color/black_text"/>
+            android:textColor="@color/black_text"
+            android:layout_marginBottom="@dimen/_5sdp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,6 +82,7 @@ et_keterangan
             android:layout_below="@+id/label_tanggal_mulai"
             android:paddingHorizontal="@dimen/_10sdp"
             android:gravity="center_vertical">
+
 
             <ImageView
                 android:layout_width="@dimen/_14sdp"
@@ -85,12 +94,11 @@ et_keterangan
             <TextView
                 android:id="@+id/et_tanggal_mulai"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_47sdp"
-                android:fontFamily="@font/poppins_light"
-                android:textSize="@dimen/_12ssp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
                 android:background="@null"
                 android:textAlignment="textEnd"
-                android:hint="dd/mm/yyyy"/>
+                android:text="dd/mm/yyyy"/>
 
         </LinearLayout>
 
@@ -110,10 +118,11 @@ et_keterangan
             android:id="@+id/label_tanggal_selesai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tanggal Selesai"
+            android:text="Tanggal Mulai"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/_11ssp"
-            android:textColor="@color/black_text"/>
+            android:textColor="@color/black_text"
+            android:layout_marginBottom="@dimen/_5sdp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -134,9 +143,8 @@ et_keterangan
             <TextView
                 android:id="@+id/et_tanggal_selesai"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_47sdp"
-                android:fontFamily="@font/poppins_light"
-                android:textSize="@dimen/_12sdp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
                 android:background="@null"
                 android:textAlignment="textEnd"
                 android:hint="dd/mm/yyyy"/>
@@ -162,7 +170,8 @@ et_keterangan
             android:text="Keterangan"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/_11ssp"
-            android:textColor="@color/black_text"/>
+            android:textColor="@color/black_text"
+            android:layout_marginBottom="@dimen/_5sdp"/>
 
         <EditText
             android:id="@+id/et_keterangan"
@@ -171,9 +180,6 @@ et_keterangan
             android:background="@drawable/rounded_menu"
             android:layout_below="@+id/label_keterangan"
             android:backgroundTint="@color/white"
-            android:dropDownSelector="@drawable/arrow_bottom"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:paddingVertical="@dimen/_15sdp"
             android:lines="4"
             android:textAlignment="textEnd"/>
 
@@ -183,10 +189,10 @@ et_keterangan
         android:id="@+id/kirim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginBottom="48dp"
-        android:text="Kirim"
+        android:text="kirim"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,24 +9,25 @@
     tools:context=".ui.fragment.NoInternetConnection">
 
     <ImageView
-        android:id="@+id/imageView17"
+        android:id="@+id/iv_no_connection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/no_internet_connection"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/no_connection"/>
 
     <TextView
-        android:id="@+id/textView34"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No Internet Connection"
+        android:fontFamily="@font/poppins_bold"
         android:textSize="@dimen/_15ssp"
-        android:fontFamily="@font/poppins"
-        android:textStyle="bold"
-        android:textColor="@color/crown"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Internet Not Connection"
+        android:textColor="@color/grey"
+        app:layout_constraintTop_toBottomOf="@+id/iv_no_connection"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_15sdp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

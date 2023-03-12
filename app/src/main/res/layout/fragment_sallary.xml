@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.SallaryFragment">
-
+    tools:context=".ui.fragment.SallaryFragment"
+    android:background="@drawable/gradiend_background">
 
     <include
-        android:id="@+id/include_slipgaji"
-        layout="@layout/layout_appbar_center"/>
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recSallary"
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_slipgaji"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:layout_editor_absoluteX="26dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
