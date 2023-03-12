@@ -33,17 +33,15 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         setupToolbar("Lembur")
-        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
-            toolbar.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.save -> {
-                        // Handle add menu item click
-//                        saveReimbursement(savedUser)
-                        true
-                    }
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.add -> {
+                    findNavController().navigate(R.id.action_lemburFragment_to_pengajuanLemburFragment)
 
-                    else -> false
+                    true
                 }
+
+                else -> false
             }
         }
         with(binding) {
@@ -93,16 +91,6 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
         menuSave?.isVisible = false // menyembunyikan menu tertentu
         menuPlus?.isVisible = true // menyembunyikan menu tertentu
 
-        val item = menu.findItem(R.id.save)
-        item.setActionView(R.layout.item_menu_toolbar)
-
-        val actionView = item.actionView
-        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
-        btnSimpan?.setOnClickListener {
-            // your code here
-//            saveReimbursement(savedUser)
-
-        }
 
     }
 

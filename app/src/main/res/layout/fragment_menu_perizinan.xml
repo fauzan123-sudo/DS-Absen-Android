@@ -15,15 +15,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recPerizinan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:listitem="@layout/item_perizinan"
-        tools:itemCount="3"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_height="0dp"
+        android:paddingHorizontal="@dimen/_20sdp"
         android:clipToPadding="false"
-        android:paddingStart="@dimen/_20sdp"
-        android:paddingEnd="@dimen/_20sdp"
-        android:paddingTop="@dimen/_19sdp"
-        android:paddingBottom="@dimen/_20sdp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

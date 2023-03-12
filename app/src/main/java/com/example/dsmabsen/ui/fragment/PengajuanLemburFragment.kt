@@ -50,62 +50,56 @@ class PengajuanLemburFragment :
         setHasOptionsMenu(true)
         setupToolbar("Ajukan Lembur")
 
-        toolbar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.save -> {
-                    // Handle add menu item click
-                    viewModel.requestPengajuanLembur(
-                        savedUser!!.nip,
-                        binding.jamMulai.text.toString(),
-                        binding.jamSelesai.text.toString(),
-                        "",
-                        binding.tanggalPenggajuan.text.toString(),
-                        binding.keteranganPenggajuan.text.toString()
-                    )
-                    viewModel.pengajuanLemburLiveData.observe(viewLifecycleOwner) {
-                        when (it) {
-                            is NetworkResult.Success -> {
-                                val response = it.data!!
-                                val status = response.status
-                                val statusPengajuan = response.data.status
-                                if (status && statusPengajuan) {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Berhasil Mengajukan Lembur",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                } else {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        response.data.messages,
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            }
+    }
 
-                            is NetworkResult.Loading -> {
-                                Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-                            }
-
-                            is NetworkResult.Error -> {
-                                handleApiError(it.message)
-                            }
-                        }
+    private fun saveLembur() {
+        viewModel.requestPengajuanLembur(
+            savedUser!!.nip,
+            binding.jamMulai.text.toString(),
+            binding.jamSelesai.text.toString(),
+            "",
+            binding.tanggalPenggajuan.text.toString(),
+            binding.keteranganPenggajuan.text.toString()
+        )
+        viewModel.pengajuanLemburLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is NetworkResult.Success -> {
+                    val response = it.data!!
+                    val status = response.status
+                    val statusPengajuan = response.data.status
+                    if (status && statusPengajuan) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Berhasil Mengajukan Lembur",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            response.data.messages,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                    true
                 }
 
-                else -> false
+                is NetworkResult.Loading -> {
+                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                }
+
+                is NetworkResult.Error -> {
+                    handleApiError(it.message)
+                }
             }
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
 
-        menuSave?.isVisible = false // menyembunyikan menu tertentu
-        menuPlus?.isVisible = true // menyembunyikan menu tertentu
+        menuSave?.isVisible = true // menyembunyikan menu tertentu
+        menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
         val item = menu.findItem(R.id.save)
         item.setActionView(R.layout.item_menu_toolbar)
@@ -113,8 +107,7 @@ class PengajuanLemburFragment :
         val actionView = item.actionView
         val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
         btnSimpan?.setOnClickListener {
-            // your code here
-//            saveReimbursement(savedUser)
+            saveLembur()
 
         }
 

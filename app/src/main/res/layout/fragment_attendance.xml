@@ -165,11 +165,11 @@
                     android:padding="@dimen/_10sdp">
 
                     <TextView
-                        android:id="@+id/textView46"
+                        android:id="@+id/tv_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="10:00:32"
+                        android:text="-:-:-"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_40ssp"
@@ -177,45 +177,51 @@
                         tools:layout_editor_absoluteX="13dp" />
 
                     <TextView
-                        android:id="@+id/textView45"
+                        android:id="@+id/tv_hari"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/gradiend_background"
                         android:paddingHorizontal="@dimen/_12sdp"
-                        android:text="02"
+                        android:text="-"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/_dark"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/textView47"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_bulan"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
 
                     <TextView
-                        android:id="@+id/textView47"
+                        android:id="@+id/tv_bulan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_3sdp"
                         android:background="@drawable/gradiend_background"
                         android:paddingHorizontal="@dimen/_12sdp"
-                        android:text="02"
+                        android:text="-"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/_dark"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/textView48"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_tahun"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textView45"
-                        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+                        app:layout_constraintStart_toEndOf="@+id/tv_hari"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
 
                     <TextView
-                        android:id="@+id/textView48"
+                        android:id="@+id/tv_tahun"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/gradiend_background"
                         android:paddingHorizontal="@dimen/_12sdp"
-                        android:text="2023"
+                        android:text="-"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/_dark"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textView47"
-                        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+                        app:layout_constraintStart_toEndOf="@+id/tv_bulan"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

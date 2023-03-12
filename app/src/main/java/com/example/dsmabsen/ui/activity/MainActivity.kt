@@ -3,12 +3,14 @@ package com.example.dsmabsen.ui.activity
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.findNavController
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
@@ -69,14 +71,29 @@ class MainActivity : AppCompatActivity() {
 
             navController.addOnDestinationChangedListener { _, destination, _ ->
 
-                val arrayFragment = arrayOf(
+                val arrayHideNavbar = arrayOf(
                     R.id.berandaFragment,
+                    R.id.attendanceFragment,
+                    R.id.dataAbsenFragment,
+                )
+                val arrayFragmentBgWhite = arrayOf(
                     R.id.profileFragment,
+                    R.id.allProfileFragment,
+                    R.id.personalDataFragment,
                 )
 
-                if (arrayFragment.contains(destination.id)) {
-                    binding.main.setBackgroundColor(Color.WHITE)
+                if (arrayHideNavbar.contains(destination.id)) {
+
+                    binding.bottomNavigationView.visibility = View.VISIBLE
                 } else {
+                    binding.bottomNavigationView.visibility = View.GONE
+
+                }
+                if (arrayFragmentBgWhite.contains(destination.id)) {
+                    binding.main.setBackgroundColor(Color.WHITE)
+
+                } else {
+
                     binding.main.background = AppCompatResources.getDrawable(applicationContext,R.drawable.gradiend_background)
                 }
             }

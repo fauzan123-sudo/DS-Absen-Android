@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -58,7 +59,10 @@ class DataAbsenFragment :
             Glide.with(requireContext())
                 .load(Constans.IMAGE_URL + savedUser!!.image)
                 .into(imageUser)
-            Log.d("gambar",savedUser!!.image)
+
+            imageUser.setOnClickListener {
+                findNavController().navigate(R.id.action_dataAbsenFragment_to_profileFragment)
+            }
 
             adapter = AttendanceAdapter(requireContext())
             recyclerView = recAttendance

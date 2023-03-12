@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:background="@drawable/gradiend_background"
-    android:padding="@dimen/_20sdp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,6 +15,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -64,7 +64,7 @@
                     android:layout_height="@dimen/_47sdp"
                     android:fontFamily="@font/poppins"
                     android:background="@null"
-                    android:textAlignment="textEnd"
+                    android:gravity="end|center_vertical"
                     android:hint="dd/mm/yyyy"/>
 
             </LinearLayout>
@@ -110,6 +110,7 @@
                     android:id="@+id/jamMulai"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_47sdp"
+                    android:gravity="end|center_vertical"
                     android:fontFamily="@font/poppins"
                     android:background="@null"
                     android:textAlignment="textEnd"
@@ -155,6 +156,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"/>
 
                 <TextView
+                    android:gravity="end|center_vertical"
                     android:id="@+id/jamSelesai"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_47sdp"

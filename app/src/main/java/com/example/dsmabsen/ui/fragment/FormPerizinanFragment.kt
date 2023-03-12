@@ -29,9 +29,11 @@ class FormPerizinanFragment :
     BaseFragment<FragmentFormPerizinanBinding>(FragmentFormPerizinanBinding::inflate) {
 
     private val viewModel: PerizinanViewModel by viewModels()
+    val savedUser = Paper.book().read<DataX>("user")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+
         setupToolbar("Ajukan Perizinan")
         view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
             toolbar.setOnMenuItemClickListener { menuItem ->
@@ -47,7 +49,7 @@ class FormPerizinanFragment :
             }
         }
         with(binding) {
-            val savedUser = Paper.book().read<DataX>("user")
+
             etTanggalMulai.setOnClickListener {
                 getCalendarStart()
             }
@@ -128,47 +130,6 @@ class FormPerizinanFragment :
 
     }
 
-    private fun FragmentFormPerizinanBinding.savePerizinan(savedUser: DataX?) {
-        viewModel.requestSendPermission(
-            savedUser!!.nip,
-            "1",
-            etTanggalMulai.toString(),
-            etTanggalSelesai.toString(),
-            "",
-            etKeterangan.toString()
-        )
-
-        viewModel.sendPermissionLiveData.observe(viewLifecycleOwner) {
-            when (it) {
-                is NetworkResult.Success -> {
-                    val response = it.data!!
-                    val status = response.status
-
-                    if (status) {
-                        Toast.makeText(
-                            requireContext(),
-                            "berhasil menambhakan data",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "berhasil menambhakan data",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-
-                is NetworkResult.Loading -> {
-                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-                }
-
-                is NetworkResult.Error -> {
-                    handleApiError(it.message)
-                }
-            }
-        }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
@@ -184,9 +145,7 @@ class FormPerizinanFragment :
         val actionView = item.actionView
         val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
         btnSimpan?.setOnClickListener {
-            // your code here
-//            saveReimbursement(savedUser)
-
+            savePerizinan(savedUser)
         }
 
     }
@@ -246,6 +205,47 @@ class FormPerizinanFragment :
             Toast.makeText(requireContext(), "Date Picker Cancelled", Toast.LENGTH_LONG).show()
         }
 
+    }
+    private fun savePerizinan(savedUser: DataX?) {
+        viewModel.requestSendPermission(
+            savedUser!!.nip,
+            "1",
+            binding.etTanggalMulai.toString(),
+            binding.etTanggalSelesai.toString(),
+            "",
+            binding.etKeterangan.toString()
+        )
+
+        viewModel.sendPermissionLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is NetworkResult.Success -> {
+                    val response = it.data!!
+                    val status = response.status
+
+                    if (status) {
+                        Toast.makeText(
+                            requireContext(),
+                            "berhasil menambhakan data",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "berhasil menambhakan data",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                is NetworkResult.Loading -> {
+                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                }
+
+                is NetworkResult.Error -> {
+                    handleApiError(it.message)
+                }
+            }
+        }
     }
 
 }

@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/_20sdp"
     android:background="@drawable/gradiend_background"
     tools:context=".ui.fragment.PengajuanReimbursementFragment">
 
@@ -12,7 +11,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"/>
+
     <ScrollView
+        android:paddingHorizontal="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,8 +30,7 @@
             android:paddingVertical="@dimen/_10sdp"
             android:paddingHorizontal="@dimen/_15sdp"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/rounded_menu"
-            android:layout_marginTop="@dimen/_30sdp">
+            android:background="@drawable/rounded_menu">
 
             <TextView
                 android:id="@+id/label_jenis_izin"
@@ -138,8 +138,10 @@
                 android:dropDownSelector="@drawable/arrow_bottom"
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:paddingVertical="@dimen/_15sdp"
+                android:gravity="end|top"
                 android:lines="4"
-                android:textAlignment="textEnd"/>
+                android:fontFamily="@font/poppins"
+                />
 
         </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

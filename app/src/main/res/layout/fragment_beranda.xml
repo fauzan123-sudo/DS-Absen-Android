@@ -258,7 +258,7 @@
                             app:layout_constraintTop_toTopOf="@+id/roundedImageView" />
 
                         <TextView
-                            android:id="@+id/textView14"
+                            android:id="@+id/tv_checkin"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
@@ -278,7 +278,7 @@
                             android:textColor="@color/_grey"
                             android:textSize="@dimen/_10ssp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_checkin" />
 
                         <TextView
                             android:id="@+id/textView16"
@@ -290,7 +290,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="1.0"
                             app:layout_constraintStart_toEndOf="@+id/textView15"
-                            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_checkin" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -335,7 +335,7 @@
                             app:layout_constraintTop_toTopOf="@+id/roundedImageView1" />
 
                         <TextView
-                            android:id="@+id/textView18"
+                            android:id="@+id/tv_checkout"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
@@ -356,7 +356,7 @@
                             android:textColor="@color/_grey"
                             android:textSize="@dimen/_10ssp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_checkout" />
 
                         <TextView
                             android:id="@+id/textView20"
@@ -366,7 +366,7 @@
                             android:textColor="@color/_success"
                             android:textSize="@dimen/_10ssp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_checkout" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.card.MaterialCardView>
@@ -711,7 +711,7 @@
                                     android:id="@+id/textView25"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="AKTIVITAS"
+                                    android:text="REIMBURSEMENT"
                                     android:textSize="@dimen/_8ssp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"

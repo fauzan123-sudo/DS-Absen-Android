@@ -25,7 +25,7 @@ import kotlinx.coroutines.NonDisposableHandle.parent
 @AndroidEntryPoint
 class PengajuanShiftFragment :
     BaseFragment<FragmentPengajuanShiftBinding>(FragmentPengajuanShiftBinding::inflate) {
-
+    val savedUser = Paper.book().read<DataX>("user")
     val viewModel: ShiftViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,7 +33,6 @@ class PengajuanShiftFragment :
 
 
         with(binding) {
-            val savedUser = Paper.book().read<DataX>("user")
 
             viewModel.requestSpinnerShift()
             viewModel.spinnerShiftLiveData.observe(viewLifecycleOwner) {
@@ -96,58 +95,51 @@ class PengajuanShiftFragment :
                 }
             }
 
-            viewModel.requestShiftPengajuan(
-                savedUser!!.nip,
-                "1",
-                "",
-                edtKeterangan.toString()
-            )
-            viewModel.pengajuanShiftLiveData.observe(viewLifecycleOwner) {
-                when (it) {
-                    is NetworkResult.Success -> {
-                        val response = it.data!!
-                        val status = response.status
-                        val statusPengajuan = response.data.status
-                        if (status == statusPengajuan) {
-                            Toast.makeText(
-                                requireContext(),
-                                "Anda berhasil mengajukan Shift",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            Toast.makeText(
-                                requireContext(),
-                                statusPengajuan.toString(),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                    is NetworkResult.Loading -> {
-                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-                    }
 
-                    is NetworkResult.Error -> {
-                        handleApiError(it.message)
-                    }
-                }
-            }
         }
         setHasOptionsMenu(true)
         setupToolbar("Ajukan Shift")
-        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
-            toolbar.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.save -> {
-                        // Handle add menu item click
-//                        saveReimbursement(savedUser)
-                        true
-                    }
 
-                    else -> false
+    }
+
+    private fun saveShift(savedUser: DataX?) {
+        viewModel.requestShiftPengajuan(
+            savedUser!!.nip,
+            "1",
+            "",
+            binding.edtKeterangan.toString()
+        )
+        viewModel.pengajuanShiftLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is NetworkResult.Success -> {
+                    val response = it.data!!
+                    val status = response.status
+                    val statusPengajuan = response.data.status
+                    if (status == statusPengajuan) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Anda berhasil mengajukan Shift",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            statusPengajuan.toString(),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                is NetworkResult.Loading -> {
+                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                }
+
+                is NetworkResult.Error -> {
+                    handleApiError(it.message)
                 }
             }
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
@@ -163,7 +155,7 @@ class PengajuanShiftFragment :
         val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
         btnSimpan?.setOnClickListener {
             // your code here
-//            saveReimbursement(savedUser)
+            saveShift(savedUser)
 
         }
 

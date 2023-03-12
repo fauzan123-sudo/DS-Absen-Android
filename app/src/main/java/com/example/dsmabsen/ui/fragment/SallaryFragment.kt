@@ -66,21 +66,9 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
             }
 
         }
-        setHasOptionsMenu(true)
+        setHasOptionsMenu(false)
         setupToolbar("Gaji")
-        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
-            toolbar.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.save -> {
-                        // Handle add menu item click
-//                        saveReimbursement(savedUser)
-                        true
-                    }
 
-                    else -> false
-                }
-            }
-        }
 
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -89,7 +77,7 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
         val menuPlus = menu.findItem(R.id.add)
 
         menuSave?.isVisible = false // menyembunyikan menu tertentu
-        menuPlus?.isVisible = true // menyembunyikan menu tertentu
+        menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
         val item = menu.findItem(R.id.save)
         item.setActionView(R.layout.item_menu_toolbar)

@@ -16,6 +16,7 @@ import android.net.Uri
 import android.os.Build
 
 import android.os.Bundle
+import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
 import android.view.Menu
@@ -52,8 +53,12 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.ByteArrayOutputStream
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
+import java.text.SimpleDateFormat
+import java.time.format.TextStyle
 
 @AndroidEntryPoint
 class AttendanceFragment :
@@ -62,17 +67,20 @@ class AttendanceFragment :
     private lateinit var locationManager: LocationManager
     private val LOCATION_PERMISSION_CODE = 123 // kode permintaan izin
     private val viewModel: AttendanceViewModel by viewModels()
+    private val handler = Handler()
+    private lateinit var runnable: Runnable
 
     @Inject
     lateinit var tokenManager: TokenManager
     private val savedUser = Paper.book().read<DataX>("user")
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
         hideToolbar()
-
+        timeRun()
         binding.apply {
 
             val permission =
@@ -91,7 +99,12 @@ class AttendanceFragment :
                 .load(Constans.IMAGE_URL + savedUser!!.image)
                 .into(imageUser)
             Log.d("gambar",savedUser!!.image)
+
+            imageUser.setOnClickListener {
+                findNavController().navigate(R.id.action_attendanceFragment_to_profileFragment)
+            }
         }
+
 
     }
 
@@ -142,7 +155,7 @@ class AttendanceFragment :
                         ).show()
                     }
                 }
-
+                requestLocationPermission()
                 locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
                     0,
@@ -427,5 +440,58 @@ class AttendanceFragment :
         }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun timeRun(){
 
+        runnable = object : Runnable {
+            override fun run() {
+                val timestamp = System.currentTimeMillis()
+
+                // Create a SimpleDateFormat object with the system timezone
+                val sdfHari = SimpleDateFormat("dd", Locale.getDefault())
+                val sdfBulan = SimpleDateFormat("mm", Locale.getDefault())
+                val sdfTahun = SimpleDateFormat("yyyy", Locale.getDefault())
+
+                val sdfJam = SimpleDateFormat("HH", Locale.getDefault())
+                val sdfMenit = SimpleDateFormat("mm", Locale.getDefault())
+                val sdfDetik = SimpleDateFormat("ss", Locale.getDefault())
+
+                sdfHari.timeZone = TimeZone.getDefault()
+                sdfBulan.timeZone = TimeZone.getDefault()
+                sdfTahun.timeZone = TimeZone.getDefault()
+                sdfJam.timeZone = TimeZone.getDefault()
+                sdfMenit.timeZone = TimeZone.getDefault()
+                sdfDetik.timeZone = TimeZone.getDefault()
+
+                // Format the timestamp with the SimpleDateFormat object
+                val formattedDateJam = sdfJam.format(Date(timestamp))
+                val formattedDateMenit = sdfMenit.format(Date(timestamp))
+                val formattedDateDetik = sdfDetik.format(Date(timestamp))
+//                Log.d("run jam", "Formatted date with system timezone: $formattedDate")
+
+//                val currentTime = System.currentTimeMillis()
+//                val seconds = (currentTime / 1000) % 60
+//                val minutes = (currentTime / (1000 * 60)) % 60
+//                val hours = (currentTime / (1000 * 60 * 60)) % 24
+                binding.tvTime.text = "$formattedDateJam : $formattedDateMenit : $formattedDateDetik"
+
+
+//                binding.textView3.text = formattedDate
+//                textViewa.text = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                binding.tvHari.text = sdfHari.format(Date(timestamp))
+                binding.tvBulan.text = sdfBulan.format(Date(timestamp))
+                binding.tvTahun.text = sdfTahun.format(Date(timestamp))
+                handler.postDelayed(this, 1000)
+            }
+        }
+    }
+    override fun onResume() {
+        super.onResume()
+        handler.postDelayed(runnable, 0)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacks(runnable)
+    }
 }

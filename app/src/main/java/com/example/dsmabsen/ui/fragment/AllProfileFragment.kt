@@ -17,7 +17,7 @@ class AllProfileFragment :BaseFragment<FragmentAllProfileBinding>(FragmentAllPro
         super.onViewCreated(view, savedInstanceState)
 
         with(binding){
-            materialCardView1.setOnClickListener {
+            rvDataPribadi.setOnClickListener {
                 findNavController().navigate(R.id.action_allProfileFragment_to_personalDataFragment)
             }
         }

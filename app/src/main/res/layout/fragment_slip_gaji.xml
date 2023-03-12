@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradiend_background"
+    android:paddingHorizontal="@dimen/_20sdp"
+    android:paddingTop="@dimen/_20sdp">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shadow_bg"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_20sdp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shadow_bg"
+                android:backgroundTint="@color/_softblue"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_47sdp"
+                    android:padding="@dimen/_10sdp">
+
+                    <TextView
+                        android:id="@+id/tv_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="ID : "
+                        android:fontFamily="@font/poppins"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/primary"/>
+
+                    <TextView
+                        android:id="@+id/tv_id_detail_penggajian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_id"
+                        android:text="20220717072145zEwdw8U01t"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/primary"/>
+
+                    <TextView
+                        android:id="@+id/tv_tangal_detail_penggajian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tv_id_detail_penggajian"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="Senin, 20-Maret-2023"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/primary"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:background="@drawable/retangle_rounded_primary"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tv_nominal_detail_slipgaji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/card_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="Rp5.300.000,-"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/_20ssp"
+                android:textColor="@color/black_text"/>
+
+            <TextView
+                android:id="@+id/tv_gaji_pokok_presensi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nominal_detail_slipgaji"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="Gaji Pokok dan Presensi"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black_text"/>
+
+            <TextView
+                android:id="@+id/tv_gaji_pokok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gaji_pokok_presensi"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Gaji Pokok"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_nominal_gaji_pokok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gaji_pokok_presensi"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Rp5.000.000"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_kehadiran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gaji_pokok"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Kehadiran"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_persen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gaji_pokok"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="100%"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_tunjangan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_kehadiran"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="Tunjangan"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black_text"/>
+
+            <TextView
+                android:id="@+id/tv_jabatan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_tunjangan"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Jabatan"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_nominal_jabatan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_tunjangan"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Rp5.000.000"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_thr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_jabatan"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="THR"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_nominal_thr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_jabatan"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Rp5.000.000"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_uang_makan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_thr"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Uang makan"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_nominal_uang_makan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_thr"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Rp5.000.000"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_potongan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_uang_makan"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="Tunjangan"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black_text"/>
+
+            <TextView
+                android:id="@+id/tv_bpjs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_potongan"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="BPJS"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_nominal_bpjs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_potongan"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Rp5.000.000"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_iuran_pegawai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_bpjs"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Iuran pegawai"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_nominal_iuran_pegawai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_bpjs"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Rp5.000.000"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tv_gaji_bersih"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_iuran_pegawai"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="Tunjangan"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black_text"/>
+
+            <TextView
+                android:id="@+id/tv_nominal_gaji_bersih"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_iuran_pegawai"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="Rp5.000.000"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black_text"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

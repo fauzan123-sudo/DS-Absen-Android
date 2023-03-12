@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.FormPerizinanFragment"
-    android:padding="@dimen/_20sdp"
     android:background="@drawable/gradiend_background">
 
     <include
@@ -15,6 +14,7 @@
         layout="@layout/toolbar_layout"/>
 
     <ScrollView
+        android:paddingHorizontal="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +29,6 @@
                 android:id="@+id/rv_nama_reimbursement"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_90sdp"
-                android:layout_marginTop="@dimen/_30sdp"
                 android:background="@drawable/rounded_menu"
                 android:paddingHorizontal="@dimen/_15sdp"
                 android:paddingVertical="@dimen/_10sdp"

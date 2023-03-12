@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="@dimen/_10sdp"
-    android:background="@drawable/gradiend_background">
+    android:background="@drawable/gradiend_background"
+    >
 
     <include
         app:layout_constraintTop_toTopOf="parent"
@@ -13,10 +13,11 @@
         layout="@layout/toolbar_layout"/>
 
     <com.google.android.flexbox.FlexboxLayout
+        android:paddingVertical="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_20sdp"
         android:id="@+id/fb_1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_110sdp"
-        android:padding="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="?attr/actionBarSize"
         app:flexWrap="nowrap"
@@ -25,6 +26,7 @@
         app:dividerDrawable="@drawable/divider">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btn_perizinan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/shadow_bg"
@@ -63,6 +65,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/btn_lembur"
             android:background="@drawable/shadow_bg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,7 +88,7 @@
                     android:id="@+id/tv_lembur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
+                    android:fontFamily="@font/poppins"
                     android:text="LEMBUR"
                     android:textSize="@dimen/_6ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -99,6 +102,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/btn_shift"
             android:background="@drawable/shadow_bg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -137,7 +141,8 @@
         android:id="@+id/fb_2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_110sdp"
-        android:padding="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_20sdp"
         app:layout_constraintTop_toBottomOf="@+id/fb_1"
         app:flexWrap="nowrap"
         app:showDivider="middle"
@@ -149,6 +154,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/btn_salary"
             android:background="@drawable/shadow_bg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -184,6 +190,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/btn_aktifitas"
             android:background="@drawable/shadow_bg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -219,6 +226,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/btn_berita"
             android:background="@drawable/shadow_bg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -258,7 +266,9 @@
         android:layout_marginTop="-12dp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_110sdp"
-        android:padding="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_20sdp"
+
         app:layout_constraintTop_toBottomOf="@+id/fb_2"
         app:flexWrap="nowrap"
         app:showDivider="middle"

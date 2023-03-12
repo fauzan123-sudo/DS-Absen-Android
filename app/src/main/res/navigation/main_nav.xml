@@ -104,6 +104,9 @@
         <action
             android:id="@+id/action_attendanceFragment_to_berandaFragment"
             app:destination="@id/berandaFragment" />
+        <action
+            android:id="@+id/action_attendanceFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/allMenuFragment"
@@ -116,6 +119,18 @@
         <action
             android:id="@+id/action_allMenuFragment_to_reimbursementFragment"
             app:destination="@id/reimbursementFragment" />
+        <action
+            android:id="@+id/action_allMenuFragment_to_shiftFragment"
+            app:destination="@id/shiftFragment" />
+        <action
+            android:id="@+id/action_allMenuFragment_to_lemburFragment"
+            app:destination="@id/lemburFragment" />
+        <action
+            android:id="@+id/action_allMenuFragment_to_sallaryFragment"
+            app:destination="@id/sallaryFragment" />
+        <action
+            android:id="@+id/action_allMenuFragment_to_menuPerizinanFragment"
+            app:destination="@id/menuPerizinanFragment" />
     </fragment>
     <fragment
         android:id="@+id/allProfileFragment"
@@ -198,10 +213,19 @@
         android:id="@+id/shiftFragment"
         android:name="com.example.dsmabsen.ui.fragment.ShiftFragment"
         android:label="fragment_shift"
-        tools:layout="@layout/fragment_shift" />
+        tools:layout="@layout/fragment_shift" >
+        <action
+            android:id="@+id/action_shiftFragment_to_pengajuanShiftFragment"
+            app:destination="@id/pengajuanShiftFragment" />
+    </fragment>
     <fragment
         android:id="@+id/pengajuanReimbursementFragment"
         android:name="com.example.dsmabsen.ui.fragment.PengajuanReimbursementFragment"
         android:label="fragment_pengajuan_reimbursement"
         tools:layout="@layout/fragment_pengajuan_reimbursement" />
+    <fragment
+        android:id="@+id/pengajuanShiftFragment"
+        android:name="com.example.dsmabsen.ui.fragment.PengajuanShiftFragment"
+        android:label="fragment_pengajuan_shift"
+        tools:layout="@layout/fragment_pengajuan_shift" />
 </navigation>

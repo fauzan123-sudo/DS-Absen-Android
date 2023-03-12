@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dsmabsen.R
@@ -66,17 +67,14 @@ class ShiftFragment : BaseFragment<FragmentShiftBinding>(FragmentShiftBinding::i
         }
         setHasOptionsMenu(true)
         setupToolbar("Shift")
-        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
-            toolbar.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.save -> {
-                        // Handle add menu item click
-//                        saveReimbursement(savedUser)
-                        true
-                    }
-
-                    else -> false
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.add -> {
+                    findNavController().navigate(R.id.action_shiftFragment_to_pengajuanShiftFragment)
+                    true
                 }
+
+                else -> false
             }
         }
     }
@@ -87,17 +85,6 @@ class ShiftFragment : BaseFragment<FragmentShiftBinding>(FragmentShiftBinding::i
 
         menuSave?.isVisible = false // menyembunyikan menu tertentu
         menuPlus?.isVisible = true // menyembunyikan menu tertentu
-
-        val item = menu.findItem(R.id.save)
-        item.setActionView(R.layout.item_menu_toolbar)
-
-        val actionView = item.actionView
-        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
-        btnSimpan?.setOnClickListener {
-            // your code here
-//            saveReimbursement(savedUser)
-
-        }
 
     }
 

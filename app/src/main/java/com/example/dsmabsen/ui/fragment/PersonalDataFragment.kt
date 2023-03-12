@@ -35,17 +35,18 @@ class PersonalDataFragment :
                         val data = it.data!!
                         if (data.status) {
                             nip.text = data.data.nip
-                            nama.text = data.data.name
-                            tempatLahir.text = data.data.tempat_lahir
-                            tanggalLahir.text = data.data.tanggal_lahir
-                            jenisKelamin.text = data.data.jenis_kelamin
-                            agama.text = data.data.kode_agama
-                            statusPerkawinan.text = data.data.kode_kawin
-                            golonganDarah.text = data.data.golongan_darah
-                            nik.text = data.data.nik
-                            nomorTlp.text = data.data.no_hp
-                            email.text = data.data.email
-                            gelarDepan.text = data.data.gelar_depan
+                            tvNama.text = data.data.name
+                            tvTempatLahir.text = data.data.tempat_lahir
+                            tvTanggalLahir.text = data.data.tanggal_lahir
+                            tvJenisKelamin.text = data.data.jenis_kelamin
+                            tvAgama.text = data.data.kode_agama
+                            tvStatusPerkawinan.text = data.data.kode_kawin
+                            tvGolongan.text = data.data.golongan_darah
+                            tvNoKtp.text = data.data.nik
+                            tvNoHp.text = data.data.no_hp
+                            tvEmail.text = data.data.email
+                            tvGelarDepan.text = data.data.gelar_depan
+                            tvGelarBelakang.text = data.data.gelar_belakang
 
                         } else {
                             Toast.makeText(requireContext(), "ada masalah ", Toast.LENGTH_SHORT)

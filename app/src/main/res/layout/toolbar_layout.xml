@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
+    android:layout_marginEnd="@dimen/_10sdp"
     android:elevation="4dp">
 
     <TextView
@@ -13,6 +14,7 @@
         android:fontFamily="@font/poppins_regular"
         android:textColor="@color/_dark"
         android:textSize="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:textStyle="bold" />
 
 </androidx.appcompat.widget.Toolbar>
