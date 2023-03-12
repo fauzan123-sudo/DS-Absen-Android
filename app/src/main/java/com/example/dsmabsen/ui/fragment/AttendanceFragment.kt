@@ -18,13 +18,17 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.motion.widget.Debug.getLocation
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -62,12 +66,24 @@ class AttendanceFragment :
     lateinit var tokenManager: TokenManager
     private val savedUser = Paper.book().read<DataX>("user")
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        setupToolbar("Presensi")
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.save -> {
+                    // Handle add menu item click
+//                        saveReimbursement(savedUser)
+                    true
+                }
+
+                else -> false
+            }
+        }
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-
-
 
             val permission =
                 arrayOf(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, ACCESS_BACKGROUND_LOCATION)
@@ -80,10 +96,29 @@ class AttendanceFragment :
                 camera()
             }
 
+        }
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+        val menuSave = menu.findItem(R.id.save)
+        val menuPlus = menu.findItem(R.id.add)
+
+        menuSave?.isVisible = true // menyembunyikan menu tertentu
+        menuPlus?.isVisible = false // menyembunyikan menu tertentu
+
+        val item = menu.findItem(R.id.save)
+        item.setActionView(R.layout.item_menu_toolbar)
+
+        val actionView = item.actionView
+        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
+        btnSimpan?.setOnClickListener {
+            // your code here
+//            saveReimbursement(savedUser)
 
         }
-    }
 
+    }
     override fun onStart() {
         super.onStart()
 
@@ -131,6 +166,7 @@ class AttendanceFragment :
                         ).show()
                     }
                 }
+
                 locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
                     0,
@@ -170,6 +206,7 @@ class AttendanceFragment :
         locationManager
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun camera() {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 //            checkCameraPermission()
@@ -189,6 +226,7 @@ class AttendanceFragment :
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private val putPhoto =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
@@ -208,6 +246,7 @@ class AttendanceFragment :
 
         }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun absen(uri: Bitmap) {
 
         val photo = uriToMultipartBody(uri)
@@ -317,6 +356,23 @@ class AttendanceFragment :
         }
 
     private fun getAddressAboveSDK29() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
         fusedLocationProviderClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh
@@ -341,6 +397,7 @@ class AttendanceFragment :
     }
 
     private fun getAddressBelowSDK29() {
+
         fusedLocationProviderClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh

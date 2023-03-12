@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dsmabsen.R
@@ -31,7 +32,8 @@ class ReimbursementFragment :
     private lateinit var recyclerView: RecyclerView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        setHasOptionsMenu(true)
+        setupToolbar("Reimbursement")
         val savedUser = Paper.book().read<DataX>("user")
         with(binding) {
             adapter = ReimbursementAdapter(requireContext())
@@ -64,14 +66,13 @@ class ReimbursementFragment :
         }
 
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
-        setupToolbar("Reimbursement")
+
         view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
             toolbar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.add -> {
                         // Handle add menu item click
-                        Toast.makeText(context, "Add di Click", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_reimbursementFragment_to_pengajuanReimbursementFragment)
                         true
                     }
 

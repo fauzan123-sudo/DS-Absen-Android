@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,15 +8,17 @@
     android:background="@drawable/gradiend_background"
     tools:context=".ui.fragment.DataAbsenFragment">
 
-    <com.github.ybq.android.spinkit.SpinKitView
+    <include
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"/>
+
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading"
-        style="@style/SpinKitView.ThreeBounce"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:indeterminate="true"
         android:visibility="gone"
-        app:SpinKit_Color="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,11 +26,21 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/bounce_loading" />
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_45sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constrain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="@dimen/_20sdp">
 
         <TextView
@@ -64,8 +77,8 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView12"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_20sdp"
             android:background="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/materialCardView13"
@@ -103,7 +116,7 @@
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/pie_chart"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="200dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView27"
                     tools:layout_editor_absoluteX="26dp" />
@@ -127,8 +140,8 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView13"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -164,15 +177,26 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recAttendance"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView28"
                     tools:listitem="@layout/item_rekap_absensi" />
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/img_no_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_20sdp"
+                    android:src="@drawable/no_data_found"
+                    app:layout_constraintTop_toBottomOf="@id/recAttendance"
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

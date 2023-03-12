@@ -7,23 +7,22 @@
     android:layout_height="wrap_content"
     android:clipToPadding="false"
     android:layout_marginBottom="@dimen/_15sdp"
-    android:outlineProvider="bounds"
-    app:cardElevation="@dimen/_14sdp">
+    android:background="@drawable/shadow_bg">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:padding="@dimen/_5sdp">
+        android:padding="@dimen/_10sdp">
 
         <TextView
             android:id="@+id/tanggalRembursement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
             android:text="Senin, 22 Maret 2023"
-            android:textColor="@color/grey"
+            android:fontFamily="@font/poppins"
             android:textSize="@dimen/_8ssp"
+            android:textColor="@color/grey"
             app:layout_constraintBottom_toTopOf="@+id/akomodasi"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,14 +31,13 @@
             android:id="@+id/akomodasi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
             android:text="Transportasi"
-            android:textColor="@color/black_text"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_alignParentBottom="true"
             android:textSize="@dimen/_12ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/black_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tanggalRembursement"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
@@ -48,10 +46,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:text="Approve"
-
             android:textColor="@color/_success"
             android:textSize="@dimen/_8ssp"
-            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tanggalRembursement"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,9 +60,9 @@
             android:text="Rp300.000"
             android:textColor="@color/black_text"
             android:textSize="@dimen/_10ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/akomodasi"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_approve"
+            app:layout_constraintTop_toBottomOf="@+id/tanggalRembursement"
             app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

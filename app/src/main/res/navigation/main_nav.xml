@@ -149,7 +149,11 @@
         android:id="@+id/reimbursementFragment"
         android:name="com.example.dsmabsen.ui.fragment.ReimbursementFragment"
         android:label="fragment_reimbursement"
-        tools:layout="@layout/fragment_reimbursement" />
+        tools:layout="@layout/fragment_reimbursement" >
+        <action
+            android:id="@+id/action_reimbursementFragment_to_pengajuanReimbursementFragment"
+            app:destination="@id/pengajuanReimbursementFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
         android:name="com.example.dsmabsen.ui.fragment.SplashScreenFragment"
@@ -195,4 +199,9 @@
         android:name="com.example.dsmabsen.ui.fragment.ShiftFragment"
         android:label="fragment_shift"
         tools:layout="@layout/fragment_shift" />
+    <fragment
+        android:id="@+id/pengajuanReimbursementFragment"
+        android:name="com.example.dsmabsen.ui.fragment.PengajuanReimbursementFragment"
+        android:label="fragment_pengajuan_reimbursement"
+        tools:layout="@layout/fragment_pengajuan_reimbursement" />
 </navigation>

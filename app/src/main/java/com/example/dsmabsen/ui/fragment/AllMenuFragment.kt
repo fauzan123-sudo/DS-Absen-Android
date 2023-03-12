@@ -2,9 +2,11 @@ package com.example.dsmabsen.ui.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.ScrollView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.dsmabsen.R
 import com.example.dsmabsen.databinding.FragmentAllMenuBinding
@@ -12,9 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AllMenuFragment :BaseFragment<FragmentAllMenuBinding>(FragmentAllMenuBinding::inflate){
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupToolbar("Semua Menu")
         binding.btnReimbursement.setOnClickListener {
             findNavController().navigate(R.id.action_allMenuFragment_to_reimbursementFragment)

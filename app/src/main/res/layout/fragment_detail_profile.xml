@@ -7,8 +7,8 @@
     tools:context=".ui.fragment.DetailProfileFragment">
 
     <include
-        android:id="@+id/include_profile_lengkap"
-        layout="@layout/layout_appbar_center"/>
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"/>
 
     <RelativeLayout
         android:id="@+id/rv_data_pribadi"

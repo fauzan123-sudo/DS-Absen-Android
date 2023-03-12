@@ -1,5 +1,6 @@
 package com.example.dsmabsen.ui.activity
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
@@ -7,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
@@ -65,26 +67,19 @@ class MainActivity : AppCompatActivity() {
             onBackPressedDispatcher.addCallback(this@MainActivity, callback)
         }
 
-//            navController.addOnDestinationChangedListener { _, destination, _ ->
-//                if (destination.id != R.id.berandaFragment) {
-//                    onBackPressedDispatcher.addCallback(this@MainActivity) {
-//                        val builder = AlertDialog.Builder(this@MainActivity)
-//                        builder.setTitle("Konfirmasi Keluar")
-//                            .setMessage("Apakah Anda yakin ingin keluar dari aplikasi?")
-//                            .setPositiveButton("Ya") { _, _ ->
-//                                finish()
-//                            }
-//                            .setNegativeButton("Tidak") { dialog, _ ->
-//                                dialog.dismiss()
-//                            }
-//                        builder.create().show()
-//
-//                    }
-//                } else {
-//                    onBackPressedDispatcher.onBackPressed()
-//
-//                }
-//            }
+            navController.addOnDestinationChangedListener { _, destination, _ ->
+
+                val arrayFragment = arrayOf(
+                    R.id.berandaFragment,
+                    R.id.profileFragment,
+                )
+
+                if (arrayFragment.contains(destination.id)) {
+                    binding.main.setBackgroundColor(Color.WHITE)
+                } else {
+                    binding.main.background = AppCompatResources.getDrawable(applicationContext,R.drawable.gradiend_background)
+                }
+            }
 
 //            bottomNavigationView.setOnItemSelectedListener { item ->
 //                when (item.itemId) {

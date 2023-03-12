@@ -4,87 +4,135 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/_20sdp"
+    android:background="@drawable/gradiend_background"
     tools:context=".ui.fragment.PengajuanReimbursementFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rv_pilih_shift"
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        />
+
+    <RelativeLayout
+        android:id="@+id/rv_nama_reimbursement"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_90sdp"
         android:paddingVertical="@dimen/_10sdp"
         android:paddingHorizontal="@dimen/_15sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/rounded_menu"
-        android:layout_marginTop="@dimen/_30sdp">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:background="@drawable/rounded_menu">
 
         <TextView
-            android:id="@+id/tv_pilih_shift"
+            android:id="@+id/label_jenis_izin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama Reimbursement"
+            android:text="Jenis Reimbursement"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/_11ssp"
-            android:textColor="@color/black_text"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textColor="@color/black_text"/>
 
         <Spinner
-            android:id="@+id/spinner_shift"
+            android:id="@+id/spinner_jenis_reimbursement"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_47sdp"
             android:background="@drawable/rounded_menu"
-            android:layout_below="@+id/tv_pilih_shift"
+            android:layout_below="@+id/label_jenis_izin"
             android:backgroundTint="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pilih_shift"
+            android:dropDownSelector="@drawable/arrow_bottom"
             android:paddingHorizontal="@dimen/_10sdp"
             android:paddingVertical="@dimen/_15sdp"
             android:textAlignment="textEnd"
-            android:layout_marginTop="@dimen/_5sdp"/>
+            />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rv_keterangan_perizinan_create"
+    <RelativeLayout
+        android:id="@+id/rv_nominal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="@dimen/_10sdp"
         android:paddingHorizontal="@dimen/_15sdp"
-        app:layout_constraintTop_toBottomOf="@+id/rv_pilih_shift"
+        app:layout_constraintTop_toBottomOf="@+id/rv_nama_reimbursement"
         android:background="@drawable/rounded_menu"
         android:layout_marginTop="@dimen/_10sdp">
 
         <TextView
-            android:id="@+id/tv_keterangan_perizinan_create"
+            android:id="@+id/label_tanggal_mulai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nominal"
+            android:text="Tanggal Mulai"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/_11ssp"
-            android:textColor="@color/black_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:textColor="@color/black_text"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_47sdp"
+            android:background="@drawable/rounded_menu"
+            android:backgroundTint="@color/white"
+            android:orientation="horizontal"
+            android:layout_below="@+id/label_tanggal_mulai"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_weight="12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Rp."
+                android:textColor="@color/_dark"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_10sdp"/>
+
+            <EditText
+                android:layout_weight="2"
+                android:id="@+id/edtNominal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_47sdp"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="@dimen/_12sdp"
+                android:background="@null"
+                android:textAlignment="textEnd"
+                android:hint="0"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rv_keterangan_perizinan_create"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_152sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_15sdp"
+        app:layout_constraintTop_toBottomOf="@+id/rv_nominal"
+        android:background="@drawable/rounded_menu"
+        android:layout_marginTop="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/label_keterangan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Keterangan"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/black_text"/>
 
         <EditText
-            android:id="@+id/edtNominal"
+            android:id="@+id/edtKeterangan"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_109sdp"
             android:background="@drawable/rounded_menu"
-            app:layout_constraintTop_toBottomOf="@+id/tv_keterangan_perizinan_create"
+            android:layout_below="@+id/label_keterangan"
             android:backgroundTint="@color/white"
+            android:dropDownSelector="@drawable/arrow_bottom"
             android:paddingHorizontal="@dimen/_10sdp"
             android:paddingVertical="@dimen/_15sdp"
             android:lines="4"
-            android:textAlignment="textEnd"
-            android:layout_marginTop="@dimen/_5sdp"/>
+            android:textAlignment="textEnd"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <EditText
-        android:id="@+id/edtKeterangan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="keterangan"
-        app:layout_constraintBottom_toTopOf="@+id/btnKirim"
-        app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_perizinan_create" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btnKirim"

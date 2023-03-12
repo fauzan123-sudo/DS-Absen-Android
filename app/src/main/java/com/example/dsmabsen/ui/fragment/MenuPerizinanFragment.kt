@@ -28,13 +28,14 @@ class MenuPerizinanFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setHasOptionsMenu(true)
+        setupToolbar("Perizinan")
         val savedUser = Paper.book().read<DataX>("user")
         with(binding) {
 
-            rvPlusReimbursement.setOnClickListener {
-                findNavController().navigate(R.id.action_menuPerizinanFragment_to_formPerizinanFragment)
-            }
+//            rvPlusReimbursement.setOnClickListener {
+//                findNavController().navigate(R.id.action_menuPerizinanFragment_to_formPerizinanFragment)
+//            }
 
             adapter = PerizinanAdapter(requireContext())
             recyclerView = recPerizinan

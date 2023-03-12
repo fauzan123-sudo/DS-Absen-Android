@@ -3,7 +3,11 @@ package com.example.dsmabsen.ui.fragment
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -43,6 +47,7 @@ class DataAbsenFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         binding.apply {
 
             adapter = AttendanceAdapter(requireContext())
@@ -50,19 +55,33 @@ class DataAbsenFragment :
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.setHasFixedSize(true)
+            Toast.makeText(requireContext(), "Mecoba Ambil data", Toast.LENGTH_SHORT).show()
 
             val savedUser = Paper.book().read<DataX>("user")
             viewModel.attendanceHistoryRequest(savedUser!!.nip)
             viewModel.attendanceHistoryLiveData.observe(viewLifecycleOwner) {
+                Toast.makeText(requireContext(), "Masuk Viemodel", Toast.LENGTH_SHORT).show()
+
                 binding.loading.isVisible = false
                 when (it) {
                     is NetworkResult.Success -> {
                         binding.loading.isVisible = false
-                        binding.constrain.isVisible = true
+
                         val attendance = it.data!!
                         Toast.makeText(requireContext(), "$attendance disini", Toast.LENGTH_SHORT)
                             .show()
-                        adapter.differ.submitList(attendance)
+                        Log.d("data_absen",attendance.toString())
+                        if(attendance.isEmpty()){
+                            binding.recAttendance.visibility = View.GONE
+                            binding.imgNoData.visibility = View.VISIBLE
+                        }else{
+
+                            adapter.differ.submitList(attendance)
+                            Toast.makeText(requireContext(), "Set Adabter Suskes", Toast.LENGTH_SHORT)
+                            binding.recAttendance.visibility = View.VISIBLE
+                            binding.imgNoData.visibility = View.GONE
+                        }
+
 
                     }
 
@@ -74,6 +93,7 @@ class DataAbsenFragment :
 
                     is NetworkResult.Error -> {
                         binding.loading.isVisible = false
+                        Toast.makeText(requireContext(), "Set Adabter Error", Toast.LENGTH_SHORT)
                         handleApiError(it.message)
                     }
                 }

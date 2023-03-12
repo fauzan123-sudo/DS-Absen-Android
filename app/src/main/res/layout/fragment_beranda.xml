@@ -8,775 +8,780 @@
     android:background="@drawable/gradiend_background"
     tools:context=".ui.fragment.BerandaFragment">
 
-    <!--        <com.facebook.shimmer.ShimmerFrameLayout-->
-    <!--            android:visibility="gone"-->
-    <!--            android:id="@+id/shimmerViewContainer"-->
-    <!--            android:background="@color/white"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent">-->
-    <!--            <include-->
-    <!--                layout="@layout/shimmer_beranda"-->
-    <!--                />-->
-    <!--        </com.facebook.shimmer.ShimmerFrameLayout>-->
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar_layout"/>
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/loading"
-            android:background="@color/white"
-            app:lottie_rawRes="@raw/bounce_loading"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/homeVisible"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_20sdp"
-        android:visibility="visible"
+    <include
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fauzan Almaterzz"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_10ssp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:text="UI Designer"
-            android:textSize="@dimen/_10ssp"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageView3"
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_36sdp"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="4dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView7"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView6"
-            tools:src="@drawable/man" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            app:layout_constraintEnd_toStartOf="@+id/materialCardView2"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/textView7">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:padding="@dimen/_15sdp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/box_custon_analog"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@drawable/clock_background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@+id/view"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-
-                    <com.example.dsmabsen.ui.fragment.CustomAnalogClock
-                        android:id="@+id/custom_analog_clock"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="@dimen/_5sdp"
-                    android:background="#7F838B36"
-                    app:layout_constraintEnd_toStartOf="@+id/textView8"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/box_custon_analog"
-                    tools:layout_editor_absoluteY="26dp" />
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:text="Shift malam"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView9"
-                    app:layout_constraintStart_toEndOf="@+id/view"
-                    app:layout_constraintStart_toStartOf="@+id/textView9"
-                    app:layout_constraintTop_toTopOf="@+id/box_custon_analog" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="23:00 - 07:00"
-                    android:textColor="@color/black_text"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/box_custon_analog"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/box_custon_analog"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/blue"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/day"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_2sdp"
-                        android:text="SENIN"
-                        android:textAlignment="center"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="22"
-                    android:textAlignment="center"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_28ssp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView11"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="2023"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:background="@color/white"
-            android:layout_marginEnd="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="@id/guideline"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/materialCardView"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_18sdp"
-                android:background="@color/white">
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/roundedImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/round_icon1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/_13sdp"
-                    android:text="Check In "
-                    android:textAlignment="textStart"
-                    app:layout_constraintBottom_toBottomOf="@+id/roundedImageView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/roundedImageView"
-                    app:layout_constraintTop_toTopOf="@+id/roundedImageView" />
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="23:00:34"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_18ssp"
-                    android:layout_marginVertical="@dimen/_5sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/roundedImageView" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="On Time"
-                    android:textColor="@color/_grey"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+120 pt"
-                    android:textColor="@color/_success"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/textView15"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:background="@drawable/shadow_bg"
-            android:clipToOutline="false"
-            android:clipToPadding="false"
-            app:layout_constraintEnd_toEndOf="@+id/materialCardView2"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/_18sdp"
-                android:background="@color/white">
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/roundedImageView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/round_icon2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/_13sdp"
-                    android:text="Check In "
-                    android:textAlignment="textStart"
-                    app:layout_constraintBottom_toBottomOf="@+id/roundedImageView1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/roundedImageView1"
-                    app:layout_constraintTop_toTopOf="@+id/roundedImageView1" />
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="28"
-                    android:layout_marginVertical="@dimen/_5sdp"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_18ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.507"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/roundedImageView1" />
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="On Time"
-                    android:textColor="@color/_grey"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+120 pt"
-                    android:textColor="@color/_success"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView11"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeVisible">
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/bounce_loading" />
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_45sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="@dimen/_20sdp">
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:elegantTextHeight="false"
-                android:ellipsize="none"
-                android:fontFamily="@font/poppins_light"
-                android:text="Menu"
-                android:textColor="@color/grey"
-                android:textSize="@dimen/_10ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="0dp"
-                android:layout_height="0.5dp"
-                android:layout_marginHorizontal="@dimen/_15sdp"
-                android:background="@color/_secondary"
-                app:layout_constraintBottom_toBottomOf="@+id/textView12"
-                app:layout_constraintEnd_toStartOf="@+id/constraint"
-                app:layout_constraintStart_toEndOf="@+id/textView12"
-                app:layout_constraintTop_toTopOf="@+id/textView12" />
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView12"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView12">
+                android:id="@+id/homeVisible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_20sdp"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp">
 
                 <TextView
-                    android:id="@+id/textView37"
+                    android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Lihat Semua"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/_8ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/lookAt"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    android:text="Fauzan Almaterzz"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/lookAt"
-                    android:layout_width="@dimen/_12sdp"
-                    android:layout_height="@dimen/_12sdp"
-                    android:src="@drawable/chevron_right"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="UI Designer"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintStart_toStartOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="@dimen/_38sdp"
+                    android:layout_height="@dimen/_36sdp"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="4dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView7"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.4" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView12"
-                app:layout_constraintVertical_bias="0.0"
-                app:layout_constraintVertical_chainStyle="spread_inside">
+                    app:layout_constraintTop_toTopOf="@+id/textView6"
+                    tools:src="@drawable/man" />
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView5"
+                    android:id="@+id/materialCardView"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:elevation="0dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@+id/materialCardView6"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="#367F838B"
-                    app:strokeWidth="0.5dp">
+                    android:layout_height="100dp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/materialCardView2"
+                    app:layout_constraintStart_toStartOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_10sdp">
+                        android:background="@color/white"
+                        android:padding="@dimen/_15sdp">
 
-                        <ImageView
-                            android:id="@+id/imageView5"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/box_custon_analog"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:layout_marginBottom="@dimen/_5sdp"
-                            app:layout_constraintBottom_toTopOf="@+id/textView21"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            android:background="@drawable/clock_background"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@+id/view"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="1.0"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            app:srcCompat="@drawable/perizinan" />
+                            app:layout_constraintVertical_bias="0.0">
+
+                            <com.example.dsmabsen.ui.fragment.CustomAnalogClock
+                                android:id="@+id/custom_analog_clock"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:background="#7F838B36"
+                            app:layout_constraintEnd_toStartOf="@+id/textView8"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/box_custon_analog"
+                            tools:layout_editor_absoluteY="26dp" />
 
                         <TextView
-                            android:id="@+id/textView21"
+                            android:id="@+id/textView8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="PERIZINAN"
-                            android:textSize="@dimen/_8ssp"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:fontFamily="@font/poppins"
+                            android:text="Shift malam"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintBottom_toTopOf="@+id/textView9"
+                            app:layout_constraintStart_toEndOf="@+id/view"
+                            app:layout_constraintStart_toStartOf="@+id/textView9"
+                            app:layout_constraintTop_toTopOf="@+id/box_custon_analog" />
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="23:00 - 07:00"
+                            android:textColor="@color/black_text"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/box_custon_analog"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/box_custon_analog"
+                            app:layout_constraintTop_toBottomOf="@+id/textView8" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView6"
+                    android:id="@+id/materialCardView2"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:elevation="0dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@+id/materialCardView7"
-                    app:layout_constraintStart_toEndOf="@+id/materialCardView5"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="#367F838B"
-                    app:strokeWidth="0.5dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_10sdp">
-
-                        <ImageView
-                            android:id="@+id/imageView6"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginBottom="@dimen/_5sdp"
-                            app:layout_constraintBottom_toTopOf="@+id/textView22"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="1.0"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            app:srcCompat="@drawable/lembur" />
-
-                        <TextView
-                            android:id="@+id/textView22"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="LEMBUR"
-                            android:textSize="@dimen/_8ssp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView7"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:elevation="0dp"
-                    app:cardElevation="0dp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/materialCardView6"
-                    app:layout_constraintTop_toTopOf="@+id/materialCardView5"
-                    app:strokeColor="#367F838B"
-                    app:strokeWidth="0.5dp">
+                    app:layout_constraintTop_toBottomOf="@+id/textView7">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_10sdp">
+                        android:background="@color/white">
 
-                        <ImageView
-                            android:id="@+id/imageView7"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginBottom="@dimen/_5sdp"
-                            app:layout_constraintBottom_toTopOf="@+id/textView23"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="1.0"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            app:srcCompat="@drawable/shift" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/blue"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/day"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingVertical="@dimen/_2sdp"
+                                android:text="SENIN"
+                                android:textAlignment="center"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView23"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="SHIFT"
-                            android:textSize="@dimen/_8ssp"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:id="@+id/textView10"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="22"
+                            android:textAlignment="center"
+                            android:textColor="@color/black_text"
+                            android:textSize="@dimen/_28ssp"
+                            app:layout_constraintBottom_toTopOf="@+id/textView11"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="2023"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="@id/guideline"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/materialCardView"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_18sdp"
+                        android:background="@color/white">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/roundedImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/round_icon1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/_13sdp"
+                            android:text="Check In "
+                            android:textAlignment="textStart"
+                            app:layout_constraintBottom_toBottomOf="@+id/roundedImageView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/roundedImageView"
+                            app:layout_constraintTop_toTopOf="@+id/roundedImageView" />
+
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="23:00:34"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black_text"
+                            android:textSize="@dimen/_18ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/roundedImageView" />
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="On Time"
+                            android:textColor="@color/_grey"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                        <TextView
+                            android:id="@+id/textView16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+120 pt"
+                            android:textColor="@color/_success"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toEndOf="@+id/textView15"
+                            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/shadow_bg"
+                    android:clipToOutline="false"
+                    android:clipToPadding="false"
+                    app:layout_constraintEnd_toEndOf="@+id/materialCardView2"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_18sdp"
+                        android:background="@color/white">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/roundedImageView1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/round_icon2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView17"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/_13sdp"
+                            android:text="Check In "
+                            android:textAlignment="textStart"
+                            app:layout_constraintBottom_toBottomOf="@+id/roundedImageView1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/roundedImageView1"
+                            app:layout_constraintTop_toTopOf="@+id/roundedImageView1" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="_"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black_text"
+                            android:textSize="@dimen/_18ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.507"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/roundedImageView1" />
+
+                        <TextView
+                            android:id="@+id/textView19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="On Time"
+                            android:textColor="@color/_grey"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+120 pt"
+                            android:textColor="@color/_success"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
+            <com.google.android.material.card.MaterialCardView
+
+                android:id="@+id/materialCardView11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:elevation="0dp"
-                app:cardElevation="0dp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout1">
+                app:layout_constraintTop_toBottomOf="@+id/homeVisible">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView8"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:elevation="0dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@+id/materialCardView9"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="#367F838B"
-                    app:strokeWidth="0.5dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="@dimen/_20sdp">
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elegantTextHeight="false"
+                        android:ellipsize="none"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Menu"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:background="@color/_secondary"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView12"
+                        app:layout_constraintEnd_toStartOf="@+id/constraint"
+                        app:layout_constraintStart_toEndOf="@+id/textView12"
+                        app:layout_constraintTop_toTopOf="@+id/textView12" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_10sdp">
+                        android:id="@+id/constraint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView12"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView12">
+
+                        <TextView
+                            android:id="@+id/textView37"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="Lihat Semua"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/_8ssp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/lookAt"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView8"
+                            android:id="@+id/lookAt"
+                            android:layout_width="@dimen/_12sdp"
+                            android:layout_height="@dimen/_12sdp"
+                            android:src="@drawable/chevron_right"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.4" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView12"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:layout_constraintVertical_chainStyle="spread_inside">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/materialCardView5"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:layout_marginBottom="@dimen/_5sdp"
-                            app:layout_constraintBottom_toTopOf="@+id/textView24"
+                            android:elevation="0dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@+id/materialCardView6"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:strokeColor="#367F838B"
+                            app:strokeWidth="0.5dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingHorizontal="@dimen/_5sdp"
+                                android:paddingVertical="@dimen/_10sdp">
+
+                                <ImageView
+                                    android:id="@+id/imageView5"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    app:layout_constraintBottom_toTopOf="@+id/textView21"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1.0"
+                                    app:layout_constraintVertical_chainStyle="packed"
+                                    app:srcCompat="@drawable/perizinan" />
+
+                                <TextView
+                                    android:id="@+id/textView21"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="PERIZINAN"
+                                    android:textSize="@dimen/_8ssp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/materialCardView6"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:elevation="0dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@+id/materialCardView7"
+                            app:layout_constraintStart_toEndOf="@+id/materialCardView5"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:strokeColor="#367F838B"
+                            app:strokeWidth="0.5dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingHorizontal="@dimen/_5sdp"
+                                android:paddingVertical="@dimen/_10sdp">
+
+                                <ImageView
+                                    android:id="@+id/imageView6"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    app:layout_constraintBottom_toTopOf="@+id/textView22"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1.0"
+                                    app:layout_constraintVertical_chainStyle="packed"
+                                    app:srcCompat="@drawable/lembur" />
+
+                                <TextView
+                                    android:id="@+id/textView22"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="LEMBUR"
+                                    android:textSize="@dimen/_8ssp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/materialCardView7"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:elevation="0dp"
+                            app:cardElevation="0dp"
                             app:layout_constraintDimensionRatio="1:1"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/materialCardView6"
+                            app:layout_constraintTop_toTopOf="@+id/materialCardView5"
+                            app:strokeColor="#367F838B"
+                            app:strokeWidth="0.5dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingHorizontal="@dimen/_5sdp"
+                                android:paddingVertical="@dimen/_10sdp">
+
+                                <ImageView
+                                    android:id="@+id/imageView7"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    app:layout_constraintBottom_toTopOf="@+id/textView23"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1.0"
+                                    app:layout_constraintVertical_chainStyle="packed"
+                                    app:srcCompat="@drawable/shift" />
+
+                                <TextView
+                                    android:id="@+id/textView23"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="SHIFT"
+                                    android:textSize="@dimen/_8ssp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:elevation="0dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout1">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/materialCardView8"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:elevation="0dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@+id/materialCardView9"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_chainStyle="spread"
-                            app:srcCompat="@drawable/salary" />
+                            app:strokeColor="#367F838B"
+                            app:strokeWidth="0.5dp">
 
-                        <TextView
-                            android:id="@+id/textView24"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="INFO GAJI"
-                            android:textSize="@dimen/_8ssp"
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingHorizontal="@dimen/_5sdp"
+                                android:paddingVertical="@dimen/_10sdp">
+
+                                <ImageView
+                                    android:id="@+id/imageView8"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    app:layout_constraintBottom_toTopOf="@+id/textView24"
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.5"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_chainStyle="spread"
+                                    app:srcCompat="@drawable/salary" />
+
+                                <TextView
+                                    android:id="@+id/textView24"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="INFO GAJI"
+                                    android:textSize="@dimen/_8ssp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.5"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/materialCardView9"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:elevation="0dp"
+                            app:cardElevation="0dp"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@+id/materialCardView10"
+                            app:layout_constraintStart_toEndOf="@+id/materialCardView8"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:strokeColor="#367F838B"
+                            app:strokeWidth="0.5dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingHorizontal="@dimen/_5sdp"
+                                android:paddingVertical="@dimen/_10sdp">
+
+                                <ImageView
+                                    android:id="@+id/imageView9"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    android:src="@drawable/icon_reimbursement_menu"
+                                    app:layout_constraintBottom_toTopOf="@+id/textView25"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1.0"
+                                    app:layout_constraintVertical_chainStyle="spread" />
+
+                                <TextView
+                                    android:id="@+id/textView25"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="AKTIVITAS"
+                                    android:textSize="@dimen/_8ssp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/materialCardView10"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:elevation="0dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+                            app:layout_constraintStart_toEndOf="@+id/materialCardView9"
+                            app:layout_constraintTop_toTopOf="@+id/materialCardView9"
+                            app:strokeColor="#367F838B"
+                            app:strokeWidth="0.5dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingHorizontal="@dimen/_5sdp"
+                                android:paddingVertical="@dimen/_10sdp">
+
+                                <ImageView
+                                    android:id="@+id/imageView10"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    app:layout_constraintBottom_toTopOf="@+id/textView26"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1.0"
+                                    app:layout_constraintVertical_chainStyle="spread"
+                                    app:srcCompat="@drawable/news" />
+
+                                <TextView
+                                    android:id="@+id/textView26"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="BERITA"
+                                    android:textSize="@dimen/_8ssp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView9"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:elevation="0dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@+id/materialCardView10"
-                    app:layout_constraintStart_toEndOf="@+id/materialCardView8"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="#367F838B"
-                    app:strokeWidth="0.5dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_10sdp">
-
-                        <ImageView
-                            android:id="@+id/imageView9"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginBottom="@dimen/_5sdp"
-                            app:layout_constraintBottom_toTopOf="@+id/textView25"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="1.0"
-                            app:layout_constraintVertical_chainStyle="spread"
-                            android:src="@drawable/icon_reimbursement_menu" />
-
-                        <TextView
-                            android:id="@+id/textView25"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="AKTIVITAS"
-                            android:textSize="@dimen/_8ssp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView10"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:elevation="0dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/materialCardView9"
-                    app:layout_constraintTop_toTopOf="@+id/materialCardView9"
-                    app:strokeColor="#367F838B"
-                    app:strokeWidth="0.5dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_10sdp">
-
-                        <ImageView
-                            android:id="@+id/imageView10"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginBottom="@dimen/_5sdp"
-                            app:layout_constraintBottom_toTopOf="@+id/textView26"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="1.0"
-                            app:layout_constraintVertical_chainStyle="spread"
-                            app:srcCompat="@drawable/news" />
-
-                        <TextView
-                            android:id="@+id/textView26"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="BERITA"
-                            android:textSize="@dimen/_8ssp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView10" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-    <!--    </com.facebook.shimmer.ShimmerFrameLayout>-->
+
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+        <!--    </com.facebook.shimmer.ShimmerFrameLayout>-->
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

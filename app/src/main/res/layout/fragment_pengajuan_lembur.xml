@@ -10,8 +10,12 @@
     tools:context=".ui.fragment.PengajuanLemburFragment">
 
     <include
-        android:id="@+id/include_lembur_create"
-        layout="@layout/layout_appbar_create"/>
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"/>
+
+<!--    <include-->
+<!--        android:id="@+id/include_lembur_create"-->
+<!--        layout="@layout/layout_appbar_create"/>-->
 
     <RelativeLayout
         android:id="@+id/rv_tanggal_mulai"

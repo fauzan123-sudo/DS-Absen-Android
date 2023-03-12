@@ -8,42 +8,14 @@
     tools:context=".ui.fragment.MenuPerizinanFragment">
 
     <include
-        android:id="@+id/include_perizinan"
-        layout="@layout/layout_appbar_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <RelativeLayout
-        android:id="@+id/rv_plus_reimbursement"
-        android:layout_width="@dimen/_25sdp"
-        android:layout_height="@dimen/_25sdp"
-        android:background="@drawable/circle"
-        android:backgroundTint="@color/primary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center"
-        android:elevation="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_plus"/>
-
-    </RelativeLayout>
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recPerizinan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/include_perizinan"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:listitem="@layout/item_perizinan"
         tools:itemCount="3"
         android:clipToPadding="false"

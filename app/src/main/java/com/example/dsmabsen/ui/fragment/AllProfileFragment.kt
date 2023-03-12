@@ -1,10 +1,10 @@
 package com.example.dsmabsen.ui.fragment
 
 import android.os.Bundle
+import android.view.*
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.dsmabsen.R
 import com.example.dsmabsen.databinding.FragmentAllProfileBinding
@@ -21,6 +21,42 @@ class AllProfileFragment :BaseFragment<FragmentAllProfileBinding>(FragmentAllPro
                 findNavController().navigate(R.id.action_allProfileFragment_to_personalDataFragment)
             }
         }
+        setHasOptionsMenu(true)
+        setupToolbar("Profile")
+        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
+            toolbar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.save -> {
+                        // Handle add menu item click
+//                        saveReimbursement(savedUser)
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+        }
 
     }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+        val menuSave = menu.findItem(R.id.save)
+        val menuPlus = menu.findItem(R.id.add)
+
+        menuSave?.isVisible = true // menyembunyikan menu tertentu
+        menuPlus?.isVisible = false // menyembunyikan menu tertentu
+
+        val item = menu.findItem(R.id.save)
+        item.setActionView(R.layout.item_menu_toolbar)
+
+        val actionView = item.actionView
+        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
+        btnSimpan?.setOnClickListener {
+            // your code here
+//            saveReimbursement(savedUser)
+
+        }
+
+    }
+
 }

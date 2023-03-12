@@ -8,6 +8,10 @@
     android:padding="@dimen/_20sdp"
     tools:context=".ui.fragment.ProfileFragment">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"/>
+
     <com.github.ybq.android.spinkit.SpinKitView
         android:indeterminate="true"
         style="@style/SpinKitView.ThreeBounce"

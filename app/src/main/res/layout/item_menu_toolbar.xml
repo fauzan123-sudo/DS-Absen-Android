@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:padding="8dp"
     android:clickable="true"
     android:focusableInTouchMode="true"
     android:theme="@style/toolbar_menu"
