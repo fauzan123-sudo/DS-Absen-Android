@@ -1,0 +1,773 @@
+Index: app/src/main/java/com/example/dsmabsen/network/DataAttendanceApi.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.network\r\n\r\nimport com.example.dsmabsen.model.*\r\nimport okhttp3.MultipartBody\r\nimport okhttp3.RequestBody\r\nimport retrofit2.Response\r\nimport retrofit2.http.Field\r\nimport retrofit2.http.FormUrlEncoded\r\nimport retrofit2.http.GET\r\nimport retrofit2.http.Multipart\r\nimport retrofit2.http.POST\r\nimport retrofit2.http.Part\r\nimport retrofit2.http.Path\r\nimport retrofit2.http.Query\r\n\r\ninterface DataAttendanceApi {\r\n\r\n    @GET(\"riwayat-presensi/{nip}\")\r\n    suspend fun attendanceHistory(\r\n        @Path(\"nip\") nip: String\r\n    ): Response<List<DataXXXXXXXXXX>>\r\n\r\n    @GET(\"total-presensi/{nip}\")\r\n    suspend fun attendanceTotal(\r\n        @Path(\"nip\") nip: String\r\n    ): Response<TotalAttendance>\r\n\r\n    @Multipart\r\n    @POST(\"presensi/store\")\r\n    suspend fun attendanceToday(\r\n        @Part image: MultipartBody.Part,\r\n        @Part(\"nip\") nip: RequestBody,\r\n        @Part(\"date\") date: RequestBody,\r\n        @Part(\"timezone\") timezone: RequestBody,\r\n        @Part(\"kordinat\") kordinat: RequestBody,\r\n        @Part(\"kode_shift\") kode_shift: RequestBody,\r\n        @Part(\"kode_tingkat\") kode_tingkat: RequestBody,\r\n    ): Response<Presensi>\r\n\r\n    @GET(\"payroll-client/index\")\r\n    suspend fun getSallary(\r\n        @Query(\"nip\") nip: String\r\n    ): Response<DataSallary>\r\n\r\n    @GET(\"pengajuan/lembur/lists\")\r\n    suspend fun getListLembur(\r\n        @Query(\"nip\") nip: String\r\n    ) : Response<DataLembur>\r\n\r\n    @FormUrlEncoded\r\n    @POST(\"pengajuan/lembur/store\")\r\n    suspend fun pengajuanLembur(\r\n        @Field(\"nip\") nip:String,\r\n        @Field(\"jam_mulai\") jam_mulai:String,\r\n        @Field(\"jam_selesai\") jam_selesai:String,\r\n        @Field(\"file\") file:String,\r\n        @Field(\"tanggal\") tanggal:String,\r\n        @Field(\"keterangan\") keterangan:String\r\n\r\n    ) : Response<PengajuanLembur>\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/network/DataAttendanceApi.kt b/app/src/main/java/com/example/dsmabsen/network/DataAttendanceApi.kt
+--- a/app/src/main/java/com/example/dsmabsen/network/DataAttendanceApi.kt	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/java/com/example/dsmabsen/network/DataAttendanceApi.kt	(date 1678592256158)
+@@ -18,7 +18,7 @@
+     @GET("riwayat-presensi/{nip}")
+     suspend fun attendanceHistory(
+         @Path("nip") nip: String
+-    ): Response<List<DataXXXXXXXXXX>>
++    ): Response<RiwayatPresensi>
+ 
+     @GET("total-presensi/{nip}")
+     suspend fun attendanceTotal(
+Index: app/src/main/java/com/example/dsmabsen/ui/viewModel/AttendanceViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.viewModel\r\n\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.lifecycle.MutableLiveData\r\nimport androidx.lifecycle.ViewModel\r\nimport androidx.lifecycle.viewModelScope\r\nimport com.example.dsmabsen.model.*\r\nimport com.example.dsmabsen.repository.AttendanceRepository\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport dagger.hilt.android.lifecycle.HiltViewModel\r\nimport kotlinx.coroutines.launch\r\nimport okhttp3.MultipartBody\r\nimport okhttp3.RequestBody\r\nimport xyz.teamgravity.checkinternet.CheckInternet\r\nimport javax.inject.Inject\r\n\r\n@HiltViewModel\r\nclass AttendanceViewModel @Inject constructor(private val repository: AttendanceRepository) :\r\n    ViewModel() {\r\n    private var _isDataLoaded = false\r\n\r\n    private val _totalAttendance = MutableLiveData<NetworkResult<TotalAttendance>>()\r\n    val totalAttendanceLiveData: LiveData<NetworkResult<TotalAttendance>> = _totalAttendance\r\n\r\n    private val _attendanceHistory = MutableLiveData<NetworkResult<List<DataXXXXXXXXXX>>>()\r\n    val attendanceHistoryLiveData: LiveData<NetworkResult<List<DataXXXXXXXXXX>>> =\r\n        _attendanceHistory\r\n\r\n    private val _attendanceToday = MutableLiveData<NetworkResult<Presensi>>()\r\n    val attendanceTodayLiveData: LiveData<NetworkResult<Presensi>> = _attendanceToday\r\n\r\n    private val _getSallary = MutableLiveData<NetworkResult<DataSallary>>()\r\n    val getSallaryLiveData: LiveData<NetworkResult<DataSallary>> = _getSallary\r\n\r\n    private val _getListLembur = MutableLiveData<NetworkResult<DataLembur>>()\r\n    val getListLemburLiveData: LiveData<NetworkResult<DataLembur>> = _getListLembur\r\n\r\n    private val _pengajuanLembur = MutableLiveData<NetworkResult<PengajuanLembur>>()\r\n    val pengajuanLemburLiveData: LiveData<NetworkResult<PengajuanLembur>> = _pengajuanLembur\r\n\r\n    fun attendanceTotalRequest(nip: String) {\r\n        viewModelScope.launch {\r\n            val connected = CheckInternet().check()\r\n            if (connected) {\r\n                _totalAttendance.postValue(NetworkResult.Loading())\r\n                _totalAttendance.postValue(repository.attendanceTotal(nip))\r\n\r\n            } else\r\n                _totalAttendance.postValue(NetworkResult.Error(\"No Internet Connection\"))\r\n        }\r\n    }\r\n\r\n    fun requestSallary(nip: String) {\r\n        viewModelScope.launch {\r\n            val connected = CheckInternet().check()\r\n            if (connected) {\r\n                _getSallary.postValue(NetworkResult.Loading())\r\n                _getSallary.postValue(repository.getSallary(nip))\r\n\r\n            } else\r\n                _getSallary.postValue(NetworkResult.Error(\"No Internet Connection\"))\r\n        }\r\n    }\r\n\r\n    fun requestListLembur(nip: String) {\r\n        viewModelScope.launch {\r\n            val connected = CheckInternet().check()\r\n            if (connected) {\r\n                _getListLembur.postValue(NetworkResult.Loading())\r\n                _getListLembur.postValue(repository.getListLembur(nip))\r\n\r\n            } else\r\n                _getListLembur.postValue(NetworkResult.Error(\"No Internet Connection\"))\r\n        }\r\n    }\r\n\r\n    fun requestPengajuanLembur(\r\n        nip: String,\r\n        jam_mulai: String,\r\n        jam_selesai: String,\r\n        file: String,\r\n        tanggal: String,\r\n        keterangan: String\r\n    ) {\r\n        viewModelScope.launch {\r\n            val connected = CheckInternet().check()\r\n            if (connected) {\r\n                _pengajuanLembur.postValue(NetworkResult.Loading())\r\n                _pengajuanLembur.postValue(\r\n                    repository.pengajuanLembur(\r\n                        nip,\r\n                        jam_mulai,\r\n                        jam_selesai,\r\n                        file,\r\n                        tanggal,\r\n                        keterangan\r\n                    )\r\n                )\r\n\r\n            } else\r\n                _pengajuanLembur.postValue(NetworkResult.Error(\"No Internet Connection\"))\r\n        }\r\n    }\r\n\r\n    fun attendanceHistoryRequest(nip: String) {\r\n        viewModelScope.launch {\r\n//            val connected = CheckInternet().check()\r\n//            if (connected) {\r\n            if (!_isDataLoaded) {\r\n                _attendanceHistory.postValue(repository.attendanceHistory(nip))\r\n                _attendanceHistory.postValue(NetworkResult.Loading())\r\n            }\r\n//            } else\r\n//                _attendanceHistory.postValue(NetworkResult.Error(\"No Internet Connection\"))\r\n        }\r\n\r\n    }\r\n\r\n    fun attendanceToday(\r\n//        data:RequestAbsen\r\n        image: MultipartBody.Part,\r\n        nip: RequestBody,\r\n        date: RequestBody,\r\n        timezone: RequestBody,\r\n        kordinat: RequestBody,\r\n        kode_shift: RequestBody,\r\n        kode_tingkat: RequestBody\r\n    ) {\r\n        viewModelScope.launch {\r\n            if (!_isDataLoaded) {\r\n                _attendanceToday.postValue(\r\n                    repository.attendanceToday(\r\n                        image, nip, date, timezone, kordinat, kode_shift, kode_tingkat\r\n                    )\r\n                )\r\n                _attendanceToday.postValue(NetworkResult.Loading())\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/viewModel/AttendanceViewModel.kt b/app/src/main/java/com/example/dsmabsen/ui/viewModel/AttendanceViewModel.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/viewModel/AttendanceViewModel.kt	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/java/com/example/dsmabsen/ui/viewModel/AttendanceViewModel.kt	(date 1678592256197)
+@@ -22,8 +22,8 @@
+     private val _totalAttendance = MutableLiveData<NetworkResult<TotalAttendance>>()
+     val totalAttendanceLiveData: LiveData<NetworkResult<TotalAttendance>> = _totalAttendance
+ 
+-    private val _attendanceHistory = MutableLiveData<NetworkResult<List<DataXXXXXXXXXX>>>()
+-    val attendanceHistoryLiveData: LiveData<NetworkResult<List<DataXXXXXXXXXX>>> =
++    private val _attendanceHistory = MutableLiveData<NetworkResult<RiwayatPresensi>>()
++    val attendanceHistoryLiveData: LiveData<NetworkResult<RiwayatPresensi>> =
+         _attendanceHistory
+ 
+     private val _attendanceToday = MutableLiveData<NetworkResult<Presensi>>()
+Index: app/src/main/java/com/example/dsmabsen/ui/fragment/DataAbsenFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.graphics.Color\r\nimport android.graphics.Typeface\r\nimport android.os.Bundle\r\nimport android.view.View\r\nimport android.widget.Toast\r\nimport androidx.core.content.ContextCompat\r\nimport androidx.core.view.isVisible\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.adapter.AttendanceAdapter\r\nimport com.example.dsmabsen.databinding.FragmentDataAbsenBinding\r\nimport com.example.dsmabsen.helper.TokenManager\r\nimport com.example.dsmabsen.helper.handleApiError\r\nimport com.example.dsmabsen.model.DataX\r\nimport com.example.dsmabsen.model.DataXX\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport com.example.dsmabsen.ui.viewModel.AttendanceViewModel\r\nimport com.github.mikephil.charting.data.PieData\r\nimport com.github.mikephil.charting.data.PieDataSet\r\nimport com.github.mikephil.charting.data.PieEntry\r\nimport com.github.mikephil.charting.formatter.PercentFormatter\r\nimport com.github.mikephil.charting.formatter.ValueFormatter\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\nimport javax.inject.Inject\r\n\r\n@AndroidEntryPoint\r\nclass DataAbsenFragment :\r\n    BaseFragment<FragmentDataAbsenBinding>(FragmentDataAbsenBinding::inflate) {\r\n\r\n    private val viewModel: AttendanceViewModel by viewModels()\r\n\r\n    @Inject\r\n    lateinit var tokenManager: TokenManager\r\n\r\n    private lateinit var adapter: AttendanceAdapter\r\n    private lateinit var recyclerView: RecyclerView\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        binding.apply {\r\n\r\n            adapter = AttendanceAdapter(requireContext())\r\n            recyclerView = recAttendance\r\n            recyclerView.adapter = adapter\r\n            recyclerView.layoutManager = LinearLayoutManager(requireContext())\r\n            recyclerView.setHasFixedSize(true)\r\n\r\n            val savedUser = Paper.book().read<DataX>(\"user\")\r\n            viewModel.attendanceHistoryRequest(savedUser!!.nip)\r\n            viewModel.attendanceHistoryLiveData.observe(viewLifecycleOwner) {\r\n                binding.loading.isVisible = false\r\n                when (it) {\r\n                    is NetworkResult.Success -> {\r\n                        binding.loading.isVisible = false\r\n                        binding.constrain.isVisible = true\r\n                        val attendance = it.data!!\r\n                        Toast.makeText(requireContext(), \"$attendance disini\", Toast.LENGTH_SHORT)\r\n                            .show()\r\n                        adapter.differ.submitList(attendance)\r\n\r\n                    }\r\n\r\n                    is NetworkResult.Loading -> {\r\n//                        binding.loading.isVisible = true\r\n//                        binding.constrain.isVisible = false\r\n                        Toast.makeText(requireContext(), \"Sedang proses\", Toast.LENGTH_SHORT).show()\r\n                    }\r\n\r\n                    is NetworkResult.Error -> {\r\n                        binding.loading.isVisible = false\r\n                        handleApiError(it.message)\r\n                    }\r\n                }\r\n            }\r\n\r\n            viewModel.attendanceTotalRequest(savedUser.nip)\r\n            viewModel.totalAttendanceLiveData.observe(viewLifecycleOwner) {\r\n                binding.loading.isVisible = false\r\n                when (it) {\r\n                    is NetworkResult.Success -> {\r\n                        binding.constrain.isVisible = true\r\n                        binding.loading.isVisible = false\r\n                        val data = it.data!!.data\r\n                        setPieChart(data)\r\n                    }\r\n\r\n                    is NetworkResult.Loading -> {\r\n                        binding.constrain.isVisible = false\r\n                        binding.loading.isVisible = true\r\n                        Toast.makeText(requireContext(), \"Loading\", Toast.LENGTH_SHORT).show()\r\n                    }\r\n\r\n                    is NetworkResult.Error -> {\r\n                        binding.loading.isVisible = false\r\n                        handleApiError(it.message)\r\n                    }\r\n                }\r\n            }\r\n\r\n        }\r\n\r\n    }\r\n\r\n    private fun FragmentDataAbsenBinding.setPieChart(data: DataXX) {\r\n        val pieEntries = ArrayList<PieEntry>()\r\n        pieEntries.add(PieEntry(data.masuk.toFloat(), \"Masuk\"))\r\n        pieEntries.add(PieEntry(data.izin.toFloat(), \"Izin\"))\r\n        pieEntries.add(PieEntry(data.alfa.toFloat(), \"Alfa\"))\r\n        pieEntries.add(PieEntry(data.telat.toFloat(), \"Telat\"))\r\n\r\n        val colors = ArrayList<Int>()\r\n        colors.add(ContextCompat.getColor(requireContext(), R.color._success))\r\n        colors.add(ContextCompat.getColor(requireContext(), R.color._primary))\r\n        colors.add(ContextCompat.getColor(requireContext(), R.color._danger))\r\n        colors.add(ContextCompat.getColor(requireContext(), R.color._secondary))\r\n\r\n        val pieDataSet = PieDataSet(pieEntries, \"\")\r\n        pieDataSet.colors = colors\r\n        pieDataSet.sliceSpace = 1f\r\n        val boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD)\r\n        pieDataSet.valueTypeface = boldTypeface\r\n\r\n        val pieData = PieData(pieDataSet)\r\n        pieData.setDrawValues(true)\r\n        pieData.setValueTextColor(Color.WHITE)\r\n        pieData.setValueFormatter(PercentFormatter())\r\n        pieData.setValueTextSize(14f)\r\n\r\n//        Atur deskripsi chart\r\n        pieChart.description.isEnabled = false\r\n        pieChart.setEntryLabelTextSize(134f)\r\n        pieChart.setExtraOffsets(5f, 10f, 5f, 5f)\r\n        pieChart.dragDecelerationFrictionCoef = 0.95f\r\n        pieChart.isDrawHoleEnabled = true\r\n        pieChart.setHoleColor(Color.WHITE)\r\n\r\n        // on below line we are setting circle color and alpha\r\n        pieChart.setTransparentCircleColor(Color.WHITE)\r\n        pieChart.setTransparentCircleAlpha(110)\r\n\r\n        // on  below line we are setting hole radius\r\n        pieChart.holeRadius = 58f\r\n        pieChart.transparentCircleRadius = 61f\r\n\r\n        // on below line we are setting center text\r\n        pieChart.setDrawCenterText(true)\r\n\r\n        pieChart.setDrawEntryLabels(false)\r\n\r\n        // Atur data yang akan ditampilkan pada chart\r\n        pieChart.data = pieData\r\n        pieChart.invalidate()\r\n\r\n        //             set value formatter\r\n        pieDataSet.valueFormatter = object : ValueFormatter() {\r\n            override fun getFormattedValue(value: Float): String {\r\n                return value.toInt().toString()\r\n            }\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/DataAbsenFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/DataAbsenFragment.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/fragment/DataAbsenFragment.kt	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/DataAbsenFragment.kt	(date 1678592256150)
+@@ -62,7 +62,7 @@
+                         val attendance = it.data!!
+                         Toast.makeText(requireContext(), "$attendance disini", Toast.LENGTH_SHORT)
+                             .show()
+-                        adapter.differ.submitList(attendance)
++                        adapter.differ.submitList(attendance.data)
+ 
+                     }
+ 
+Index: app/src/main/res/layout/fragment_lembur.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n    android:background=\"@drawable/gradiend_background\"\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    tools:context=\".ui.fragment.LemburFragment\">\r\n\r\n    <include\r\n        android:id=\"@+id/include_perizinan\"\r\n        layout=\"@layout/layout_appbar_left\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"@dimen/_20sdp\"\r\n        android:layout_marginTop=\"@dimen/_20sdp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/reclembur\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginTop=\"1dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/include_perizinan\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/ajukanLembur\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:src=\"@drawable/ic_circle_plus\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/include_perizinan\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"1.0\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/include_perizinan\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.58000004\" />\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_lembur.xml b/app/src/main/res/layout/fragment_lembur.xml
+--- a/app/src/main/res/layout/fragment_lembur.xml	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/res/layout/fragment_lembur.xml	(date 1678576880840)
+@@ -9,38 +9,20 @@
+     tools:context=".ui.fragment.LemburFragment">
+ 
+     <include
+-        android:id="@+id/include_perizinan"
+-        layout="@layout/layout_appbar_left"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="@dimen/_20sdp"
+-        android:layout_marginTop="@dimen/_20sdp"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
++        android:id="@+id/toolbar"
++        layout="@layout/toolbar_layout"
+ 
+-
++        />
+ 
+     <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/reclembur"
+         android:layout_width="0dp"
+         android:layout_height="0dp"
+         android:layout_marginTop="1dp"
++        app:layout_constraintTop_toBottomOf="@id/toolbar"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/include_perizinan" />
+-
+-    <ImageView
+-        android:id="@+id/ajukanLembur"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:src="@drawable/ic_circle_plus"
+-        app:layout_constraintBottom_toBottomOf="@+id/include_perizinan"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="1.0"
+-        app:layout_constraintStart_toEndOf="@+id/include_perizinan"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="0.58000004" />
+-
++        />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/dsmabsen/ui/fragment/LemburFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.os.Bundle\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Toast\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.navigation.fragment.findNavController\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.adapter.LemburAdapter\r\nimport com.example.dsmabsen.adapter.SallaryAdapter\r\nimport com.example.dsmabsen.databinding.FragmentLemburBinding\r\nimport com.example.dsmabsen.helper.handleApiError\r\nimport com.example.dsmabsen.model.DataX\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport com.example.dsmabsen.ui.viewModel.AttendanceViewModel\r\nimport com.example.dsmabsen.ui.viewModel.HomeViewModel\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\n\r\n@AndroidEntryPoint\r\nclass LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding::inflate) {\r\n\r\n    private val viewModel: AttendanceViewModel by viewModels()\r\n    private lateinit var adapter: LemburAdapter\r\n    private lateinit var recyclerView: RecyclerView\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        with(binding) {\r\n\r\n            val savedUser = Paper.book().read<DataX>(\"user\")\r\n\r\n            ajukanLembur.setOnClickListener {\r\n                findNavController().navigate(R.id.action_lemburFragment_to_pengajuanLemburFragment)\r\n            }\r\n            adapter = LemburAdapter(requireContext())\r\n            recyclerView = reclembur\r\n            recyclerView.adapter = adapter\r\n            recyclerView.layoutManager = LinearLayoutManager(requireContext())\r\n            recyclerView.setHasFixedSize(true)\r\n\r\n            viewModel.requestListLembur(savedUser!!.nip)\r\n            viewModel.getListLemburLiveData.observe(viewLifecycleOwner) {\r\n                when (it) {\r\n                    is NetworkResult.Success -> {\r\n                        val response = it.data!!\r\n                        val status = response.status\r\n                        if (status) {\r\n                            adapter.differ.submitList(response.data.data)\r\n                        } else {\r\n                            Toast.makeText(requireContext(), \"Status false\", Toast.LENGTH_SHORT).show()\r\n                        }\r\n                    }\r\n\r\n                    is NetworkResult.Loading -> {\r\n                        Toast.makeText(requireContext(), \"Loading\", Toast.LENGTH_SHORT).show()\r\n                    }\r\n\r\n                    is NetworkResult.Error -> {\r\n                        handleApiError(it.message)\r\n                    }\r\n                }\r\n            }\r\n\r\n        }\r\n\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/LemburFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/LemburFragment.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/fragment/LemburFragment.kt	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/LemburFragment.kt	(date 1678576986224)
+@@ -1,11 +1,11 @@
+ package com.example.dsmabsen.ui.fragment
+ 
+ import android.os.Bundle
++import android.view.*
++import android.widget.TextView
+ import androidx.fragment.app.Fragment
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
+ import android.widget.Toast
++import androidx.appcompat.widget.Toolbar
+ import androidx.fragment.app.viewModels
+ import androidx.navigation.fragment.findNavController
+ import androidx.recyclerview.widget.LinearLayoutManager
+@@ -36,9 +36,9 @@
+ 
+             val savedUser = Paper.book().read<DataX>("user")
+ 
+-            ajukanLembur.setOnClickListener {
+-                findNavController().navigate(R.id.action_lemburFragment_to_pengajuanLemburFragment)
+-            }
++//            ajukanLembur.setOnClickListener {
++//                findNavController().navigate(R.id.action_lemburFragment_to_pengajuanLemburFragment)
++//            }
+             adapter = LemburAdapter(requireContext())
+             recyclerView = reclembur
+             recyclerView.adapter = adapter
+@@ -70,6 +70,69 @@
+ 
+         }
+ 
++        super.onViewCreated(view, savedInstanceState)
++        setHasOptionsMenu(true)
++        setupToolbar("Lembur")
++        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
++            toolbar.setOnMenuItemClickListener { menuItem ->
++                when (menuItem.itemId) {
++                    R.id.add -> {
++                       findNavController().navigate(R.id.action_lemburFragment_to_pengajuanLemburFragment)
++                        true
++                    }
++
++                    else -> false
++                }
++            }
++        }
++    }
++
++    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
++        inflater.inflate(R.menu.toolbar_menu, menu)
++        val menuSave = menu.findItem(R.id.save)
++        val menuPlus = menu.findItem(R.id.add)
++
++        menuSave?.isVisible = false // menyembunyikan menu tertentu
++        menuPlus?.isVisible = true // menyembunyikan menu tertentu
++
++        val item = menu.findItem(R.id.save)
++        item.setActionView(R.layout.item_menu_toolbar)
++
++        val actionView = item.actionView
++        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
++        btnSimpan?.setOnClickListener {
++            // your code here
++            Toast.makeText(context, "Save di Click", Toast.LENGTH_SHORT).show()
++        }
++
++    }
++
++    override fun onOptionsItemSelected(item: MenuItem): Boolean {
++        when (item.itemId) {
++            R.id.add -> {
++                // Handle add menu item click
++                Toast.makeText(context, "Add di Click", Toast.LENGTH_SHORT).show()
++                return true
++            }
++            R.id.save -> {
++                // Handle navigation button click
++                Toast.makeText(context, "Save di Click", Toast.LENGTH_SHORT).show()
++                return true
++            }
++        }
++        return super.onOptionsItemSelected(item)
++
+     }
+ 
++    override fun setupToolbar(title: String) {
++        super.setupToolbar(title)
++
++    }
++
++    override fun setHasOptionsMenu(hasMenu: Boolean) {
++        super.setHasOptionsMenu(hasMenu)
++    }
++
++
++
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_pengajuan_lembur.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n    android:background=\"@drawable/gradiend_background\"\r\n    android:padding=\"@dimen/_20sdp\"\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    tools:context=\".ui.fragment.PengajuanLemburFragment\">\r\n\r\n    <include\r\n        android:id=\"@+id/include_lembur_create\"\r\n        layout=\"@layout/layout_appbar_create\"/>\r\n\r\n    <RelativeLayout\r\n        android:id=\"@+id/rv_tanggal_mulai\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:paddingVertical=\"@dimen/_10sdp\"\r\n        android:paddingHorizontal=\"@dimen/_15sdp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/include_lembur_create\"\r\n        android:background=\"@drawable/rounded_menu\"\r\n        android:layout_marginTop=\"@dimen/_10sdp\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_tanggal\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Tanggal\"\r\n            android:fontFamily=\"@font/poppins_bold\"\r\n            android:textSize=\"@dimen/_11ssp\"\r\n            android:textColor=\"@color/_dark\"/>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"@dimen/_47sdp\"\r\n            android:background=\"@drawable/rounded_menu\"\r\n            android:backgroundTint=\"@color/white\"\r\n            android:layout_below=\"@+id/tv_tanggal\"\r\n            android:paddingHorizontal=\"@dimen/_10sdp\"\r\n            android:gravity=\"center_vertical\">\r\n\r\n            <ImageView\r\n                android:layout_width=\"@dimen/_14sdp\"\r\n                android:layout_height=\"@dimen/_13sdp\"\r\n                android:fontFamily=\"@font/poppins\"\r\n                android:src=\"@drawable/icon_tanggal\"\r\n                android:layout_marginEnd=\"@dimen/_10sdp\"/>\r\n\r\n            <TextView\r\n                android:id=\"@+id/tanggalPenggajuan\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"@dimen/_47sdp\"\r\n                android:fontFamily=\"@font/poppins\"\r\n                android:background=\"@null\"\r\n                android:textAlignment=\"textEnd\"\r\n                android:hint=\"dd/mm/yyyy\"/>\r\n\r\n        </LinearLayout>\r\n\r\n    </RelativeLayout>\r\n\r\n    <RelativeLayout\r\n        android:id=\"@+id/rv_jam_mulai\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:paddingVertical=\"@dimen/_10sdp\"\r\n        android:paddingHorizontal=\"@dimen/_15sdp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/rv_tanggal_mulai\"\r\n        android:background=\"@drawable/rounded_menu\"\r\n        android:layout_marginTop=\"@dimen/_10sdp\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_jam_mulai\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Jam Mulai\"\r\n            android:fontFamily=\"@font/poppins_bold\"\r\n            android:textSize=\"@dimen/_11ssp\"\r\n            android:textColor=\"@color/_dark\"/>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"@dimen/_47sdp\"\r\n            android:background=\"@drawable/rounded_menu\"\r\n            android:backgroundTint=\"@color/white\"\r\n            android:layout_below=\"@+id/tv_jam_mulai\"\r\n            android:paddingHorizontal=\"@dimen/_10sdp\"\r\n            android:gravity=\"center_vertical\">\r\n\r\n            <ImageView\r\n                android:layout_width=\"@dimen/_14sdp\"\r\n                android:layout_height=\"@dimen/_13sdp\"\r\n                android:fontFamily=\"@font/poppins\"\r\n                android:src=\"@drawable/icon_jam\"\r\n                android:layout_marginEnd=\"@dimen/_10sdp\"/>\r\n\r\n            <TextView\r\n                android:id=\"@+id/jamMulai\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"@dimen/_47sdp\"\r\n                android:fontFamily=\"@font/poppins\"\r\n                android:background=\"@null\"\r\n                android:textAlignment=\"textEnd\"\r\n                android:hint=\"--:--\"/>\r\n\r\n        </LinearLayout>\r\n\r\n    </RelativeLayout>\r\n\r\n    <RelativeLayout\r\n        android:id=\"@+id/rv_jam_selesai\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:paddingVertical=\"@dimen/_10sdp\"\r\n        android:paddingHorizontal=\"@dimen/_15sdp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/rv_jam_mulai\"\r\n        android:background=\"@drawable/rounded_menu\"\r\n        android:layout_marginTop=\"@dimen/_10sdp\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_jam_selesai\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Jam Selesai\"\r\n            android:fontFamily=\"@font/poppins_bold\"\r\n            android:textSize=\"@dimen/_11ssp\"\r\n            android:textColor=\"@color/_dark\"/>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"@dimen/_47sdp\"\r\n            android:background=\"@drawable/rounded_menu\"\r\n            android:backgroundTint=\"@color/white\"\r\n            android:layout_below=\"@+id/tv_jam_selesai\"\r\n            android:paddingHorizontal=\"@dimen/_10sdp\"\r\n            android:gravity=\"center_vertical\">\r\n\r\n            <ImageView\r\n                android:layout_width=\"@dimen/_14sdp\"\r\n                android:layout_height=\"@dimen/_13sdp\"\r\n                android:fontFamily=\"@font/poppins\"\r\n                android:src=\"@drawable/icon_jam\"\r\n                android:layout_marginEnd=\"@dimen/_10sdp\"/>\r\n\r\n            <TextView\r\n                android:id=\"@+id/jamSelesai\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"@dimen/_47sdp\"\r\n                android:fontFamily=\"@font/poppins\"\r\n                android:background=\"@null\"\r\n                android:textAlignment=\"textEnd\"\r\n                android:hint=\"--:--\"/>\r\n\r\n        </LinearLayout>\r\n\r\n    </RelativeLayout>\r\n\r\n    <RelativeLayout\r\n        android:id=\"@+id/rv_keterangan_lembur_create\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"@dimen/_152sdp\"\r\n        android:paddingVertical=\"@dimen/_10sdp\"\r\n        android:paddingHorizontal=\"@dimen/_15sdp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/rv_jam_selesai\"\r\n        android:background=\"@drawable/rounded_menu\"\r\n        android:layout_marginTop=\"@dimen/_10sdp\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_keterangan_lembur_create\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Keterangan\"\r\n            android:fontFamily=\"@font/poppins_bold\"\r\n            android:textSize=\"@dimen/_11ssp\"\r\n            android:textColor=\"@color/_dark\"/>\r\n\r\n        <EditText\r\n            android:id=\"@+id/keteranganPenggajuan\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"@dimen/_109sdp\"\r\n            android:background=\"@drawable/rounded_menu\"\r\n            android:layout_below=\"@+id/tv_keterangan_lembur_create\"\r\n            android:backgroundTint=\"@color/white\"\r\n            android:dropDownSelector=\"@drawable/arrow_bottom\"\r\n            android:paddingHorizontal=\"@dimen/_10sdp\"\r\n            android:paddingVertical=\"@dimen/_15sdp\"\r\n            android:lines=\"4\"\r\n            android:textAlignment=\"textEnd\"/>\r\n\r\n    </RelativeLayout>\r\n\r\n    <Button\r\n        android:id=\"@+id/btnSend\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Button\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/rv_keterangan_lembur_create\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_pengajuan_lembur.xml b/app/src/main/res/layout/fragment_pengajuan_lembur.xml
+--- a/app/src/main/res/layout/fragment_pengajuan_lembur.xml	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/res/layout/fragment_pengajuan_lembur.xml	(date 1678578280805)
+@@ -10,8 +10,8 @@
+     tools:context=".ui.fragment.PengajuanLemburFragment">
+ 
+     <include
+-        android:id="@+id/include_lembur_create"
+-        layout="@layout/layout_appbar_create"/>
++        android:id="@+id/toolbar"
++        layout="@layout/toolbar_layout"/>
+ 
+     <RelativeLayout
+         android:id="@+id/rv_tanggal_mulai"
+@@ -19,7 +19,7 @@
+         android:layout_height="wrap_content"
+         android:paddingVertical="@dimen/_10sdp"
+         android:paddingHorizontal="@dimen/_15sdp"
+-        app:layout_constraintTop_toBottomOf="@+id/include_lembur_create"
++        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+         android:background="@drawable/rounded_menu"
+         android:layout_marginTop="@dimen/_10sdp">
+ 
+@@ -54,6 +54,7 @@
+                 android:layout_height="@dimen/_47sdp"
+                 android:fontFamily="@font/poppins"
+                 android:background="@null"
++                android:textColor="@color/black_text"
+                 android:textAlignment="textEnd"
+                 android:hint="dd/mm/yyyy"/>
+ 
+@@ -102,6 +103,7 @@
+                 android:layout_height="@dimen/_47sdp"
+                 android:fontFamily="@font/poppins"
+                 android:background="@null"
++                android:textColor="@color/black_text"
+                 android:textAlignment="textEnd"
+                 android:hint="--:--"/>
+ 
+@@ -150,6 +152,7 @@
+                 android:layout_height="@dimen/_47sdp"
+                 android:fontFamily="@font/poppins"
+                 android:background="@null"
++                android:textColor="@color/black_text"
+                 android:textAlignment="textEnd"
+                 android:hint="--:--"/>
+ 
+@@ -180,6 +183,7 @@
+             android:id="@+id/keteranganPenggajuan"
+             android:layout_width="match_parent"
+             android:layout_height="@dimen/_109sdp"
++            android:textColor="@color/black_text"
+             android:background="@drawable/rounded_menu"
+             android:layout_below="@+id/tv_keterangan_lembur_create"
+             android:backgroundTint="@color/white"
+Index: app/src/main/java/com/example/dsmabsen/ui/fragment/PengajuanLemburFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.os.Bundle\r\nimport android.text.format.DateFormat\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Toast\r\nimport androidx.fragment.app.viewModels\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.databinding.FragmentPengajuanLemburBinding\r\nimport com.example.dsmabsen.helper.handleApiError\r\nimport com.example.dsmabsen.model.DataX\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport com.example.dsmabsen.ui.viewModel.AttendanceViewModel\r\nimport com.example.dsmabsen.ui.viewModel.HomeViewModel\r\nimport com.google.android.material.datepicker.MaterialDatePicker\r\nimport com.google.android.material.timepicker.MaterialTimePicker\r\nimport com.google.android.material.timepicker.TimeFormat\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\nimport java.text.SimpleDateFormat\r\nimport java.util.*\r\n\r\n@AndroidEntryPoint\r\nclass PengajuanLemburFragment :\r\n    BaseFragment<FragmentPengajuanLemburBinding>(FragmentPengajuanLemburBinding::inflate) {\r\n\r\n    private val viewModel: AttendanceViewModel by viewModels()\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        with(binding) {\r\n            val savedUser = Paper.book().read<DataX>(\"user\")\r\n            tanggalPenggajuan.setOnClickListener {\r\n                openCalendar()\r\n            }\r\n\r\n            jamMulai.setOnClickListener {\r\n                openTimePickerFrom()\r\n            }\r\n\r\n            jamSelesai.setOnClickListener {\r\n                openTimePickerUntil()\r\n            }\r\n\r\n            btnSend.setOnClickListener {\r\n                viewModel.requestPengajuanLembur(\r\n                    savedUser!!.nip,\r\n                    jamMulai.text.toString(),\r\n                    jamSelesai.text.toString(),\r\n                    \"\",\r\n                    tanggalPenggajuan.text.toString(),\r\n                    keteranganPenggajuan.text.toString()\r\n                )\r\n                viewModel.pengajuanLemburLiveData.observe(viewLifecycleOwner) {\r\n                    when (it) {\r\n                        is NetworkResult.Success -> {\r\n                            val response = it.data!!\r\n                            val status = response.status\r\n                            val statusPengajuan = response.data.status\r\n                            if (status && statusPengajuan) {\r\n                                Toast.makeText(\r\n                                    requireContext(),\r\n                                    \"Berhasil Mengajukan Lembur\",\r\n                                    Toast.LENGTH_SHORT\r\n                                ).show()\r\n                            } else {\r\n                                Toast.makeText(\r\n                                    requireContext(),\r\n                                    response.data.messages,\r\n                                    Toast.LENGTH_SHORT\r\n                                ).show()\r\n                            }\r\n                        }\r\n\r\n                        is NetworkResult.Loading -> {\r\n                            Toast.makeText(requireContext(), \"Loading\", Toast.LENGTH_SHORT).show()\r\n                        }\r\n\r\n                        is NetworkResult.Error -> {\r\n                            handleApiError(it.message)\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n\r\n        }\r\n\r\n    }\r\n\r\n    private fun openCalendar() {\r\n        val datePicker = MaterialDatePicker.Builder\r\n            .datePicker()\r\n            .setTitleText(\"\")\r\n            .build()\r\n        datePicker.show(childFragmentManager, \"DatePicker\")\r\n\r\n        datePicker.addOnPositiveButtonClickListener {\r\n            val dateFormatter = SimpleDateFormat(\"dd-MM-yyyy\")\r\n            val date = dateFormatter.format(Date(it))\r\n            binding.tanggalPenggajuan.text = date\r\n            Toast.makeText(requireContext(), \"$date is selected\", Toast.LENGTH_LONG).show()\r\n\r\n        }\r\n\r\n        datePicker.addOnNegativeButtonClickListener {\r\n            Toast.makeText(\r\n                requireContext(),\r\n                \"${datePicker.headerText} is cancelled\",\r\n                Toast.LENGTH_LONG\r\n            ).show()\r\n        }\r\n\r\n        datePicker.addOnCancelListener {\r\n            Toast.makeText(requireContext(), \"Date Picker Cancelled\", Toast.LENGTH_LONG).show()\r\n        }\r\n    }\r\n\r\n    private fun openTimePickerFrom() {\r\n        val isSystem24Hour = DateFormat.is24HourFormat(requireContext())\r\n        val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H\r\n\r\n        val picker = MaterialTimePicker.Builder()\r\n            .setTimeFormat(clockFormat)\r\n            .setHour(8)\r\n            .setMinute(0)\r\n            .setTitleText(\"\")\r\n            .build()\r\n        picker.show(childFragmentManager, \"MyTag\")\r\n\r\n        picker.addOnPositiveButtonClickListener {\r\n            val h = picker.hour\r\n            val m = picker.minute\r\n            binding.jamMulai.text = \"$h:$m\"\r\n        }\r\n    }\r\n\r\n    private fun openTimePickerUntil() {\r\n        val isSystem24Hour = DateFormat.is24HourFormat(requireContext())\r\n        val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H\r\n\r\n        val picker = MaterialTimePicker.Builder()\r\n            .setTimeFormat(clockFormat)\r\n            .setHour(8)\r\n            .setMinute(0)\r\n            .setTitleText(\"\")\r\n            .build()\r\n        picker.show(childFragmentManager, \"MyTag\")\r\n\r\n        picker.addOnPositiveButtonClickListener {\r\n            val h = picker.hour\r\n            val m = picker.minute\r\n            binding.jamSelesai.text = \"$h:$m\"\r\n        }\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/PengajuanLemburFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/PengajuanLemburFragment.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/fragment/PengajuanLemburFragment.kt	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/PengajuanLemburFragment.kt	(date 1678578965070)
+@@ -2,11 +2,11 @@
+ 
+ import android.os.Bundle
+ import android.text.format.DateFormat
++import android.view.*
++import android.widget.TextView
+ import androidx.fragment.app.Fragment
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
+ import android.widget.Toast
++import androidx.appcompat.widget.Toolbar
+ import androidx.fragment.app.viewModels
+ import com.example.dsmabsen.R
+ import com.example.dsmabsen.databinding.FragmentPengajuanLemburBinding
+@@ -89,6 +89,60 @@
+ 
+         }
+ 
++        super.onViewCreated(view, savedInstanceState)
++        setHasOptionsMenu(true)
++        setupToolbar("Pengajuan Lembur")
++        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
++            toolbar.setOnMenuItemClickListener { menuItem ->
++                when (menuItem.itemId) {
++                    R.id.add -> {
++                        // Handle add menu item click
++                        Toast.makeText(context, "Add di Click", Toast.LENGTH_SHORT).show()
++                        true
++                    }
++
++                    else -> false
++                }
++            }
++        }
++    }
++
++    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
++        inflater.inflate(R.menu.toolbar_menu, menu)
++        val menuSave = menu.findItem(R.id.save)
++        val menuPlus = menu.findItem(R.id.add)
++
++        menuSave?.isVisible = false // menyembunyikan menu tertentu
++        menuPlus?.isVisible = true // menyembunyikan menu tertentu
++
++        val item = menu.findItem(R.id.save)
++        item.setActionView(R.layout.item_menu_toolbar)
++
++        val actionView = item.actionView
++        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
++        btnSimpan?.setOnClickListener {
++            // your code here
++            Toast.makeText(context, "Save di Click", Toast.LENGTH_SHORT).show()
++        }
++
++    }
++
++    override fun onOptionsItemSelected(item: MenuItem): Boolean {
++        when (item.itemId) {
++            R.id.add -> {
++                // Handle add menu item click
++                Toast.makeText(context, "Add di Click", Toast.LENGTH_SHORT).show()
++                return true
++            }
++            R.id.save -> {
++                // Handle navigation button click
++                Toast.makeText(context, "Save di Click", Toast.LENGTH_SHORT).show()
++                return true
++            }
++        }
++        return super.onOptionsItemSelected(item)
++
++
+     }
+ 
+     private fun openCalendar() {
+@@ -132,8 +186,8 @@
+         picker.show(childFragmentManager, "MyTag")
+ 
+         picker.addOnPositiveButtonClickListener {
+-            val h = picker.hour
+-            val m = picker.minute
++            val h = if (picker.hour < 10) "0${picker.hour}" else picker.hour
++            val m = if (picker.minute < 10) "0${picker.minute}" else picker.minute
+             binding.jamMulai.text = "$h:$m"
+         }
+     }
+@@ -151,10 +205,11 @@
+         picker.show(childFragmentManager, "MyTag")
+ 
+         picker.addOnPositiveButtonClickListener {
+-            val h = picker.hour
+-            val m = picker.minute
++            val h = if (picker.hour < 10) "0${picker.hour}" else picker.hour
++            val m = if (picker.minute < 10) "0${picker.minute}" else picker.minute
+             binding.jamSelesai.text = "$h:$m"
+         }
++
+     }
+ 
+ 
+Index: app/src/main/res/layout/toolbar_layout.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.appcompat.widget.Toolbar\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:id=\"@+id/toolbar\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:background=\"@android:color/transparent\"\r\n    android:elevation=\"4dp\"\r\n    android:theme=\"@style/toolbar_menu\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/toolbar_title\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:textColor=\"@color/_dark\"\r\n        android:textSize=\"@dimen/_12sdp\"\r\n        android:textStyle=\"bold\"\r\n        android:fontFamily=\"@font/poppins_regular\" />\r\n\r\n</androidx.appcompat.widget.Toolbar>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/toolbar_layout.xml b/app/src/main/res/layout/toolbar_layout.xml
+--- a/app/src/main/res/layout/toolbar_layout.xml	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/res/layout/toolbar_layout.xml	(date 1678579948416)
+@@ -1,20 +1,20 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.appcompat.widget.Toolbar
+-    xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:id="@+id/toolbar"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:background="@android:color/transparent"
+     android:elevation="4dp"
+-    android:theme="@style/toolbar_menu">
++    app:layout_constraintTop_toTopOf="parent">
+ 
+     <TextView
+         android:id="@+id/toolbar_title"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
++        android:fontFamily="@font/poppins_regular"
+         android:textColor="@color/_dark"
+         android:textSize="@dimen/_12sdp"
+-        android:textStyle="bold"
+-        android:fontFamily="@font/poppins_regular" />
++        android:textStyle="bold" />
+ 
+ </androidx.appcompat.widget.Toolbar>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_sallary.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n    android:padding=\"@dimen/_20sdp\"\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    tools:context=\".ui.fragment.SallaryFragment\">\r\n\r\n\r\n    <include\r\n        android:id=\"@+id/include_slipgaji\"\r\n        layout=\"@layout/layout_appbar_center\"/>\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/recSallary\"\r\n        tools:listitem=\"@layout/item_sallary\"\r\n        android:layout_marginTop=\"@dimen/_15sdp\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"0dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/include_slipgaji\"\r\n        tools:layout_editor_absoluteX=\"26dp\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_sallary.xml b/app/src/main/res/layout/fragment_sallary.xml
+--- a/app/src/main/res/layout/fragment_sallary.xml	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/res/layout/fragment_sallary.xml	(date 1678580213815)
+@@ -10,8 +10,8 @@
+ 
+ 
+     <include
+-        android:id="@+id/include_slipgaji"
+-        layout="@layout/layout_appbar_center"/>
++        android:id="@+id/toolbar"
++        layout="@layout/toolbar_layout"/>
+ 
+     <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/recSallary"
+@@ -20,7 +20,7 @@
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/include_slipgaji"
++        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+         tools:layout_editor_absoluteX="26dp" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_pengajuan_reimbursement.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    tools:context=\".ui.fragment.PengajuanReimbursementFragment\">\r\n\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n        android:id=\"@+id/rv_pilih_shift\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:paddingVertical=\"@dimen/_10sdp\"\r\n        android:paddingHorizontal=\"@dimen/_15sdp\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:background=\"@drawable/rounded_menu\"\r\n        android:layout_marginTop=\"@dimen/_30sdp\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_pilih_shift\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Nama Reimbursement\"\r\n            android:fontFamily=\"@font/poppins_bold\"\r\n            android:textSize=\"@dimen/_11ssp\"\r\n            android:textColor=\"@color/black_text\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"/>\r\n\r\n        <Spinner\r\n            android:id=\"@+id/spinner_shift\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"@dimen/_47sdp\"\r\n            android:background=\"@drawable/rounded_menu\"\r\n            android:layout_below=\"@+id/tv_pilih_shift\"\r\n            android:backgroundTint=\"@color/white\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/tv_pilih_shift\"\r\n            android:paddingHorizontal=\"@dimen/_10sdp\"\r\n            android:paddingVertical=\"@dimen/_15sdp\"\r\n            android:textAlignment=\"textEnd\"\r\n            android:layout_marginTop=\"@dimen/_5sdp\"/>\r\n\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n        android:id=\"@+id/rv_keterangan_perizinan_create\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:paddingVertical=\"@dimen/_10sdp\"\r\n        android:paddingHorizontal=\"@dimen/_15sdp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/rv_pilih_shift\"\r\n        android:background=\"@drawable/rounded_menu\"\r\n        android:layout_marginTop=\"@dimen/_10sdp\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_keterangan_perizinan_create\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Nominal\"\r\n            android:fontFamily=\"@font/poppins_bold\"\r\n            android:textSize=\"@dimen/_11ssp\"\r\n            android:textColor=\"@color/black_text\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"/>\r\n\r\n        <EditText\r\n            android:id=\"@+id/edtNominal\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"@dimen/_109sdp\"\r\n            android:background=\"@drawable/rounded_menu\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/tv_keterangan_perizinan_create\"\r\n            android:backgroundTint=\"@color/white\"\r\n            android:paddingHorizontal=\"@dimen/_10sdp\"\r\n            android:paddingVertical=\"@dimen/_15sdp\"\r\n            android:lines=\"4\"\r\n            android:textAlignment=\"textEnd\"\r\n            android:layout_marginTop=\"@dimen/_5sdp\"/>\r\n\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n    <EditText\r\n        android:id=\"@+id/edtKeterangan\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:hint=\"keterangan\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/btnKirim\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/rv_keterangan_perizinan_create\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/btnKirim\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"72dp\"\r\n        android:layout_marginEnd=\"24dp\"\r\n        android:text=\"Kirim\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/rv_keterangan_perizinan_create\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_pengajuan_reimbursement.xml b/app/src/main/res/layout/fragment_pengajuan_reimbursement.xml
+--- a/app/src/main/res/layout/fragment_pengajuan_reimbursement.xml	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/res/layout/fragment_pengajuan_reimbursement.xml	(date 1678588552293)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.constraintlayout.widget.ConstraintLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+Index: app/src/main/java/com/example/dsmabsen/ui/fragment/HomeFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.Manifest\r\nimport android.app.Activity\r\nimport android.content.Intent\r\nimport android.content.pm.PackageManager\r\nimport android.graphics.Bitmap\r\nimport android.os.Build\r\nimport android.os.Bundle\r\nimport android.provider.MediaStore\r\nimport android.util.Log\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Toast\r\nimport androidx.activity.result.contract.ActivityResultContracts\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.core.app.ActivityCompat\r\nimport androidx.core.content.ContextCompat\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.databinding.FragmentHomeBinding\r\nimport com.google.android.material.snackbar.Snackbar\r\n\r\nclass HomeFragment : Fragment() {\r\n\r\n    lateinit var binding: FragmentHomeBinding\r\n    private val LOCATION_PERMISSION_CODE = 123 // kode permintaan izin lokasi\r\n    private val MY_PERMISSIONS_REQUEST_CAMERA = 456 // kode permintaan izin kamera\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater, container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View {\r\n        binding = FragmentHomeBinding.inflate(inflater, container, false)\r\n        return binding.root\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n        with(binding) {\r\n//            checkForPermission(\r\n//                Manifest.permission.CAMERA,\r\n//                \"camera\",\r\n//                MY_PERMISSIONS_REQUEST_CAMERA\r\n//            )\r\n//\r\n//            checkForPermission(\r\n//                Manifest.permission.ACCESS_FINE_LOCATION,\r\n//                \"location\",\r\n//                LOCATION_PERMISSION_CODE\r\n//            )\r\n\r\n\r\n\r\n\r\n\r\n            imageView13.setOnClickListener {\r\n                checkForPermission(\r\n                    Manifest.permission.CAMERA,\r\n                    \"camera\",\r\n                    MY_PERMISSIONS_REQUEST_CAMERA\r\n                )\r\n            }\r\n\r\n            textView39.setOnClickListener {\r\n                checkForPermission(\r\n                    Manifest.permission.ACCESS_FINE_LOCATION,\r\n                    \"location\",\r\n                    LOCATION_PERMISSION_CODE\r\n                )\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun checkForPermission(permission: String, name: String, requestCode: Int) {\r\n        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {\r\n            when {\r\n                ContextCompat.checkSelfPermission(\r\n                    requireContext(),\r\n                    permission\r\n                ) == PackageManager.PERMISSION_GRANTED -> {\r\n                    Toast.makeText(requireContext(), \"$name permission granted\", Toast.LENGTH_SHORT)\r\n                        .show()\r\n                }\r\n\r\n                shouldShowRequestPermissionRationale(permission) -> showDialog(\r\n                    permission,\r\n                    name,\r\n                    requestCode\r\n                )\r\n                else -> ActivityCompat.requestPermissions(\r\n                    requireActivity(),\r\n                    arrayOf(permission),\r\n                    requestCode\r\n                )\r\n            }\r\n        }\r\n    }\r\n\r\n    fun cameraPermission(){\r\n        ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED\r\n    }\r\n\r\n    override fun onRequestPermissionsResult(\r\n        requestCode: Int,\r\n        permissions: Array<out String>,\r\n        grantResults: IntArray\r\n    ) {\r\n        fun innerCheck(name: String) {\r\n            if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {\r\n                Toast.makeText(requireContext(), \"$name Permission refused \", Toast.LENGTH_SHORT)\r\n                    .show()\r\n            } else {\r\n                Toast.makeText(requireContext(), \"$name Permission granted \", Toast.LENGTH_SHORT)\r\n                    .show()\r\n            }\r\n        }\r\n\r\n        when (requestCode) {\r\n            LOCATION_PERMISSION_CODE -> innerCheck(\"location\")\r\n            MY_PERMISSIONS_REQUEST_CAMERA -> innerCheck(\"camera\")\r\n        }\r\n        super.onRequestPermissionsResult(requestCode, permissions, grantResults)\r\n    }\r\n\r\n    private fun showDialog(permission: String, name: String, requestCode: Int) {\r\n        val builder = AlertDialog.Builder(requireContext())\r\n        builder.apply {\r\n            setMessage(\"Permission to access your $name is required to use this app\")\r\n            setTitle(\"Permission required\")\r\n            setPositiveButton(\"OK\") { dialog, whisch ->\r\n                ActivityCompat.requestPermissions(\r\n                    requireActivity(),\r\n                    arrayOf(permission),\r\n                    requestCode\r\n                )\r\n            }\r\n        }\r\n\r\n        val dialog = builder.create()\r\n        dialog.show()\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/HomeFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/HomeFragment.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/fragment/HomeFragment.kt	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/HomeFragment.kt	(date 1678591775960)
+@@ -20,6 +20,7 @@
+ import androidx.core.content.ContextCompat
+ import com.example.dsmabsen.R
+ import com.example.dsmabsen.databinding.FragmentHomeBinding
++import com.example.dsmabsen.helper.Constans
+ import com.google.android.material.snackbar.Snackbar
+ 
+ class HomeFragment : Fragment() {
+@@ -39,20 +40,28 @@
+     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+         super.onViewCreated(view, savedInstanceState)
+         with(binding) {
+-//            checkForPermission(
+-//                Manifest.permission.CAMERA,
+-//                "camera",
+-//                MY_PERMISSIONS_REQUEST_CAMERA
+-//            )
+-//
+-//            checkForPermission(
+-//                Manifest.permission.ACCESS_FINE_LOCATION,
+-//                "location",
+-//                LOCATION_PERMISSION_CODE
+-//            )
++            checkForPermission(
++                Manifest.permission.CAMERA,
++                "camera",
++                MY_PERMISSIONS_REQUEST_CAMERA
++            )
+ 
++            checkForPermission(
++                Manifest.permission.ACCESS_FINE_LOCATION,
++                "location",
++                LOCATION_PERMISSION_CODE
++            )
+ 
++            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
++//            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
++            } else {
++                val permission = Manifest.permission.READ_PHONE_STATE
++                singlePermissionLaunch.launch(permission)
++            }
+ 
++//camera >= M kasih izin
++//            Lokasi
++//Imei android dibawah 10 izin imei
+ 
+ 
+             imageView13.setOnClickListener {
+@@ -98,10 +107,6 @@
+         }
+     }
+ 
+-    fun cameraPermission(){
+-        ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+-    }
+-
+     override fun onRequestPermissionsResult(
+         requestCode: Int,
+         permissions: Array<out String>,
+@@ -142,5 +147,15 @@
+         dialog.show()
+     }
+ 
++    private val singlePermissionLaunch =
++        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
++            Log.d(Constans.TAG, "permission is Granted: $isGranted")
++            if (isGranted) {
++                Toast.makeText(requireContext(), "Permission is granted", Toast.LENGTH_SHORT).show()
++            } else {
++                Toast.makeText(requireContext(), "Permission Denied ", Toast.LENGTH_SHORT).show()
++            }
++        }
++
+ 
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/dsmabsen/ui/fragment/SallaryFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.os.Bundle\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Toast\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.adapter.AttendanceAdapter\r\nimport com.example.dsmabsen.adapter.SallaryAdapter\r\nimport com.example.dsmabsen.databinding.FragmentSallaryBinding\r\nimport com.example.dsmabsen.helper.handleApiError\r\nimport com.example.dsmabsen.model.DataX\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport com.example.dsmabsen.ui.viewModel.AttendanceViewModel\r\nimport com.example.dsmabsen.ui.viewModel.HomeViewModel\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\n\r\n@AndroidEntryPoint\r\nclass SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBinding::inflate) {\r\n\r\n\r\n    private val viewModel: AttendanceViewModel by viewModels()\r\n    private lateinit var adapter: SallaryAdapter\r\n    private lateinit var recyclerView: RecyclerView\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        val savedUser = Paper.book().read<DataX>(\"user\")\r\n\r\n        with(binding) {\r\n            adapter = SallaryAdapter(requireContext())\r\n            recyclerView = recSallary\r\n            recyclerView.adapter = adapter\r\n            recyclerView.layoutManager = LinearLayoutManager(requireContext())\r\n            recyclerView.setHasFixedSize(true)\r\n\r\n            viewModel.requestSallary(savedUser!!.nip)\r\n            viewModel.getSallaryLiveData.observe(viewLifecycleOwner) {\r\n                when (it) {\r\n                    is NetworkResult.Success -> {\r\n                        val response = it.data!!\r\n                        val status = response.status\r\n                        if (status) {\r\n                            adapter.differ.submitList(response.data)\r\n                        } else {\r\n                            Toast.makeText(requireContext(), \"status False\", Toast.LENGTH_SHORT)\r\n                                .show()\r\n                        }\r\n                    }\r\n\r\n                    is NetworkResult.Loading -> {\r\n                        Toast.makeText(requireContext(), \"Loading\", Toast.LENGTH_SHORT).show()\r\n                    }\r\n\r\n                    is NetworkResult.Error -> {\r\n                        handleApiError(it.message)\r\n                    }\r\n                }\r\n            }\r\n\r\n        }\r\n\r\n\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/SallaryFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/SallaryFragment.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/fragment/SallaryFragment.kt	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/SallaryFragment.kt	(date 1678583190061)
+@@ -1,12 +1,13 @@
+ package com.example.dsmabsen.ui.fragment
+ 
+ import android.os.Bundle
++import android.view.*
++import android.widget.TextView
+ import androidx.fragment.app.Fragment
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
+ import android.widget.Toast
++import androidx.appcompat.widget.Toolbar
+ import androidx.fragment.app.viewModels
++import androidx.recyclerview.widget.ItemTouchHelper
+ import androidx.recyclerview.widget.LinearLayoutManager
+ import androidx.recyclerview.widget.RecyclerView
+ import com.example.dsmabsen.R
+@@ -65,9 +66,98 @@
+                 }
+             }
+ 
++
++
+         }
++        super.onViewCreated(view, savedInstanceState)
++        setHasOptionsMenu(true)
++        setupToolbar("Gaji")
++        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
++            toolbar.setOnMenuItemClickListener { menuItem ->
++                when (menuItem.itemId) {
++                    R.id.add -> {
++                        // Handle add menu item click
++                        Toast.makeText(context, "Add di Click", Toast.LENGTH_SHORT).show()
++                        true
++                    }
++
++                    else -> false
++                }
++            }
++        }
++    }
++
++    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
++        inflater.inflate(R.menu.toolbar_menu, menu)
++        val menuSave = menu.findItem(R.id.save)
++        val menuPlus = menu.findItem(R.id.add)
++
++        menuSave?.isVisible = false // menyembunyikan menu tertentu
++        menuPlus?.isVisible = true // menyembunyikan menu tertentu
++
++        val item = menu.findItem(R.id.save)
++        item.setActionView(R.layout.item_menu_toolbar)
++
++        val actionView = item.actionView
++        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
++        btnSimpan?.setOnClickListener {
++            // your code here
++            Toast.makeText(context, "Save di Click", Toast.LENGTH_SHORT).show()
++        }
++
++    }
+ 
++    override fun onOptionsItemSelected(item: MenuItem): Boolean {
++        when (item.itemId) {
++            R.id.add -> {
++                // Handle add menu item click
++                Toast.makeText(context, "Add di Click", Toast.LENGTH_SHORT).show()
++                return true
++            }
++            R.id.save -> {
++                // Handle navigation button click
++                Toast.makeText(context, "Save di Click", Toast.LENGTH_SHORT).show()
++                return true
++            }
++        }
++        return super.onOptionsItemSelected(item)
++
+ 
+     }
+ 
++//    private fun swipeDelete() {
++//        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
++//            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
++//            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
++//        ) {
++//            override fun onMove(
++//                recyclerView: RecyclerView,
++//                viewHolder: RecyclerView.ViewHolder,
++//                target: RecyclerView.ViewHolder
++//            ): Boolean {
++//                return true
++//            }
++//
++//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
++//                val pos = viewHolder.adapterPosition
++//                val budget = adapter.differ.currentList[pos]
++//
++////                viewModel.deleteUser(budget)
++//
++//                Toast.makeText(requireContext(), "item deleted", Toast.LENGTH_SHORT).show()
++//
++////                Snackbar.make(recyclerview(),"Item Deleted",Snackbar.LENGTH_LONG).apply {
++////                    setAction("UNDO"){
++////                        budgetViewModel.insertBudget(budget)
++////                    }
++////                    show()
++////                }
++//            }
++//        }
++//
++//        ItemTouchHelper(itemTouchHelperCallback).apply {
++//            attachToRecyclerView(binding.recv)
++//        }
++//    }
++
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/dsmabsen/ui/fragment/AllMenuFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.os.Bundle\r\nimport android.view.*\r\nimport androidx.fragment.app.Fragment\r\nimport android.widget.Toast\r\nimport androidx.appcompat.widget.Toolbar\r\nimport androidx.navigation.fragment.findNavController\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.databinding.FragmentAllMenuBinding\r\nimport dagger.hilt.android.AndroidEntryPoint\r\n\r\n@AndroidEntryPoint\r\nclass AllMenuFragment :BaseFragment<FragmentAllMenuBinding>(FragmentAllMenuBinding::inflate){\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n        setupToolbar(\"Semua Menu\")\r\n        binding.btnReimbursement.setOnClickListener {\r\n            findNavController().navigate(R.id.action_allMenuFragment_to_reimbursementFragment)\r\n        }\r\n\r\n        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->\r\n            toolbar.setOnMenuItemClickListener { menuItem ->\r\n                when (menuItem.itemId) {\r\n                    R.id.add -> {\r\n                        // Handle add menu item click\r\n                        Toast.makeText(context, \"Add di Click\", Toast.LENGTH_SHORT).show()\r\n                        true\r\n                    }\r\n                    R.id.save -> {\r\n                        // Handle navigation button click\r\n                        Toast.makeText(context, \"Save di Click\", Toast.LENGTH_SHORT).show()\r\n                        true\r\n                    }\r\n                    else -> false\r\n                }\r\n            }\r\n        }\r\n\r\n    }\r\n    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {\r\n        inflater.inflate(R.menu.toolbar_menu, menu)\r\n\r\n        val menuSave = menu.findItem(R.id.save)\r\n        val menuPlus = menu.findItem(R.id.add)\r\n\r\n        menuSave?.isVisible = false // menyembunyikan menu tertentu\r\n        menuPlus?.isVisible = false // menyembunyikan menu tertentu\r\n\r\n        super.onCreateOptionsMenu(menu, inflater)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/AllMenuFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/AllMenuFragment.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/fragment/AllMenuFragment.kt	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/AllMenuFragment.kt	(date 1678577745245)
+@@ -20,7 +20,7 @@
+             findNavController().navigate(R.id.action_allMenuFragment_to_reimbursementFragment)
+         }
+ 
+-        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
++//        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
+             toolbar.setOnMenuItemClickListener { menuItem ->
+                 when (menuItem.itemId) {
+                     R.id.add -> {
+@@ -36,7 +36,7 @@
+                     else -> false
+                 }
+             }
+-        }
++//        }
+ 
+     }
+     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+Index: app/src/main/java/com/example/dsmabsen/ui/activity/LoginActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.activity\r\n\r\nimport android.Manifest\r\nimport android.content.Intent\r\nimport android.os.Build\r\nimport android.os.Bundle\r\nimport android.telephony.TelephonyManager\r\nimport android.util.Log\r\nimport android.provider.Settings\r\nimport android.widget.Toast\r\nimport androidx.activity.result.contract.ActivityResultContracts\r\nimport androidx.activity.viewModels\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.core.view.isVisible\r\nimport com.example.dsmabsen.databinding.ActivityLoginBinding\r\nimport com.example.dsmabsen.helper.CacheManager\r\nimport com.example.dsmabsen.helper.Constans.TAG\r\nimport com.example.dsmabsen.helper.TokenManager\r\nimport com.example.dsmabsen.helper.handleApiError\r\nimport com.example.dsmabsen.model.DataX\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport com.example.dsmabsen.ui.viewModel.AuthViewModel\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\nimport javax.inject.Inject\r\n\r\n@AndroidEntryPoint\r\nclass LoginActivity : AppCompatActivity() {\r\n    private val viewModel: AuthViewModel by viewModels()\r\n    private lateinit var imei: String\r\n    private lateinit var telephonyManager: TelephonyManager\r\n\r\n    @Inject\r\n    lateinit var tokenManager: TokenManager\r\n\r\n    private lateinit var binding: ActivityLoginBinding\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityLoginBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n\r\n        if (tokenManager.getToken() != null) {\r\n            startActivity(Intent(this@LoginActivity, MainActivity::class.java))\r\n            finish()\r\n        }\r\n        telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager\r\n        val mId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)\r\n        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {\r\n            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()\r\n        } else {\r\n            val permission = Manifest.permission.READ_PHONE_STATE\r\n            singlePermissionLaunch.launch(permission)\r\n        }\r\n\r\n\r\n\r\n        with(binding) {\r\n            btnLogin.setOnClickListener {\r\n                val myUserName = nip.text.toString()\r\n                val myPassword = password.text.toString()\r\n                when {\r\n                    myUserName.isEmpty() -> {\r\n                        Toast.makeText(\r\n                            this@LoginActivity,\r\n                            myUserName,\r\n                            Toast.LENGTH_SHORT\r\n                        ).show()\r\n                    }\r\n                    myPassword.isEmpty() -> Toast.makeText(\r\n                        this@LoginActivity,\r\n                        \"Harap isi password\",\r\n                        Toast.LENGTH_SHORT\r\n                    ).show()\r\n                    else -> {\r\n                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {\r\n                            viewModel.login(myUserName, myPassword, mId)\r\n                            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()\r\n                        } else {\r\n                            viewModel.login(myUserName, myPassword, imei)\r\n                            Toast.makeText(this@LoginActivity, imei, Toast.LENGTH_SHORT).show()\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n\r\n            viewModel.userResponseLiveData.observe(this@LoginActivity) {\r\n                loading.isVisible = false\r\n                when (it) {\r\n                    is NetworkResult.Success -> {\r\n                        if (it.data!!.status) {\r\n                            Toast.makeText(this@LoginActivity, \"berhasil login\", Toast.LENGTH_SHORT)\r\n                                .show()\r\n                            tokenManager.saveToken(it.data.access_token)\r\n                            val data = it.data.data\r\n                            saveDataNip(data)\r\n                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))\r\n                            finish()\r\n                        } else {\r\n                            Toast.makeText(\r\n                                this@LoginActivity,\r\n                                \"sepertinya username atau password anda ada masalah \",\r\n                                Toast.LENGTH_SHORT\r\n                            ).show()\r\n                        }\r\n                    }\r\n                    is NetworkResult.Error -> {\r\n                        val error = it.message.toString()\r\n                        handleApiError(error)\r\n                        Log.d(TAG, (it.message.toString()))\r\n                    }\r\n\r\n                    is NetworkResult.Loading ->{\r\n                        binding.loading.isVisible = true\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun saveDataNip(data: DataX) {\r\n        Paper.book().write(\"user\", data)\r\n    }\r\n\r\n\r\n    private val singlePermissionLaunch =\r\n        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->\r\n            Log.d(TAG, \"permission is Granted: $isGranted\")\r\n            if (isGranted) {\r\n                Toast.makeText(this, \"Permission is granted\", Toast.LENGTH_SHORT).show()\r\n                imei = telephonyManager.imei\r\n                Toast.makeText(this, imei, Toast.LENGTH_SHORT).show()\r\n            } else {\r\n                Log.d(TAG, \"Permission Single : Permission Denied \")\r\n                Toast.makeText(this, \"Permission Denied \", Toast.LENGTH_SHORT).show()\r\n            }\r\n        }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/activity/LoginActivity.kt b/app/src/main/java/com/example/dsmabsen/ui/activity/LoginActivity.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/activity/LoginActivity.kt	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/java/com/example/dsmabsen/ui/activity/LoginActivity.kt	(date 1678584046420)
+@@ -47,7 +47,7 @@
+         telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
+         val mId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+-            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
++//            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
+         } else {
+             val permission = Manifest.permission.READ_PHONE_STATE
+             singlePermissionLaunch.launch(permission)
+@@ -75,10 +75,10 @@
+                     else -> {
+                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                             viewModel.login(myUserName, myPassword, mId)
+-                            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
++//                            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
+                         } else {
+                             viewModel.login(myUserName, myPassword, imei)
+-                            Toast.makeText(this@LoginActivity, imei, Toast.LENGTH_SHORT).show()
++//                            Toast.makeText(this@LoginActivity, imei, Toast.LENGTH_SHORT).show()
+                         }
+                     }
+                 }
+Index: app/src/main/res/layout/fragment_attendance.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"@drawable/gradiend_background\"\r\n    tools:context=\".ui.fragment.AttendanceFragment\">\r\n\r\n    <com.github.ybq.android.spinkit.SpinKitView\r\n        android:indeterminate=\"true\"\r\n        style=\"@style/SpinKitView.ThreeBounce\"\r\n        app:SpinKit_Color=\"@color/black\"\r\n        android:id=\"@+id/loading\"\r\n        android:background=\"@color/white\"\r\n        app:lottie_rawRes=\"@raw/bounce_loading\"\r\n        app:lottie_autoPlay=\"true\"\r\n        app:lottie_loop=\"true\"\r\n        android:visibility=\"gone\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"/>\r\n\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n        android:padding=\"@dimen/_20sdp\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\">\r\n\r\n\r\n        <LinearLayout\r\n            android:id=\"@+id/linear1\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n            <ImageView\r\n                android:id=\"@+id/imageView20\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:src=\"@drawable/ic_arrow_back\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/textView40\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:fontFamily=\"@font/poppins_semibold\"\r\n                android:text=\"Absen\"\r\n                android:textColor=\"@color/black_text\"\r\n                android:textSize=\"@dimen/_12ssp\"\r\n                app:layout_constraintStart_toEndOf=\"@+id/imageView20\"\r\n                app:layout_constraintTop_toTopOf=\"parent\" />\r\n        </LinearLayout>\r\n\r\n\r\n        <TextView\r\n            android:id=\"@+id/textView41\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginEnd=\"@dimen/_10sdp\"\r\n            android:fontFamily=\"@font/poppins_regular\"\r\n            android:text=\"Refresh Lokasi\"\r\n            android:textColor=\"@color/danger\"\r\n            android:textSize=\"@dimen/_10ssp\"\r\n            app:layout_constraintEnd_toStartOf=\"@+id/imageView21\"\r\n            app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n        <ImageView\r\n            android:id=\"@+id/imageView21\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:src=\"@drawable/refresh\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n        <com.google.android.material.card.MaterialCardView\r\n            android:id=\"@+id/materialCardView19\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"@dimen/_15sdp\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/linear1\"\r\n            tools:layout_editor_absoluteX=\"26dp\">\r\n\r\n            <androidx.constraintlayout.widget.ConstraintLayout\r\n\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:padding=\"@dimen/_15sdp\">\r\n\r\n                <ImageView\r\n                    android:id=\"@+id/imageView22\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:src=\"@drawable/ic_circle_location\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\"\r\n                    tools:layout_editor_absoluteX=\"19dp\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/lattitudeUser\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginTop=\"@dimen/_10sdp\"\r\n                    android:background=\"@drawable/bg_blue_text_rounded\"\r\n                    android:fontFamily=\"@font/poppins_medium\"\r\n                    android:paddingHorizontal=\"@dimen/_19sdp\"\r\n                    android:paddingVertical=\"@dimen/_3sdp\"\r\n                    android:text=\"Lat : -177.121231\"\r\n                    android:textAlignment=\"center\"\r\n                    android:textColor=\"@color/black\"\r\n                    android:textSize=\"@dimen/_9ssp\"\r\n                    app:layout_constraintEnd_toStartOf=\"@+id/longitudeUser\"\r\n                    app:layout_constraintHorizontal_bias=\"0.5\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toBottomOf=\"@+id/imageView22\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/longitudeUser\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginTop=\"@dimen/_10sdp\"\r\n                    android:background=\"@drawable/bg_pink_text_rounded\"\r\n                    android:fontFamily=\"@font/poppins_medium\"\r\n                    android:paddingHorizontal=\"@dimen/_19sdp\"\r\n                    android:paddingVertical=\"@dimen/_3sdp\"\r\n                    android:text=\"Lat : -177.121231\"\r\n                    android:textAlignment=\"center\"\r\n                    android:textColor=\"@color/black\"\r\n                    android:textSize=\"@dimen/_9ssp\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintHorizontal_bias=\"0.5\"\r\n                    app:layout_constraintStart_toEndOf=\"@+id/lattitudeUser\"\r\n                    app:layout_constraintTop_toBottomOf=\"@+id/imageView22\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/currentLocation\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginTop=\"@dimen/_10sdp\"\r\n                    android:fontFamily=\"@font/poppins_light\"\r\n                    android:text=\"Lokasi \"\r\n                    android:textAlignment=\"center\"\r\n                    android:textColor=\"@color/black\"\r\n                    android:textSize=\"@dimen/_10ssp\"\r\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                    app:layout_constraintTop_toBottomOf=\"@+id/lattitudeUser\"\r\n                    tools:layout_editor_absoluteX=\"144dp\" />\r\n            </androidx.constraintlayout.widget.ConstraintLayout>\r\n        </com.google.android.material.card.MaterialCardView>\r\n\r\n        <com.google.android.material.card.MaterialCardView\r\n            android:id=\"@+id/materialCardView20\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"@dimen/_15sdp\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/materialCardView19\"\r\n            tools:layout_editor_absoluteX=\"26dp\">\r\n\r\n            <androidx.constraintlayout.widget.ConstraintLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:padding=\"@dimen/_10sdp\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView46\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:fontFamily=\"@font/poppins_bold\"\r\n                    android:text=\"10:00:32\"\r\n                    android:textAlignment=\"center\"\r\n                    android:textColor=\"@color/black\"\r\n                    android:textSize=\"@dimen/_40ssp\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\"\r\n                    tools:layout_editor_absoluteX=\"13dp\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView45\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:background=\"@drawable/gradiend_background\"\r\n                    android:paddingHorizontal=\"@dimen/_12sdp\"\r\n                    android:text=\"02\"\r\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                    app:layout_constraintEnd_toStartOf=\"@+id/textView47\"\r\n                    app:layout_constraintHorizontal_bias=\"0.5\"\r\n                    app:layout_constraintHorizontal_chainStyle=\"packed\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toBottomOf=\"@+id/textView46\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView47\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginHorizontal=\"@dimen/_3sdp\"\r\n                    android:background=\"@drawable/gradiend_background\"\r\n                    android:paddingHorizontal=\"@dimen/_12sdp\"\r\n                    android:text=\"02\"\r\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                    app:layout_constraintEnd_toStartOf=\"@+id/textView48\"\r\n                    app:layout_constraintHorizontal_bias=\"0.5\"\r\n                    app:layout_constraintStart_toEndOf=\"@+id/textView45\"\r\n                    app:layout_constraintTop_toBottomOf=\"@+id/textView46\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView48\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:background=\"@drawable/gradiend_background\"\r\n                    android:paddingHorizontal=\"@dimen/_12sdp\"\r\n                    android:text=\"2023\"\r\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintHorizontal_bias=\"0.5\"\r\n                    app:layout_constraintStart_toEndOf=\"@+id/textView47\"\r\n                    app:layout_constraintTop_toBottomOf=\"@+id/textView46\" />\r\n\r\n\r\n            </androidx.constraintlayout.widget.ConstraintLayout>\r\n        </com.google.android.material.card.MaterialCardView>\r\n\r\n        <com.google.android.material.card.MaterialCardView\r\n            android:id=\"@+id/materialCardView21\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"@dimen/_15sdp\"\r\n            android:visibility=\"invisible\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/materialCardView20\"\r\n            tools:layout_editor_absoluteX=\"26dp\">\r\n\r\n            <androidx.constraintlayout.widget.ConstraintLayout\r\n                android:id=\"@+id/informationLayout\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:background=\"@color/_danger\"\r\n                android:paddingHorizontal=\"@dimen/_40sdp\"\r\n                android:paddingVertical=\"@dimen/_7sdp\"\r\n                android:visibility=\"invisible\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/notificationUser\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:fontFamily=\"@font/open_sans_regular\"\r\n                    android:text=\"Gagal Absen, lokasi anda tidak di temukan,\r\nSilahkan Hubungi Admin\"\r\n                    android:textAlignment=\"center\"\r\n                    android:textColor=\"@color/white\"\r\n                    android:textSize=\"@dimen/_10ssp\"\r\n                    android:visibility=\"invisible\"\r\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\"\r\n                    tools:layout_editor_absoluteX=\"52dp\" />\r\n            </androidx.constraintlayout.widget.ConstraintLayout>\r\n        </com.google.android.material.card.MaterialCardView>\r\n\r\n        <ImageView\r\n            android:id=\"@+id/imageView23\"\r\n            android:layout_width=\"0dp\"\r\n            android:layout_height=\"0dp\"\r\n            android:src=\"@drawable/button_failure\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/materialCardView21\"\r\n            tools:layout_editor_absoluteX=\"128dp\" />\r\n\r\n        <ImageView\r\n            android:id=\"@+id/photo\"\r\n            android:layout_width=\"50dp\"\r\n            android:layout_height=\"50dp\"\r\n            android:src=\"@drawable/button_failure\"\r\n            android:visibility=\"invisible\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintHorizontal_bias=\"0.0\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/materialCardView21\" />\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_attendance.xml b/app/src/main/res/layout/fragment_attendance.xml
+--- a/app/src/main/res/layout/fragment_attendance.xml	(revision f5c47f4331b5f5e0d957641c0dc864d3aeda559b)
++++ b/app/src/main/res/layout/fragment_attendance.xml	(date 1678592256190)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.constraintlayout.widget.ConstraintLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
