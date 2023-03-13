@@ -25,24 +25,16 @@ class UserProfileViewModel @Inject constructor(private val repository: UserProfi
 
     fun profileUserRequest(nip: String) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _profileUser.postValue(NetworkResult.Loading())
-                _profileUser.postValue(repository.getUserProfile(nip))
-            } else
-                _profileUser.postValue(NetworkResult.Error("No Internet Connection"))
+            _profileUser.postValue(NetworkResult.Loading())
+            _profileUser.postValue(repository.getUserProfile(nip))
         }
 
     }
 
     fun detailProfileRequest(nip: String) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _profileDetail.postValue(NetworkResult.Loading())
-                _profileDetail.postValue(repository.getDetailProfile(nip))
-            } else
-                _profileDetail.postValue(NetworkResult.Error("No Internet Connection"))
+            _profileDetail.postValue(NetworkResult.Loading())
+            _profileDetail.postValue(repository.getDetailProfile(nip))
         }
 
     }

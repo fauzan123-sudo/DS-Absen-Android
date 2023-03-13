@@ -37,7 +37,7 @@ class AttendanceViewModel @Inject constructor(private val repository: Attendance
 
     private val _attendanceToday = MutableLiveData<NetworkResult<Presensi>>()
     val attendanceTodayLiveData: LiveData<NetworkResult<Presensi>>
-    get() =  _attendanceToday
+        get() = _attendanceToday
 
     private val _getSallary = MutableLiveData<NetworkResult<DataSallary>>()
     val getSallaryLiveData: LiveData<NetworkResult<DataSallary>> = _getSallary
@@ -77,37 +77,24 @@ class AttendanceViewModel @Inject constructor(private val repository: Attendance
 
     fun attendanceTotalRequest(nip: String) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _totalAttendance.postValue(NetworkResult.Loading())
-                _totalAttendance.postValue(repository.attendanceTotal(nip))
-
-            } else
-                _totalAttendance.postValue(NetworkResult.Error("No Internet Connection"))
+            _totalAttendance.postValue(NetworkResult.Loading())
+            _totalAttendance.postValue(repository.attendanceTotal(nip))
         }
     }
 
     fun requestSallary(nip: String) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _getSallary.postValue(NetworkResult.Loading())
-                _getSallary.postValue(repository.getSallary(nip))
+            _getSallary.postValue(NetworkResult.Loading())
+            _getSallary.postValue(repository.getSallary(nip))
 
-            } else
-                _getSallary.postValue(NetworkResult.Error("No Internet Connection"))
+
         }
     }
 
     fun requestListLembur(nip: String) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _getListLembur.postValue(NetworkResult.Loading())
-                _getListLembur.postValue(repository.getListLembur(nip))
-
-            } else
-                _getListLembur.postValue(NetworkResult.Error("No Internet Connection"))
+            _getListLembur.postValue(NetworkResult.Loading())
+            _getListLembur.postValue(repository.getListLembur(nip))
         }
     }
 
@@ -120,28 +107,22 @@ class AttendanceViewModel @Inject constructor(private val repository: Attendance
         keterangan: String
     ) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _pengajuanLembur.postValue(NetworkResult.Loading())
-                _pengajuanLembur.postValue(
-                    repository.pengajuanLembur(
-                        nip,
-                        jam_mulai,
-                        jam_selesai,
-                        file,
-                        tanggal,
-                        keterangan
-                    )
+            _pengajuanLembur.postValue(NetworkResult.Loading())
+            _pengajuanLembur.postValue(
+                repository.pengajuanLembur(
+                    nip,
+                    jam_mulai,
+                    jam_selesai,
+                    file,
+                    tanggal,
+                    keterangan
                 )
-
-            } else
-                _pengajuanLembur.postValue(NetworkResult.Error("No Internet Connection"))
+            )
         }
     }
 
     fun attendanceHistoryRequest(nip: String) {
         viewModelScope.launch {
-
             if (!_isDataLoaded) {
                 _attendanceHistory.postValue(repository.attendanceHistory(nip))
                 _attendanceHistory.postValue(NetworkResult.Loading())

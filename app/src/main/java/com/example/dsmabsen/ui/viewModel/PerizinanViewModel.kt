@@ -32,25 +32,15 @@ class PerizinanViewModel @Inject constructor(private val repository: DataPerizin
 
     fun requestPerizinan(nip: String) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _perizinan.postValue(NetworkResult.Loading())
-                _perizinan.postValue(repository.dataPerizinan(nip))
-
-            } else
-                _perizinan.postValue(NetworkResult.Error("No Internet Connection"))
+            _perizinan.postValue(NetworkResult.Loading())
+            _perizinan.postValue(repository.dataPerizinan(nip))
         }
     }
 
     fun requestgetSpinner() {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _getSpinner.postValue(NetworkResult.Loading())
-                _getSpinner.postValue(repository.getSpinner())
-
-            } else
-                _getSpinner.postValue(NetworkResult.Error("No Internet Connection"))
+            _getSpinner.postValue(NetworkResult.Loading())
+            _getSpinner.postValue(repository.getSpinner())
         }
     }
 
@@ -63,22 +53,17 @@ class PerizinanViewModel @Inject constructor(private val repository: DataPerizin
         keterangan: String
     ) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _sendPermission.postValue(NetworkResult.Loading())
-                _sendPermission.postValue(
-                    repository.sendPermission(
-                        nip,
-                        kode_cuti,
-                        tanggal_mulai,
-                        tanggal_selesai,
-                        file,
-                        keterangan
-                    )
+            _sendPermission.postValue(NetworkResult.Loading())
+            _sendPermission.postValue(
+                repository.sendPermission(
+                    nip,
+                    kode_cuti,
+                    tanggal_mulai,
+                    tanggal_selesai,
+                    file,
+                    keterangan
                 )
-
-            } else
-                _sendPermission.postValue(NetworkResult.Error("No Internet Connection"))
+            )
         }
     }
 }

@@ -29,28 +29,20 @@ class AuthViewModel @Inject constructor(private val repository: AuthRepository) 
 
     fun login(email: String, password: String, imei: String) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _userResponseLiveData.postValue(NetworkResult.Loading())
-                _userResponseLiveData.postValue(repository.loginUser(email, password, imei))
-            } else
-                _userResponseLiveData.postValue(NetworkResult.Error("No Internet Connection"))
+            _userResponseLiveData.postValue(NetworkResult.Loading())
+            _userResponseLiveData.postValue(repository.loginUser(email, password, imei))
         }
 
     }
 
     fun requestLogout(nip: String) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _logOutLiveData.postValue(NetworkResult.Loading())
-                _logOutLiveData.postValue(repository.logOut(nip))
-            } else
-                _logOutLiveData.postValue(NetworkResult.Error("No Internet Connection"))
+            _logOutLiveData.postValue(NetworkResult.Loading())
+            _logOutLiveData.postValue(repository.logOut(nip))
         }
     }
 
-    suspend fun logout(nip:String?) = withContext(Dispatchers.IO) {
+    suspend fun logout(nip: String?) = withContext(Dispatchers.IO) {
         if (nip != null) {
             repository.logOuts(nip)
         }

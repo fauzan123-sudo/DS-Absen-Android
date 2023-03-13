@@ -30,25 +30,15 @@ class ShiftViewModel @Inject constructor(private val repository: ShiftRepository
     private var _isDataLoaded = false
     fun requestShift(nip: String) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _getShift.postValue(NetworkResult.Loading())
-                _getShift.postValue(repository.getListShift(nip))
-
-            } else
-                _getShift.postValue(NetworkResult.Error("No Internet Connection"))
+            _getShift.postValue(NetworkResult.Loading())
+            _getShift.postValue(repository.getListShift(nip))
         }
     }
 
     fun requestSpinnerShift() {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _spinnerShift.postValue(NetworkResult.Loading())
-                _spinnerShift.postValue(repository.spinnerShift())
-
-            } else
-                _spinnerShift.postValue(NetworkResult.Error("No Internet Connection"))
+            _spinnerShift.postValue(NetworkResult.Loading())
+            _spinnerShift.postValue(repository.spinnerShift())
         }
     }
 
@@ -59,20 +49,15 @@ class ShiftViewModel @Inject constructor(private val repository: ShiftRepository
         keterangan: String
     ) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _getPengajuanShift.postValue(NetworkResult.Loading())
-                _getPengajuanShift.postValue(
-                    repository.pengajuanShift(
-                        nip,
-                        kode_cuti,
-                        file,
-                        keterangan
-                    )
+            _getPengajuanShift.postValue(NetworkResult.Loading())
+            _getPengajuanShift.postValue(
+                repository.pengajuanShift(
+                    nip,
+                    kode_cuti,
+                    file,
+                    keterangan
                 )
-
-            } else
-                _getPengajuanShift.postValue(NetworkResult.Error("No Internet Connection"))
+            )
         }
     }
 }

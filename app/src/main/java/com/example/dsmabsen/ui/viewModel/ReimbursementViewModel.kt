@@ -22,7 +22,7 @@ class ReimbursementViewModel @Inject constructor(private val repository: Reimbur
 
     private val _getSpinnerReimbursement = MutableLiveData<NetworkResult<SpinnerReimbursement>>()
     val getSpinnerReimbursementLiveData: LiveData<NetworkResult<SpinnerReimbursement>>
-    get() = _getSpinnerReimbursement
+        get() = _getSpinnerReimbursement
 
     private val _getPengajuanReimbursement = MutableLiveData<NetworkResult<PengajuanReimbusement>>()
     val getPengajuanLiveData: LiveData<NetworkResult<PengajuanReimbusement>> =
@@ -31,17 +31,12 @@ class ReimbursementViewModel @Inject constructor(private val repository: Reimbur
     private var _isDataLoaded = false
     fun requestReimbursement(nip: String) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _getReimbursement.postValue(NetworkResult.Loading())
-                _getReimbursement.postValue(repository.getListReimbursement(nip))
-
-            } else
-                _getReimbursement.postValue(NetworkResult.Error("No Internet Connection"))
+            _getReimbursement.postValue(NetworkResult.Loading())
+            _getReimbursement.postValue(repository.getListReimbursement(nip))
         }
     }
 
-    fun requestSpinnerReimbursement(){
+    fun requestSpinnerReimbursement() {
         viewModelScope.launch {
             _getSpinnerReimbursement.postValue(NetworkResult.Loading())
             _getSpinnerReimbursement.postValue(repository.spinnerReimbursement())
@@ -56,21 +51,16 @@ class ReimbursementViewModel @Inject constructor(private val repository: Reimbur
         keterangan: String
     ) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _getPengajuanReimbursement.postValue(NetworkResult.Loading())
-                _getPengajuanReimbursement.postValue(
-                    repository.pengajuanReimbursement(
-                        nip,
-                        kode_reimbursement,
-                        nilai,
-                        file,
-                        keterangan
-                    )
+            _getPengajuanReimbursement.postValue(NetworkResult.Loading())
+            _getPengajuanReimbursement.postValue(
+                repository.pengajuanReimbursement(
+                    nip,
+                    kode_reimbursement,
+                    nilai,
+                    file,
+                    keterangan
                 )
-
-            } else
-                _getPengajuanReimbursement.postValue(NetworkResult.Error("No Internet Connection"))
+            )
         }
     }
 }

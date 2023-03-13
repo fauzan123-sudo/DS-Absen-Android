@@ -24,27 +24,18 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     val getAbsenLiveData: LiveData<NetworkResult<PresensiHariIni>>
         get() = _getAbsen
 
-    fun homeRequest(nip :String) {
+    fun homeRequest(nip: String) {
         viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
-                _homeLiveData.postValue(NetworkResult.Loading())
-                _homeLiveData.postValue(repository.homeUser(nip))
-            } else
-                _homeLiveData.postValue(NetworkResult.Error("No Internet Connection"))
+            _homeLiveData.postValue(NetworkResult.Loading())
+            _homeLiveData.postValue(repository.homeUser(nip))
         }
 
-    }
-
-    fun getAbsenRequest(nip :String) {
-        viewModelScope.launch {
-            val connected = CheckInternet().check()
-            if (connected) {
+        fun getAbsenRequest(nip: String) {
+            viewModelScope.launch {
                 _getAbsen.postValue(NetworkResult.Loading())
                 _getAbsen.postValue(repository.getAbsen(nip))
-            } else
-                _getAbsen.postValue(NetworkResult.Error("No Internet Connection"))
-        }
+            }
 
+        }
     }
 }
