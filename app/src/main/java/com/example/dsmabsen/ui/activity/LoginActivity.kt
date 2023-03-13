@@ -47,40 +47,30 @@ class LoginActivity : AppCompatActivity() {
         telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
         val mId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-//            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
         } else {
             val permission = Manifest.permission.READ_PHONE_STATE
             singlePermissionLaunch.launch(permission)
         }
 
-
-
         with(binding) {
             btnLogin.setOnClickListener {
-
                 val myUserName = nip.text.toString()
                 val myPassword = password.text.toString()
                 when {
                     myUserName.isEmpty() -> {
-                        Toast.makeText(
-                            this@LoginActivity,
-                            myUserName,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        nip.error = "harap isi nip"
+                        nip.requestFocus()
                     }
-                    myPassword.isEmpty() -> Toast.makeText(
-                        this@LoginActivity,
-                        "Harap isi password",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    myPassword.isEmpty() -> {
+                        password.error = "harap isi passwordnya!!"
+                        password.requestFocus()
+                    }
                     else -> {
                         constrain.isVisible = false
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             viewModel.login(myUserName, myPassword, mId)
-//                            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
                         } else {
                             viewModel.login(myUserName, myPassword, imei)
-//                            Toast.makeText(this@LoginActivity, imei, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -91,20 +81,16 @@ class LoginActivity : AppCompatActivity() {
                 when (it) {
                     is NetworkResult.Success -> {
                         if (it.data!!.status) {
-                            Toast.makeText(this@LoginActivity, "berhasil login", Toast.LENGTH_SHORT)
-                                .show()
                             tokenManager.saveToken(it.data.access_token)
+
                             val data = it.data.data
                             saveDataNip(data)
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                             finish()
                         } else {
+                            val message = it.data!!.message
                             constrain.isVisible = true
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "sepertinya username atau password anda ada masalah ",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
                         }
                     }
                     is NetworkResult.Error -> {
@@ -114,7 +100,7 @@ class LoginActivity : AppCompatActivity() {
                         Log.d(TAG, (it.message.toString()))
                     }
 
-                    is NetworkResult.Loading ->{
+                    is NetworkResult.Loading -> {
                         binding.loadingInclude.loading.isVisible = true
                     }
                 }

@@ -86,13 +86,23 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 }
             }
         }
+
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.textLogout -> {
+                    logout(nipUser)
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 
     private fun logout(nipUser: String) {
         AlertDialog.Builder(requireContext())
             .setTitle("LogOut")
             .setMessage("Anda Yakin ingin logout")
-            //    .setIcon(R.drawable.ic_warning)
             .setPositiveButton("Ya") { _, _ ->
                 val nips = RequestNip(
                     nipUser
@@ -132,21 +142,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 }
             }
             .setNegativeButton("Kembali") { _, _ ->
-    //                        Toast.makeText(requireContext(), "Kembali", Toast.LENGTH_SHORT).show()
             }
             .create().show()
 
-        toolbar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.textLogout -> {
-                    // Handle add menu item click
-                    logout(nipUser)
-                    true
-                }
 
-                else -> false
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -154,8 +153,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
 
-        menuSave?.isVisible = true // menyembunyikan menu tertentu
-        menuPlus?.isVisible = false // menyembunyikan menu tertentu
+        menuSave?.isVisible = true
+        menuPlus?.isVisible = false
 
         val item = menu.findItem(R.id.save)
         item.setActionView(R.layout.item_menu_toolbar)
@@ -165,6 +164,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         val textLogout = actionView?.findViewById<TextView>(R.id.textLogout)
         btnSimpan!!.isVisible = false
         textLogout!!.visibility = View.VISIBLE
-
+        textLogout.setOnClickListener {
+            logout(nipUser)
+        }
     }
 }

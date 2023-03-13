@@ -77,11 +77,6 @@ class PengajuanShiftFragment :
                                         val koCuti = clickedItem.kode_shift
                                         selectedShift = koCuti
                                         Log.d("idSpinner", idSpinner)
-//                                        Toast.makeText(
-//                                            requireContext(),
-//                                            idSpinner,
-//                                            Toast.LENGTH_SHORT
-//                                        ).show()
                                     }
 
                                     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -129,7 +124,6 @@ class PengajuanShiftFragment :
                         scrollView2.visibility = View.VISIBLE
                     }
                     val response = it.data!!
-                    val status = response.status
                     val message = response.data.messages
                     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                 }

@@ -69,37 +69,34 @@ class DataAbsenFragment :
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.setHasFixedSize(true)
-            Toast.makeText(requireContext(), "Mecoba Ambil data", Toast.LENGTH_SHORT).show()
 
             val savedUser = Paper.book().read<DataX>("user")
             viewModel.attendanceHistoryRequest2(savedUser!!.nip)
             viewModel.attendanceHistoryLiveData2.observe(viewLifecycleOwner) {
                 when (it) {
                     is NetworkResult.Success -> {
-                        binding.loading.isVisible = false
-
+                        loading.visibility = View.GONE
+                        scrollView.visibility = View.VISIBLE
                         val attendance = it.data!!.data
-                        Log.d("data_absen",attendance.toString())
-                        if(attendance.isEmpty()){
+                        Log.d("data_absen", attendance.toString())
+                        if (attendance.isEmpty()) {
                             binding.recAttendance.visibility = View.GONE
                             binding.imgNoData.visibility = View.VISIBLE
-                        }else{
-
+                        } else {
                             adapter.differ.submitList(attendance)
                             binding.recAttendance.visibility = View.VISIBLE
                             binding.imgNoData.visibility = View.GONE
                         }
-                        Toast.makeText(requireContext(), "Set Adabter Suskes", Toast.LENGTH_SHORT)
-
-
                     }
 
                     is NetworkResult.Loading -> {
-
-                        Toast.makeText(requireContext(), "Sedang proses", Toast.LENGTH_SHORT).show()
+                        loading.visibility = View.VISIBLE
+                        scrollView.visibility = View.GONE
                     }
 
                     is NetworkResult.Error -> {
+                        loading.visibility = View.GONE
+                        scrollView.visibility = View.VISIBLE
                         Toast.makeText(requireContext(), "Set Adabter Error", Toast.LENGTH_SHORT)
                         handleApiError(it.message)
                     }
@@ -111,20 +108,20 @@ class DataAbsenFragment :
 
                 when (it) {
                     is NetworkResult.Success -> {
-//                        binding.constrain.isVisible = true
-//                        binding.loading.isVisible = false
+                        loading.visibility = View.GONE
+                        scrollView.visibility = View.VISIBLE
                         val data = it.data!!.data
                         setPieChart(data)
                     }
 
                     is NetworkResult.Loading -> {
-//                        binding.constrain.isVisible = false
-//                        binding.loading.isVisible = true
-                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                        loading.visibility = View.VISIBLE
+                        scrollView.visibility = View.GONE
                     }
 
                     is NetworkResult.Error -> {
-//                        binding.loading.isVisible = false
+                        loading.visibility = View.GONE
+                        scrollView.visibility = View.VISIBLE
                         handleApiError(it.message)
                     }
                 }

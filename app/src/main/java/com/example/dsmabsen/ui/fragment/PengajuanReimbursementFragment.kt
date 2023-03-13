@@ -88,22 +88,10 @@ class PengajuanReimbursementFragment :
                                 override fun onItemSelected(
                                     parent: AdapterView<*>?, view: View?, position: Int, id: Long
                                 ) {
-                                    val clickedItem : DataXXXXXXXXXXXXXXXXXXXXXXXXXXX=
+                                    val clickedItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXXX =
                                         parent?.getItemAtPosition(position) as DataXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                     val kodeReimbursement = clickedItem.kode_reimbursement
                                     kodeReimbursement2 = kodeReimbursement
-
-//                                    kodeReimbursement2 =
-//                                        selectedJenisReimbursement!!.kode_reimbursement
-                                    Log.d(
-                                        "TAG",
-                                        "onItemSelected: ${selectedJenisReimbursement!!.kode_reimbursement} "
-                                    )
-//                                    Toast.makeText(
-//                                        context,
-//                                        selectedJenisReimbursement!!.kode_reimbursement,
-//                                        Toast.LENGTH_SHORT
-//                                    ).show()
                                 }
 
                                 override fun onNothingSelected(p0: AdapterView<*>?) {
