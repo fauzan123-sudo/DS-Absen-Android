@@ -29,6 +29,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             _homeLiveData.postValue(NetworkResult.Loading())
             _homeLiveData.postValue(repository.homeUser(nip))
         }
+    }
 
         fun getAbsenRequest(nip: String) {
             viewModelScope.launch {
@@ -38,4 +39,3 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
 
         }
     }
-}

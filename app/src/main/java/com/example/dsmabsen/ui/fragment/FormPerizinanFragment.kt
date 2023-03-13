@@ -1,12 +1,15 @@
 package com.example.dsmabsen.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import com.example.dsmabsen.R
@@ -209,7 +212,14 @@ class FormPerizinanFragment :
                         scrollView.visibility = View.VISIBLE
                     }
                     val response = it.data!!
-                    val status = response.status
+                    val messages = response.data.messages
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setMessage(messages)
+                        .setNegativeButton("Ya") { dialog, _ ->
+                            dialog.cancel()
+                        }
+                    val alert = builder.create()
+                    alert.show()
                 }
 
                 is NetworkResult.Loading -> {

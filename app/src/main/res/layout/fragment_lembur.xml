@@ -13,6 +13,13 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"/>
 
+    <include
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reclembur"

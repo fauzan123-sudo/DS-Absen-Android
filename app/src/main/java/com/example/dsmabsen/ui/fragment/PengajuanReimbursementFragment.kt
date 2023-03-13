@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -164,8 +165,15 @@ class PengajuanReimbursementFragment :
                         scrollView2.visibility = View.VISIBLE
                     }
                     val response = it.data!!
-                    val message = response.data.messages
-                    requireActivity().onBackPressed()
+                    val messages = response.data.messages
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setMessage(messages)
+
+                        .setNegativeButton("Ya") { dialog, _ ->
+                            dialog.cancel()
+                        }
+                    val alert = builder.create()
+                    alert.show()
                 }
 
                 is NetworkResult.Loading -> {

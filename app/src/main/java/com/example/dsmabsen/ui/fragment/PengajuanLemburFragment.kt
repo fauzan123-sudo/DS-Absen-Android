@@ -7,6 +7,7 @@ import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import com.example.dsmabsen.R
@@ -67,12 +68,19 @@ class PengajuanLemburFragment :
                 is NetworkResult.Success -> {
                     val response = it.data!!
                     val status = response.status
-                    val message = response.data.messages
+                    val messages = response.data.messages
                     binding.apply {
                         binding.loadingInclude.loading.visibility = View.GONE
                         scrollView2.visibility = View.VISIBLE
                     }
-                    requireActivity().onBackPressed()
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setMessage(messages)
+
+                        .setNegativeButton("Ya") { dialog, _ ->
+                            dialog.cancel()
+                        }
+                    val alert = builder.create()
+                    alert.show()
 
                 }
 

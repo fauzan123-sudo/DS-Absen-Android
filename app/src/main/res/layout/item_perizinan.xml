@@ -50,7 +50,7 @@
             <TextView
                 android:id="@+id/keteranganUser"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="Acara Ketemu Keluarga Jauh"
                 android:fontFamily="@font/poppins"
                 android:layout_above="@+id/label_durasi"
@@ -58,7 +58,6 @@
                 android:textColor="@color/black_text"
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
                 android:layout_below="@+id/vi_1"/>
 
             <TextView

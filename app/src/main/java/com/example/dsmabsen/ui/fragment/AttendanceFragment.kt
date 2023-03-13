@@ -191,12 +191,9 @@ class AttendanceFragment :
                 with(binding) {
                     lattitudeUser.text = it.latitude.toString()
                     longitudeUser.text = it.longitude.toString()
+
                 }
-                if (Build.VERSION.SDK_INT >= 29) {
-                    getAddressAboveSDK29()
-                } else {
-                    getAddressBelowSDK29()
-                }
+                getAddressAboveSDK29()
             }
         }
     }
@@ -400,6 +397,7 @@ class AttendanceFragment :
                 ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         )
+
         fusedLocationProviderClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh
@@ -411,6 +409,8 @@ class AttendanceFragment :
                 ).also { addresses ->
                     // Mengambil alamat dari objek Address dan menampilkannya pada TextView
                     val address: String? = addresses!![0].getAddressLine(0)
+//                    Toast.makeText(requireContext(), "alamat golekai $address", Toast.LENGTH_SHORT).show()
+
                     val city: String? = addresses[0].locality
                     val state: String? = addresses[0].adminArea
                     val country: String? = addresses[0].countryName

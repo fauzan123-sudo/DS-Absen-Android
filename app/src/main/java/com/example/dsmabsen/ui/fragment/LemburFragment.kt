@@ -63,6 +63,10 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
                     is NetworkResult.Success -> {
                         val response = it.data!!
                         val status = response.status
+                        binding.apply {
+                            binding.loadingInclude.loading.visibility = View.GONE
+                            reclembur.visibility = View.VISIBLE
+                        }
                         if (status) {
                             adapter.differ.submitList(response.data.data)
                         } else {
@@ -71,10 +75,17 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
                     }
 
                     is NetworkResult.Loading -> {
-                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                        binding.apply {
+                            binding.loadingInclude.loading.visibility = View.VISIBLE
+                            reclembur.visibility = View.GONE
+                        }
                     }
 
                     is NetworkResult.Error -> {
+                        binding.apply {
+                            binding.loadingInclude.loading.visibility = View.GONE
+                            reclembur.visibility = View.VISIBLE
+                        }
                         handleApiError(it.message)
                     }
                 }

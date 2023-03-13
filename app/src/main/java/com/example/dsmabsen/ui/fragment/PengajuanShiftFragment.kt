@@ -124,7 +124,15 @@ class PengajuanShiftFragment :
                         scrollView2.visibility = View.VISIBLE
                     }
                     val response = it.data!!
-                    val message = response.data.messages
+                    val messages = response.data.messages
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setMessage(messages)
+
+                        .setNegativeButton("Ya") { dialog, _ ->
+                            dialog.cancel()
+                        }
+                    val alert = builder.create()
+                    alert.show()
                 }
                 is NetworkResult.Loading -> {
                     binding.apply {

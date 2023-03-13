@@ -50,8 +50,13 @@ class AttendanceViewModel @Inject constructor(private val repository: Attendance
 
     fun attendanceHistoryRequest2(nip: String) {
         viewModelScope.launch {
-            _attendanceHistoryLiveData.value = NetworkResult.Loading()
-            _attendanceHistoryLiveData.value = repository.getAttendanceHistory(nip)
+            val connected = CheckInternet().check()
+            if (connected) {
+                _attendanceHistoryLiveData.value = NetworkResult.Loading()
+                _attendanceHistoryLiveData.value = repository.getAttendanceHistory(nip)
+            } else {
+                _attendanceHistoryLiveData.value = NetworkResult.Error("Tidak ada koneksi internet")
+            }
         }
     }
 
