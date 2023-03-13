@@ -7,14 +7,17 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dsmabsen.R
 import com.example.dsmabsen.adapter.AttendanceAdapter
+import com.example.dsmabsen.adapter.RecyclerViewHandler
 import com.example.dsmabsen.adapter.SallaryAdapter
 import com.example.dsmabsen.databinding.FragmentSallaryBinding
 import com.example.dsmabsen.helper.handleApiError
 import com.example.dsmabsen.model.DataX
+import com.example.dsmabsen.model.DataXXXXXXXXXXXXXXX
 import com.example.dsmabsen.repository.NetworkResult
 import com.example.dsmabsen.ui.viewModel.AttendanceViewModel
 import com.example.dsmabsen.ui.viewModel.HomeViewModel
@@ -22,7 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 
 @AndroidEntryPoint
-class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBinding::inflate) {
+class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBinding::inflate){
 
 
     private val viewModel: AttendanceViewModel by viewModels()
@@ -36,6 +39,15 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
 
         with(binding) {
             adapter = SallaryAdapter(requireContext())
+
+            adapter.listener = object : RecyclerViewHandler{
+                override fun onItemSelected(data: DataXXXXXXXXXXXXXXX) {
+                    val action = SallaryFragmentDirections.actionSallaryFragmentToDetailGajiFragment(data)
+                    findNavController().navigate(action)
+//                    Toast.makeText(requireContext(), "$data", Toast.LENGTH_SHORT).show()
+                }
+
+            }
             recyclerView = recSallary
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -91,5 +103,6 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
         }
 
     }
+
 
 }

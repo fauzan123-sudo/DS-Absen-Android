@@ -30,6 +30,7 @@ class FormPerizinanFragment :
 
     private val viewModel: PerizinanViewModel by viewModels()
     val savedUser = Paper.book().read<DataX>("user")
+    private var kode_perizinan: String? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
@@ -92,13 +93,9 @@ class FormPerizinanFragment :
                                     ) {
                                         val clickedItem: DataXXXXXXXXXXXXX =
                                             parent?.getItemAtPosition(position) as DataXXXXXXXXXXXXX
-                                        val idSpinner = clickedItem.label
+                                        val idSpinner = clickedItem.kode_cuti
+                                        kode_perizinan = idSpinner
                                         Log.d("idSpinner", idSpinner)
-                                        Toast.makeText(
-                                            requireContext(),
-                                            idSpinner,
-                                            Toast.LENGTH_SHORT
-                                        ).show()
                                     }
 
                                     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -107,11 +104,6 @@ class FormPerizinanFragment :
 
                                 }
                         } else {
-                            Toast.makeText(
-                                requireContext(),
-                                "Kendala di spinner",
-                                Toast.LENGTH_SHORT
-                            ).show()
                         }
                     }
 
@@ -161,20 +153,16 @@ class FormPerizinanFragment :
             val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
             val date = dateFormatter.format(Date(it))
             binding.etTanggalSelesai.text = date
-            Toast.makeText(requireContext(), "$date is selected", Toast.LENGTH_LONG).show()
+//            Toast.makeText(requireContext(), "$date is selected", Toast.LENGTH_LONG).show()
 
         }
 
         datePicker.addOnNegativeButtonClickListener {
-            Toast.makeText(
-                requireContext(),
-                "${datePicker.headerText} is cancelled",
-                Toast.LENGTH_LONG
-            ).show()
+            Log.d("TAG", "getCalendarEnd: negetive button")
         }
 
         datePicker.addOnCancelListener {
-            Toast.makeText(requireContext(), "Date Picker Cancelled", Toast.LENGTH_LONG).show()
+            Log.d("TAG", "getCalendarEnd: calnceled")
         }
     }
 
@@ -189,27 +177,23 @@ class FormPerizinanFragment :
             val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
             val date = dateFormatter.format(Date(it))
             binding.etTanggalMulai.text = date
-            Toast.makeText(requireContext(), "$date is selected", Toast.LENGTH_LONG).show()
 
         }
 
         datePicker.addOnNegativeButtonClickListener {
-            Toast.makeText(
-                requireContext(),
-                "${datePicker.headerText} is cancelled",
-                Toast.LENGTH_LONG
-            ).show()
+            Log.d("TAG", "getCalendarStart:Negative button")
         }
 
         datePicker.addOnCancelListener {
-            Toast.makeText(requireContext(), "Date Picker Cancelled", Toast.LENGTH_LONG).show()
+            Log.d("TAG", "getCalendarStart:Cancel button")
         }
 
     }
+
     private fun savePerizinan(savedUser: DataX?) {
         viewModel.requestSendPermission(
             savedUser!!.nip,
-            "1",
+            kode_perizinan!!,
             binding.etTanggalMulai.toString(),
             binding.etTanggalSelesai.toString(),
             "",
@@ -222,19 +206,8 @@ class FormPerizinanFragment :
                     val response = it.data!!
                     val status = response.status
 
-                    if (status) {
-                        Toast.makeText(
-                            requireContext(),
-                            "berhasil menambhakan data",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "berhasil menambhakan data",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    Toast.makeText(requireContext(), response.data.messages, Toast.LENGTH_SHORT)
+                        .show()
                 }
 
                 is NetworkResult.Loading -> {

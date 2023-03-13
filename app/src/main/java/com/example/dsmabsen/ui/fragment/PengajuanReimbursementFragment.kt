@@ -35,11 +35,13 @@ class PengajuanReimbursementFragment :
     private lateinit var adapter: DataSpinnerAdapter
 
     private var selectedJenisReimbursement: DataXXXXXXXXXXXXXXXXXXXXXXXXXXX? = null
-    var kodeReimbursement2:String = ""
+    var kodeReimbursement2: String = ""
     val viewModel: ReimbursementViewModel by viewModels()
     val savedUser = Paper.book().read<DataX>("user")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         setHasOptionsMenu(true)
         setupToolbar("Ajukan Reimbursement")
         view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
@@ -77,8 +79,13 @@ class PengajuanReimbursementFragment :
                                     selectedJenisReimbursement =
                                         parent?.getItemAtPosition(position) as DataXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-                                    kodeReimbursement2 = selectedJenisReimbursement!!.kode_reimbursement
-                                    Toast.makeText(requireContext(), kodeReimbursement2, Toast.LENGTH_SHORT).show()
+                                    kodeReimbursement2 =
+                                        selectedJenisReimbursement!!.kode_reimbursement
+                                    Toast.makeText(
+                                        requireContext(),
+                                        kodeReimbursement2,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                     sendData(kodeReimbursement2)
                                     Log.d(
                                         "TAG",
@@ -147,8 +154,17 @@ class PengajuanReimbursementFragment :
         val actionView = item.actionView
         val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
         btnSimpan?.setOnClickListener {
-            // your code here
-            saveReimbursement(savedUser)
+            if (binding.edtNominal.text.toString()
+                    .isEmpty() && binding.edtKeterangan.text.toString().isEmpty()
+            ) {
+                saveReimbursement(savedUser)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Harap isi nominal dan keterangan dshulu!! ",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
 
         }
 

@@ -1,0 +1,1171 @@
+Index: app/src/main/res/layout/fragment_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:padding=\"@dimen/_20sdp\"\r\n    tools:context=\".ui.fragment.ProfileFragment\">\r\n\r\n    <include\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:id=\"@+id/toolbar\"\r\n        layout=\"@layout/toolbar_layout\" />\r\n\r\n<!--    <include-->\r\n<!--        android:id=\"@+id/loadingInclude\"-->\r\n<!--        layout=\"@layout/loading\" />-->\r\n\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n        android:id=\"@+id/constraintLayout3\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\">\r\n\r\n        <include\r\n            android:id=\"@+id/include_profile\"\r\n            layout=\"@layout/layout_appbar_left\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\" />\r\n\r\n        <LinearLayout\r\n            android:id=\"@+id/ll_logout\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:gravity=\"center_vertical\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginEnd=\"@dimen/_2sdp\"\r\n                android:fontFamily=\"@font/poppins_bold\"\r\n                android:text=\"Logout\"\r\n                android:textColor=\"@color/danger\"\r\n                app:layout_constraintEnd_toStartOf=\"@+id/iv_logout\" />\r\n\r\n            <ImageView\r\n                android:id=\"@+id/iv_logout\"\r\n                android:layout_width=\"@dimen/_14sdp\"\r\n                android:layout_height=\"@dimen/_14sdp\"\r\n                android:src=\"@drawable/ic_logout\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:id=\"@+id/ll_profile\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"@dimen/_204sdp\"\r\n            android:layout_marginTop=\"-64dp\"\r\n            android:background=\"@drawable/background_retangle_profile\"\r\n            android:gravity=\"center_horizontal\"\r\n            android:orientation=\"vertical\"\r\n            android:padding=\"@dimen/_20sdp\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/civ_profile\"\r\n            tools:layout_editor_absoluteX=\"102dp\">\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"@dimen/_54sdp\"\r\n                android:gravity=\"center_horizontal\"\r\n                android:orientation=\"horizontal\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/tv_nama_profile\"\r\n                    android:textAlignment=\"center\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:fontFamily=\"@font/poppins_bold\"\r\n                    android:text=\"Rizki Andryant\"\r\n                    android:textColor=\"@color/black_text\"\r\n                    android:textSize=\"@dimen/_15ssp\" />\r\n\r\n            </LinearLayout>\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:gravity=\"center\"\r\n                android:orientation=\"horizontal\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/tv_kontrak\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:fontFamily=\"@font/poppins\"\r\n                    android:text=\"Kontrak\"\r\n                    android:textSize=\"@dimen/_12ssp\" />\r\n\r\n                <ImageView\r\n                    android:layout_width=\"@dimen/_5sdp\"\r\n                    android:layout_height=\"@dimen/_5sdp\"\r\n                    android:layout_marginStart=\"@dimen/_5sdp\"\r\n                    android:layout_marginEnd=\"@dimen/_5sdp\"\r\n                    android:background=\"@drawable/dot\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/tv_surveyor\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:fontFamily=\"@font/poppins\"\r\n                    android:text=\"Surveyor\"\r\n                    android:textSize=\"@dimen/_12ssp\" />\r\n\r\n                <ImageView\r\n                    android:layout_width=\"@dimen/_5sdp\"\r\n                    android:layout_height=\"@dimen/_5sdp\"\r\n                    android:layout_marginStart=\"@dimen/_5sdp\"\r\n                    android:layout_marginEnd=\"@dimen/_5sdp\"\r\n                    android:background=\"@drawable/dot\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/tv_divisi\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:fontFamily=\"@font/poppins\"\r\n                    android:text=\"Operasinal\"\r\n                    android:textSize=\"@dimen/_12ssp\" />\r\n\r\n            </LinearLayout>\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"@dimen/_43sdp\"\r\n                android:background=\"@drawable/kpi_profile\"\r\n                android:gravity=\"center\"\r\n                android:orientation=\"horizontal\">\r\n\r\n            </LinearLayout>\r\n\r\n        </LinearLayout>\r\n\r\n        <de.hdodenhof.circleimageview.CircleImageView\r\n            android:id=\"@+id/civ_profile\"\r\n            android:layout_width=\"@dimen/_106sdp\"\r\n            android:layout_height=\"@dimen/_103sdp\"\r\n            android:elevation=\"@dimen/_5sdp\"\r\n            android:src=\"@drawable/man\"\r\n            app:civ_border_color=\"@color/white\"\r\n            app:civ_border_width=\"@dimen/_2sdp\"\r\n            app:civ_circle_background_color=\"@color/grey\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/include_profile\" />\r\n\r\n        <RelativeLayout\r\n            android:id=\"@+id/rv_profile_lengkap\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"@dimen/_50sdp\"\r\n            android:layout_marginTop=\"@dimen/_20sdp\"\r\n            android:background=\"@drawable/retangle_stroke\"\r\n            android:padding=\"@dimen/_10sdp\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/ll_profile\">\r\n\r\n            <ImageView\r\n                android:id=\"@+id/iv_profile_lengkap\"\r\n                android:layout_width=\"@dimen/_29sdp\"\r\n                android:layout_height=\"@dimen/_29sdp\"\r\n                android:src=\"@drawable/icon_profile_lengkap\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/tv_profile_lengkap\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_centerVertical=\"true\"\r\n                android:layout_marginStart=\"@dimen/_15sdp\"\r\n                android:layout_toEndOf=\"@id/iv_profile_lengkap\"\r\n                android:text=\"Profile Lengkap\" />\r\n\r\n            <ImageView\r\n                android:id=\"@+id/arrow1\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_alignParentEnd=\"true\"\r\n                android:layout_centerVertical=\"true\"\r\n                android:src=\"@drawable/vector\" />\r\n\r\n        </RelativeLayout>\r\n\r\n        <RelativeLayout\r\n            android:visibility=\"gone\"\r\n            android:id=\"@+id/rv_reibursement\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"@dimen/_50sdp\"\r\n            android:layout_marginTop=\"@dimen/_20sdp\"\r\n            android:background=\"@drawable/retangle_stroke\"\r\n            android:padding=\"@dimen/_10sdp\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/rv_profile_lengkap\">\r\n\r\n            <ImageView\r\n                android:id=\"@+id/iv_reibursement\"\r\n                android:layout_width=\"@dimen/_29sdp\"\r\n                android:layout_height=\"@dimen/_29sdp\"\r\n                android:src=\"@drawable/icon_reimbursement\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/tv_reibursement\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_centerVertical=\"true\"\r\n                android:layout_marginStart=\"@dimen/_15sdp\"\r\n                android:layout_toEndOf=\"@id/iv_reibursement\"\r\n                android:text=\"Reibursement\" />\r\n\r\n            <ImageView\r\n                android:id=\"@+id/arrow2\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_alignParentEnd=\"true\"\r\n                android:layout_centerVertical=\"true\"\r\n                android:src=\"@drawable/vector\" />\r\n\r\n        </RelativeLayout>\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_profile.xml b/app/src/main/res/layout/fragment_profile.xml
+--- a/app/src/main/res/layout/fragment_profile.xml	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/res/layout/fragment_profile.xml	(date 1678663895783)
+@@ -13,9 +13,9 @@
+         android:id="@+id/toolbar"
+         layout="@layout/toolbar_layout" />
+ 
+-<!--    <include-->
+-<!--        android:id="@+id/loadingInclude"-->
+-<!--        layout="@layout/loading" />-->
++    <include
++        android:id="@+id/loadingInclude"
++        layout="@layout/loading" />
+ 
+     <androidx.constraintlayout.widget.ConstraintLayout
+         android:id="@+id/constraintLayout3"
+Index: app/src/main/res/layout/fragment_attendance.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"@drawable/gradiend_background\"\r\n    tools:context=\".ui.fragment.AttendanceFragment\">\r\n\r\n    <include\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:id=\"@+id/toolbar\"\r\n        layout=\"@layout/toolbar_layout\" />\r\n\r\n    <include\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        android:id=\"@+id/loadingInclude\"\r\n        layout=\"@layout/loading\" />\r\n\r\n    <ScrollView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_marginBottom=\"@dimen/_45sdp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/toolbar\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n        <androidx.constraintlayout.widget.ConstraintLayout\r\n            android:padding=\"@dimen/_20sdp\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\">\r\n\r\n            <androidx.constraintlayout.widget.ConstraintLayout\r\n                android:id=\"@+id/userInfo\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:paddingBottom=\"@dimen/_15sdp\"\r\n                app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/namaUser\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:text=\"Fauzan Almaterzz\"\r\n                    android:textColor=\"@color/black\"\r\n                    android:textSize=\"@dimen/_10ssp\"\r\n                    android:textStyle=\"bold\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/jabatan\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:fontFamily=\"@font/poppins\"\r\n                    android:text=\"UI Designer\"\r\n                    android:textSize=\"@dimen/_10ssp\"\r\n                    app:layout_constraintStart_toStartOf=\"@+id/namaUser\"\r\n                    app:layout_constraintTop_toBottomOf=\"@+id/namaUser\" />\r\n\r\n                <de.hdodenhof.circleimageview.CircleImageView\r\n                    android:id=\"@+id/imageUser\"\r\n                    android:layout_width=\"@dimen/_38sdp\"\r\n                    android:layout_height=\"@dimen/_36sdp\"\r\n                    app:civ_border_color=\"@color/white\"\r\n                    app:civ_border_width=\"4dp\"\r\n                    app:layout_constraintBottom_toBottomOf=\"@+id/jabatan\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"@+id/namaUser\"\r\n                    tools:src=\"@drawable/man\" />\r\n\r\n            </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n            <com.google.android.material.card.MaterialCardView\r\n                android:id=\"@+id/materialCardView19\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:padding=\"@dimen/_20sdp\"\r\n                android:visibility=\"visible\"\r\n                app:layout_constraintTop_toBottomOf=\"@+id/userInfo\"\r\n                tools:layout_editor_absoluteX=\"0dp\">\r\n\r\n                <androidx.constraintlayout.widget.ConstraintLayout\r\n\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:padding=\"@dimen/_15sdp\">\r\n\r\n                    <ImageView\r\n                        android:id=\"@+id/imageView22\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:src=\"@drawable/ic_circle_location\"\r\n                        app:layout_constraintTop_toTopOf=\"parent\"\r\n                        tools:layout_editor_absoluteX=\"19dp\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/lattitudeUser\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_marginTop=\"@dimen/_10sdp\"\r\n                        android:background=\"@drawable/bg_blue_text_rounded\"\r\n                        android:fontFamily=\"@font/poppins_medium\"\r\n                        android:paddingHorizontal=\"@dimen/_19sdp\"\r\n                        android:paddingVertical=\"@dimen/_3sdp\"\r\n                        android:text=\"Lat : -177.121231\"\r\n                        android:textAlignment=\"center\"\r\n                        android:textColor=\"@color/black\"\r\n                        android:textSize=\"@dimen/_9ssp\"\r\n                        app:layout_constraintEnd_toStartOf=\"@+id/longitudeUser\"\r\n                        app:layout_constraintHorizontal_bias=\"0.5\"\r\n                        app:layout_constraintStart_toStartOf=\"parent\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/imageView22\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/longitudeUser\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_marginTop=\"@dimen/_10sdp\"\r\n                        android:background=\"@drawable/bg_pink_text_rounded\"\r\n                        android:fontFamily=\"@font/poppins_medium\"\r\n                        android:paddingHorizontal=\"@dimen/_19sdp\"\r\n                        android:paddingVertical=\"@dimen/_3sdp\"\r\n                        android:text=\"Lat : -177.121231\"\r\n                        android:textAlignment=\"center\"\r\n                        android:textColor=\"@color/black\"\r\n                        android:textSize=\"@dimen/_9ssp\"\r\n                        app:layout_constraintEnd_toEndOf=\"parent\"\r\n                        app:layout_constraintHorizontal_bias=\"0.5\"\r\n                        app:layout_constraintStart_toEndOf=\"@+id/lattitudeUser\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/imageView22\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/currentLocation\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_marginTop=\"@dimen/_10sdp\"\r\n                        android:fontFamily=\"@font/poppins_light\"\r\n                        android:text=\"Lokasi \"\r\n                        android:textAlignment=\"center\"\r\n                        android:textColor=\"@color/black\"\r\n                        android:textSize=\"@dimen/_10ssp\"\r\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/lattitudeUser\"\r\n                        tools:layout_editor_absoluteX=\"144dp\" />\r\n                </androidx.constraintlayout.widget.ConstraintLayout>\r\n            </com.google.android.material.card.MaterialCardView>\r\n\r\n            <com.google.android.material.card.MaterialCardView\r\n                android:id=\"@+id/materialCardView20\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"@dimen/_15sdp\"\r\n                app:layout_constraintTop_toBottomOf=\"@+id/materialCardView19\"\r\n                tools:layout_editor_absoluteX=\"26dp\">\r\n\r\n                <androidx.constraintlayout.widget.ConstraintLayout\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:padding=\"@dimen/_10sdp\">\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/tv_time\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:fontFamily=\"@font/poppins_bold\"\r\n                        android:text=\"-:-:-\"\r\n                        android:textAlignment=\"center\"\r\n                        android:textColor=\"@color/black\"\r\n                        android:textSize=\"@dimen/_40ssp\"\r\n                        app:layout_constraintTop_toTopOf=\"parent\"\r\n                        tools:layout_editor_absoluteX=\"13dp\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/tv_hari\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:background=\"@drawable/gradiend_background\"\r\n                        android:paddingHorizontal=\"@dimen/_12sdp\"\r\n                        android:text=\"-\"\r\n                        android:fontFamily=\"@font/poppins_bold\"\r\n                        android:textColor=\"@color/_dark\"\r\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                        app:layout_constraintEnd_toStartOf=\"@+id/tv_bulan\"\r\n                        app:layout_constraintHorizontal_bias=\"0.5\"\r\n                        app:layout_constraintHorizontal_chainStyle=\"packed\"\r\n                        app:layout_constraintStart_toStartOf=\"parent\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/tv_time\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/tv_bulan\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_marginHorizontal=\"@dimen/_3sdp\"\r\n                        android:background=\"@drawable/gradiend_background\"\r\n                        android:paddingHorizontal=\"@dimen/_12sdp\"\r\n                        android:text=\"-\"\r\n                        android:fontFamily=\"@font/poppins_bold\"\r\n                        android:textColor=\"@color/_dark\"\r\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                        app:layout_constraintEnd_toStartOf=\"@+id/tv_tahun\"\r\n                        app:layout_constraintHorizontal_bias=\"0.5\"\r\n                        app:layout_constraintStart_toEndOf=\"@+id/tv_hari\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/tv_time\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/tv_tahun\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:background=\"@drawable/gradiend_background\"\r\n                        android:paddingHorizontal=\"@dimen/_12sdp\"\r\n                        android:text=\"-\"\r\n                        android:fontFamily=\"@font/poppins_bold\"\r\n                        android:textColor=\"@color/_dark\"\r\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                        app:layout_constraintEnd_toEndOf=\"parent\"\r\n                        app:layout_constraintHorizontal_bias=\"0.5\"\r\n                        app:layout_constraintStart_toEndOf=\"@+id/tv_bulan\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/tv_time\" />\r\n\r\n\r\n                </androidx.constraintlayout.widget.ConstraintLayout>\r\n            </com.google.android.material.card.MaterialCardView>\r\n\r\n            <com.google.android.material.card.MaterialCardView\r\n                android:id=\"@+id/materialCardView21\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"@dimen/_15sdp\"\r\n                android:visibility=\"invisible\"\r\n                app:layout_constraintTop_toBottomOf=\"@+id/materialCardView20\"\r\n                tools:layout_editor_absoluteX=\"26dp\">\r\n\r\n                <androidx.constraintlayout.widget.ConstraintLayout\r\n                    android:id=\"@+id/informationLayout\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:background=\"@color/_danger\"\r\n                    android:paddingHorizontal=\"@dimen/_40sdp\"\r\n                    android:paddingVertical=\"@dimen/_7sdp\"\r\n                    android:visibility=\"invisible\">\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/notificationUser\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:fontFamily=\"@font/poppins_light\"\r\n                        android:text=\"Gagal Absen, lokasi anda tidak di temukan,\r\nSilahkan Hubungi Admin\"\r\n                        android:textAlignment=\"center\"\r\n                        android:textColor=\"@color/white\"\r\n                        android:textSize=\"@dimen/_10ssp\"\r\n                        android:visibility=\"gone\"\r\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                        app:layout_constraintTop_toTopOf=\"parent\"\r\n                        tools:layout_editor_absoluteX=\"52dp\" />\r\n                </androidx.constraintlayout.widget.ConstraintLayout>\r\n            </com.google.android.material.card.MaterialCardView>\r\n\r\n            <androidx.constraintlayout.widget.ConstraintLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                app:layout_constraintTop_toBottomOf=\"@id/materialCardView21\"\r\n                tools:layout_editor_absoluteX=\"26dp\">\r\n\r\n                <com.google.android.material.card.MaterialCardView\r\n                    android:id=\"@+id/btn_refresh\"\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    app:layout_constraintEnd_toStartOf=\"@+id/btn_absen\"\r\n                    app:layout_constraintHorizontal_bias=\"0.5\"\r\n                    android:layout_marginEnd=\"@dimen/_5sdp\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n                    <ImageView\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:background=\"@color/_info\"\r\n                        android:paddingVertical=\"@dimen/_10sdp\"\r\n                        android:src=\"@drawable/refresh_locate\" />\r\n\r\n                </com.google.android.material.card.MaterialCardView>\r\n\r\n                <com.google.android.material.card.MaterialCardView\r\n                    android:id=\"@+id/btn_absen\"\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginStart=\"@dimen/_5sdp\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintHorizontal_bias=\"0.5\"\r\n                    app:layout_constraintStart_toEndOf=\"@+id/btn_refresh\"\r\n                    android:orientation=\"vertical\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n                    <ImageView\r\n                        android:id=\"@+id/img_finger\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:background=\"@color/_danger\"\r\n                        android:paddingVertical=\"@dimen/_10sdp\"\r\n                        android:src=\"@drawable/finger_absen\" />\r\n\r\n                </com.google.android.material.card.MaterialCardView>\r\n            </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n\r\n\r\n        </androidx.constraintlayout.widget.ConstraintLayout>\r\n    </ScrollView>\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_attendance.xml b/app/src/main/res/layout/fragment_attendance.xml
+--- a/app/src/main/res/layout/fragment_attendance.xml	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/res/layout/fragment_attendance.xml	(date 1678666091484)
+@@ -233,7 +233,7 @@
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/_15sdp"
+-                android:visibility="invisible"
++                android:visibility="gone"
+                 app:layout_constraintTop_toBottomOf="@+id/materialCardView20"
+                 tools:layout_editor_absoluteX="26dp">
+ 
+@@ -264,6 +264,7 @@
+             </com.google.android.material.card.MaterialCardView>
+ 
+             <androidx.constraintlayout.widget.ConstraintLayout
++                android:layout_marginTop="@dimen/_10sdp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 app:layout_constraintTop_toBottomOf="@id/materialCardView21"
+Index: app/src/main/java/com/example/dsmabsen/ui/fragment/AttendanceFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.Manifest.permission.*\r\nimport android.app.Activity\r\nimport android.util.Base64\r\nimport android.Manifest\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport android.content.pm.PackageManager\r\nimport android.graphics.Bitmap\r\nimport android.location.Geocoder\r\nimport android.location.Location\r\nimport android.location.LocationListener\r\nimport android.location.LocationManager\r\nimport android.net.Uri\r\nimport android.os.Build\r\n\r\nimport android.os.Bundle\r\nimport android.os.Handler\r\nimport android.provider.MediaStore\r\nimport android.provider.Settings\r\nimport android.util.Log\r\nimport android.view.Menu\r\nimport android.view.MenuInflater\r\nimport android.view.View\r\nimport android.widget.TextView\r\nimport android.widget.Toast\r\nimport androidx.activity.OnBackPressedCallback\r\nimport androidx.activity.result.ActivityResultLauncher\r\nimport androidx.activity.result.contract.ActivityResultContracts\r\nimport androidx.annotation.RequiresApi\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.appcompat.widget.Toolbar\r\nimport androidx.constraintlayout.motion.widget.Debug.getLocation\r\nimport androidx.core.app.ActivityCompat\r\nimport androidx.core.content.ContextCompat\r\nimport androidx.core.content.getSystemService\r\nimport androidx.core.view.isVisible\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.navigation.fragment.findNavController\r\nimport com.bumptech.glide.Glide\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.databinding.FragmentAttendanceBinding\r\nimport com.example.dsmabsen.helper.*\r\nimport com.example.dsmabsen.model.DataX\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport com.example.dsmabsen.ui.viewModel.AttendanceViewModel\r\nimport com.google.android.gms.location.FusedLocationProviderClient\r\nimport com.google.android.gms.location.LocationServices\r\nimport com.google.android.material.snackbar.Snackbar\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\nimport okhttp3.MediaType.Companion.toMediaTypeOrNull\r\nimport okhttp3.MultipartBody\r\nimport okhttp3.RequestBody.Companion.toRequestBody\r\nimport java.io.ByteArrayOutputStream\r\nimport java.time.LocalDate\r\nimport java.time.format.DateTimeFormatter\r\nimport java.util.*\r\nimport javax.inject.Inject\r\nimport java.text.SimpleDateFormat\r\nimport java.time.format.TextStyle\r\n\r\n@AndroidEntryPoint\r\nclass AttendanceFragment :\r\n    BaseFragment<FragmentAttendanceBinding>(FragmentAttendanceBinding::inflate) {\r\n    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient\r\n    private lateinit var locationManager: LocationManager\r\n    private val LOCATION_PERMISSION_CODE = 123 // kode permintaan izin\r\n    private val viewModel: AttendanceViewModel by viewModels()\r\n    private val handler = Handler()\r\n    private lateinit var runnable: Runnable\r\n\r\n    @Inject\r\n    lateinit var tokenManager: TokenManager\r\n    private val savedUser = Paper.book().read<DataX>(\"user\")\r\n\r\n\r\n    @RequiresApi(Build.VERSION_CODES.O)\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n\r\n        super.onViewCreated(view, savedInstanceState)\r\n        hideToolbar()\r\n        timeRun()\r\n\r\n        binding.apply {\r\n\r\n            val permission =\r\n                arrayOf(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, ACCESS_BACKGROUND_LOCATION)\r\n//            permissionMultiRequest.launch(permission)\r\n            requestLocationPermission()\r\n            locationManager =\r\n                requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager\r\n            Toast.makeText(context, \"$locationManager\", Toast.LENGTH_SHORT).show()\r\n\r\n            cekGPS()\r\n\r\n            btnAbsen.setOnClickListener {\r\n                camera()\r\n            }\r\n            namaUser.text = savedUser!!.name\r\n            jabatan.text = savedUser!!.nama_jabatan\r\n            Glide.with(requireContext())\r\n                .load(Constans.IMAGE_URL + savedUser!!.image)\r\n                .into(imageUser)\r\n\r\n\r\n            imageUser.setOnClickListener {\r\n                findNavController().navigate(R.id.action_attendanceFragment_to_profileFragment)\r\n            }\r\n            btnRefresh.setOnClickListener {\r\n                cekGPS()\r\n            }\r\n        }\r\n\r\n\r\n    }\r\n\r\n    override fun onStart() {\r\n        super.onStart()\r\n\r\n        getLocation()\r\n    }\r\n\r\n    private val permissionMultiRequest =\r\n        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->\r\n            var areAllGranted = true\r\n            for (isGranted in result.values) {\r\n                Toast.makeText(requireContext(), \"Granted is $isGranted\", Toast.LENGTH_SHORT).show()\r\n                areAllGranted = areAllGranted && isGranted\r\n            }\r\n\r\n            if (areAllGranted) {\r\n//                Toast.makeText(\r\n//                    requireContext(),\r\n//                    \"Permintaan Izin di aktifkan\",\r\n//                    Toast.LENGTH_SHORT\r\n//                ).show()\r\n                val locationListener = object : LocationListener {\r\n                    override fun onLocationChanged(location: Location) {\r\n                        // Do something with the new location\r\n                    }\r\n\r\n                    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}\r\n\r\n                    override fun onProviderEnabled(provider: String) {\r\n                        if (provider == LocationManager.GPS_PROVIDER) {\r\n                            Toast.makeText(\r\n                                requireContext(),\r\n                                \"Provider $provider enabled\",\r\n                                Toast.LENGTH_SHORT\r\n                            ).show()\r\n                        }\r\n                    }\r\n\r\n                    override fun onProviderDisabled(provider: String) {\r\n                        Toast.makeText(\r\n                            requireContext(),\r\n                            \"Provider $provider disabled\",\r\n                            Toast.LENGTH_SHORT\r\n                        ).show()\r\n                    }\r\n                }\r\n                requestLocationPermission()\r\n                locationManager.requestLocationUpdates(\r\n                    LocationManager.GPS_PROVIDER,\r\n                    0,\r\n                    0f,\r\n                    locationListener\r\n                )\r\n\r\n                getLocation()\r\n            } else {\r\n                Toast.makeText(\r\n                    requireContext(),\r\n                    \"Permintaan Izin di nonaktifkan\",\r\n                    Toast.LENGTH_SHORT\r\n                ).show()\r\n            }\r\n        }\r\n\r\n\r\n    private fun getLocationUser() {\r\n        locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager\r\n        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())\r\n        val task = fusedLocationProviderClient.lastLocation\r\n        task.addOnSuccessListener {\r\n            if (it != null) {\r\n                with(binding) {\r\n                    lattitudeUser.text = it.latitude.toString()\r\n                    longitudeUser.text = it.longitude.toString()\r\n                }\r\n                if (Build.VERSION.SDK_INT >= 29) {\r\n                    getAddressAboveSDK29()\r\n                } else {\r\n                    getAddressBelowSDK29()\r\n                }\r\n            }\r\n        }\r\n    }\r\n    private fun getLocation() {\r\n        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager\r\n        locationManager.requestLocationUpdates(\r\n            LocationManager.NETWORK_PROVIDER,\r\n            0L,\r\n            0f,\r\n            locationListener\r\n        )\r\n        getLocationUser()\r\n    }\r\n    private val locationListener: LocationListener = object : LocationListener {\r\n        override fun onLocationChanged(location: Location) {\r\n            // Mendapatkan latitude dan longitude\r\n            val latitude = location.latitude\r\n            val longitude = location.longitude\r\n\r\n            binding.lattitudeUser.text = latitude.toString()\r\n            binding.longitudeUser.text = longitude.toString()\r\n\r\n        }\r\n\r\n        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}\r\n        override fun onProviderEnabled(provider: String) {\r\n            getLocationUser()\r\n            enableAbsen()\r\n        }\r\n        override fun onProviderDisabled(provider: String) {\r\n            cekGPS()\r\n        }\r\n    }\r\n    override fun onStop() {\r\n        super.onStop()\r\n        locationManager\r\n    }\r\n\r\n    @RequiresApi(Build.VERSION_CODES.O)\r\n    private fun camera() {\r\n//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {\r\n//            checkCameraPermission()\r\n//        }else {\r\n        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)\r\n        intent.putExtra(\"android.intent.extras.LENS_FACING_FRONT\", 1)\r\n        putPhoto.launch(intent)\r\n//        }\r\n    }\r\n\r\n    private fun checkCameraPermission() {\r\n        if (ContextCompat.checkSelfPermission(requireContext(), CAMERA)\r\n            != PackageManager.PERMISSION_GRANTED\r\n        ) {\r\n            val permission = CAMERA\r\n            singlePermissionLaunch.launch(permission)\r\n        }\r\n    }\r\n\r\n    @RequiresApi(Build.VERSION_CODES.O)\r\n    private val putPhoto =\r\n        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {\r\n            if (it.resultCode == Activity.RESULT_OK) {\r\n\r\n                val selectedImageUris = it?.data?.extras?.get(\"data\") as Bitmap\r\n                val uri = it?.data?.data\r\n                absen(selectedImageUris!!)\r\n\r\n//                binding.photo.setImageBitmap(selectedImageUris)            /* imgPhoto.load(bitmap) */\r\n//                binding.photo.isVisible = true\r\n            } else if (it == null) {\r\n                Toast.makeText(requireContext(), \"Gambar tida dapat di set\", Toast.LENGTH_SHORT)\r\n                    .show()\r\n            } else {\r\n                Toast.makeText(requireContext(), \"Task Cancelled\", Toast.LENGTH_SHORT).show()\r\n            }\r\n\r\n        }\r\n\r\n    @RequiresApi(Build.VERSION_CODES.O)\r\n    private fun absen(uri: Bitmap) {\r\n\r\n        val photo = uriToMultipartBody(uri)\r\n\r\n\r\n        Log.d(\"gambar\", photo.toString())\r\n        val timeNow: String = if (Build.VERSION.SDK_INT >= 26) {\r\n            Helper().getMYDetail()\r\n        }else{\r\n            HelperApiUnder().getTimeDetail()\r\n        }\r\n\r\n        val nipRequestBody = MultipartBody.Part.createFormData(\"nip\", savedUser!!.nip)\r\n        val dateRequestBody = MultipartBody.Part.createFormData(\"date\", timeNow)\r\n        val timezoneRequestBody = MultipartBody.Part.createFormData(\"timezone\", \"\")\r\n        val kordinatRequestBody = MultipartBody.Part.createFormData(\"kordinat\", \"123, 456\")\r\n        val kodeShiftRequestBody = MultipartBody.Part.createFormData(\"kode_shift\", \"12\")\r\n        val kodeTingkatRequestBody = MultipartBody.Part.createFormData(\"kode_tingkat\", \"0\")\r\n\r\n        viewModel.attendanceToday(\r\n            photo,\r\n            nipRequestBody.body,\r\n            dateRequestBody.body,\r\n            timezoneRequestBody.body,\r\n            kordinatRequestBody.body,\r\n            kodeShiftRequestBody.body,\r\n            kodeTingkatRequestBody.body\r\n        )\r\n        viewModel.attendanceTodayLiveData.observe(viewLifecycleOwner) {\r\n            when (it) {\r\n                is NetworkResult.Success -> {\r\n                    binding.loadingInclude.loading.isVisible = false\r\n                    if (it.data!!.data.status == \"Success\") {\r\n                        Toast.makeText(requireContext(), \"success upload file\", Toast.LENGTH_LONG)\r\n                            .show()\r\n\r\n                        AlertDialog.Builder(requireContext())\r\n                            .setTitle(\"Peringatan\")\r\n                            .setMessage(\"Anda Harus memberika izin untuk scan\")\r\n                            //    .setIcon(R.drawable.ic_warning)\r\n                            .setPositiveButton(\"Ya\") { _, _ ->\r\n                                Toast.makeText(requireContext(), \"Ya\", Toast.LENGTH_SHORT).show()\r\n                            }\r\n                            .setNegativeButton(\"Kembali\") { _, _ ->\r\n                                Toast.makeText(requireContext(), \"Kembali\", Toast.LENGTH_SHORT)\r\n                                    .show()\r\n                            }\r\n                            .create().show()\r\n                        binding.materialCardView21.isVisible = true\r\n                        binding.notificationUser.isVisible = true\r\n                        binding.informationLayout.isVisible = true\r\n                        binding.notificationUser.text = \"Berhasil absen\"\r\n                        binding.informationLayout.setBackgroundColor(\r\n                            ContextCompat.getColor(\r\n                                requireContext(),\r\n                                R.color._success\r\n                            )\r\n                        )\r\n                    } else {\r\n                        Toast.makeText(requireContext(), \"error upload file\", Toast.LENGTH_LONG)\r\n                            .show()\r\n\r\n                        binding.materialCardView21.isVisible = true\r\n                        binding.notificationUser.isVisible = true\r\n                        binding.informationLayout.isVisible = true\r\n                        binding.notificationUser.text = \"gagal absen\"\r\n                        binding.informationLayout.setBackgroundColor(\r\n                            ContextCompat.getColor(\r\n                                requireContext(),\r\n                                R.color._danger\r\n                            )\r\n                        )\r\n                    }\r\n                }\r\n                is NetworkResult.Loading -> {\r\n                    binding.loadingInclude.loading.isVisible = true\r\n                    Toast.makeText(requireContext(), \"Loading\", Toast.LENGTH_SHORT).show()\r\n                }\r\n\r\n                is NetworkResult.Error -> {\r\n                    handleApiError(it.message)\r\n                }\r\n            }\r\n        }\r\n\r\n\r\n    }\r\n\r\n    private fun uriToMultipartBody(bitmap: Bitmap): MultipartBody.Part {\r\n        val byteArrayOutputStream = ByteArrayOutputStream()\r\n        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)\r\n        val byteArray = byteArrayOutputStream.toByteArray()\r\n        val requestFile = byteArray.toRequestBody(\"image/png\".toMediaTypeOrNull())\r\n        return MultipartBody.Part.createFormData(\"image\", \"image.png\", requestFile)\r\n    }\r\n\r\n    private val singlePermissionLaunch =\r\n        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->\r\n            Log.d(Constans.TAG, \"permission is Granted: $isGranted\")\r\n            if (isGranted) {\r\n                Toast.makeText(requireContext(), \"Permission camera is granted\", Toast.LENGTH_SHORT)\r\n                    .show()\r\n\r\n            } else {\r\n                Log.d(Constans.TAG, \"Permission camera  : Permission Denied \")\r\n                Toast.makeText(requireContext(), \"Permission camera Denied \", Toast.LENGTH_SHORT)\r\n                    .show()\r\n            }\r\n        }\r\n\r\n    private fun getAddressAboveSDK29() {\r\n        if (ActivityCompat.checkSelfPermission(\r\n                requireContext(),\r\n                ACCESS_FINE_LOCATION\r\n            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(\r\n                requireContext(),\r\n                ACCESS_COARSE_LOCATION\r\n            ) != PackageManager.PERMISSION_GRANTED\r\n        ) {\r\n            // TODO: Consider calling\r\n            //    ActivityCompat#requestPermissions\r\n            // here to request the missing permissions, and then overriding\r\n            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,\r\n            //                                          int[] grantResults)\r\n            // to handle the case where the user grants the permission. See the documentation\r\n            // for ActivityCompat#requestPermissions for more details.\r\n            return\r\n        }\r\n        fusedLocationProviderClient.lastLocation\r\n            .addOnSuccessListener { location: Location? ->\r\n                // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh\r\n                val geocoder = Geocoder(requireContext(), Locale.getDefault())\r\n                geocoder.getFromLocation(\r\n                    location?.latitude ?: 0.0,\r\n                    location?.longitude ?: 0.0,\r\n                    1\r\n                ).also { addresses ->\r\n                    // Mengambil alamat dari objek Address dan menampilkannya pada TextView\r\n                    val address: String? = addresses!![0].getAddressLine(0)\r\n                    val city: String? = addresses[0].locality\r\n                    val state: String? = addresses[0].adminArea\r\n                    val country: String? = addresses[0].countryName\r\n                    val postalCode: String? = addresses[0].postalCode\r\n                    val knownName: String? = addresses[0].featureName\r\n\r\n                    binding.currentLocation.text =\r\n                        \"$address\"\r\n                    Toast.makeText(context, \"$address\", Toast.LENGTH_SHORT).show()\r\n                }\r\n            }\r\n    }\r\n\r\n    private fun getAddressBelowSDK29() {\r\n\r\n        fusedLocationProviderClient.lastLocation\r\n            .addOnSuccessListener { location: Location? ->\r\n                // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh\r\n                val geocoder = Geocoder(requireContext(), Locale.getDefault())\r\n\r\n                val addresses = geocoder.getFromLocation(\r\n                    location?.latitude ?: 0.0,\r\n                    location?.longitude ?: 0.0,\r\n                    1\r\n                )\r\n                // Mengambil alamat dari objek Address dan menampilkannya pada TextView\r\n                val address: String? = addresses!![0].getAddressLine(0)\r\n                val city: String? = addresses[0].locality\r\n                val state: String? = addresses[0].adminArea\r\n                val country: String? = addresses[0].countryName\r\n                val postalCode: String? = addresses[0].postalCode\r\n                val knownName: String? = addresses[0].featureName\r\n\r\n                binding.currentLocation.text =\r\n                    \"$address\"\r\n            }\r\n    }\r\n\r\n    private fun isLocationPermissionGranted(): Boolean {\r\n        return ContextCompat.checkSelfPermission(\r\n            requireActivity(),\r\n            ACCESS_FINE_LOCATION\r\n        ) == PackageManager.PERMISSION_GRANTED\r\n    }\r\n\r\n    private fun requestLocationPermission() {\r\n        if (isLocationPermissionGranted()) {\r\n\r\n            Toast.makeText(requireContext(), \"Anda telah memberikan izin lokasi\", Toast.LENGTH_SHORT).show()\r\n        }\r\n        if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {\r\n            Toast.makeText(requireContext(), \"Izin lokasi dibutuhkan untuk melakukan absensi\", Toast.LENGTH_SHORT).show()\r\n        } else {\r\n            requestPermissionLauncher.launch(ACCESS_FINE_LOCATION)\r\n        }\r\n    }\r\n\r\n    private val requestPermissionLauncher =\r\n        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->\r\n            if (isGranted) {\r\n                Toast.makeText(requireContext(), \"Izin lokasi telah diberikan\", Toast.LENGTH_SHORT).show()\r\n            } else {\r\n                Toast.makeText(requireContext(), \"Izin lokasi ditolak\", Toast.LENGTH_SHORT).show()\r\n            }\r\n        }\r\n\r\n\r\n    @RequiresApi(Build.VERSION_CODES.O)\r\n    fun timeRun(){\r\n\r\n        runnable = object : Runnable {\r\n            override fun run() {\r\n                val timestamp = System.currentTimeMillis()\r\n\r\n                // Create a SimpleDateFormat object with the system timezone\r\n                val sdfHari = SimpleDateFormat(\"dd\", Locale.getDefault())\r\n                val sdfBulan = SimpleDateFormat(\"mm\", Locale.getDefault())\r\n                val sdfTahun = SimpleDateFormat(\"yyyy\", Locale.getDefault())\r\n\r\n                val sdfJam = SimpleDateFormat(\"HH\", Locale.getDefault())\r\n                val sdfMenit = SimpleDateFormat(\"mm\", Locale.getDefault())\r\n                val sdfDetik = SimpleDateFormat(\"ss\", Locale.getDefault())\r\n\r\n                sdfHari.timeZone = TimeZone.getDefault()\r\n                sdfBulan.timeZone = TimeZone.getDefault()\r\n                sdfTahun.timeZone = TimeZone.getDefault()\r\n                sdfJam.timeZone = TimeZone.getDefault()\r\n                sdfMenit.timeZone = TimeZone.getDefault()\r\n                sdfDetik.timeZone = TimeZone.getDefault()\r\n\r\n                // Format the timestamp with the SimpleDateFormat object\r\n                val formattedDateJam = sdfJam.format(Date(timestamp))\r\n                val formattedDateMenit = sdfMenit.format(Date(timestamp))\r\n                val formattedDateDetik = sdfDetik.format(Date(timestamp))\r\n//                Log.d(\"run jam\", \"Formatted date with system timezone: $formattedDate\")\r\n\r\n//                val currentTime = System.currentTimeMillis()\r\n//                val seconds = (currentTime / 1000) % 60\r\n//                val minutes = (currentTime / (1000 * 60)) % 60\r\n//                val hours = (currentTime / (1000 * 60 * 60)) % 24\r\n                binding.tvTime.text = \"$formattedDateJam : $formattedDateMenit : $formattedDateDetik\"\r\n\r\n\r\n//                binding.textView3.text = formattedDate\r\n//                textViewa.text = String.format(\"%02d:%02d:%02d\", hours, minutes, seconds)\r\n                binding.tvHari.text = sdfHari.format(Date(timestamp))\r\n                binding.tvBulan.text = sdfBulan.format(Date(timestamp))\r\n                binding.tvTahun.text = sdfTahun.format(Date(timestamp))\r\n                handler.postDelayed(this, 1000)\r\n            }\r\n        }\r\n    }\r\n    fun cekGPS(){\r\n        // Cek apakah GPS sedang aktif\r\n        val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)\r\n        if (isGpsEnabled) {\r\n\r\n            getLocation()\r\n        } else {\r\n            // GPS tidak aktif, tampilkan dialog untuk meminta pengguna mengaktifkannya\r\n            val builder = AlertDialog.Builder(requireContext())\r\n            builder.setMessage(\"GPS tidak aktif, aktifkan GPS?\")\r\n                .setCancelable(false)\r\n                .setPositiveButton(\"Ya\") { _, _ ->\r\n                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))\r\n                    enableAbsen()\r\n                }\r\n                .setNegativeButton(\"Tidak\") { dialog, _ ->\r\n                    disableAbsen()\r\n                    dialog.cancel()\r\n                }\r\n            val alert = builder.create()\r\n            alert.show()\r\n        }\r\n    }\r\n\r\n\r\n    fun mematikanGPS(){\r\n        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager\r\n        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)?.let { isGPSOn ->\r\n            if (isGPSOn) {\r\n                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)\r\n                startActivity(intent)\r\n            }\r\n        }\r\n    }\r\n    fun menyalakanGPS(){\r\n        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager\r\n        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)?.let { isGPSOn ->\r\n            if (!isGPSOn) {\r\n                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)\r\n                startActivity(intent)\r\n            }\r\n        }\r\n    }\r\n    fun enableAbsen(){\r\n        binding.imgFinger.background = resources.getDrawable(R.color._danger)\r\n        binding.btnAbsen.isClickable = true\r\n    }\r\n    private fun disableAbsen() {\r\n        binding.imgFinger.background = resources.getDrawable(R.color._grey)\r\n        binding.btnAbsen.isClickable = false\r\n    }\r\n\r\n    override fun onResume() {\r\n        super.onResume()\r\n        handler.postDelayed(runnable, 0)\r\n    }\r\n\r\n    override fun onPause() {\r\n        super.onPause()\r\n        handler.removeCallbacks(runnable)\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/AttendanceFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/AttendanceFragment.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/fragment/AttendanceFragment.kt	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/AttendanceFragment.kt	(date 1678666306833)
+@@ -91,7 +91,7 @@
+             requestLocationPermission()
+             locationManager =
+                 requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+-            Toast.makeText(context, "$locationManager", Toast.LENGTH_SHORT).show()
++//            Toast.makeText(context, "$locationManager", Toast.LENGTH_SHORT).show()
+ 
+             cekGPS()
+ 
+@@ -126,7 +126,7 @@
+         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
+             var areAllGranted = true
+             for (isGranted in result.values) {
+-                Toast.makeText(requireContext(), "Granted is $isGranted", Toast.LENGTH_SHORT).show()
++//                Toast.makeText(requireContext(), "Granted is $isGranted", Toast.LENGTH_SHORT).show()
+                 areAllGranted = areAllGranted && isGranted
+             }
+ 
+@@ -145,20 +145,20 @@
+ 
+                     override fun onProviderEnabled(provider: String) {
+                         if (provider == LocationManager.GPS_PROVIDER) {
+-                            Toast.makeText(
+-                                requireContext(),
+-                                "Provider $provider enabled",
+-                                Toast.LENGTH_SHORT
+-                            ).show()
++//                            Toast.makeText(
++//                                requireContext(),
++//                                "Provider $provider enabled",
++//                                Toast.LENGTH_SHORT
++//                            ).show()
+                         }
+                     }
+ 
+                     override fun onProviderDisabled(provider: String) {
+-                        Toast.makeText(
+-                            requireContext(),
+-                            "Provider $provider disabled",
+-                            Toast.LENGTH_SHORT
+-                        ).show()
++//                        Toast.makeText(
++//                            requireContext(),
++//                            "Provider $provider disabled",
++//                            Toast.LENGTH_SHORT
++//                        ).show()
+                     }
+                 }
+                 requestLocationPermission()
+@@ -171,18 +171,20 @@
+ 
+                 getLocation()
+             } else {
+-                Toast.makeText(
+-                    requireContext(),
+-                    "Permintaan Izin di nonaktifkan",
+-                    Toast.LENGTH_SHORT
+-                ).show()
++//                Toast.makeText(
++//                    requireContext(),
++//                    "Permintaan Izin di nonaktifkan",
++//                    Toast.LENGTH_SHORT
++//                ).show()
+             }
+         }
+ 
+ 
+     private fun getLocationUser() {
+-        locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
++        locationManager =
++            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
++        fusedLocationProviderClient =
++            LocationServices.getFusedLocationProviderClient(requireContext())
+         val task = fusedLocationProviderClient.lastLocation
+         task.addOnSuccessListener {
+             if (it != null) {
+@@ -198,8 +200,10 @@
+             }
+         }
+     }
++
+     private fun getLocation() {
+-        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
++        val locationManager =
++            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+         locationManager.requestLocationUpdates(
+             LocationManager.NETWORK_PROVIDER,
+             0L,
+@@ -208,6 +212,7 @@
+         )
+         getLocationUser()
+     }
++
+     private val locationListener: LocationListener = object : LocationListener {
+         override fun onLocationChanged(location: Location) {
+             // Mendapatkan latitude dan longitude
+@@ -224,10 +229,12 @@
+             getLocationUser()
+             enableAbsen()
+         }
++
+         override fun onProviderDisabled(provider: String) {
+             cekGPS()
+         }
+     }
++
+     override fun onStop() {
+         super.onStop()
+         locationManager
+@@ -280,11 +287,8 @@
+ 
+ 
+         Log.d("gambar", photo.toString())
+-        val timeNow: String = if (Build.VERSION.SDK_INT >= 26) {
+-            Helper().getMYDetail()
+-        }else{
+-            HelperApiUnder().getTimeDetail()
+-        }
++
++        val timeNow = getTime()
+ 
+         val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
+         val dateRequestBody = MultipartBody.Part.createFormData("date", timeNow)
+@@ -293,7 +297,7 @@
+         val kodeShiftRequestBody = MultipartBody.Part.createFormData("kode_shift", "12")
+         val kodeTingkatRequestBody = MultipartBody.Part.createFormData("kode_tingkat", "0")
+ 
+-        viewModel.attendanceToday(
++        viewModel.attendanceToday2(
+             photo,
+             nipRequestBody.body,
+             dateRequestBody.body,
+@@ -302,51 +306,47 @@
+             kodeShiftRequestBody.body,
+             kodeTingkatRequestBody.body
+         )
+-        viewModel.attendanceTodayLiveData.observe(viewLifecycleOwner) {
++        viewModel.presensiLiveData.observe(viewLifecycleOwner) {
+             when (it) {
+                 is NetworkResult.Success -> {
+                     binding.loadingInclude.loading.isVisible = false
+-                    if (it.data!!.data.status == "Success") {
+-                        Toast.makeText(requireContext(), "success upload file", Toast.LENGTH_LONG)
+-                            .show()
+ 
+-                        AlertDialog.Builder(requireContext())
+-                            .setTitle("Peringatan")
+-                            .setMessage("Anda Harus memberika izin untuk scan")
+-                            //    .setIcon(R.drawable.ic_warning)
+-                            .setPositiveButton("Ya") { _, _ ->
+-                                Toast.makeText(requireContext(), "Ya", Toast.LENGTH_SHORT).show()
+-                            }
+-                            .setNegativeButton("Kembali") { _, _ ->
+-                                Toast.makeText(requireContext(), "Kembali", Toast.LENGTH_SHORT)
+-                                    .show()
+-                            }
+-                            .create().show()
+-                        binding.materialCardView21.isVisible = true
+-                        binding.notificationUser.isVisible = true
+-                        binding.informationLayout.isVisible = true
+-                        binding.notificationUser.text = "Berhasil absen"
+-                        binding.informationLayout.setBackgroundColor(
+-                            ContextCompat.getColor(
+-                                requireContext(),
+-                                R.color._success
+-                            )
+-                        )
+-                    } else {
+-                        Toast.makeText(requireContext(), "error upload file", Toast.LENGTH_LONG)
+-                            .show()
+-
+-                        binding.materialCardView21.isVisible = true
+-                        binding.notificationUser.isVisible = true
+-                        binding.informationLayout.isVisible = true
+-                        binding.notificationUser.text = "gagal absen"
+-                        binding.informationLayout.setBackgroundColor(
+-                            ContextCompat.getColor(
+-                                requireContext(),
+-                                R.color._danger
+-                            )
+-                        )
++                    val response = it.data!!
++                    val statusServer = response.status
++                    val statusPresensi = response.data.status
++                    val message = response.data.messages
++                    if (statusPresensi == "Error"){
++                        binding.apply {
++                            materialCardView21.isVisible = true
++                            notificationUser.isVisible = true
++                            informationLayout.isVisible = true
++                            notificationUser.text = message
++                            informationLayout.setBackgroundColor(
++                                ContextCompat.getColor(
++                                    requireContext(),
++                                    R.color._danger
++                                )
++                            )
++                        }
++                    }else{
++                        binding.apply {
++                            binding.materialCardView21.isVisible = true
++                            binding.notificationUser.isVisible = true
++                            binding.informationLayout.isVisible = true
++                            binding.notificationUser.text = message
++                            binding.informationLayout.setBackgroundColor(
++                                ContextCompat.getColor(
++                                    requireContext(),
++                                    R.color._success
++                                )
++                            )
++                        }
+                     }
++
++//                    Toast.makeText(requireContext(),message , Toast.LENGTH_SHORT).show()
++
++
++
+                 }
+                 is NetworkResult.Loading -> {
+                     binding.loadingInclude.loading.isVisible = true
+@@ -362,6 +362,12 @@
+ 
+     }
+ 
++    private fun getTime(): String {
++        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
++        val date = Date()
++        return dateFormat.format(date)
++    }
++
+     private fun uriToMultipartBody(bitmap: Bitmap): MultipartBody.Part {
+         val byteArrayOutputStream = ByteArrayOutputStream()
+         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+@@ -374,13 +380,14 @@
+         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+             Log.d(Constans.TAG, "permission is Granted: $isGranted")
+             if (isGranted) {
+-                Toast.makeText(requireContext(), "Permission camera is granted", Toast.LENGTH_SHORT)
+-                    .show()
++                Log.d("TAG", "permission granted")
++//                Toast.makeText(requireContext(), "Permission camera is granted", Toast.LENGTH_SHORT)
++//                    .show()
+ 
+             } else {
+                 Log.d(Constans.TAG, "Permission camera  : Permission Denied ")
+-                Toast.makeText(requireContext(), "Permission camera Denied ", Toast.LENGTH_SHORT)
+-                    .show()
++//                Toast.makeText(requireContext(), "Permission camera Denied ", Toast.LENGTH_SHORT)
++//                    .show()
+             }
+         }
+ 
+@@ -392,16 +399,7 @@
+                 requireContext(),
+                 ACCESS_COARSE_LOCATION
+             ) != PackageManager.PERMISSION_GRANTED
+-        ) {
+-            // TODO: Consider calling
+-            //    ActivityCompat#requestPermissions
+-            // here to request the missing permissions, and then overriding
+-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+-            //                                          int[] grantResults)
+-            // to handle the case where the user grants the permission. See the documentation
+-            // for ActivityCompat#requestPermissions for more details.
+-            return
+-        }
++        )
+         fusedLocationProviderClient.lastLocation
+             .addOnSuccessListener { location: Location? ->
+                 // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh
+@@ -421,13 +419,12 @@
+ 
+                     binding.currentLocation.text =
+                         "$address"
+-                    Toast.makeText(context, "$address", Toast.LENGTH_SHORT).show()
++//                    Toast.makeText(context, "$address", Toast.LENGTH_SHORT).show()
+                 }
+             }
+     }
+ 
+     private fun getAddressBelowSDK29() {
+-
+         fusedLocationProviderClient.lastLocation
+             .addOnSuccessListener { location: Location? ->
+                 // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh
+@@ -461,10 +458,19 @@
+     private fun requestLocationPermission() {
+         if (isLocationPermissionGranted()) {
+ 
+-            Toast.makeText(requireContext(), "Anda telah memberikan izin lokasi", Toast.LENGTH_SHORT).show()
++//            Toast.makeText(
++//                requireContext(),
++//                "Anda telah memberikan izin lokasi",
++//                Toast.LENGTH_SHORT
++//            )
++//                .show()
+         }
+         if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {
+-            Toast.makeText(requireContext(), "Izin lokasi dibutuhkan untuk melakukan absensi", Toast.LENGTH_SHORT).show()
++//            Toast.makeText(
++//                requireContext(),
++//                "Izin lokasi dibutuhkan untuk melakukan absensi",
++//                Toast.LENGTH_SHORT
++//            ).show()
+         } else {
+             requestPermissionLauncher.launch(ACCESS_FINE_LOCATION)
+         }
+@@ -473,15 +479,18 @@
+     private val requestPermissionLauncher =
+         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+             if (isGranted) {
+-                Toast.makeText(requireContext(), "Izin lokasi telah diberikan", Toast.LENGTH_SHORT).show()
++                Log.d("TAG", "Izin lokasi telah diberikan")
++//                Toast.makeText(requireContext(), "Izin lokasi telah diberikan", Toast.LENGTH_SHORT)
++//                    .show()
+             } else {
+-                Toast.makeText(requireContext(), "Izin lokasi ditolak", Toast.LENGTH_SHORT).show()
++                Log.d("TAG", "Izin lokasi ditolak")
++//                Toast.makeText(requireContext(), "Izin lokasi ditolak", Toast.LENGTH_SHORT).show()
+             }
+         }
+ 
+ 
+     @RequiresApi(Build.VERSION_CODES.O)
+-    fun timeRun(){
++    fun timeRun() {
+ 
+         runnable = object : Runnable {
+             override fun run() {
+@@ -489,7 +498,7 @@
+ 
+                 // Create a SimpleDateFormat object with the system timezone
+                 val sdfHari = SimpleDateFormat("dd", Locale.getDefault())
+-                val sdfBulan = SimpleDateFormat("mm", Locale.getDefault())
++                val sdfBulan = SimpleDateFormat("MM", Locale.getDefault())
+                 val sdfTahun = SimpleDateFormat("yyyy", Locale.getDefault())
+ 
+                 val sdfJam = SimpleDateFormat("HH", Locale.getDefault())
+@@ -513,7 +522,8 @@
+ //                val seconds = (currentTime / 1000) % 60
+ //                val minutes = (currentTime / (1000 * 60)) % 60
+ //                val hours = (currentTime / (1000 * 60 * 60)) % 24
+-                binding.tvTime.text = "$formattedDateJam : $formattedDateMenit : $formattedDateDetik"
++                binding.tvTime.text =
++                    "$formattedDateJam : $formattedDateMenit : $formattedDateDetik"
+ 
+ 
+ //                binding.textView3.text = formattedDate
+@@ -525,7 +535,8 @@
+             }
+         }
+     }
+-    fun cekGPS(){
++
++    fun cekGPS() {
+         // Cek apakah GPS sedang aktif
+         val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+         if (isGpsEnabled) {
+@@ -550,8 +561,9 @@
+     }
+ 
+ 
+-    fun mematikanGPS(){
+-        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
++    fun mematikanGPS() {
++        val locationManager =
++            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+         locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)?.let { isGPSOn ->
+             if (isGPSOn) {
+                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+@@ -559,8 +571,10 @@
+             }
+         }
+     }
+-    fun menyalakanGPS(){
+-        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
++
++    fun menyalakanGPS() {
++        val locationManager =
++            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+         locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)?.let { isGPSOn ->
+             if (!isGPSOn) {
+                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+@@ -568,10 +582,12 @@
+             }
+         }
+     }
+-    fun enableAbsen(){
++
++    fun enableAbsen() {
+         binding.imgFinger.background = resources.getDrawable(R.color._danger)
+         binding.btnAbsen.isClickable = true
+     }
++
+     private fun disableAbsen() {
+         binding.imgFinger.background = resources.getDrawable(R.color._grey)
+         binding.btnAbsen.isClickable = false
+Index: app/src/main/java/com/example/dsmabsen/repository/AttendanceRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.repository\r\n\r\nimport com.example.dsmabsen.model.RequestAbsen\r\nimport com.example.dsmabsen.network.DataAttendanceApi\r\nimport com.example.dsmabsen.network.HomeApi\r\nimport okhttp3.MultipartBody\r\nimport okhttp3.RequestBody\r\nimport javax.inject.Inject\r\n\r\nclass AttendanceRepository @Inject constructor(private val api: DataAttendanceApi) :\r\n    BaseRepository() {\r\n\r\n    suspend fun attendanceTotal(nip: String) =\r\n        safeApiCall { api.attendanceTotal(nip) }\r\n\r\n    suspend fun getSallary(nip: String) =\r\n        safeApiCall { api.getSallary(nip) }\r\n\r\n    suspend fun getAttendanceHistory(nip: String) =\r\n        safeApiCall { api.getAttendanceHistory(nip) }\r\n\r\n\r\n    suspend fun attendanceHistory(nip: String) =\r\n        safeApiCall { api.attendanceHistory(nip) }\r\n\r\n    suspend fun getListLembur(nip: String) =\r\n        safeApiCall { api.getListLembur(nip) }\r\n\r\n\r\n\r\n    suspend fun pengajuanLembur(nip: String,\r\n                                jam_mulai: String,\r\n                                jam_selesai: String,\r\n                                file: String,\r\n                                tanggal: String,\r\n                                keterangan: String ) =\r\n        safeApiCall { api.pengajuanLembur(nip, jam_mulai, jam_selesai, file, tanggal, keterangan) }\r\n\r\n    suspend fun attendanceToday(\r\n//        data:RequestAbsen\r\n        image: MultipartBody.Part,\r\n        nip: RequestBody,\r\n        date: RequestBody,\r\n        timezone: RequestBody,\r\n        kordinat: RequestBody,\r\n        kode_shift: RequestBody,\r\n        kode_tingkat: RequestBody\r\n    ) =\r\n        safeApiCall {\r\n            api.attendanceToday(\r\n                image,\r\n                nip,\r\n                date,\r\n                timezone,\r\n                kordinat,\r\n                kode_shift,\r\n                kode_tingkat\r\n            )\r\n        }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/repository/AttendanceRepository.kt b/app/src/main/java/com/example/dsmabsen/repository/AttendanceRepository.kt
+--- a/app/src/main/java/com/example/dsmabsen/repository/AttendanceRepository.kt	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/java/com/example/dsmabsen/repository/AttendanceRepository.kt	(date 1678663640856)
+@@ -23,21 +23,42 @@
+     suspend fun attendanceHistory(nip: String) =
+         safeApiCall { api.attendanceHistory(nip) }
+ 
++    suspend fun attendanceToday2(
++        image: MultipartBody.Part,
++        nip: RequestBody,
++        date: RequestBody,
++        timezone: RequestBody,
++        kordinat: RequestBody,
++        kode_shift: RequestBody,
++        kode_tingkat: RequestBody
++    ) = safeApiCall {
++        api.attendanceToday(
++            image,
++            nip,
++            date,
++            timezone,
++            kordinat,
++            kode_shift,
++            kode_tingkat
++        )
++    }
++
++
+     suspend fun getListLembur(nip: String) =
+         safeApiCall { api.getListLembur(nip) }
+ 
+ 
+-
+-    suspend fun pengajuanLembur(nip: String,
+-                                jam_mulai: String,
+-                                jam_selesai: String,
+-                                file: String,
+-                                tanggal: String,
+-                                keterangan: String ) =
++    suspend fun pengajuanLembur(
++        nip: String,
++        jam_mulai: String,
++        jam_selesai: String,
++        file: String,
++        tanggal: String,
++        keterangan: String
++    ) =
+         safeApiCall { api.pengajuanLembur(nip, jam_mulai, jam_selesai, file, tanggal, keterangan) }
+ 
+     suspend fun attendanceToday(
+-//        data:RequestAbsen
+         image: MultipartBody.Part,
+         nip: RequestBody,
+         date: RequestBody,
+Index: app/src/main/java/com/example/dsmabsen/ui/viewModel/AttendanceViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.viewModel\r\n\r\nimport android.content.Context\r\nimport android.widget.Toast\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.lifecycle.MutableLiveData\r\nimport androidx.lifecycle.ViewModel\r\nimport androidx.lifecycle.viewModelScope\r\nimport com.example.dsmabsen.model.*\r\nimport com.example.dsmabsen.repository.AttendanceRepository\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport dagger.hilt.android.lifecycle.HiltViewModel\r\nimport kotlinx.coroutines.launch\r\nimport okhttp3.MultipartBody\r\nimport okhttp3.RequestBody\r\nimport xyz.teamgravity.checkinternet.CheckInternet\r\nimport javax.inject.Inject\r\n\r\n@HiltViewModel\r\nclass AttendanceViewModel @Inject constructor(private val repository: AttendanceRepository) :\r\n    ViewModel() {\r\n    private var _isDataLoaded = false\r\n\r\n    private val _totalAttendance = MutableLiveData<NetworkResult<TotalAttendance>>()\r\n    val totalAttendanceLiveData: LiveData<NetworkResult<TotalAttendance>> = _totalAttendance\r\n\r\n    private val _attendanceHistory = MutableLiveData<NetworkResult<ResponseRiwayat>>()\r\n    val attendanceHistoryLiveData: LiveData<NetworkResult<ResponseRiwayat>>\r\n        get() = _attendanceHistory\r\n\r\n    private val _attendanceHistoryLiveData = MutableLiveData<NetworkResult<ResponseRiwayat>>()\r\n    val attendanceHistoryLiveData2: LiveData<NetworkResult<ResponseRiwayat>>\r\n        get() = _attendanceHistoryLiveData\r\n\r\n    private val _attendanceToday = MutableLiveData<NetworkResult<Presensi>>()\r\n    val attendanceTodayLiveData: LiveData<NetworkResult<Presensi>> = _attendanceToday\r\n\r\n    private val _getSallary = MutableLiveData<NetworkResult<DataSallary>>()\r\n    val getSallaryLiveData: LiveData<NetworkResult<DataSallary>> = _getSallary\r\n\r\n    private val _getListLembur = MutableLiveData<NetworkResult<DataLembur>>()\r\n    val getListLemburLiveData: LiveData<NetworkResult<DataLembur>> = _getListLembur\r\n\r\n    private val _pengajuanLembur = MutableLiveData<NetworkResult<PengajuanLembur>>()\r\n    val pengajuanLemburLiveData: LiveData<NetworkResult<PengajuanLembur>> = _pengajuanLembur\r\n\r\n    fun attendanceHistoryRequest2(nip: String) {\r\n        viewModelScope.launch {\r\n            _attendanceHistoryLiveData.value = NetworkResult.Loading()\r\n            _attendanceHistoryLiveData.value = repository.getAttendanceHistory(nip)\r\n        }\r\n    }\r\n\r\n    fun attendanceTotalRequest(nip: String) {\r\n        viewModelScope.launch {\r\n            val connected = CheckInternet().check()\r\n            if (connected) {\r\n                _totalAttendance.postValue(NetworkResult.Loading())\r\n                _totalAttendance.postValue(repository.attendanceTotal(nip))\r\n\r\n            } else\r\n                _totalAttendance.postValue(NetworkResult.Error(\"No Internet Connection\"))\r\n        }\r\n    }\r\n\r\n    fun requestSallary(nip: String) {\r\n        viewModelScope.launch {\r\n            val connected = CheckInternet().check()\r\n            if (connected) {\r\n                _getSallary.postValue(NetworkResult.Loading())\r\n                _getSallary.postValue(repository.getSallary(nip))\r\n\r\n            } else\r\n                _getSallary.postValue(NetworkResult.Error(\"No Internet Connection\"))\r\n        }\r\n    }\r\n\r\n    fun requestListLembur(nip: String) {\r\n        viewModelScope.launch {\r\n            val connected = CheckInternet().check()\r\n            if (connected) {\r\n                _getListLembur.postValue(NetworkResult.Loading())\r\n                _getListLembur.postValue(repository.getListLembur(nip))\r\n\r\n            } else\r\n                _getListLembur.postValue(NetworkResult.Error(\"No Internet Connection\"))\r\n        }\r\n    }\r\n\r\n    fun requestPengajuanLembur(\r\n        nip: String,\r\n        jam_mulai: String,\r\n        jam_selesai: String,\r\n        file: String,\r\n        tanggal: String,\r\n        keterangan: String\r\n    ) {\r\n        viewModelScope.launch {\r\n            val connected = CheckInternet().check()\r\n            if (connected) {\r\n                _pengajuanLembur.postValue(NetworkResult.Loading())\r\n                _pengajuanLembur.postValue(\r\n                    repository.pengajuanLembur(\r\n                        nip,\r\n                        jam_mulai,\r\n                        jam_selesai,\r\n                        file,\r\n                        tanggal,\r\n                        keterangan\r\n                    )\r\n                )\r\n\r\n            } else\r\n                _pengajuanLembur.postValue(NetworkResult.Error(\"No Internet Connection\"))\r\n        }\r\n    }\r\n\r\n    fun attendanceHistoryRequest(nip: String) {\r\n        viewModelScope.launch {\r\n\r\n            if (!_isDataLoaded) {\r\n                _attendanceHistory.postValue(repository.attendanceHistory(nip))\r\n                _attendanceHistory.postValue(NetworkResult.Loading())\r\n            }\r\n        }\r\n\r\n    }\r\n\r\n    fun attendanceToday(\r\n//        data:RequestAbsen\r\n        image: MultipartBody.Part,\r\n        nip: RequestBody,\r\n        date: RequestBody,\r\n        timezone: RequestBody,\r\n        kordinat: RequestBody,\r\n        kode_shift: RequestBody,\r\n        kode_tingkat: RequestBody\r\n    ) {\r\n        viewModelScope.launch {\r\n            if (!_isDataLoaded) {\r\n                _attendanceToday.postValue(\r\n                    repository.attendanceToday(\r\n                        image, nip, date, timezone, kordinat, kode_shift, kode_tingkat\r\n                    )\r\n                )\r\n                _attendanceToday.postValue(NetworkResult.Loading())\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/viewModel/AttendanceViewModel.kt b/app/src/main/java/com/example/dsmabsen/ui/viewModel/AttendanceViewModel.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/viewModel/AttendanceViewModel.kt	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/java/com/example/dsmabsen/ui/viewModel/AttendanceViewModel.kt	(date 1678663803418)
+@@ -21,6 +21,9 @@
+     ViewModel() {
+     private var _isDataLoaded = false
+ 
++    private val _presensi = MutableLiveData<NetworkResult<Presensi>>()
++    val presensiLiveData: LiveData<NetworkResult<Presensi>> get() = _presensi
++
+     private val _totalAttendance = MutableLiveData<NetworkResult<TotalAttendance>>()
+     val totalAttendanceLiveData: LiveData<NetworkResult<TotalAttendance>> = _totalAttendance
+ 
+@@ -33,7 +36,8 @@
+         get() = _attendanceHistoryLiveData
+ 
+     private val _attendanceToday = MutableLiveData<NetworkResult<Presensi>>()
+-    val attendanceTodayLiveData: LiveData<NetworkResult<Presensi>> = _attendanceToday
++    val attendanceTodayLiveData: LiveData<NetworkResult<Presensi>>
++    get() =  _attendanceToday
+ 
+     private val _getSallary = MutableLiveData<NetworkResult<DataSallary>>()
+     val getSallaryLiveData: LiveData<NetworkResult<DataSallary>> = _getSallary
+@@ -51,6 +55,26 @@
+         }
+     }
+ 
++    fun attendanceToday2(
++        image: MultipartBody.Part,
++        nip: RequestBody,
++        date: RequestBody,
++        timezone: RequestBody,
++        kordinat: RequestBody,
++        kode_shift: RequestBody,
++        kode_tingkat: RequestBody
++    ) = viewModelScope.launch {
++        _presensi.value = repository.attendanceToday(
++            image,
++            nip,
++            date,
++            timezone,
++            kordinat,
++            kode_shift,
++            kode_tingkat
++        )
++    }
++
+     fun attendanceTotalRequest(nip: String) {
+         viewModelScope.launch {
+             val connected = CheckInternet().check()
+Index: app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXX.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.model\r\n\r\ndata class DataXXXXXXXXXXXXXXX(\r\n    val Dis_aktif: String,\r\n    val divisi: String,\r\n    val gaji_pokok: String,\r\n    val id: String,\r\n    val is_aktif: String,\r\n    val jabatan: String,\r\n    val kode_payroll: String,\r\n    val nama: String,\r\n    val nip: String,\r\n    val slip_url: String,\r\n    val tanggal: String,\r\n    val total: String,\r\n    val total_penambahan: String,\r\n    val total_potongan: String\r\n)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXX.kt b/app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXX.kt
+--- a/app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXX.kt	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXX.kt	(date 1678662744856)
+@@ -1,5 +1,10 @@
+ package com.example.dsmabsen.model
+ 
++import android.os.Parcelable
++import kotlinx.android.parcel.Parcelize
++
++
++@Parcelize
+ data class DataXXXXXXXXXXXXXXX(
+     val Dis_aktif: String,
+     val divisi: String,
+@@ -15,4 +20,4 @@
+     val total: String,
+     val total_penambahan: String,
+     val total_potongan: String
+-)
+\ No newline at end of file
++) : Parcelable
+\ No newline at end of file
+Index: app/src/main/java/com/example/dsmabsen/adapter/SallaryAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.adapter\r\n\r\nimport android.content.Context\r\nimport android.view.LayoutInflater\r\nimport android.view.ViewGroup\r\nimport androidx.recyclerview.widget.AsyncListDiffer\r\nimport androidx.recyclerview.widget.DiffUtil\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.example.dsmabsen.databinding.ItemSallaryBinding\r\nimport com.example.dsmabsen.model.DataXXXXXXXXXXXXXXX\r\n\r\nclass SallaryAdapter(private val context: Context) :\r\n    RecyclerView.Adapter<SallaryAdapter.ViewHolder>() {\r\n\r\n    inner class ViewHolder(private val binding: ItemSallaryBinding) :\r\n        RecyclerView.ViewHolder(binding.root) {\r\n        fun setData(item: DataXXXXXXXXXXXXXXX) {\r\n            binding.apply {\r\n                with(item) {\r\n                    tanggals.text = tanggal\r\n                    sallary.text = total\r\n                    idGaji.text = kode_payroll\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(\r\n        ItemSallaryBinding.inflate(LayoutInflater.from(parent.context), parent, false)\r\n    )\r\n\r\n    override fun onBindViewHolder(holder: ViewHolder, position: Int) {\r\n        holder.setData(differ.currentList[position])\r\n        holder.setIsRecyclable(false)\r\n    }\r\n\r\n    override fun getItemCount() = differ.currentList.size\r\n\r\n    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXXXXXXXXXX>() {\r\n        override fun areItemsTheSame(oldItem: DataXXXXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXXXXX): Boolean {\r\n            return oldItem.id == newItem.id\r\n        }\r\n\r\n        override fun areContentsTheSame(oldItem: DataXXXXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXXXXX): Boolean {\r\n            return oldItem.id == newItem.id\r\n        }\r\n    }\r\n\r\n    val differ = AsyncListDiffer(this, differCallback)\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/adapter/SallaryAdapter.kt b/app/src/main/java/com/example/dsmabsen/adapter/SallaryAdapter.kt
+--- a/app/src/main/java/com/example/dsmabsen/adapter/SallaryAdapter.kt	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/java/com/example/dsmabsen/adapter/SallaryAdapter.kt	(date 1678662744777)
+@@ -2,7 +2,9 @@
+ 
+ import android.content.Context
+ import android.view.LayoutInflater
++import android.view.View
+ import android.view.ViewGroup
++import android.widget.Toast
+ import androidx.recyclerview.widget.AsyncListDiffer
+ import androidx.recyclerview.widget.DiffUtil
+ import androidx.recyclerview.widget.RecyclerView
+@@ -11,18 +13,28 @@
+ 
+ class SallaryAdapter(private val context: Context) :
+     RecyclerView.Adapter<SallaryAdapter.ViewHolder>() {
++    var listener:RecyclerViewHandler? = null
+ 
+     inner class ViewHolder(private val binding: ItemSallaryBinding) :
+-        RecyclerView.ViewHolder(binding.root) {
++        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+         fun setData(item: DataXXXXXXXXXXXXXXX) {
++            val myPosition = differ.currentList[adapterPosition]
+             binding.apply {
+                 with(item) {
+                     tanggals.text = tanggal
+                     sallary.text = total
+                     idGaji.text = kode_payroll
++
++                    itemView.setOnClickListener {
++                        listener?.onItemSelected(differ.currentList[adapterPosition])
++                    }
+                 }
+             }
+         }
++
++        override fun onClick(p0: View?) {
++            listener?.onItemSelected(differ.currentList[adapterPosition])
++        }
+     }
+ 
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
+Index: app/src/main/java/com/example/dsmabsen/ui/fragment/SallaryFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.os.Bundle\r\nimport android.view.*\r\nimport android.widget.TextView\r\nimport androidx.fragment.app.Fragment\r\nimport android.widget.Toast\r\nimport androidx.appcompat.widget.Toolbar\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.adapter.AttendanceAdapter\r\nimport com.example.dsmabsen.adapter.SallaryAdapter\r\nimport com.example.dsmabsen.databinding.FragmentSallaryBinding\r\nimport com.example.dsmabsen.helper.handleApiError\r\nimport com.example.dsmabsen.model.DataX\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport com.example.dsmabsen.ui.viewModel.AttendanceViewModel\r\nimport com.example.dsmabsen.ui.viewModel.HomeViewModel\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\n\r\n@AndroidEntryPoint\r\nclass SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBinding::inflate) {\r\n\r\n\r\n    private val viewModel: AttendanceViewModel by viewModels()\r\n    private lateinit var adapter: SallaryAdapter\r\n    private lateinit var recyclerView: RecyclerView\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        val savedUser = Paper.book().read<DataX>(\"user\")\r\n\r\n        with(binding) {\r\n            adapter = SallaryAdapter(requireContext())\r\n            recyclerView = recSallary\r\n            recyclerView.adapter = adapter\r\n            recyclerView.layoutManager = LinearLayoutManager(requireContext())\r\n            recyclerView.setHasFixedSize(true)\r\n\r\n            viewModel.requestSallary(savedUser!!.nip)\r\n            viewModel.getSallaryLiveData.observe(viewLifecycleOwner) {\r\n                when (it) {\r\n                    is NetworkResult.Success -> {\r\n                        val response = it.data!!\r\n                        val status = response.status\r\n                        if (status) {\r\n                            adapter.differ.submitList(response.data)\r\n                        } else {\r\n                            Toast.makeText(requireContext(), \"status False\", Toast.LENGTH_SHORT)\r\n                                .show()\r\n                        }\r\n                    }\r\n\r\n                    is NetworkResult.Loading -> {\r\n                        Toast.makeText(requireContext(), \"Loading\", Toast.LENGTH_SHORT).show()\r\n                    }\r\n\r\n                    is NetworkResult.Error -> {\r\n                        handleApiError(it.message)\r\n                    }\r\n                }\r\n            }\r\n\r\n        }\r\n        setHasOptionsMenu(false)\r\n        setupToolbar(\"Gaji\")\r\n\r\n\r\n    }\r\n    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {\r\n        inflater.inflate(R.menu.toolbar_menu, menu)\r\n        val menuSave = menu.findItem(R.id.save)\r\n        val menuPlus = menu.findItem(R.id.add)\r\n\r\n        menuSave?.isVisible = false // menyembunyikan menu tertentu\r\n        menuPlus?.isVisible = false // menyembunyikan menu tertentu\r\n\r\n        val item = menu.findItem(R.id.save)\r\n        item.setActionView(R.layout.item_menu_toolbar)\r\n\r\n        val actionView = item.actionView\r\n        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)\r\n        btnSimpan?.setOnClickListener {\r\n            // your code here\r\n//            saveReimbursement(savedUser)\r\n\r\n        }\r\n\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/SallaryFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/SallaryFragment.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/fragment/SallaryFragment.kt	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/SallaryFragment.kt	(date 1678662795849)
+@@ -7,14 +7,17 @@
+ import android.widget.Toast
+ import androidx.appcompat.widget.Toolbar
+ import androidx.fragment.app.viewModels
++import androidx.navigation.fragment.findNavController
+ import androidx.recyclerview.widget.LinearLayoutManager
+ import androidx.recyclerview.widget.RecyclerView
+ import com.example.dsmabsen.R
+ import com.example.dsmabsen.adapter.AttendanceAdapter
++import com.example.dsmabsen.adapter.RecyclerViewHandler
+ import com.example.dsmabsen.adapter.SallaryAdapter
+ import com.example.dsmabsen.databinding.FragmentSallaryBinding
+ import com.example.dsmabsen.helper.handleApiError
+ import com.example.dsmabsen.model.DataX
++import com.example.dsmabsen.model.DataXXXXXXXXXXXXXXX
+ import com.example.dsmabsen.repository.NetworkResult
+ import com.example.dsmabsen.ui.viewModel.AttendanceViewModel
+ import com.example.dsmabsen.ui.viewModel.HomeViewModel
+@@ -22,7 +25,7 @@
+ import io.paperdb.Paper
+ 
+ @AndroidEntryPoint
+-class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBinding::inflate) {
++class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBinding::inflate){
+ 
+ 
+     private val viewModel: AttendanceViewModel by viewModels()
+@@ -36,6 +39,15 @@
+ 
+         with(binding) {
+             adapter = SallaryAdapter(requireContext())
++
++            adapter.listener = object : RecyclerViewHandler{
++                override fun onItemSelected(data: DataXXXXXXXXXXXXXXX) {
++                    val action = SallaryFragmentDirections.actionSallaryFragmentToDetailGajiFragment(data)
++                    findNavController().navigate(action)
++//                    Toast.makeText(requireContext(), "$data", Toast.LENGTH_SHORT).show()
++                }
++
++            }
+             recyclerView = recSallary
+             recyclerView.adapter = adapter
+             recyclerView.layoutManager = LinearLayoutManager(requireContext())
+@@ -92,4 +104,5 @@
+ 
+     }
+ 
++
+ }
+\ No newline at end of file
+Index: app/src/main/res/navigation/main_nav.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main_nav\"\r\n    app:startDestination=\"@id/berandaFragment\">\r\n\r\n    <fragment\r\n        android:id=\"@+id/berandaFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.BerandaFragment\"\r\n        android:label=\"fragment_beranda\"\r\n        tools:layout=\"@layout/fragment_beranda\">\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_scanFragment\"\r\n            app:destination=\"@id/scanFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_dataAbsenFragment\"\r\n            app:destination=\"@id/dataAbsenFragment\"\r\n            app:enterAnim=\"@anim/slide_in_right\"\r\n            app:exitAnim=\"@anim/slide_out_left\"\r\n            app:popEnterAnim=\"@anim/slide_in_left\"\r\n            app:popExitAnim=\"@anim/slide_out_right\"\r\n            app:popUpToInclusive=\"false\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_profileFragment\"\r\n            app:destination=\"@id/profileFragment\"\r\n            app:enterAnim=\"@anim/slide_in_right\"\r\n            app:exitAnim=\"@anim/slide_out_left\"\r\n            app:popEnterAnim=\"@anim/slide_in_left\"\r\n            app:popExitAnim=\"@anim/slide_out_right\"\r\n            app:popUpTo=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_attendanceFragment\"\r\n            app:destination=\"@id/attendanceFragment\"\r\n            app:popUpToInclusive=\"false\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_allMenuFragment\"\r\n            app:destination=\"@id/allMenuFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_sallaryFragment\"\r\n            app:destination=\"@id/sallaryFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_reimbursementFragment\"\r\n            app:destination=\"@id/reimbursementFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_menuPerizinanFragment\"\r\n            app:destination=\"@id/menuPerizinanFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_lemburFragment\"\r\n            app:destination=\"@id/lemburFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_shiftFragment\"\r\n            app:destination=\"@id/shiftFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/scanFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.ScanFragment\"\r\n        android:label=\"fragment_scan\"\r\n        tools:layout=\"@layout/fragment_scan\">\r\n        <action\r\n            android:id=\"@+id/action_scanFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_scanFragment_to_berandaFragment2\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/dataAbsenFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.DataAbsenFragment\"\r\n        android:label=\"fragment_data_absen\"\r\n        tools:layout=\"@layout/fragment_data_absen\">\r\n        <action\r\n            android:id=\"@+id/action_dataAbsenFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_dataAbsenFragment_to_profileFragment\"\r\n            app:destination=\"@id/profileFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/profileFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.ProfileFragment\"\r\n        android:label=\"fragment_profile\"\r\n        tools:layout=\"@layout/fragment_profile\" >\r\n        <action\r\n            android:id=\"@+id/action_profileFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_profileFragment_to_dataAbsenFragment\"\r\n            app:destination=\"@id/dataAbsenFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_profileFragment_to_allProfileFragment\"\r\n            app:destination=\"@id/allProfileFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/noInternetConnection\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.NoInternetConnection\"\r\n        android:label=\"fragment_no_internet_connection\"\r\n        tools:layout=\"@layout/fragment_no_internet_connection\" />\r\n    <fragment\r\n        android:id=\"@+id/attendanceFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.AttendanceFragment\"\r\n        android:label=\"fragment_attendance\"\r\n        tools:layout=\"@layout/fragment_attendance\" >\r\n        <action\r\n            android:id=\"@+id/action_attendanceFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_attendanceFragment_to_profileFragment\"\r\n            app:destination=\"@id/profileFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/allMenuFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.AllMenuFragment\"\r\n        android:label=\"fragment_all_menu\"\r\n        tools:layout=\"@layout/fragment_all_menu\" >\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_reimbursementFragment\"\r\n            app:destination=\"@id/reimbursementFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_shiftFragment\"\r\n            app:destination=\"@id/shiftFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_lemburFragment\"\r\n            app:destination=\"@id/lemburFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_sallaryFragment\"\r\n            app:destination=\"@id/sallaryFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_menuPerizinanFragment\"\r\n            app:destination=\"@id/menuPerizinanFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/allProfileFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.AllProfileFragment\"\r\n        android:label=\"fragment_all_profile\"\r\n        tools:layout=\"@layout/fragment_all_profile\" >\r\n        <action\r\n            android:id=\"@+id/action_allProfileFragment_to_personalDataFragment\"\r\n            app:destination=\"@id/personalDataFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/editProfileFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.EditProfileFragment\"\r\n        android:label=\"fragment_edit_profile\"\r\n        tools:layout=\"@layout/fragment_edit_profile\" />\r\n    <fragment\r\n        android:id=\"@+id/personalDataFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.PersonalDataFragment\"\r\n        android:label=\"fragment_personal_data\"\r\n        tools:layout=\"@layout/fragment_personal_data\" >\r\n        <action\r\n            android:id=\"@+id/action_personalDataFragment_to_editProfileFragment\"\r\n            app:destination=\"@id/editProfileFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/sallaryFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.SallaryFragment\"\r\n        android:label=\"fragment_sallary\"\r\n        tools:layout=\"@layout/fragment_sallary\" />\r\n    <fragment\r\n        android:id=\"@+id/reimbursementFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.ReimbursementFragment\"\r\n        android:label=\"fragment_reimbursement\"\r\n        tools:layout=\"@layout/fragment_reimbursement\" >\r\n        <action\r\n            android:id=\"@+id/action_reimbursementFragment_to_pengajuanReimbursementFragment\"\r\n            app:destination=\"@id/pengajuanReimbursementFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/splashScreenFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.SplashScreenFragment\"\r\n        android:label=\"fragment_splash_screen\"\r\n        tools:layout=\"@layout/fragment_splash_screen\" />\r\n    <fragment\r\n        android:id=\"@+id/formPerizinanFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.FormPerizinanFragment\"\r\n        android:label=\"fragment_form_perizinan\"\r\n        tools:layout=\"@layout/fragment_form_perizinan\" >\r\n        <action\r\n            android:id=\"@+id/action_formPerizinanFragment_to_menuPerizinanFragment\"\r\n            app:destination=\"@id/menuPerizinanFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/menuPerizinanFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.MenuPerizinanFragment\"\r\n        android:label=\"fragment_menu_perizinan\"\r\n        tools:layout=\"@layout/fragment_menu_perizinan\" >\r\n        <action\r\n            android:id=\"@+id/action_menuPerizinanFragment_to_formPerizinanFragment\"\r\n            app:destination=\"@id/formPerizinanFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/lemburFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.LemburFragment\"\r\n        android:label=\"fragment_lembur\"\r\n        tools:layout=\"@layout/fragment_lembur\" >\r\n        <action\r\n            android:id=\"@+id/action_lemburFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_lemburFragment_to_pengajuanLemburFragment\"\r\n            app:destination=\"@id/pengajuanLemburFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/pengajuanLemburFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.PengajuanLemburFragment\"\r\n        android:label=\"fragment_pengajuan_lembur\"\r\n        tools:layout=\"@layout/fragment_pengajuan_lembur\" />\r\n    <fragment\r\n        android:id=\"@+id/shiftFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.ShiftFragment\"\r\n        android:label=\"fragment_shift\"\r\n        tools:layout=\"@layout/fragment_shift\" >\r\n        <action\r\n            android:id=\"@+id/action_shiftFragment_to_pengajuanShiftFragment\"\r\n            app:destination=\"@id/pengajuanShiftFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/pengajuanReimbursementFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.PengajuanReimbursementFragment\"\r\n        android:label=\"fragment_pengajuan_reimbursement\"\r\n        tools:layout=\"@layout/fragment_pengajuan_reimbursement\" />\r\n    <fragment\r\n        android:id=\"@+id/pengajuanShiftFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.PengajuanShiftFragment\"\r\n        android:label=\"fragment_pengajuan_shift\"\r\n        tools:layout=\"@layout/fragment_pengajuan_shift\" />\r\n</navigation>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/navigation/main_nav.xml b/app/src/main/res/navigation/main_nav.xml
+--- a/app/src/main/res/navigation/main_nav.xml	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/res/navigation/main_nav.xml	(date 1678662795880)
+@@ -159,7 +159,11 @@
+         android:id="@+id/sallaryFragment"
+         android:name="com.example.dsmabsen.ui.fragment.SallaryFragment"
+         android:label="fragment_sallary"
+-        tools:layout="@layout/fragment_sallary" />
++        tools:layout="@layout/fragment_sallary" >
++        <action
++            android:id="@+id/action_sallaryFragment_to_detailGajiFragment"
++            app:destination="@id/detailGajiFragment" />
++    </fragment>
+     <fragment
+         android:id="@+id/reimbursementFragment"
+         android:name="com.example.dsmabsen.ui.fragment.ReimbursementFragment"
+@@ -228,4 +232,12 @@
+         android:name="com.example.dsmabsen.ui.fragment.PengajuanShiftFragment"
+         android:label="fragment_pengajuan_shift"
+         tools:layout="@layout/fragment_pengajuan_shift" />
++    <fragment
++        android:id="@+id/detailGajiFragment"
++        android:name="com.example.dsmabsen.ui.fragment.DetailGajiFragment"
++        android:label="DetailGajiFragment" >
++        <argument
++            android:name="detailGaji"
++            app:argType="com.example.dsmabsen.model.DataXXXXXXXXXXXXXXX" />
++    </fragment>
+ </navigation>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <uses-feature\r\n        android:name=\"android.hardware.camera.any\"\r\n        android:required=\"true\" />\r\n    <uses-feature\r\n        android:name=\"android.hardware.camera.autofocus\"\r\n        android:required=\"false\" />\r\n\r\n    <uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />\r\n    <uses-permission android:name=\"android.permission.CAMERA\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_BACKGROUND_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.FOREGROUND_SERVICE\" />\r\n    <uses-permission android:name=\"android.permission.CAMERA\" />\r\n    <uses-permission android:name=\"android.permission.MANAGE_EXTERNAL_STORAGE\" />\r\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />\r\n    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />\r\n\r\n    <application\r\n        android:name=\".MyApplication\"\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.DSMAbsen\"\r\n        android:usesCleartextTraffic=\"true\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".ui.activity.OnBoardingActivity\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".CobaLogin\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".ui.activity.MainActivity\"\r\n            android:exported=\"true\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".ui.activity.LoginActivity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n\r\n        <meta-data\r\n            android:name=\"preloaded_fonts\"\r\n            android:resource=\"@array/preloaded_fonts\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/AndroidManifest.xml	(date 1678662850608)
+@@ -20,6 +20,7 @@
+     <uses-permission android:name="android.permission.CAMERA" />
+     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
++    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+ 
+     <application
+@@ -35,7 +36,7 @@
+         android:usesCleartextTraffic="true"
+         tools:targetApi="31">
+         <activity
+-            android:name=".ui.activity.OnBoardingActivity"
++            android:name=".ui.activity.LoginActivity"
+             android:exported="false">
+             <meta-data
+                 android:name="android.app.lib_name"
+@@ -56,7 +57,7 @@
+                 android:value="" />
+         </activity>
+         <activity
+-            android:name=".ui.activity.LoginActivity"
++            android:name=".ui.activity.OnBoardingActivity"
+             android:exported="true">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+Index: app/src/main/res/layout/fragment_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n    android:background=\"@color/white\"\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ui.fragment.HomeFragment\">\r\n\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView39\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:textSize=\"@dimen/_32ssp\"\r\n        android:textColor=\"@color/black\"\r\n        android:text=\"Home Fragment\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView13\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/textView39\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:src=\"@drawable/ic_reimbursement\" />\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_home.xml b/app/src/main/res/layout/fragment_home.xml
+--- a/app/src/main/res/layout/fragment_home.xml	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/res/layout/fragment_home.xml	(date 1678662850594)
+@@ -1,21 +1,21 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout
+-    android:background="@color/white"
+-    xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
++    android:background="@color/white"
+     tools:context=".ui.fragment.HomeFragment">
+ 
+ 
+     <TextView
++
+         android:id="@+id/textView39"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:textSize="@dimen/_32ssp"
++        android:text="Home Fragment"
+         android:textColor="@color/black"
+-        android:text="Home Fragment"
++        android:textSize="@dimen/_32ssp"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+@@ -25,11 +25,20 @@
+         android:id="@+id/imageView13"
+         android:layout_width="0dp"
+         android:layout_height="0dp"
++        android:src="@drawable/ic_reimbursement"
+         app:layout_constraintBottom_toTopOf="@+id/textView39"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        android:src="@drawable/ic_reimbursement" />
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <Button
++        android:id="@+id/requestPermissionsButton"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:text="Request Permissions"
++        android:visibility="gone"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textView39" />
+ 
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/dsmabsen/ui/fragment/HomeFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.Manifest\r\nimport android.app.Activity\r\nimport android.content.Intent\r\nimport android.content.pm.PackageManager\r\nimport android.graphics.Bitmap\r\nimport android.os.Build\r\nimport android.os.Bundle\r\nimport android.provider.MediaStore\r\nimport android.util.Log\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Toast\r\nimport androidx.activity.result.contract.ActivityResultContracts\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.core.app.ActivityCompat\r\nimport androidx.core.content.ContextCompat\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.databinding.FragmentHomeBinding\r\nimport com.example.dsmabsen.helper.Constans\r\nimport com.google.android.material.snackbar.Snackbar\r\n\r\nclass HomeFragment : Fragment() {\r\n\r\n    lateinit var binding: FragmentHomeBinding\r\n    private val LOCATION_PERMISSION_CODE = 123\r\n    private val MY_PERMISSIONS_REQUEST_CAMERA = 456\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater, container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View {\r\n        binding = FragmentHomeBinding.inflate(inflater, container, false)\r\n        return binding.root\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n        with(binding) {\r\n            checkForPermission(\r\n                Manifest.permission.CAMERA,\r\n                \"camera\",\r\n                MY_PERMISSIONS_REQUEST_CAMERA\r\n            )\r\n\r\n            checkForPermission(\r\n                Manifest.permission.ACCESS_FINE_LOCATION,\r\n                \"location\",\r\n                LOCATION_PERMISSION_CODE\r\n            )\r\n\r\n            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {\r\n            } else {\r\n                val permission = Manifest.permission.READ_PHONE_STATE\r\n                singlePermissionLaunch.launch(permission)\r\n            }\r\n\r\n//camera >= M kasih izin\r\n//            Lokasi\r\n//Imei android dibawah 10 izin imei\r\n\r\n\r\n            imageView13.setOnClickListener {\r\n                checkForPermission(\r\n                    Manifest.permission.CAMERA,\r\n                    \"camera\",\r\n                    MY_PERMISSIONS_REQUEST_CAMERA\r\n                )\r\n            }\r\n\r\n            textView39.setOnClickListener {\r\n                checkForPermission(\r\n                    Manifest.permission.ACCESS_FINE_LOCATION,\r\n                    \"location\",\r\n                    LOCATION_PERMISSION_CODE\r\n                )\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun checkForPermission(permission: String, name: String, requestCode: Int) {\r\n        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {\r\n            when {\r\n                ContextCompat.checkSelfPermission(\r\n                    requireContext(),\r\n                    permission\r\n                ) == PackageManager.PERMISSION_GRANTED -> {\r\n                    Toast.makeText(requireContext(), \"$name permission granted\", Toast.LENGTH_SHORT)\r\n                        .show()\r\n                }\r\n\r\n                shouldShowRequestPermissionRationale(permission) -> showDialog(\r\n                    permission,\r\n                    name,\r\n                    requestCode\r\n                )\r\n                else -> ActivityCompat.requestPermissions(\r\n                    requireActivity(),\r\n                    arrayOf(permission),\r\n                    requestCode\r\n                )\r\n            }\r\n        }\r\n    }\r\n\r\n    override fun onRequestPermissionsResult(\r\n        requestCode: Int,\r\n        permissions: Array<out String>,\r\n        grantResults: IntArray\r\n    ) {\r\n        fun innerCheck(name: String) {\r\n            if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {\r\n                Toast.makeText(requireContext(), \"izin $name ditolak\", Toast.LENGTH_SHORT)\r\n                    .show()\r\n            } else {\r\n                Toast.makeText(requireContext(), \"izin $name disetujui\", Toast.LENGTH_SHORT)\r\n                    .show()\r\n            }\r\n        }\r\n\r\n        when (requestCode) {\r\n            LOCATION_PERMISSION_CODE -> innerCheck(\"location\")\r\n            MY_PERMISSIONS_REQUEST_CAMERA -> innerCheck(\"camera\")\r\n        }\r\n        super.onRequestPermissionsResult(requestCode, permissions, grantResults)\r\n    }\r\n\r\n    private fun showDialog(permission: String, name: String, requestCode: Int) {\r\n        val builder = AlertDialog.Builder(requireContext())\r\n        builder.apply {\r\n            setMessage(\"membutuhkan izin $name untuk menggunakan aplikasi ini\")\r\n            setTitle(\"Membutuhkan izin\")\r\n            setPositiveButton(\"OK\") { dialog, whisch ->\r\n                ActivityCompat.requestPermissions(\r\n                    requireActivity(),\r\n                    arrayOf(permission),\r\n                    requestCode\r\n                )\r\n            }\r\n        }\r\n\r\n        val dialog = builder.create()\r\n        dialog.show()\r\n    }\r\n\r\n    private val singlePermissionLaunch =\r\n        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->\r\n            Log.d(Constans.TAG, \"Membutuhkan izin: $isGranted\")\r\n            if (isGranted) {\r\n                Toast.makeText(requireContext(), \"Izin disetujui\", Toast.LENGTH_SHORT).show()\r\n            } else {\r\n                Toast.makeText(requireContext(), \"izin ditolak \", Toast.LENGTH_SHORT).show()\r\n            }\r\n        }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/HomeFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/HomeFragment.kt
+--- a/app/src/main/java/com/example/dsmabsen/ui/fragment/HomeFragment.kt	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/HomeFragment.kt	(date 1678662795812)
+@@ -2,108 +2,98 @@
+ 
+ import android.Manifest
+ import android.app.Activity
++import android.content.Context
++import android.content.Context.TELEPHONY_SERVICE
+ import android.content.Intent
+ import android.content.pm.PackageManager
+-import android.graphics.Bitmap
+ import android.os.Build
+ import android.os.Bundle
+-import android.provider.MediaStore
+-import android.util.Log
+-import androidx.fragment.app.Fragment
++import android.telephony.TelephonyManager
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
+ import android.widget.Toast
+-import androidx.activity.result.contract.ActivityResultContracts
++import androidx.annotation.RequiresApi
+ import androidx.appcompat.app.AlertDialog
+ import androidx.core.app.ActivityCompat
+ import androidx.core.content.ContextCompat
+-import com.example.dsmabsen.R
++import androidx.core.content.ContextCompat.getSystemService
++import androidx.fragment.app.Fragment
+ import com.example.dsmabsen.databinding.FragmentHomeBinding
+-import com.example.dsmabsen.helper.Constans
+-import com.google.android.material.snackbar.Snackbar
++import com.example.dsmabsen.ui.activity.LoginActivity
+ 
+ class HomeFragment : Fragment() {
+ 
+     lateinit var binding: FragmentHomeBinding
+-    private val LOCATION_PERMISSION_CODE = 123
+-    private val MY_PERMISSIONS_REQUEST_CAMERA = 456
++    private val LOCATION_PERMISSION_CODE = 123 // kode permintaan izin lokasi
++    private val MY_PERMISSIONS_REQUEST_CAMERA = 456 // kode permintaan izin kamera
++
++    companion object {
++        const val ALL_PERMISSIONS_CODE = 1
++    }
++
++    val permissions = arrayOf(
++        Manifest.permission.CAMERA,
++        Manifest.permission.ACCESS_FINE_LOCATION,
++        Manifest.permission.READ_PHONE_STATE
++    )
++
+ 
+     override fun onCreateView(
+         inflater: LayoutInflater, container: ViewGroup?,
+         savedInstanceState: Bundle?
+     ): View {
+         binding = FragmentHomeBinding.inflate(inflater, container, false)
++
++
++        // Check for all permissions
++        if (!checkAllPermissionsGranted(permissions)) {
++            // Show the "Request Permissions" button
++            binding.requestPermissionsButton.visibility = View.VISIBLE
++
++            // Set button click listener
++            binding.requestPermissionsButton.setOnClickListener {
++                // Request the permissions
++                ActivityCompat.requestPermissions(
++                    requireActivity(),
++                    permissions,
++                    ALL_PERMISSIONS_CODE
++                )
++            }
++        } else {
++            // Hide the "Request Permissions" button
++            binding.requestPermissionsButton.visibility = View.GONE
++
++            startLoginActivity()
++        }
+         return binding.root
+     }
+ 
++    @RequiresApi(Build.VERSION_CODES.O)
+     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+         super.onViewCreated(view, savedInstanceState)
+         with(binding) {
+-            checkForPermission(
+-                Manifest.permission.CAMERA,
+-                "camera",
+-                MY_PERMISSIONS_REQUEST_CAMERA
+-            )
+ 
+-            checkForPermission(
+-                Manifest.permission.ACCESS_FINE_LOCATION,
+-                "location",
+-                LOCATION_PERMISSION_CODE
+-            )
+-
+-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
++            if (checkAllPermissionsGranted(permissions)) {
++                binding.requestPermissionsButton.visibility = View.GONE
+             } else {
+-                val permission = Manifest.permission.READ_PHONE_STATE
+-                singlePermissionLaunch.launch(permission)
+-            }
+-
+-//camera >= M kasih izin
+-//            Lokasi
+-//Imei android dibawah 10 izin imei
+-
+-
+-            imageView13.setOnClickListener {
+-                checkForPermission(
+-                    Manifest.permission.CAMERA,
+-                    "camera",
+-                    MY_PERMISSIONS_REQUEST_CAMERA
+-                )
++                binding.requestPermissionsButton.visibility = View.VISIBLE
++                binding.requestPermissionsButton.setOnClickListener {
++                    requestPermissions(permissions, ALL_PERMISSIONS_CODE)
++                }
+             }
+-
+-            textView39.setOnClickListener {
+-                checkForPermission(
+-                    Manifest.permission.ACCESS_FINE_LOCATION,
+-                    "location",
+-                    LOCATION_PERMISSION_CODE
+-                )
+-            }
+         }
+     }
+ 
+-    private fun checkForPermission(permission: String, name: String, requestCode: Int) {
+-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+-            when {
+-                ContextCompat.checkSelfPermission(
+-                    requireContext(),
+-                    permission
+-                ) == PackageManager.PERMISSION_GRANTED -> {
+-                    Toast.makeText(requireContext(), "$name permission granted", Toast.LENGTH_SHORT)
+-                        .show()
+-                }
+-
+-                shouldShowRequestPermissionRationale(permission) -> showDialog(
+-                    permission,
+-                    name,
+-                    requestCode
+-                )
+-                else -> ActivityCompat.requestPermissions(
+-                    requireActivity(),
+-                    arrayOf(permission),
+-                    requestCode
+-                )
++    private fun checkAllPermissionsGranted(permissions: Array<String>): Boolean {
++        for (permission in permissions) {
++            if (ContextCompat.checkSelfPermission(requireContext(), permission)
++                != PackageManager.PERMISSION_GRANTED
++            ) {
++                return false
+             }
+         }
++        return true
+     }
+ 
+     override fun onRequestPermissionsResult(
+@@ -111,50 +101,29 @@
+         permissions: Array<out String>,
+         grantResults: IntArray
+     ) {
+-        fun innerCheck(name: String) {
+-            if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+-                Toast.makeText(requireContext(), "izin $name ditolak", Toast.LENGTH_SHORT)
+-                    .show()
+-            } else {
+-                Toast.makeText(requireContext(), "izin $name disetujui", Toast.LENGTH_SHORT)
+-                    .show()
+-            }
+-        }
+-
+-        when (requestCode) {
+-            LOCATION_PERMISSION_CODE -> innerCheck("location")
+-            MY_PERMISSIONS_REQUEST_CAMERA -> innerCheck("camera")
+-        }
+         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+-    }
+ 
+-    private fun showDialog(permission: String, name: String, requestCode: Int) {
+-        val builder = AlertDialog.Builder(requireContext())
+-        builder.apply {
+-            setMessage("membutuhkan izin $name untuk menggunakan aplikasi ini")
+-            setTitle("Membutuhkan izin")
+-            setPositiveButton("OK") { dialog, whisch ->
+-                ActivityCompat.requestPermissions(
+-                    requireActivity(),
+-                    arrayOf(permission),
+-                    requestCode
+-                )
+-            }
+-        }
++        if (requestCode == ALL_PERMISSIONS_CODE) {
++            var allGranted = true
++            for (grantResult in grantResults) {
++                if (grantResult != PackageManager.PERMISSION_GRANTED) {
++                    allGranted = false
++                    break
++                }
++            }
++            if (allGranted) {
++                // Hide the "Request Permissions" button
++                binding.requestPermissionsButton.visibility = View.GONE
+ 
+-        val dialog = builder.create()
+-        dialog.show()
+-    }
+-
+-    private val singlePermissionLaunch =
+-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+-            Log.d(Constans.TAG, "Membutuhkan izin: $isGranted")
+-            if (isGranted) {
+-                Toast.makeText(requireContext(), "Izin disetujui", Toast.LENGTH_SHORT).show()
++                startLoginActivity()
+             } else {
+-                Toast.makeText(requireContext(), "izin ditolak ", Toast.LENGTH_SHORT).show()
++                Toast.makeText(requireContext(), "Permissions denied", Toast.LENGTH_SHORT).show()
+             }
+         }
+-
++    }
+ 
+-}
+\ No newline at end of file
++    private fun startLoginActivity() {
++        startActivity(Intent(requireContext(), LoginActivity::class.java))
++        requireActivity().finish()
++    }
++}
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">DSM Absen</string>\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n    <string name=\"failed_connect\">failed_connect</string>\r\n    <string name=\"bad_connection\">bad_connection</string>\r\n    <string name=\"ok\">OK</string>\r\n    <string name=\"simpan\">Simpan</string>\r\n    <string name=\"add\">ADD</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/res/values/strings.xml	(date 1678665415114)
+@@ -3,6 +3,7 @@
+     <!-- TODO: Remove or change this placeholder text -->
+     <string name="hello_blank_fragment">Hello blank fragment</string>
+     <string name="failed_connect">failed_connect</string>
++    <string name="tidak_berada_diwaktu_presensi">{"status":true,"message":"Success","data":{"status":"Error","messages":"Anda tidak berada diwaktu presensi"}}</string>
+     <string name="bad_connection">bad_connection</string>
+     <string name="ok">OK</string>
+     <string name="simpan">Simpan</string>
+Index: app/src/main/java/com/example/dsmabsen/helper/ApiHandling.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dsmabsen.helper\r\n\r\nimport android.app.Activity\r\nimport android.widget.Toast\r\nimport androidx.fragment.app.Fragment\r\nimport com.example.dsmabsen.R\r\n\r\nfun Fragment.handleApiError(\r\n    error: String?\r\n) {\r\n    when (error) {\r\n        getString(R.string.failed_connect) -> Toast.makeText(\r\n            context,\r\n            \"can`t connect to server, maybe server is bad server\",\r\n            Toast.LENGTH_LONG\r\n        ).show()\r\n        getString(R.string.bad_connection) -> Toast.makeText(\r\n            context,\r\n            \"Bad connection, check your connection\",\r\n            Toast.LENGTH_LONG\r\n        )\r\n            .show()\r\n        else -> Toast.makeText(context, \"$error\", Toast.LENGTH_LONG).show()\r\n    }\r\n}\r\n\r\nfun Activity.handleApiError(\r\n    error: String?\r\n) {\r\n    when (error) {\r\n        getString(R.string.failed_connect) -> Toast.makeText(\r\n            this,\r\n            \"can`t connect to server, maybe server is bad server\",\r\n            Toast.LENGTH_LONG\r\n        ).show()\r\n        getString(R.string.bad_connection) -> Toast.makeText(\r\n            this,\r\n            \"Bad connection, check your connection\",\r\n            Toast.LENGTH_LONG\r\n        )\r\n            .show()\r\n        else -> Toast.makeText(this, \"$error\", Toast.LENGTH_LONG).show()\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/dsmabsen/helper/ApiHandling.kt b/app/src/main/java/com/example/dsmabsen/helper/ApiHandling.kt
+--- a/app/src/main/java/com/example/dsmabsen/helper/ApiHandling.kt	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/src/main/java/com/example/dsmabsen/helper/ApiHandling.kt	(date 1678665537110)
+@@ -20,6 +20,13 @@
+             Toast.LENGTH_LONG
+         )
+             .show()
++        getString(R.string.tidak_berada_diwaktu_presensi) -> Toast.makeText(
++            context,
++            "Anda Tidak Berada diwaktu presensi",
++            Toast.LENGTH_LONG
++        )
++            .show()
++
+         else -> Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
+     }
+ }
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'org.jetbrains.kotlin.android'\r\n//    id 'kotlin-android-extensions'\r\n    id 'kotlin-kapt'\r\n    id 'dagger.hilt.android.plugin'\r\n    id \"androidx.navigation.safeargs.kotlin\"\r\n}\r\n\r\nandroid {\r\n    namespace 'com.example.dsmabsen'\r\n    compileSdk 33\r\n\r\n    defaultConfig {\r\n        applicationId \"com.example.dsmabsen\"\r\n        minSdk 22\r\n        targetSdk 33\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = '1.8'\r\n        freeCompilerArgs = ['-Xjvm-default=enable'] //enable or compatibility\r\n    }\r\n\r\n    buildFeatures {\r\n        viewBinding true\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n    implementation 'androidx.core:core-ktx:1.7.0'\r\n    implementation 'androidx.appcompat:appcompat:1.6.1'\r\n    implementation 'com.google.android.material:material:1.8.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\r\n    implementation 'androidx.navigation:navigation-fragment:2.5.3'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\r\n\r\n    //    Navigation\r\n    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'\r\n    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'\r\n\r\n//    Retrofit\r\n    implementation platform(\"com.squareup.okhttp3:okhttp-bom:4.10.0\")\r\n    implementation 'com.squareup.retrofit2:retrofit:2.9.0'\r\n    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'\r\n    implementation \"com.squareup.okhttp3:logging-interceptor:4.10.0\"\r\n    implementation 'com.squareup.okhttp3:okhttp:4.10.0'\r\n    implementation \"com.squareup.retrofit2:converter-moshi:2.4.0\"\r\n\r\n//  Dagger + Hilt\r\n    implementation \"com.google.dagger:hilt-android:2.38.1\"\r\n    kapt \"com.google.dagger:hilt-android-compiler:2.38.1\"\r\n    implementation \"androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03\"\r\n    kapt \"androidx.hilt:hilt-compiler:1.0.0\"\r\n\r\n    // Coroutines\r\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6'\r\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'\r\n    implementation \"androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1\"\r\n    implementation \"androidx.lifecycle:lifecycle-extensions:2.2.0\"\r\n\r\n//    Room\r\n    def room_version = \"2.4.3\"\r\n    implementation \"androidx.room:room-runtime:2.4.3\"\r\n    implementation \"androidx.room:room-ktx:2.4.3\"\r\n    kapt \"androidx.room:room-compiler:2.4.3\"\r\n\r\n//    LifeCycle\r\n    implementation \"androidx.lifecycle:lifecycle-livedata-ktx:2.5.1\"\r\n    implementation \"androidx.lifecycle:lifecycle-runtime-ktx:2.5.1\"\r\n    implementation \"androidx.lifecycle:lifecycle-extensions:2.2.0\"\r\n\r\n\r\n//    Rounded image\r\n    implementation 'com.makeramen:roundedimageview:2.3.0'\r\n    implementation 'de.hdodenhof:circleimageview:3.1.0'\r\n    implementation 'com.facebook.shimmer:shimmer:0.5.0'\r\n\r\n    //    Glide library\r\n    implementation 'com.github.bumptech.glide:glide:4.14.2'\r\n\r\n    //    Qr scanner\r\n    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'\r\n\r\n//    Check Internet\r\n    implementation 'com.github.raheemadamboev:check-internet-android:1.1.1'\r\n\r\n    //    Qr scanner\r\n    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'\r\n\r\n//    ui responsive\r\n    implementation 'com.intuit.sdp:sdp-android:1.0.6'\r\n    implementation 'com.intuit.ssp:ssp-android:1.0.6'\r\n\r\n    implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'\r\n\r\n//    Paper Db\r\n    implementation 'io.github.pilgr:paperdb:2.7.2'\r\n\r\n//    MpChart\r\n    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'\r\n\r\n//    DateTime under api 26\r\n    implementation 'com.jakewharton.threetenabp:threetenabp:1.3.0'\r\n\r\n//    Loading\r\n    implementation 'com.github.ybq:Android-SpinKit:1.4.0'\r\n    implementation 'com.airbnb.android:lottie:4.2.0'\r\n\r\n//    Location\r\n    implementation 'com.google.android.gms:play-services-location:21.0.1'\r\n\r\n//    flex box\r\n    implementation 'com.google.android.flexbox:flexbox:3.0.0'\r\n\r\n    implementation \"com.android.volley:volley:1.2.0\"\r\n\r\n    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 4ddfc9f8001bfeec256ac14519867cf2645acb87)
++++ b/app/build.gradle	(date 1678662744847)
+@@ -5,6 +5,7 @@
+     id 'kotlin-kapt'
+     id 'dagger.hilt.android.plugin'
+     id "androidx.navigation.safeargs.kotlin"
++    id 'kotlin-parcelize'
+ }
+ 
+ android {
+@@ -39,6 +40,7 @@
+     buildFeatures {
+         viewBinding true
+     }
++
+ }
+ 
+ dependencies {
+@@ -52,6 +54,7 @@
+     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+ 
++
+     //    Navigation
+     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'

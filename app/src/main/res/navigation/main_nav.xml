@@ -159,7 +159,11 @@
         android:id="@+id/sallaryFragment"
         android:name="com.example.dsmabsen.ui.fragment.SallaryFragment"
         android:label="fragment_sallary"
-        tools:layout="@layout/fragment_sallary" />
+        tools:layout="@layout/fragment_sallary" >
+        <action
+            android:id="@+id/action_sallaryFragment_to_detailGajiFragment"
+            app:destination="@id/detailGajiFragment" />
+    </fragment>
     <fragment
         android:id="@+id/reimbursementFragment"
         android:name="com.example.dsmabsen.ui.fragment.ReimbursementFragment"
@@ -228,4 +232,12 @@
         android:name="com.example.dsmabsen.ui.fragment.PengajuanShiftFragment"
         android:label="fragment_pengajuan_shift"
         tools:layout="@layout/fragment_pengajuan_shift" />
+    <fragment
+        android:id="@+id/detailGajiFragment"
+        android:name="com.example.dsmabsen.ui.fragment.DetailGajiFragment"
+        android:label="DetailGajiFragment" >
+        <argument
+            android:name="detailGaji"
+            app:argType="com.example.dsmabsen.model.DataXXXXXXXXXXXXXXX" />
+    </fragment>
 </navigation>

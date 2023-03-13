@@ -1,5 +1,10 @@
 package com.example.dsmabsen.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+
+@Parcelize
 data class DataXXXXXXXXXXXXXXX(
     val Dis_aktif: String,
     val divisi: String,
@@ -15,4 +20,4 @@ data class DataXXXXXXXXXXXXXXX(
     val total: String,
     val total_penambahan: String,
     val total_potongan: String
-)
+) : Parcelable

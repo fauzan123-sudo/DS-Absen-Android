@@ -20,6 +20,13 @@ fun Fragment.handleApiError(
             Toast.LENGTH_LONG
         )
             .show()
+        getString(R.string.tidak_berada_diwaktu_presensi) -> Toast.makeText(
+            context,
+            "Anda Tidak Berada diwaktu presensi",
+            Toast.LENGTH_LONG
+        )
+            .show()
+
         else -> Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
     }
 }

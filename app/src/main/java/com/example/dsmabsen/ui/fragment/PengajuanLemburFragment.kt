@@ -2,6 +2,7 @@ package com.example.dsmabsen.ui.fragment
 
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -66,20 +67,8 @@ class PengajuanLemburFragment :
                 is NetworkResult.Success -> {
                     val response = it.data!!
                     val status = response.status
-                    val statusPengajuan = response.data.status
-                    if (status && statusPengajuan) {
-                        Toast.makeText(
-                            requireContext(),
-                            "Berhasil Mengajukan Lembur",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            response.data.messages,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    val message = response.data.messages
+                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                 }
 
                 is NetworkResult.Loading -> {
@@ -124,20 +113,16 @@ class PengajuanLemburFragment :
             val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
             val date = dateFormatter.format(Date(it))
             binding.tanggalPenggajuan.text = date
-            Toast.makeText(requireContext(), "$date is selected", Toast.LENGTH_LONG).show()
+//            Toast.makeText(requireContext(), "$date is selected", Toast.LENGTH_LONG).show()
 
         }
 
         datePicker.addOnNegativeButtonClickListener {
-            Toast.makeText(
-                requireContext(),
-                "${datePicker.headerText} is cancelled",
-                Toast.LENGTH_LONG
-            ).show()
+            Log.d("TAG", "openCalendar: negative button")
         }
 
         datePicker.addOnCancelListener {
-            Toast.makeText(requireContext(), "Date Picker Cancelled", Toast.LENGTH_LONG).show()
+            Log.d("TAG", "openCalendar: Date Picker Cancelled ")
         }
     }
 
@@ -154,8 +139,14 @@ class PengajuanLemburFragment :
         picker.show(childFragmentManager, "MyTag")
 
         picker.addOnPositiveButtonClickListener {
-            val h = picker.hour
-            val m = picker.minute
+            var h = picker.hour
+            var m = picker.minute
+            if (h < 10) {
+                h = String.format("%02d", h).toInt()
+            } else {
+                h = String.format("%d", h).toInt()
+            }
+            m = String.format("%02d", m).toInt()
             binding.jamMulai.text = "$h:$m"
         }
     }
@@ -173,8 +164,15 @@ class PengajuanLemburFragment :
         picker.show(childFragmentManager, "MyTag")
 
         picker.addOnPositiveButtonClickListener {
-            val h = picker.hour
-            val m = picker.minute
+            var h = picker.hour
+            var m = picker.minute
+            if (h < 10) {
+                h = String.format("%02d", h).toInt()
+            } else {
+                h = String.format("%d", h).toInt()
+            }
+            m = String.format("%02d", m).toInt()
+
             binding.jamSelesai.text = "$h:$m"
         }
     }

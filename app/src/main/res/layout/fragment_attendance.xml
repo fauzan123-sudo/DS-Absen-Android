@@ -109,7 +109,7 @@
                         android:fontFamily="@font/poppins_medium"
                         android:paddingHorizontal="@dimen/_19sdp"
                         android:paddingVertical="@dimen/_3sdp"
-                        android:text="Lat : -177.121231"
+                        android:text="Lat : -"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_9ssp"
@@ -127,7 +127,7 @@
                         android:fontFamily="@font/poppins_medium"
                         android:paddingHorizontal="@dimen/_19sdp"
                         android:paddingVertical="@dimen/_3sdp"
-                        android:text="Lat : -177.121231"
+                        android:text="Lat : -"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_9ssp"
@@ -233,7 +233,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:visibility="invisible"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardView20"
                 tools:layout_editor_absoluteX="26dp">
 
@@ -264,6 +264,7 @@ Silahkan Hubungi Admin"
             </com.google.android.material.card.MaterialCardView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/materialCardView21"

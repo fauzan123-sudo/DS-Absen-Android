@@ -21,6 +21,9 @@ class AttendanceViewModel @Inject constructor(private val repository: Attendance
     ViewModel() {
     private var _isDataLoaded = false
 
+    private val _presensi = MutableLiveData<NetworkResult<Presensi>>()
+    val presensiLiveData: LiveData<NetworkResult<Presensi>> get() = _presensi
+
     private val _totalAttendance = MutableLiveData<NetworkResult<TotalAttendance>>()
     val totalAttendanceLiveData: LiveData<NetworkResult<TotalAttendance>> = _totalAttendance
 
@@ -33,7 +36,8 @@ class AttendanceViewModel @Inject constructor(private val repository: Attendance
         get() = _attendanceHistoryLiveData
 
     private val _attendanceToday = MutableLiveData<NetworkResult<Presensi>>()
-    val attendanceTodayLiveData: LiveData<NetworkResult<Presensi>> = _attendanceToday
+    val attendanceTodayLiveData: LiveData<NetworkResult<Presensi>>
+    get() =  _attendanceToday
 
     private val _getSallary = MutableLiveData<NetworkResult<DataSallary>>()
     val getSallaryLiveData: LiveData<NetworkResult<DataSallary>> = _getSallary
@@ -49,6 +53,26 @@ class AttendanceViewModel @Inject constructor(private val repository: Attendance
             _attendanceHistoryLiveData.value = NetworkResult.Loading()
             _attendanceHistoryLiveData.value = repository.getAttendanceHistory(nip)
         }
+    }
+
+    fun attendanceToday2(
+        image: MultipartBody.Part,
+        nip: RequestBody,
+        date: RequestBody,
+        timezone: RequestBody,
+        kordinat: RequestBody,
+        kode_shift: RequestBody,
+        kode_tingkat: RequestBody
+    ) = viewModelScope.launch {
+        _presensi.value = repository.attendanceToday(
+            image,
+            nip,
+            date,
+            timezone,
+            kordinat,
+            kode_shift,
+            kode_tingkat
+        )
     }
 
     fun attendanceTotalRequest(nip: String) {

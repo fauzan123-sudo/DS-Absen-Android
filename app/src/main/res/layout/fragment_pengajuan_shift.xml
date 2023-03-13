@@ -14,6 +14,7 @@
         layout="@layout/toolbar_layout"/>
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/_10sdp"
@@ -21,42 +22,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rv_pilih_shift"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/_10sdp"
+                android:background="@drawable/rounded_menu"
                 android:paddingHorizontal="@dimen/_15sdp"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/rounded_menu">
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/tv_pilih_shift"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pilih Izin"
                     android:fontFamily="@font/poppins_bold"
-                    android:textSize="@dimen/_11ssp"
+                    android:text="Pilih Izin"
                     android:textColor="@color/black_text"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Spinner
                     android:id="@+id/spinner_shift"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_47sdp"
-                    android:background="@drawable/rounded_menu"
                     android:layout_below="@+id/tv_pilih_shift"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/rounded_menu"
                     android:backgroundTint="@color/white"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_pilih_shift"
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:paddingVertical="@dimen/_15sdp"
                     android:textAlignment="textEnd"
-                    android:layout_marginTop="@dimen/_5sdp"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pilih_shift" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -64,38 +65,50 @@
                 android:id="@+id/rv_keterangan_perizinan_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/_10sdp"
-                android:paddingHorizontal="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@+id/rv_pilih_shift"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/rounded_menu"
-                android:layout_marginTop="@dimen/_10sdp">
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_pilih_shift">
 
                 <TextView
                     android:id="@+id/tv_keterangan_perizinan_create"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Keterangan"
                     android:fontFamily="@font/poppins_bold"
-                    android:textSize="@dimen/_11ssp"
+                    android:text="Keterangan"
                     android:textColor="@color/black_text"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/edtKeterangan"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_109sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/rounded_menu"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_keterangan_perizinan_create"
                     android:backgroundTint="@color/white"
+                    android:gravity="end|top"
+                    android:imeOptions="actionGo"
+                    android:lines="4"
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:paddingVertical="@dimen/_15sdp"
-                    android:lines="4"
                     android:textAlignment="textEnd"
-                    android:layout_marginTop="@dimen/_5sdp"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_keterangan_perizinan_create" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
