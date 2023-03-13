@@ -19,6 +19,27 @@
         android:focusableInTouchMode="true"
         android:focusable="true" />
 
+    <LinearLayout
 
+        android:id="@+id/textLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Keluar"
+            android:textColor="@color/danger"/>
+
+        <ImageView
+            android:id="@+id/iv_logout"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:src="@drawable/ic_logout" />
+
+    </LinearLayout>
 
 </LinearLayout>

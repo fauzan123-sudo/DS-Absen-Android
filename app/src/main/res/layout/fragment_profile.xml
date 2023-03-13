@@ -13,45 +13,21 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout" />
 
-<!--    <include-->
-<!--        android:id="@+id/loadingInclude"-->
-<!--        layout="@layout/loading" />-->
+    <include
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <include
             android:id="@+id/include_profile"
             layout="@layout/layout_appbar_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:id="@+id/ll_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_2sdp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Logout"
-                android:textColor="@color/danger"
-                app:layout_constraintEnd_toStartOf="@+id/iv_logout" />
-
-            <ImageView
-                android:id="@+id/iv_logout"
-                android:layout_width="@dimen/_14sdp"
-                android:layout_height="@dimen/_14sdp"
-                android:src="@drawable/ic_logout" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_profile"
