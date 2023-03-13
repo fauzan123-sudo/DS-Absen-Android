@@ -2,11 +2,11 @@ package com.example.dsmabsen.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
-import androidx.fragment.app.Fragment
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import com.example.dsmabsen.R
@@ -22,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class FormPerizinanFragment :
@@ -40,8 +39,6 @@ class FormPerizinanFragment :
             toolbar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.save -> {
-                        // Handle add menu item click
-//                        saveReimbursement(savedUser)
                         true
                     }
 
@@ -58,18 +55,16 @@ class FormPerizinanFragment :
             etTanggalSelesai.setOnClickListener {
                 getCalendarEnd()
             }
-
-//            kirim.setOnClickListener {
-//                savePerizinan(savedUser)
-//            }
             viewModel.requestgetSpinner()
             viewModel.getSpinnerLiveData.observe(viewLifecycleOwner) {
                 when (it) {
                     is NetworkResult.Success -> {
-
                         val data = it.data!!
                         val status = data.status
-
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            scrollView.visibility = View.VISIBLE
+                        }
                         if (status) {
                             val list: ArrayList<DataXXXXXXXXXXXXX> = ArrayList()
                             data.data.map {
@@ -108,10 +103,17 @@ class FormPerizinanFragment :
                     }
 
                     is NetworkResult.Loading -> {
-                        Toast.makeText(requireContext(), "loading", Toast.LENGTH_SHORT).show()
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.VISIBLE
+                            scrollView.visibility = View.GONE
+                        }
                     }
 
                     is NetworkResult.Error -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            scrollView.visibility = View.VISIBLE
+                        }
                         handleApiError(it.message)
                     }
 
@@ -153,7 +155,6 @@ class FormPerizinanFragment :
             val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
             val date = dateFormatter.format(Date(it))
             binding.etTanggalSelesai.text = date
-//            Toast.makeText(requireContext(), "$date is selected", Toast.LENGTH_LONG).show()
 
         }
 
@@ -203,18 +204,26 @@ class FormPerizinanFragment :
         viewModel.sendPermissionLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
+                    binding.apply {
+                        loadingInclude.loading.visibility = View.GONE
+                        scrollView.visibility = View.VISIBLE
+                    }
                     val response = it.data!!
                     val status = response.status
-
-                    Toast.makeText(requireContext(), response.data.messages, Toast.LENGTH_SHORT)
-                        .show()
                 }
 
                 is NetworkResult.Loading -> {
-                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                    binding.apply {
+                        loadingInclude.loading.visibility = View.VISIBLE
+                        scrollView.visibility = View.GONE
+                    }
                 }
 
                 is NetworkResult.Error -> {
+                    binding.apply {
+                        loadingInclude.loading.visibility = View.GONE
+                        scrollView.visibility = View.VISIBLE
+                    }
                     handleApiError(it.message)
                 }
             }

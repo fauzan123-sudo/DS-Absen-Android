@@ -61,6 +61,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 is NetworkResult.Success -> {
                     with(binding) {
                         val data = it.data!!
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            constraintLayout3.visibility = View.VISIBLE
+                        }
                         if (data.status) {
                             Glide.with(requireContext())
                                 .load(Constans.IMAGE_URL + data.data.foto)
@@ -78,10 +82,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 }
 
                 is NetworkResult.Loading -> {
-
+                    binding.apply {
+                        loadingInclude.loading.visibility = View.VISIBLE
+                        constraintLayout3.visibility = View.GONE
+                    }
                 }
 
                 is NetworkResult.Error -> {
+                    binding.apply {
+                        loadingInclude.loading.visibility = View.GONE
+                        constraintLayout3.visibility = View.VISIBLE
+                    }
                     handleApiError(it.message)
                 }
             }

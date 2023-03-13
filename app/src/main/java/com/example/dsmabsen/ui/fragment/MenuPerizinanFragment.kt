@@ -37,10 +37,6 @@ class MenuPerizinanFragment :
         val savedUser = Paper.book().read<DataX>("user")
         with(binding) {
 
-//            rvPlusReimbursement.setOnClickListener {
-//                findNavController().navigate(R.id.action_menuPerizinanFragment_to_formPerizinanFragment)
-//            }
-
             adapter = PerizinanAdapter(requireContext())
             recyclerView = recPerizinan
             recyclerView.adapter = adapter
@@ -50,20 +46,35 @@ class MenuPerizinanFragment :
             viewModel.perizinanLiveData.observe(viewLifecycleOwner) {
                 when (it) {
                     is NetworkResult.Success -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            recPerizinan.visibility = View.VISIBLE
+                        }
                         val data = it.data!!
                         val status = data.status
                         if (status) {
                             adapter.differ.submitList(data.data.data)
                         } else {
-                            Toast.makeText(requireContext(), "data perizinan salah", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "data perizinan salah",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
 
                     is NetworkResult.Loading -> {
-                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.VISIBLE
+                            recPerizinan.visibility = View.GONE
+                        }
                     }
 
                     is NetworkResult.Error -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            recPerizinan.visibility = View.VISIBLE
+                        }
                         handleApiError(it.message)
                     }
                 }
@@ -82,6 +93,7 @@ class MenuPerizinanFragment :
         }
 
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)

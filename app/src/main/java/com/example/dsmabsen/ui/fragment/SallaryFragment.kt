@@ -25,7 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 
 @AndroidEntryPoint
-class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBinding::inflate){
+class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBinding::inflate) {
 
 
     private val viewModel: AttendanceViewModel by viewModels()
@@ -40,9 +40,10 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
         with(binding) {
             adapter = SallaryAdapter(requireContext())
 
-            adapter.listener = object : RecyclerViewHandler{
+            adapter.listener = object : RecyclerViewHandler {
                 override fun onItemSelected(data: DataXXXXXXXXXXXXXXX) {
-                    val action = SallaryFragmentDirections.actionSallaryFragmentToDetailGajiFragment(data)
+                    val action =
+                        SallaryFragmentDirections.actionSallaryFragmentToDetailGajiFragment(data)
                     findNavController().navigate(action)
 //                    Toast.makeText(requireContext(), "$data", Toast.LENGTH_SHORT).show()
                 }
@@ -57,6 +58,10 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
             viewModel.getSallaryLiveData.observe(viewLifecycleOwner) {
                 when (it) {
                     is NetworkResult.Success -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            recSallary.visibility = View.VISIBLE
+                        }
                         val response = it.data!!
                         val status = response.status
                         if (status) {
@@ -68,10 +73,17 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
                     }
 
                     is NetworkResult.Loading -> {
-                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.VISIBLE
+                            recSallary.visibility = View.GONE
+                        }
                     }
 
                     is NetworkResult.Error -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            recSallary.visibility = View.VISIBLE
+                        }
                         handleApiError(it.message)
                     }
                 }
@@ -83,6 +95,7 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
 
 
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
@@ -97,8 +110,6 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
         val actionView = item.actionView
         val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
         btnSimpan?.setOnClickListener {
-            // your code here
-//            saveReimbursement(savedUser)
 
         }
 

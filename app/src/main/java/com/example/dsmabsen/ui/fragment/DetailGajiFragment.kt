@@ -42,9 +42,6 @@ class DetailGajiFragment :BaseFragment<FragmentDetailGajiBinding>(FragmentDetail
         val actionView = item.actionView
         val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
         btnSimpan?.setOnClickListener {
-            // your code here
-//            saveReimbursement(savedUser)
-
         }
     }
 }

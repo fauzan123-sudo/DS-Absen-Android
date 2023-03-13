@@ -135,7 +135,7 @@ class PengajuanReimbursementFragment :
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Harap isi nominal dan keterangan dshulu!! ",
+                    "Harap isi nominal dan keterangan dahulu!! ",
                     Toast.LENGTH_SHORT
                 ).show()
             }

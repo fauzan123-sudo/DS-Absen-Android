@@ -18,11 +18,10 @@ class SallaryAdapter(private val context: Context) :
     inner class ViewHolder(private val binding: ItemSallaryBinding) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         fun setData(item: DataXXXXXXXXXXXXXXX) {
-            val myPosition = differ.currentList[adapterPosition]
             binding.apply {
                 with(item) {
                     tanggals.text = tanggal
-                    sallary.text = total
+                    sallary.text = "Rp$total"
                     idGaji.text = kode_payroll
 
                     itemView.setOnClickListener {
