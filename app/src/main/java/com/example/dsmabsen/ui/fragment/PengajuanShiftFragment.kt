@@ -6,6 +6,8 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.example.dsmabsen.R
 import com.example.dsmabsen.adapter.SpinnerShiftAdapter
@@ -122,16 +124,28 @@ class PengajuanShiftFragment :
         viewModel.pengajuanShiftLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
+                    binding.apply {
+                        binding.loadingInclude.loading.visibility = View.GONE
+                        scrollView2.visibility = View.VISIBLE
+                    }
                     val response = it.data!!
                     val status = response.status
                     val message = response.data.messages
                     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                 }
                 is NetworkResult.Loading -> {
-                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                    binding.apply {
+                        scrollView2.visibility = View.GONE
+                        binding.loadingInclude.loading.visibility = View.VISIBLE
+                    }
+
                 }
 
                 is NetworkResult.Error -> {
+                    binding.apply {
+                        scrollView2.visibility = View.VISIBLE
+                        binding.loadingInclude.loading.visibility = View.GONE
+                    }
                     handleApiError(it.message)
                 }
             }
@@ -155,12 +169,11 @@ class PengajuanShiftFragment :
             val keterangan = binding.edtKeterangan.text.toString()
             if (keterangan.isEmpty()) {
                 binding.edtKeterangan.error = "Harap isi bidang ini!!"
+                binding.edtKeterangan.requestFocus()
             } else {
                 saveShift(savedUser)
+
             }
-
         }
-
     }
-
 }

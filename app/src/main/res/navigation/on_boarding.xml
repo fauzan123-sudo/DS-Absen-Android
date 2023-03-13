@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/on_boarding"
-    app:startDestination="@id/splashScreenFragment2">
+    app:startDestination="@id/homeFragment">
 
 
     <fragment

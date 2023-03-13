@@ -35,7 +35,7 @@ class PengajuanReimbursementFragment :
     private lateinit var adapter: DataSpinnerAdapter
 
     private var selectedJenisReimbursement: DataXXXXXXXXXXXXXXXXXXXXXXXXXXX? = null
-    var kodeReimbursement2: String = ""
+    var kodeReimbursement2: String? = null
     val viewModel: ReimbursementViewModel by viewModels()
     val savedUser = Paper.book().read<DataX>("user")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,8 +48,20 @@ class PengajuanReimbursementFragment :
             toolbar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.save -> {
-                        // Handle add menu item click
-                        saveReimbursement(savedUser)
+                        binding.apply {
+                            val nominal = edtNominal.text.toString()
+                            val keterangan = edtKeterangan.text.toString()
+
+                            if (nominal.isEmpty()) {
+                                edtNominal.error = "Harap isi bidang ini!!"
+                                edtNominal.requestFocus()
+                            } else if (keterangan.isEmpty()) {
+                                edtKeterangan.error = "harap isi keterangan"
+                                edtKeterangan.requestFocus()
+                            } else {
+                                saveReimbursement(savedUser)
+                            }
+                        }
                         true
                     }
 
@@ -76,17 +88,13 @@ class PengajuanReimbursementFragment :
                                 override fun onItemSelected(
                                     parent: AdapterView<*>?, view: View?, position: Int, id: Long
                                 ) {
-                                    selectedJenisReimbursement =
+                                    val clickedItem : DataXXXXXXXXXXXXXXXXXXXXXXXXXXX=
                                         parent?.getItemAtPosition(position) as DataXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                                    val kodeReimbursement = clickedItem.kode_reimbursement
+                                    kodeReimbursement2 = kodeReimbursement
 
-                                    kodeReimbursement2 =
-                                        selectedJenisReimbursement!!.kode_reimbursement
-                                    Toast.makeText(
-                                        requireContext(),
-                                        kodeReimbursement2,
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    sendData(kodeReimbursement2)
+//                                    kodeReimbursement2 =
+//                                        selectedJenisReimbursement!!.kode_reimbursement
                                     Log.d(
                                         "TAG",
                                         "onItemSelected: ${selectedJenisReimbursement!!.kode_reimbursement} "
@@ -114,31 +122,9 @@ class PengajuanReimbursementFragment :
                     }
                 }
             }
-
-//            btnCek.isVisible = !(kodeReimbursement2 == "" || kodeReimbursement2.isEmpty())
-
-//            btnCek.setOnClickListener {
-//                if (selectedJenisReimbursement == null) {
-//                    Toast.makeText(
-//                        requireContext(),
-//                        "Pilih jenis reimbursement terlebih dahulu",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                } else {
-//                    val kodeReimbursement = selectedJenisReimbursement?.kode_reimbursement
-//                    Log.d("kodeReimbursement", kodeReimbursement2!!)
-//
-//                }
-//            }
         }
     }
 
-    private fun sendData(kodeReimbursement2: String) {
-//        binding.btnCek.setOnClickListener {
-//            Log.d("kodeReimbursement2", kodeReimbursement2)
-//            Log.d("rupiah", binding.edtNominal.text.toString())
-//        }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
@@ -173,7 +159,7 @@ class PengajuanReimbursementFragment :
     private fun saveReimbursement(savedUser: DataX?) {
         viewModel.requestPengajuanReimbursement(
             savedUser!!.nip,
-            "1",
+            kodeReimbursement2!!,
             binding.edtNominal.text.toString(),
             "",
             binding.edtKeterangan.text.toString()
@@ -182,21 +168,8 @@ class PengajuanReimbursementFragment :
             when (it) {
                 is NetworkResult.Success -> {
                     val response = it.data!!
-                    val status = response.status
-                    val statusPengajuan = response.data.status
-                    if (status && statusPengajuan) {
-                        Toast.makeText(
-                            requireContext(),
-                            "anda berhasil mengajukan reimbursement",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            response.data.messages + " Reimbursement",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    val message = response.data.messages
+                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                 }
 
                 is NetworkResult.Loading -> {
