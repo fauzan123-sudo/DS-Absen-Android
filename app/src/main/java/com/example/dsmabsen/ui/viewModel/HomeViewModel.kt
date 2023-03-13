@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dsmabsen.model.HomeResponse
+import com.example.dsmabsen.model.PresensiHariIni
 import com.example.dsmabsen.repository.HomeRepository
 import com.example.dsmabsen.repository.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +20,10 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     val homeLiveData: LiveData<NetworkResult<HomeResponse>>
         get() = _homeLiveData
 
+    private val _getAbsen = MutableLiveData<NetworkResult<PresensiHariIni>>()
+    val getAbsenLiveData: LiveData<NetworkResult<PresensiHariIni>>
+        get() = _getAbsen
+
     fun homeRequest(nip :String) {
         viewModelScope.launch {
             val connected = CheckInternet().check()
@@ -27,6 +32,18 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
                 _homeLiveData.postValue(repository.homeUser(nip))
             } else
                 _homeLiveData.postValue(NetworkResult.Error("No Internet Connection"))
+        }
+
+    }
+
+    fun getAbsenRequest(nip :String) {
+        viewModelScope.launch {
+            val connected = CheckInternet().check()
+            if (connected) {
+                _getAbsen.postValue(NetworkResult.Loading())
+                _getAbsen.postValue(repository.getAbsen(nip))
+            } else
+                _getAbsen.postValue(NetworkResult.Error("No Internet Connection"))
         }
 
     }

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -134,6 +135,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
     //                        Toast.makeText(requireContext(), "Kembali", Toast.LENGTH_SHORT).show()
             }
             .create().show()
+
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.textLogout -> {
+                    // Handle add menu item click
+                    logout(nipUser)
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -141,7 +154,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
 
-        menuSave?.isVisible = false // menyembunyikan menu tertentu
+        menuSave?.isVisible = true // menyembunyikan menu tertentu
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
         val item = menu.findItem(R.id.save)
@@ -149,11 +162,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
 
         val actionView = item.actionView
         val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
-        val btnLogout = actionView?.findViewById<TextView>(R.id.textLogout)
-        btnLogout!!.isVisible = true
-        btnLogout?.setOnClickListener {
-            logout(nipUser)
-        }
+        val textLogout = actionView?.findViewById<TextView>(R.id.textLogout)
+        btnSimpan!!.isVisible = false
+        textLogout!!.visibility = View.VISIBLE
 
     }
 }

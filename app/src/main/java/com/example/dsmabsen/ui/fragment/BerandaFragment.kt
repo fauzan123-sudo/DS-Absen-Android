@@ -185,6 +185,27 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
             }
         }
 
+        viewModel.getAbsenRequest(savedUser!!.nip)
+        viewModel.getAbsenLiveData.observe(viewLifecycleOwner){
+            when(it){
+                is NetworkResult.Success ->{
+                    binding.apply {
+                        val response = it.data!!
+                        tvCheckin.text = response.data.datang
+                        tvCheckout.text = response.data.pulang
+                    }
+                }
+
+                is NetworkResult.Loading ->{
+                    Log.d("TAG", "onViewCreated: ")
+                }
+
+                is NetworkResult.Error ->{
+                    handleApiError(it.message)
+                }
+            }
+        }
+
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 // Navigasi kembali ke halaman sebelumnya jika tidak berada di halaman awal (DefaultFragment)

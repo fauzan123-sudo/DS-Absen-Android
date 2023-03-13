@@ -105,6 +105,7 @@ class PengajuanShiftFragment :
 
 
         }
+
         setHasOptionsMenu(true)
         setupToolbar("Ajukan Shift")
 
@@ -151,8 +152,12 @@ class PengajuanShiftFragment :
         val actionView = item.actionView
         val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
         btnSimpan?.setOnClickListener {
-            // your code here
-            saveShift(savedUser)
+            val keterangan = binding.edtKeterangan.text.toString()
+            if (keterangan.isEmpty()) {
+                binding.edtKeterangan.error = "Harap isi bidang ini!!"
+            } else {
+                saveShift(savedUser)
+            }
 
         }
 

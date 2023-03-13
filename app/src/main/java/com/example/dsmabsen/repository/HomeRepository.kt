@@ -7,4 +7,7 @@ class HomeRepository @Inject constructor(private val api: HomeApi) : BaseReposit
 
     suspend fun homeUser(nip:String) =
         safeApiCall { api.homeUser(nip) }
+
+    suspend fun getAbsen(nip:String) =
+        safeApiCall { api.getAbsen(nip) }
 }

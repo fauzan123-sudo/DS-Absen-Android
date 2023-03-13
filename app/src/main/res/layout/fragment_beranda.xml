@@ -19,7 +19,6 @@
 
 
     <ScrollView
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/_45sdp"
@@ -248,9 +247,10 @@
                         <TextView
                             android:id="@+id/textView13"
                             android:layout_width="0dp"
+                            android:maxLines="1"
                             android:layout_height="wrap_content"
-                            android:paddingStart="@dimen/_13sdp"
-                            android:text="Check In "
+                            android:paddingStart="@dimen/_10sdp"
+                            android:text="Datang"
                             android:textAlignment="textStart"
                             app:layout_constraintBottom_toBottomOf="@+id/roundedImageView"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -325,9 +325,10 @@
                         <TextView
                             android:id="@+id/textView17"
                             android:layout_width="0dp"
+                            android:maxLines="1"
                             android:layout_height="wrap_content"
-                            android:paddingStart="@dimen/_13sdp"
-                            android:text="Check In "
+                            android:paddingStart="@dimen/_10sdp"
+                            android:text="Pulang"
                             android:textAlignment="textStart"
                             app:layout_constraintBottom_toBottomOf="@+id/roundedImageView1"
                             app:layout_constraintEnd_toEndOf="parent"

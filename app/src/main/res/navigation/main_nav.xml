@@ -211,7 +211,6 @@
     <fragment
         android:id="@+id/pengajuanLemburFragment"
         android:name="com.example.dsmabsen.ui.fragment.PengajuanLemburFragment"
-        android:label="fragment_pengajuan_lembur"
         tools:layout="@layout/fragment_pengajuan_lembur" />
     <fragment
         android:id="@+id/shiftFragment"
@@ -230,7 +229,6 @@
     <fragment
         android:id="@+id/pengajuanShiftFragment"
         android:name="com.example.dsmabsen.ui.fragment.PengajuanShiftFragment"
-        android:label="fragment_pengajuan_shift"
         tools:layout="@layout/fragment_pengajuan_shift" />
     <fragment
         android:id="@+id/detailGajiFragment"

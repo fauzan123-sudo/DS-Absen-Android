@@ -57,6 +57,7 @@ class LoginActivity : AppCompatActivity() {
 
         with(binding) {
             btnLogin.setOnClickListener {
+
                 val myUserName = nip.text.toString()
                 val myPassword = password.text.toString()
                 when {
@@ -73,6 +74,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                     else -> {
+                        constrain.isVisible = false
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             viewModel.login(myUserName, myPassword, mId)
 //                            Toast.makeText(this@LoginActivity, mId, Toast.LENGTH_SHORT).show()
@@ -97,6 +99,7 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                             finish()
                         } else {
+                            constrain.isVisible = true
                             Toast.makeText(
                                 this@LoginActivity,
                                 "sepertinya username atau password anda ada masalah ",
@@ -105,6 +108,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                     is NetworkResult.Error -> {
+                        constrain.isVisible = true
                         val error = it.message.toString()
                         handleApiError(error)
                         Log.d(TAG, (it.message.toString()))
