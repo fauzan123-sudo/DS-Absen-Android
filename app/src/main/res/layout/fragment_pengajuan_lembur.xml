@@ -12,7 +12,14 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"/>
+
+    <include
+        android:id="@+id/loading_include"
+        layout="@layout/loading"
+        />
+
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="10dp"

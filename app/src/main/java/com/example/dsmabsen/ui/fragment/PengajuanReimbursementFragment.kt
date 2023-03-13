@@ -128,16 +128,20 @@ class PengajuanReimbursementFragment :
         val actionView = item.actionView
         val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
         btnSimpan?.setOnClickListener {
+
             if (binding.edtNominal.text.toString()
-                    .isEmpty() && binding.edtKeterangan.text.toString().isEmpty()
+                    .isNotEmpty() && binding.edtKeterangan.text.toString().isNotEmpty()
             ) {
                 saveReimbursement(savedUser)
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Harap isi nominal dan keterangan dahulu!! ",
-                    Toast.LENGTH_SHORT
-                ).show()
+            }
+            if (binding.edtNominal.text.isEmpty()) {
+                binding.edtNominal.error = "Harap isi bidang ini!!"
+                binding.edtNominal.requestFocus()
+            }
+            if (binding.edtKeterangan.text.isEmpty()) {
+                binding.edtKeterangan.error = "Harap isi bidang ini!!"
+                binding.edtKeterangan.requestFocus()
+
             }
 
         }
@@ -155,16 +159,27 @@ class PengajuanReimbursementFragment :
         viewModel.getPengajuanLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
+                    binding.apply {
+                        binding.loadingInclude.loading.visibility = View.GONE
+                        scrollView2.visibility = View.VISIBLE
+                    }
                     val response = it.data!!
                     val message = response.data.messages
-                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                    requireActivity().onBackPressed()
                 }
 
                 is NetworkResult.Loading -> {
-                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                    binding.apply {
+                        scrollView2.visibility = View.GONE
+                        binding.loadingInclude.loading.visibility = View.VISIBLE
+                    }
                 }
 
                 is NetworkResult.Error -> {
+                    binding.apply {
+                        scrollView2.visibility = View.VISIBLE
+                        binding.loadingInclude.loading.visibility = View.GONE
+                    }
                     handleApiError(it.message)
                 }
             }
