@@ -68,14 +68,26 @@ class PengajuanLemburFragment :
                     val response = it.data!!
                     val status = response.status
                     val message = response.data.messages
-                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                    binding.apply {
+                        binding.loadingInclude.loading.visibility = View.GONE
+                        scrollView2.visibility = View.VISIBLE
+                    }
+                    requireActivity().onBackPressed()
+
                 }
 
                 is NetworkResult.Loading -> {
-                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                    binding.apply {
+                        binding.loadingInclude.loading.visibility = View.VISIBLE
+                        scrollView2.visibility = View.GONE
+                    }
                 }
 
                 is NetworkResult.Error -> {
+                    binding.apply {
+                        binding.loadingInclude.loading.visibility = View.GONE
+                        scrollView2.visibility = View.VISIBLE
+                    }
                     handleApiError(it.message)
                 }
             }
@@ -96,7 +108,32 @@ class PengajuanLemburFragment :
         val actionView = item.actionView
         val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
         btnSimpan?.setOnClickListener {
-            saveLembur()
+            var i = 0;
+            if(binding.jamMulai.text.isEmpty()){
+                binding.jamMulai.error = "Harap isi bidang ini!!"
+                binding.jamMulai.requestFocus()
+                i++
+            }
+            if (binding.jamSelesai.text.isEmpty()) {
+                binding.jamSelesai.error = "Harap isi bidang ini!!"
+                binding.jamSelesai.requestFocus()
+                i++
+
+            }
+            if(binding.tanggalPenggajuan.text.isEmpty()){
+                binding.tanggalPenggajuan.error = "Harap isi bidang ini!!"
+                binding.tanggalPenggajuan.requestFocus()
+                i++
+
+            }
+            if (binding.keteranganPenggajuan.text.isEmpty()) {
+                binding.keteranganPenggajuan.error = "Harap isi bidang ini!!"
+                binding.keteranganPenggajuan.requestFocus()
+                i++
+            }
+            if(i == 0){
+                saveLembur()
+            }
 
         }
 

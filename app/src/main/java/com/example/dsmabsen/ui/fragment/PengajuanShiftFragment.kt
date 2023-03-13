@@ -125,14 +125,13 @@ class PengajuanShiftFragment :
                     }
                     val response = it.data!!
                     val message = response.data.messages
-                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                 }
                 is NetworkResult.Loading -> {
                     binding.apply {
                         scrollView2.visibility = View.GONE
                         binding.loadingInclude.loading.visibility = View.VISIBLE
                     }
-
+                    requireActivity().onBackPressed()
                 }
 
                 is NetworkResult.Error -> {
