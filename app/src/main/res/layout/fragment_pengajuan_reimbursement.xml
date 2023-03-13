@@ -51,8 +51,6 @@
                     android:background="@drawable/rounded_menu"
                     android:backgroundTint="@color/white"
                     android:dropDownSelector="@drawable/arrow_bottom"
-                    android:paddingHorizontal="@dimen/_10sdp"
-                    android:paddingVertical="@dimen/_15sdp"
                     android:textAlignment="textEnd" />
 
             </RelativeLayout>
