@@ -141,13 +141,22 @@ class PengajuanLemburFragment :
         picker.addOnPositiveButtonClickListener {
             var h = picker.hour
             var m = picker.minute
-            if (h < 10) {
-                h = String.format("%02d", h).toInt()
+            if (h < 10 || m < 10) {
+                h = String.format("0%02d", h).toInt()
             } else {
                 h = String.format("%d", h).toInt()
             }
             m = String.format("%02d", m).toInt()
-            binding.jamMulai.text = "$h:$m"
+
+            var fixH = h.toString()
+            var fixM = m.toString()
+            if (h < 10) {
+                fixH = "0$fixH"
+            }
+            if (m < 10) {
+                fixM = "0$fixM"
+            }
+            binding.jamMulai.text = "$fixH:$fixM"
         }
     }
 
@@ -173,7 +182,16 @@ class PengajuanLemburFragment :
             }
             m = String.format("%02d", m).toInt()
 
-            binding.jamSelesai.text = "$h:$m"
+            var fixH = h.toString()
+            var fixM = m.toString()
+            if (h < 10) {
+                fixH = "0$fixH"
+            }
+            if (m < 10) {
+                fixM = "0$fixM"
+            }
+
+            binding.jamSelesai.text = "$fixH:$fixM"
         }
     }
 
