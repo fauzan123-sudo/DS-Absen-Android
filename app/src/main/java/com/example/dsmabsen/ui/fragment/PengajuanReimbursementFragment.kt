@@ -136,7 +136,7 @@ class PengajuanReimbursementFragment :
                     val response = it.data!!
                     val messages = response.data.messages
 
-                    if(messages != null){
+                    if (messages != null) {
                         val builder = AlertDialog.Builder(requireContext())
                         builder.setMessage(messages)
                             .setNegativeButton("Ya") { dialog, _ ->
@@ -165,5 +165,24 @@ class PengajuanReimbursementFragment :
             }
         }
     }
+
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            scrollView2.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+        }
+    }
+
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            scrollView2.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+        }
+    }
+
 
 }

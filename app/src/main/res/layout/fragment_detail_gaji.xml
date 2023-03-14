@@ -15,6 +15,7 @@
 
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_1"
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -329,5 +330,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:background="@drawable/gradiend_background"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradiend_background"
     tools:context=".ui.fragment.LemburFragment">
 
     <include
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout"/>
+        layout="@layout/toolbar_layout"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:visibility="gone"
         android:id="@+id/img_no_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_20sdp"
         android:src="@drawable/no_data_found"
-        app:layout_constraintTop_toBottomOf="@id/reclembur"
-        />
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/reclembur" />
+
     <include
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/loadingInclude"
-        layout="@layout/loading" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reclembur"
@@ -39,6 +38,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

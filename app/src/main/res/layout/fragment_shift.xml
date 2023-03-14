@@ -42,5 +42,8 @@
         tools:itemCount="3"
         tools:listitem="@layout/item_reimbursement" />
 
-
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

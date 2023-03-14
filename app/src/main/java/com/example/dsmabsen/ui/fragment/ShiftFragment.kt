@@ -105,7 +105,24 @@ class ShiftFragment : BaseFragment<FragmentShiftBinding>(FragmentShiftBinding::i
         menuLogout.isVisible = false
         menuSave?.isVisible = false // menyembunyikan menu tertentu
         menuPlus?.isVisible = true // menyembunyikan menu tertentu
+    }
 
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            recyclerShift.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+        }
+    }
+
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            recyclerShift.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+        }
     }
 
 }

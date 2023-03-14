@@ -55,10 +55,10 @@ class MenuPerizinanFragment :
                         val data = it.data!!
                         val status = data.status
                         if (status) {
-                            if(data.data.data.isEmpty()){
+                            if (data.data.data.isEmpty()) {
                                 recPerizinan.isVisible = false
                                 imgNoData.isVisible = true
-                            }else{
+                            } else {
                                 adapter.differ.submitList(data.data.data)
                                 recPerizinan.isVisible = true
                                 imgNoData.isVisible = false
@@ -108,6 +108,24 @@ class MenuPerizinanFragment :
         menuLogout?.isVisible = false
 
 
+    }
+
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            recPerizinan.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+        }
+    }
+
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            recPerizinan.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+        }
     }
 
 

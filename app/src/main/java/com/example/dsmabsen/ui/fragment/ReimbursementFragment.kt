@@ -52,10 +52,10 @@ class ReimbursementFragment :
                         val response = it.data!!
                         val status = response.status
                         if (status) {
-                            if(response.data.data.isEmpty()){
+                            if (response.data.data.isEmpty()) {
                                 recReimbursement.isVisible = false
                                 imgNoData.isVisible = true
-                            }else{
+                            } else {
                                 adapter.differ.submitList(response.data.data)
                                 recReimbursement.isVisible = true
                                 imgNoData.isVisible = false
@@ -106,10 +106,23 @@ class ReimbursementFragment :
         menuLogout.isVisible = false
         menuSave?.isVisible = false // menyembunyikan menu tertentu
         menuPlus?.isVisible = true // menyembunyikan menu tertentu
-
-
     }
 
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            recReimbursement.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+        }
+    }
 
-
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            recReimbursement.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+        }
+    }
 }
