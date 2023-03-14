@@ -193,6 +193,9 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
         viewModel.getAbsenLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
+                    binding.loadingInclude.loading.isVisible = false
+                    binding.infoUser.isVisible = true
+                    binding.materialCardView11.isVisible = true
                     binding.apply {
                         val response = it.data!!
                         tvCheckin.text = response.data.datang
@@ -201,10 +204,15 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                 }
 
                 is NetworkResult.Loading -> {
-                    Log.d("TAG", "onViewCreated: ")
+                    binding.loadingInclude.loading.isVisible = true
+                    binding.infoUser.isVisible = false
+                    binding.materialCardView11.isVisible = false
                 }
 
                 is NetworkResult.Error -> {
+                    binding.loadingInclude.loading.isVisible = false
+                    binding.infoUser.isVisible = true
+                    binding.materialCardView11.isVisible = true
                     handleApiError(it.message)
                 }
             }
@@ -255,8 +263,8 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
     override fun onConnectionLost() {
         super.onConnectionLost()
         binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            scrollView.visibility = View.GONE
+            toolbar.toolbar.visibility = View.VISIBLE
+            scrollView.visibility = View.VISIBLE
             noInternetConnection.ivNoConnection.visibility = View.VISIBLE
         }
     }

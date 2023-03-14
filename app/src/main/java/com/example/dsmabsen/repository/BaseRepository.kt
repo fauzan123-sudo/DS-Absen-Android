@@ -1,5 +1,6 @@
 package com.example.dsmabsen.repository
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -26,9 +27,11 @@ abstract class BaseRepository {
             } catch (e: IOException) {
 //                No Connection or URL error or bad connection
                 if (e is ConnectException || e is SocketTimeoutException) {
+                    Log.d("TAG", "safeApiCall: $e ")
                     NetworkResult.Error("koneksi internet buruk harap periksa kembali koneksi anda")
                 } else {
-                    NetworkResult.Error("tidak ada koneksi internet")
+                    Log.d("TAG", "safeApiCall: $e")
+                    NetworkResult.Error("koneksi internet buruk harap periksa kembali koneksi anda")
                 }
 //                NetworkResult.Error("Request Time Out")
             } catch (e: Exception) {

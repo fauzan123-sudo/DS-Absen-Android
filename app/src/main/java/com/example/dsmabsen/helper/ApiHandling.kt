@@ -23,11 +23,11 @@ fun Fragment.handleApiError(
 
 fun View.snackbar(message: String, action: (() -> Unit)? = null) {
     val snackbar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
-//    action?.let {
-////        snackbar.setAction("Retry") {
-////            it()
-////        }
-//    }
+    action?.let {
+        snackbar.setAction("Retry") {
+            it()
+        }
+    }
     snackbar.show()
 }
 

@@ -111,17 +111,29 @@ class DataAbsenFragment :
                         loading.visibility = View.GONE
                         rcycleview.visibility = View.VISIBLE
                         val data = it.data!!.data
-                        setPieChart(data)
+                        val totalAbsen = data.alfa + data.izin + data.masuk + data.telat
+                        if(totalAbsen != 0){
+                            binding.imgNoData1.visibility = View.GONE
+                            binding.pieChart.visibility = View.VISIBLE
+                            setPieChart(data)
+                        }else{
+                            binding.imgNoData1.visibility = View.VISIBLE
+                            binding.pieChart.visibility = View.GONE
+                        }
                     }
 
                     is NetworkResult.Loading -> {
                         loading.visibility = View.VISIBLE
                         rcycleview.visibility = View.GONE
+                        binding.imgNoData1.visibility = View.GONE
+                        binding.pieChart.visibility = View.GONE
                     }
 
                     is NetworkResult.Error -> {
                         loading.visibility = View.GONE
                         rcycleview.visibility = View.VISIBLE
+                        binding.imgNoData1.visibility = View.VISIBLE
+                        binding.pieChart.visibility = View.GONE
                         handleApiError(it.message)
                     }
                 }
