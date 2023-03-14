@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.dsmabsen.ui.activity.MainActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -32,6 +33,16 @@ class Helper {
             it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(it)
         }
+    }
+
+    fun View.snackbar(message: String, action: (() -> Unit)? = null) {
+        val snackbar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
+        action?.let {
+            snackbar.setAction("Retry") {
+                it()
+            }
+        }
+        snackbar.show()
     }
 
     companion object {

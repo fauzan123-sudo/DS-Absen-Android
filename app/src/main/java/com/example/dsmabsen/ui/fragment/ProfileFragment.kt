@@ -173,4 +173,21 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         }
 
     }
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            constraintLayout3.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+        }
+    }
+
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            constraintLayout3.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+        }
+    }
 }

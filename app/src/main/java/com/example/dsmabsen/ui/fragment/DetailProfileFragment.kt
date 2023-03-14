@@ -81,5 +81,21 @@ class DetailProfileFragment : BaseFragment<FragmentDetailProfileBinding>(Fragmen
         }
 
     }
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            listdetail.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+        }
+    }
 
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            listdetail.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+        }
+    }
 }

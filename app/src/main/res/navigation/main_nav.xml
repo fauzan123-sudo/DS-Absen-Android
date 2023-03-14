@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_berandaFragment_to_shiftFragment"
             app:destination="@id/shiftFragment" />
+        <action
+            android:id="@+id/action_berandaFragment_to_pengumumanFragment"
+            app:destination="@id/pengumumanFragment" />
     </fragment>
     <fragment
         android:id="@+id/scanFragment"
@@ -131,6 +134,9 @@
         <action
             android:id="@+id/action_allMenuFragment_to_menuPerizinanFragment"
             app:destination="@id/menuPerizinanFragment" />
+        <action
+            android:id="@+id/action_allMenuFragment_to_pengumumanFragment"
+            app:destination="@id/pengumumanFragment" />
     </fragment>
     <fragment
         android:id="@+id/allProfileFragment"
@@ -242,4 +248,9 @@
             android:name="detailGaji"
             app:argType="com.example.dsmabsen.model.DataXXXXXXXXXXXXXXX" />
     </fragment>
+    <fragment
+        android:id="@+id/pengumumanFragment"
+        android:name="com.example.dsmabsen.ui.fragment.PengumumanFragment"
+        android:label="fragment_pengumuman"
+        tools:layout="@layout/fragment_pengumuman" />
 </navigation>

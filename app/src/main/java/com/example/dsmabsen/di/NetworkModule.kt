@@ -100,4 +100,13 @@ object NetworkModule {
         return retrofitBuilder.client(okHttpClient).build().create(ShiftApi::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun providesPengumuman(
+        retrofitBuilder: Retrofit.Builder,
+        okHttpClient: OkHttpClient
+    ): PengumumanApi {
+        return retrofitBuilder.client(okHttpClient).build().create(PengumumanApi::class.java)
+    }
+
 }

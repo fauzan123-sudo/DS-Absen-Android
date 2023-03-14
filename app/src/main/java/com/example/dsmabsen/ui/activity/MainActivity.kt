@@ -22,16 +22,20 @@ import com.example.dsmabsen.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.dsmabsen.helper.ConnectionLiveData
 import com.example.dsmabsen.ui.fragment.AttendanceFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var navController: NavController
+    private lateinit var cld: ConnectionLiveData
+    lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        checkNetworkConnection()
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
@@ -160,5 +164,20 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+    private fun checkNetworkConnection() {
+        cld = ConnectionLiveData(application)
 
+        cld.observe(this) { isConnected ->
+            if (isConnected) {
+                binding.fragmentContainerView2.visibility = View.VISIBLE
+                binding.bottomNavigationView.visibility = View.VISIBLE
+                binding.noInternetConnection.ivNoConnection.visibility = View.GONE
+            } else {
+                binding.fragmentContainerView2.visibility = View.GONE
+                binding.bottomNavigationView.visibility = View.GONE
+                binding.noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+            }
+
+        }
+    }
 }

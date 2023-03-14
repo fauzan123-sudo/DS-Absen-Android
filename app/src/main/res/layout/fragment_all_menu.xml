@@ -325,5 +325,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.flexbox.FlexboxLayout>
-
+    <include
+        android:visibility="gone"
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,8 +2,16 @@
     android:shape="rectangle">
     <solid android:color="#FFFFFF" />
     <corners android:radius="@dimen/_2sdp" />
-    <stroke android:width="0.5dp" android:color="#7F838B36"/>
-    <padding android:left="@dimen/_8sdp" android:top="@dimen/_8sdp" android:right="@dimen/_8sdp" android:bottom="@dimen/_8sdp" />
-    <shadow android:color="#0000001A" android:radius="@dimen/_2sdp"/>
-<!--    android:dx="0" android:dy="6"-->
+    <stroke
+        android:width="0.5dp"
+        android:color="#7F838B36" />
+    <padding
+        android:bottom="@dimen/_8sdp"
+        android:left="@dimen/_8sdp"
+        android:right="@dimen/_8sdp"
+        android:top="@dimen/_8sdp" />
+    <shadow
+        android:color="#0000001A"
+        android:radius="@dimen/_2sdp" />
+    <!--    android:dx="0" android:dy="6"-->
 </shape>

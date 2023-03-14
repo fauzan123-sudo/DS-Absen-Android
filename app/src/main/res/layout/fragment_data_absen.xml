@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,19 +8,9 @@
     tools:context=".ui.fragment.DataAbsenFragment">
 
     <include
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout"/>
-
-    <ImageView
-        android:visibility="gone"
-        android:id="@+id/img_no_data"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_20sdp"
-        android:src="@drawable/no_data_found"
-        app:layout_constraintTop_toBottomOf="@id/recAttendance"
-        />
+        layout="@layout/toolbar_layout"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading"
@@ -38,7 +27,7 @@
         app:lottie_rawRes="@raw/bounce_loading" />
 
     <ScrollView
-        android:id="@+id/scrollView"
+        android:id="@+id/rcycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/_45sdp"
@@ -48,153 +37,165 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:padding="@dimen/_20sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/infoUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp">
+            android:padding="@dimen/_20sdp">
 
-            <TextView
-                android:id="@+id/namaUser"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/infoUser"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fauzan Almaterzz"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp">
 
-            <TextView
-                android:id="@+id/jabatan"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/namaUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fauzan Almaterzz"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/jabatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="UI Designer"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintStart_toStartOf="@+id/namaUser"
+                    app:layout_constraintTop_toBottomOf="@+id/namaUser" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageUser"
+                    android:layout_width="@dimen/_38sdp"
+                    android:layout_height="@dimen/_36sdp"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="4dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/jabatan"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/namaUser"
+                    tools:src="@drawable/man" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView12"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="UI Designer"
-                android:textSize="@dimen/_10ssp"
-                app:layout_constraintStart_toStartOf="@+id/namaUser"
-                app:layout_constraintTop_toBottomOf="@+id/namaUser" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageUser"
-                android:layout_width="@dimen/_38sdp"
-                android:layout_height="@dimen/_36sdp"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="4dp"
-                app:layout_constraintBottom_toBottomOf="@+id/jabatan"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/materialCardView13"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/namaUser"
-                tools:src="@drawable/man" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/infoUser">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:padding="@dimen/_20sdp">
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Total Absensi Bulan Ini"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="@color/secondary"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView27"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView27"
+                        app:layout_constraintTop_toTopOf="@+id/textView27" />
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pie_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView27"
+                        tools:layout_editor_absoluteX="26dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView12">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:padding="@dimen/_20sdp">
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Rekap Absensi Bulan Ini"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="@color/secondary"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView28"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView28"
+                        app:layout_constraintTop_toTopOf="@+id/textView28" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recAttendance"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView28"
+                        tools:listitem="@layout/item_rekap_absensi" />
+
+                    <ImageView
+                        android:id="@+id/img_no_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_20sdp"
+                        android:src="@drawable/no_data_found"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@id/recAttendance" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_20sdp"
-            android:background="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/materialCardView13"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/infoUser">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:padding="@dimen/_20sdp">
-
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="Total Absensi Bulan Ini"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:background="@color/secondary"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView27"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView27"
-                    app:layout_constraintTop_toTopOf="@+id/textView27" />
-
-                <com.github.mikephil.charting.charts.PieChart
-                    android:id="@+id/pie_chart"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView27"
-                    tools:layout_editor_absoluteX="26dp" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView12">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:padding="@dimen/_20sdp">
-
-                <TextView
-                    android:id="@+id/textView28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="Rekap Absensi Bulan Ini"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:background="@color/secondary"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView28"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView28"
-                    app:layout_constraintTop_toTopOf="@+id/textView28" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recAttendance"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView28"
-                    tools:listitem="@layout/item_rekap_absensi" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
+    <include
+        android:visibility="gone"
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

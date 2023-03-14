@@ -11,142 +11,155 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"/>
 
-    <RelativeLayout
-        android:id="@+id/rv_data_pribadi"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
-        android:background="@drawable/rounded_menu"
+    <LinearLayout
+        android:id="@+id/listdetail"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_15sdp"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        android:padding="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_15sdp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Data Pribadi"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/vector"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rv_jabatan"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
-        android:background="@drawable/rounded_menu"
-        app:layout_constraintTop_toBottomOf="@+id/rv_data_pribadi"
-        android:padding="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_15sdp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jabatan dan Posisi"/>
+        <RelativeLayout
+            android:id="@+id/rv_data_pribadi"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/rounded_menu"
+            android:padding="@dimen/_15sdp"
+            >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/vector"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Pribadi"/>
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/vector"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
 
-    <RelativeLayout
-        android:id="@+id/rv_lokasi_kerja"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
-        android:background="@drawable/rounded_menu"
-        app:layout_constraintTop_toBottomOf="@+id/rv_jabatan"
-        android:padding="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_15sdp">
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lokasi Kerja"/>
+        <RelativeLayout
+            android:id="@+id/rv_jabatan"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/rounded_menu"
+            app:layout_constraintTop_toBottomOf="@+id/rv_data_pribadi"
+            android:padding="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/vector"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jabatan dan Posisi"/>
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/vector"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
 
-    <RelativeLayout
-        android:id="@+id/rv_pendidikan"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
-        android:background="@drawable/rounded_menu"
-        app:layout_constraintTop_toBottomOf="@+id/rv_lokasi_kerja"
-        android:padding="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_15sdp">
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pendidikan"/>
+        <RelativeLayout
+            android:id="@+id/rv_lokasi_kerja"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/rounded_menu"
+            app:layout_constraintTop_toBottomOf="@+id/rv_jabatan"
+            android:padding="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/vector"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lokasi Kerja"/>
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/vector"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
 
-    <RelativeLayout
-        android:id="@+id/rv_penguasaan_bahasa"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
-        android:background="@drawable/rounded_menu"
-        app:layout_constraintTop_toBottomOf="@+id/rv_pendidikan"
-        android:padding="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_15sdp">
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Penguasaan Bahasa"/>
+        <RelativeLayout
+            android:id="@+id/rv_pendidikan"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/rounded_menu"
+            app:layout_constraintTop_toBottomOf="@+id/rv_lokasi_kerja"
+            android:padding="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/vector"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pendidikan"/>
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/vector"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
 
-    <RelativeLayout
-        android:id="@+id/rv_pengalaman_kerja"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
-        android:background="@drawable/rounded_menu"
-        app:layout_constraintTop_toBottomOf="@+id/rv_penguasaan_bahasa"
-        android:padding="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_15sdp">
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pengalaman Kerja"/>
+        <RelativeLayout
+            android:id="@+id/rv_penguasaan_bahasa"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/rounded_menu"
+            app:layout_constraintTop_toBottomOf="@+id/rv_pendidikan"
+            android:padding="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/vector"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Penguasaan Bahasa"/>
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/vector"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rv_pengalaman_kerja"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/rounded_menu"
+            app:layout_constraintTop_toBottomOf="@+id/rv_penguasaan_bahasa"
+            android:padding="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pengalaman Kerja"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/vector"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+    <include
+        android:visibility="gone"
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,7 +43,7 @@
         tools:listitem="@layout/item_reimbursement"
         android:paddingHorizontal="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/loadingInclude" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

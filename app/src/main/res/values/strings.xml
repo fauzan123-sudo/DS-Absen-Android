@@ -5,7 +5,7 @@
     <string name="failed_connect">failed_connect</string>
     <string name="tidak_berada_diwaktu_presensi">{"status":true,"message":"Success","data":{"status":"Error","messages":"Anda tidak berada diwaktu presensi"}}</string>
     <string name="bad_connection">bad_connection</string>
-    <string name="no_connection">Tidak ada koneksi internet</string>
+    <!--    <string name="no_connection">Tidak ada koneksi internet</string>-->
     <string name="ok">OK</string>
     <string name="simpan">Simpan</string>
     <string name="add">ADD</string>

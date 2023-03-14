@@ -13,6 +13,7 @@
         layout="@layout/toolbar_layout"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/listdetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/_10sdp"
@@ -156,5 +157,9 @@
 
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <include
+        android:visibility="gone"
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

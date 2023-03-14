@@ -63,4 +63,25 @@ class AllMenuFragment :BaseFragment<FragmentAllMenuBinding>(FragmentAllMenuBindi
 
         super.onCreateOptionsMenu(menu, inflater)
     }
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            fb1.visibility = View.VISIBLE
+            fb2.visibility = View.VISIBLE
+            fb3.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+        }
+    }
+
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            fb1.visibility = View.GONE
+            fb2.visibility = View.GONE
+            fb3.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+        }
+    }
 }

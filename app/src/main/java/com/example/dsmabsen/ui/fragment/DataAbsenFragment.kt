@@ -76,7 +76,7 @@ class DataAbsenFragment :
                 when (it) {
                     is NetworkResult.Success -> {
                         loading.visibility = View.GONE
-                        scrollView.visibility = View.VISIBLE
+                        rcycleview.visibility = View.VISIBLE
                         val attendance = it.data!!.data
                         Log.d("data_absen", attendance.toString())
                         if (attendance.isEmpty()) {
@@ -91,12 +91,12 @@ class DataAbsenFragment :
 
                     is NetworkResult.Loading -> {
                         loading.visibility = View.VISIBLE
-                        scrollView.visibility = View.GONE
+                        rcycleview.visibility = View.GONE
                     }
 
                     is NetworkResult.Error -> {
                         loading.visibility = View.GONE
-                        scrollView.visibility = View.VISIBLE
+                        rcycleview.visibility = View.VISIBLE
                         Toast.makeText(requireContext(), "Set Adabter Error", Toast.LENGTH_SHORT)
                         handleApiError(it.message)
                     }
@@ -109,19 +109,19 @@ class DataAbsenFragment :
                 when (it) {
                     is NetworkResult.Success -> {
                         loading.visibility = View.GONE
-                        scrollView.visibility = View.VISIBLE
+                        rcycleview.visibility = View.VISIBLE
                         val data = it.data!!.data
                         setPieChart(data)
                     }
 
                     is NetworkResult.Loading -> {
                         loading.visibility = View.VISIBLE
-                        scrollView.visibility = View.GONE
+                        rcycleview.visibility = View.GONE
                     }
 
                     is NetworkResult.Error -> {
                         loading.visibility = View.GONE
-                        scrollView.visibility = View.VISIBLE
+                        rcycleview.visibility = View.VISIBLE
                         handleApiError(it.message)
                     }
                 }
@@ -186,6 +186,23 @@ class DataAbsenFragment :
             override fun getFormattedValue(value: Float): String {
                 return value.toInt().toString()
             }
+        }
+    }
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            rcycleview.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+        }
+    }
+
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            rcycleview.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
         }
     }
 

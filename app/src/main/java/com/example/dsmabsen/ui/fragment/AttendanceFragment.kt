@@ -1,43 +1,30 @@
 package com.example.dsmabsen.ui.fragment
 
 import android.Manifest.permission.*
+import android.animation.Animator
 import android.app.Activity
-import android.util.Base64
-import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.location.Geocoder
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
-import android.net.Uri
+import android.location.*
 import android.os.Build
-
 import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.motion.widget.Debug.getLocation
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieDrawable
 import com.bumptech.glide.Glide
 import com.example.dsmabsen.R
 import com.example.dsmabsen.databinding.FragmentAttendanceBinding
@@ -47,19 +34,20 @@ import com.example.dsmabsen.repository.NetworkResult
 import com.example.dsmabsen.ui.viewModel.AttendanceViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.ByteArrayOutputStream
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.io.IOException
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
-import java.text.SimpleDateFormat
-import java.time.format.TextStyle
+
 
 @AndroidEntryPoint
 class AttendanceFragment :
@@ -110,6 +98,8 @@ class AttendanceFragment :
             }
             btnRefresh.setOnClickListener {
                 cekGPS()
+                getLocation()
+                enableAbsen()
             }
         }
 
@@ -185,16 +175,24 @@ class AttendanceFragment :
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireContext())
+        Log.d("ambil_lokasi","On2 Proses")
         val task = fusedLocationProviderClient.lastLocation
         task.addOnSuccessListener {
             if (it != null) {
                 with(binding) {
                     lattitudeUser.text = it.latitude.toString()
                     longitudeUser.text = it.longitude.toString()
-
                 }
-                getAddressAboveSDK29()
+                enableAbsen()
+            }else{
+                with(binding) {
+                    lattitudeUser.text = "-"
+                    longitudeUser.text ="-"
+                }
+                disableAbsen()
             }
+            Log.d("ambil_lokasi","On3 Proses")
+            getAddressAboveSDK29()
         }
     }
 
@@ -207,6 +205,7 @@ class AttendanceFragment :
             0f,
             locationListener
         )
+        Log.d("ambil_lokasi","On Proses")
         getLocationUser()
     }
 
@@ -347,7 +346,6 @@ class AttendanceFragment :
                 }
                 is NetworkResult.Loading -> {
                     binding.loadingInclude.loading.isVisible = true
-                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
                 }
 
                 is NetworkResult.Error -> {
@@ -396,31 +394,59 @@ class AttendanceFragment :
                 requireContext(),
                 ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
-        )
+        ) Log.d("ambil_lokasi","On4 Proses")
+        runLoading()
 
         fusedLocationProviderClient.lastLocation
             .addOnSuccessListener { location: Location? ->
-                // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh
-                val geocoder = Geocoder(requireContext(), Locale.getDefault())
-                geocoder.getFromLocation(
-                    location?.latitude ?: 0.0,
-                    location?.longitude ?: 0.0,
-                    1
-                ).also { addresses ->
-                    // Mengambil alamat dari objek Address dan menampilkannya pada TextView
-                    val address: String? = addresses!![0].getAddressLine(0)
-//                    Toast.makeText(requireContext(), "alamat golekai $address", Toast.LENGTH_SHORT).show()
+                try {
+                    val provider = LocationManager.NETWORK_PROVIDER
+                    val location = locationManager.getLastKnownLocation(provider)
+                    if (location != null) {
+                        val latitude = location.latitude
+                        val longitude = location.longitude
+                        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+                        val alertDialogHelper = AlertDialogHelper(requireContext())
+                        try {
+                            val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+                            if (addresses != null && addresses.isNotEmpty()) {
+                                val address = addresses[0].getAddressLine(0)
+                                binding.currentLocation.text = address
+//                                enableAbsen()
+                            } else {
+                                binding.currentLocation.text = "-"
+//                                disableAbsen()
+                                alertDialogHelper.showAlertDialog("Absen", "Lokasi tidak di temukan")
+                            }
+                        } catch (e: IOException) {
+                            binding.currentLocation.text = "-"
+//                            disableAbsen()
+                            alertDialogHelper.showAlertDialog("Absen", "Lokasi tidak di temukan, periksa kembali koneksi anda")
+                            e.printStackTrace()
+                        }
+                        stopLoading()
+                    } else {
+                        // Tidak dapat menemukan lokasi terkini
+                    }
 
-                    val city: String? = addresses[0].locality
-                    val state: String? = addresses[0].adminArea
-                    val country: String? = addresses[0].countryName
-                    val postalCode: String? = addresses[0].postalCode
-                    val knownName: String? = addresses[0].featureName
 
-                    binding.currentLocation.text =
-                        "$address"
-//                    Toast.makeText(context, "$address", Toast.LENGTH_SHORT).show()
+
+//                    geocoder.getFromLocation(
+//                        location?.latitude ?: 0.0,
+//                        location?.longitude ?: 0.0,
+//                        1
+//                    ).also { addresses ->
+//
+//                        val address: String? = addresses!![0].getAddressLine(0)
+//                        Log.d("ambil_lokasi","Selesai : $address")
+//
+//                        binding.currentLocation.text =
+//                            "$address"
+//                    }
+                }catch (e:Exception){
+                    Log.d("ambil_lokasi","Error : ${e.message}")
                 }
+
             }
     }
 
@@ -539,10 +565,7 @@ class AttendanceFragment :
     fun cekGPS() {
         // Cek apakah GPS sedang aktif
         val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        if (isGpsEnabled) {
-
-            getLocation()
-        } else {
+        if (!isGpsEnabled) {
             // GPS tidak aktif, tampilkan dialog untuk meminta pengguna mengaktifkannya
             val builder = AlertDialog.Builder(requireContext())
             builder.setMessage("GPS tidak aktif, aktifkan GPS?")
@@ -601,5 +624,30 @@ class AttendanceFragment :
     override fun onPause() {
         super.onPause()
         handler.removeCallbacks(runnable)
+    }
+
+    fun runLoading(){
+        binding.searchLocationLoading.visibility = View.VISIBLE
+    }
+    fun stopLoading(){
+        binding.searchLocationLoading.visibility = View.GONE
+        binding.searchLocationLoading.cancelAnimation()
+    }
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            rcycleview.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+        }
+    }
+
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            rcycleview.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+        }
     }
 }

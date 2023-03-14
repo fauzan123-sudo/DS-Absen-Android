@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_15sdp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/shadow_bg"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rv_lembur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/retangle_stroke"
+            android:padding="@dimen/_15sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="10dp">
+
+            <ImageView
+                android:id="@+id/iv_pengumuman"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_149sdp"
+                android:src="@drawable/pengumuman" />
+
+            <TextView
+                android:id="@+id/tv_create_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_pengumuman"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/poppins"
+                android:text="Senin, 22 Maret 2023"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_8ssp" />
+
+            <View
+                android:id="@+id/vi_1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/tv_create_at"
+                android:layout_marginTop="5.5dp"
+                android:background="@color/secondary" />
+
+            <TextView
+                android:id="@+id/tv_judul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Judul "
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@color/_dark"
+                android:textStyle="bold"
+
+                android:layout_below="@id/vi_1" />
+
+            <TextView
+                android:id="@+id/tv_keterangan_pengumuman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_judul"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/poppins"
+                android:text="Acara Ketemu Keluarga Jauh"
+                android:textColor="@color/_grey"
+                android:textSize="@dimen/_10ssp"
+                 />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

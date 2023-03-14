@@ -22,6 +22,7 @@
         layout="@layout/loading" />
 
     <ScrollView
+        android:id="@+id/rcycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/_45sdp"
@@ -92,6 +93,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_15sdp">
 
+
+
                     <ImageView
                         android:id="@+id/imageView22"
                         android:layout_width="match_parent"
@@ -149,6 +152,20 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/lattitudeUser"
                         tools:layout_editor_absoluteX="144dp" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:id="@+id/search_location_loading"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true"
+                        android:background="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_200sdp"
+                        app:lottie_rawRes="@raw/search_location_animate" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -315,6 +332,10 @@ Silahkan Hubungi Admin"
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
+    <include
+        android:visibility="gone"
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

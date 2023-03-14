@@ -76,6 +76,12 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                 findNavController().navigate(R.id.action_berandaFragment_to_allMenuFragment)
             }
 
+            materialCardView10.setOnClickListener {
+                findNavController().navigate(R.id.action_berandaFragment_to_pengumumanFragment)
+            }
+
+
+
             loadingInclude.loading.isVisible = false
 
             val customAnalogClock = binding.customAnalogClock
@@ -243,7 +249,6 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
             toolbar.toolbar.visibility = View.VISIBLE
             scrollView.visibility = View.VISIBLE
             noInternetConnection.ivNoConnection.visibility = View.GONE
-            Toast.makeText(requireContext(), "terkonekasi", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -254,6 +259,5 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
             scrollView.visibility = View.GONE
             noInternetConnection.ivNoConnection.visibility = View.VISIBLE
         }
-        Toast.makeText(requireContext(), "tidak terkonekasi", Toast.LENGTH_SHORT).show()
     }
 }

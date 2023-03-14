@@ -198,5 +198,11 @@
                 android:src="@drawable/vector" />
 
         </RelativeLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:visibility="gone"
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

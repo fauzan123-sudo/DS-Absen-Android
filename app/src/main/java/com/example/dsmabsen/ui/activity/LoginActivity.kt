@@ -18,6 +18,7 @@ import com.example.dsmabsen.helper.ConnectionLiveData
 import com.example.dsmabsen.helper.Constans.TAG
 import com.example.dsmabsen.helper.TokenManager
 import com.example.dsmabsen.helper.handleApiError
+import com.example.dsmabsen.helper.handleApiErrorActivity
 import com.example.dsmabsen.model.DataX
 import com.example.dsmabsen.repository.NetworkResult
 import com.example.dsmabsen.ui.viewModel.AuthViewModel
@@ -102,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
                     is NetworkResult.Error -> {
                         constrain.isVisible = true
                         val error = it.message.toString()
-                        handleApiError(error)
+                        handleApiErrorActivity(error)
                         Log.d(TAG, (it.message.toString()))
                     }
 
