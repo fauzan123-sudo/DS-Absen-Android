@@ -42,7 +42,7 @@ interface DataAttendanceApi {
         @Part("kode_tingkat") kode_tingkat: RequestBody,
     ): Response<Presensi>
 
-    @GET("payroll-client/index")
+    @GET("payroll-client")
     suspend fun getSallary(
         @Query("nip") nip: String
     ): Response<DataSallary>

@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:fontFamily="@font/poppins"
-                        android:text="dd/mm/yyyy"
+                        android:hint="dd/mm/yyyy"
                         android:textAlignment="textEnd" />
 
                 </LinearLayout>

@@ -1,0 +1,25 @@
+Index: app/src/main/res/layout/fragment_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n    android:background=\"@color/white\"\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ui.fragment.HomeFragment\">\r\n\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n        android:id=\"@+id/constraintLayout4\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n\r\n        <ImageView\r\n            android:id=\"@+id/imageView13\"\r\n            android:layout_width=\"@dimen/_100sdp\"\r\n            android:layout_height=\"@dimen/_100sdp\"\r\n            android:layout_marginTop=\"188dp\"\r\n\r\n            android:src=\"@drawable/ic_reimbursement\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintHorizontal_bias=\"0.498\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            app:srcCompat=\"@drawable/attention\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/textView39\"\r\n            android:layout_width=\"0dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"32dp\"\r\n            android:fontFamily=\"@font/poppins\"\r\n            android:paddingHorizontal=\"@dimen/_20sdp\"\r\n            android:text=\"@string/attention\"\r\n            android:textAlignment=\"center\"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"@dimen/_15ssp\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/imageView13\" />\r\n\r\n        <com.google.android.material.button.MaterialButton\r\n            android:id=\"@+id/requestPermissionsButton\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginHorizontal=\"@dimen/_20sdp\"\r\n            android:layout_marginTop=\"@dimen/_20sdp\"\r\n            android:background=\"@color/blue\"\r\n            android:fontFamily=\"@font/poppins_bold\"\r\n            android:text=\"Izinkan\"\r\n            android:textAllCaps=\"false\"\r\n            android:textColor=\"@color/white\"\r\n            android:textSize=\"@dimen/_14ssp\"\r\n            app:cornerRadius=\"@dimen/_2sdp\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/textView39\"\r\n            app:layout_constraintVertical_bias=\"0.0\" />\r\n\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_home.xml b/app/src/main/res/layout/fragment_home.xml
+--- a/app/src/main/res/layout/fragment_home.xml	(revision d729c84a724c4523cad45c43601c68fdb8dc40b3)
++++ b/app/src/main/res/layout/fragment_home.xml	(date 1678682045535)
+@@ -24,12 +24,11 @@
+             android:layout_height="@dimen/_100sdp"
+             android:layout_marginTop="188dp"
+ 
+-            android:src="@drawable/ic_reimbursement"
++            android:src="@drawable/attention"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintHorizontal_bias="0.498"
+             app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toTopOf="parent"
+-            app:srcCompat="@drawable/attention" />
++            app:layout_constraintTop_toTopOf="parent" />
+ 
+         <TextView
+             android:id="@+id/textView39"

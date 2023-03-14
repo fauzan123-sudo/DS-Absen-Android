@@ -7,8 +7,8 @@ import android.widget.AdapterView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.dsmabsen.R
 import com.example.dsmabsen.adapter.SpinnerShiftAdapter
 import com.example.dsmabsen.databinding.FragmentPengajuanShiftBinding
@@ -33,14 +33,6 @@ class PengajuanShiftFragment :
 
 
         with(binding) {
-
-//            btnSend.setOnClickListener {
-//                if (selectedShift.isNullOrEmpty()) {
-//                    Toast.makeText(requireContext(), "null", Toast.LENGTH_SHORT).show()
-//                } else {
-//                    Toast.makeText(requireContext(), selectedShift, Toast.LENGTH_SHORT).show()
-//                }
-//            }
 
             viewModel.requestSpinnerShift()
             viewModel.spinnerShiftLiveData.observe(viewLifecycleOwner) {
@@ -84,17 +76,25 @@ class PengajuanShiftFragment :
                                     }
 
                                 }
-
-                        } else {
-
+                            binding.apply {
+                                loadingInclude.loading.visibility = View.GONE
+                                scrollView2.visibility = View.VISIBLE
+                            }
                         }
                     }
 
                     is NetworkResult.Loading -> {
-                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.VISIBLE
+                            scrollView2.visibility = View.GONE
+                        }
                     }
 
                     is NetworkResult.Error -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            scrollView2.visibility = View.VISIBLE
+                        }
                         handleApiError(it.message)
                     }
                 }
@@ -105,7 +105,22 @@ class PengajuanShiftFragment :
 
         setHasOptionsMenu(true)
         setupToolbar("Ajukan Shift")
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.save -> {
+                    val keterangan = binding.edtKeterangan.text.toString()
+                    if (keterangan.isEmpty()) {
+                        binding.edtKeterangan.error = "Harap isi bidang ini!!"
+                        binding.edtKeterangan.requestFocus()
+                    } else {
+                        saveShift(savedUser)
+                    }
+                    true
+                }
 
+                else -> false
+            }
+        }
     }
 
 
@@ -114,7 +129,7 @@ class PengajuanShiftFragment :
             savedUser!!.nip,
             selectedShift!!,
             "",
-            binding.edtKeterangan.toString()
+            binding.edtKeterangan.text.toString()
         )
         viewModel.pengajuanShiftLiveData.observe(viewLifecycleOwner) {
             when (it) {
@@ -125,14 +140,16 @@ class PengajuanShiftFragment :
                     }
                     val response = it.data!!
                     val messages = response.data.messages
-                    val builder = AlertDialog.Builder(requireContext())
-                    builder.setMessage(messages)
-
-                        .setNegativeButton("Ya") { dialog, _ ->
-                            dialog.cancel()
-                        }
-                    val alert = builder.create()
-                    alert.show()
+                    if(messages != null){
+                        val builder = AlertDialog.Builder(requireContext())
+                        builder.setMessage(messages)
+                            .setNegativeButton("Ya") { dialog, _ ->
+                                dialog.cancel()
+                            }
+                        val alert = builder.create()
+                        alert.show()
+                    }
+                    requireActivity().onBackPressed()
                 }
                 is NetworkResult.Loading -> {
                     binding.apply {
@@ -157,24 +174,11 @@ class PengajuanShiftFragment :
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
+        val menuLogout = menu.findItem(R.id.logout)
 
+        menuLogout.isVisible = false
         menuSave?.isVisible = true // menyembunyikan menu tertentu
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
-        val item = menu.findItem(R.id.save)
-        item.setActionView(R.layout.item_menu_toolbar)
-
-        val actionView = item.actionView
-        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
-        btnSimpan?.setOnClickListener {
-            val keterangan = binding.edtKeterangan.text.toString()
-            if (keterangan.isEmpty()) {
-                binding.edtKeterangan.error = "Harap isi bidang ini!!"
-                binding.edtKeterangan.requestFocus()
-            } else {
-                saveShift(savedUser)
-
-            }
-        }
     }
 }

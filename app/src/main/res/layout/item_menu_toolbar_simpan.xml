@@ -8,10 +8,10 @@
     android:clickable="true"
     android:focusableInTouchMode="true"
     android:theme="@style/toolbar_menu"
+    android:id="@+id/textSimpan"
     android:focusable="true">
 
     <TextView
-        android:id="@+id/textSimpan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/_primary"
@@ -19,16 +19,5 @@
         android:text="@string/simpan"
         android:focusableInTouchMode="true"
         android:focusable="true" />
-
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/textLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_2sdp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Keluar"
-        android:textColor="@color/danger"
-        app:drawableRightCompat="@drawable/ic_logout" />
 
 </LinearLayout>

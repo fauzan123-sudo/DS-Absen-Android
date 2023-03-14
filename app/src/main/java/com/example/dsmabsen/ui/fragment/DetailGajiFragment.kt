@@ -3,7 +3,6 @@ package com.example.dsmabsen.ui.fragment
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.dsmabsen.R
 import com.example.dsmabsen.databinding.FragmentDetailGajiBinding
@@ -32,12 +31,14 @@ class DetailGajiFragment :BaseFragment<FragmentDetailGajiBinding>(FragmentDetail
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
+        val menuLogout = menu.findItem(R.id.logout)
 
+        menuLogout.isVisible = false
         menuSave?.isVisible = false // menyembunyikan menu tertentu
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
         val item = menu.findItem(R.id.save)
-        item.setActionView(R.layout.item_menu_toolbar)
+        item.setActionView(R.layout.item_menu_toolbar_simpan)
 
         val actionView = item.actionView
         val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)

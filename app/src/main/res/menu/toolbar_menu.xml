@@ -12,8 +12,15 @@
     <item
         android:id="@+id/save"
         android:enabled="true"
-        android:title="@string/simpan"
-        app:actionLayout="@layout/item_menu_toolbar"
+        android:icon="@drawable/save"
+        android:title="@string/add"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/logout"
+        android:enabled="true"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/add"
         app:showAsAction="ifRoom"/>
 
 </menu>

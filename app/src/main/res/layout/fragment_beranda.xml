@@ -17,8 +17,8 @@
         android:id="@+id/loadingInclude"
         layout="@layout/loading" />
 
-
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/_45sdp"
@@ -776,4 +776,8 @@
         <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
         <!--    </com.facebook.shimmer.ShimmerFrameLayout>-->
     </ScrollView>
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

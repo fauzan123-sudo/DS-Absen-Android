@@ -13,6 +13,15 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"/>
 
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/img_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_20sdp"
+        android:src="@drawable/no_data_found"
+        app:layout_constraintTop_toBottomOf="@id/reclembur"
+        />
     <include
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +39,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

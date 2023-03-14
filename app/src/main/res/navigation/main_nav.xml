@@ -195,7 +195,7 @@
         android:id="@+id/menuPerizinanFragment"
         android:name="com.example.dsmabsen.ui.fragment.MenuPerizinanFragment"
         android:label="fragment_menu_perizinan"
-        tools:layout="@layout/fragment_menu_perizinan" >
+        tools:layout="@layout/fragment_perizinan" >
         <action
             android:id="@+id/action_menuPerizinanFragment_to_formPerizinanFragment"
             app:destination="@id/formPerizinanFragment" />

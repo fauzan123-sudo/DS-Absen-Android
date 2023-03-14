@@ -10,10 +10,11 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.dsmabsen.databinding.ActivityLoginBinding
-import com.example.dsmabsen.helper.CacheManager
+import com.example.dsmabsen.helper.ConnectionLiveData
 import com.example.dsmabsen.helper.Constans.TAG
 import com.example.dsmabsen.helper.TokenManager
 import com.example.dsmabsen.helper.handleApiError
@@ -29,15 +30,20 @@ class LoginActivity : AppCompatActivity() {
     private val viewModel: AuthViewModel by viewModels()
     private lateinit var imei: String
     private lateinit var telephonyManager: TelephonyManager
+    private lateinit var cld: ConnectionLiveData
 
     @Inject
     lateinit var tokenManager: TokenManager
 
     private lateinit var binding: ActivityLoginBinding
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        checkNetworkConnection()
+
 
 
         if (tokenManager.getToken() != null) {
@@ -108,11 +114,27 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkNetworkConnection() {
+        cld = ConnectionLiveData(application)
+
+        cld.observe(this) { isConnected ->
+            if (isConnected) {
+//                layout1.visibility = View.VISIBLE
+//                layout2.visibility = View.GONE
+            } else {
+//                layout1.visibility = View.GONE
+//                layout2.visibility = View.VISIBLE
+            }
+
+        }
+    }
+
     private fun saveDataNip(data: DataX) {
         Paper.book().write("user", data)
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private val singlePermissionLaunch =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             Log.d(TAG, "permission is Granted: $isGranted")

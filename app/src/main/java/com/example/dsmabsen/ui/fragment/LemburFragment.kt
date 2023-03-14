@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,6 +46,8 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
             }
         }
         with(binding) {
+            loadingInclude.loading.visibility = View.VISIBLE
+            imgNoData.isVisible = false
 
             val savedUser = Paper.book().read<DataX>("user")
 
@@ -63,14 +66,16 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
                     is NetworkResult.Success -> {
                         val response = it.data!!
                         val status = response.status
-                        binding.apply {
-                            binding.loadingInclude.loading.visibility = View.GONE
-                            reclembur.visibility = View.VISIBLE
-                        }
+                        loadingInclude.loading.visibility = View.GONE
                         if (status) {
-                            adapter.differ.submitList(response.data.data)
-                        } else {
-                            Toast.makeText(requireContext(), "Status false", Toast.LENGTH_SHORT).show()
+                            if(response.data.data.isEmpty()){
+                                reclembur.isVisible = false
+                                imgNoData.isVisible = true
+                            }else{
+                                adapter.differ.submitList(response.data.data)
+                                reclembur.isVisible = true
+                                imgNoData.isVisible = false
+                            }
                         }
                     }
 
@@ -98,7 +103,9 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
+        val menuLogout = menu.findItem(R.id.logout)
 
+        menuLogout?.isVisible = false // menyembunyikan menu tertentu
         menuSave?.isVisible = false // menyembunyikan menu tertentu
         menuPlus?.isVisible = true // menyembunyikan menu tertentu
 

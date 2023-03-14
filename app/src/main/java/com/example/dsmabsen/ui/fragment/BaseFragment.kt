@@ -1,5 +1,7 @@
 package com.example.dsmabsen.ui.fragment
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +15,14 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.viewbinding.ViewBinding
 import com.example.dsmabsen.R
+import com.example.dsmabsen.helper.ConnectionLiveData
 
 abstract class BaseFragment<VB : ViewBinding>(
     private val bindingInflater: (inflater: LayoutInflater) -> VB
 ) : Fragment() {
     protected lateinit var toolbar: Toolbar
     var _binding: VB? = null
-
+    protected lateinit var connectionLiveData: ConnectionLiveData
     val binding: VB
         get() = _binding as VB
 
@@ -34,6 +37,32 @@ abstract class BaseFragment<VB : ViewBinding>(
         toolbar = binding.root.findViewById(R.id.toolbar)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupConnection()
+    }
+
+    private fun setupConnection() {
+        connectionLiveData =
+            ConnectionLiveData(requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
+        connectionLiveData.observe(viewLifecycleOwner) { isConnected ->
+            if (isConnected) {
+                onConnectionAvailable()
+            } else {
+                onConnectionLost()
+            }
+        }
+    }
+
+    protected open fun onConnectionAvailable() {
+
+    }
+
+    protected open fun onConnectionLost() {
+
+    }
+
     protected open fun setupToolbar(title : String) {
 
         val customToolbar = layoutInflater.inflate(R.layout.toolbar_layout, null) as Toolbar
@@ -51,6 +80,8 @@ abstract class BaseFragment<VB : ViewBinding>(
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(true)
         toolbar.setPaddingRelative(0, 0, 0, 0)
         toolbar.titleMarginStart = -10
+
+
 
 
         toolbar.setOnMenuItemClickListener { menuItem ->

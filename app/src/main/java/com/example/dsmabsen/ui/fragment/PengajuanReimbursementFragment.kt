@@ -2,33 +2,24 @@ package com.example.dsmabsen.ui.fragment
 
 import DataSpinnerAdapter
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dsmabsen.R
-import com.example.dsmabsen.adapter.SpinnerReimbursementAdapter
 import com.example.dsmabsen.databinding.FragmentPengajuanReimbursementBinding
 import com.example.dsmabsen.helper.handleApiError
 import com.example.dsmabsen.model.DataX
-import com.example.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXX
 import com.example.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXX
-import com.example.dsmabsen.model.SpinnerReimbursement
 import com.example.dsmabsen.repository.NetworkResult
 import com.example.dsmabsen.ui.viewModel.ReimbursementViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
-import java.math.BigDecimal
-import java.text.DecimalFormat
 
 @AndroidEntryPoint
 class PengajuanReimbursementFragment :
@@ -45,33 +36,6 @@ class PengajuanReimbursementFragment :
 
         setHasOptionsMenu(true)
         setupToolbar("Ajukan Reimbursement")
-        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
-            toolbar.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.save -> {
-                        binding.apply {
-                            val nominal = edtNominal.text.toString()
-                            val keterangan = edtKeterangan.text.toString()
-
-                            if (nominal.isEmpty()) {
-                                edtNominal.error = "Harap isi bidang ini!!"
-                                edtNominal.requestFocus()
-                            } else if (keterangan.isEmpty()) {
-                                edtKeterangan.error = "harap isi keterangan"
-                                edtKeterangan.requestFocus()
-                            } else {
-                                saveReimbursement(savedUser)
-                            }
-                        }
-                        true
-                    }
-
-                    else -> false
-                }
-            }
-        }
-
-
         binding.apply {
 
 
@@ -79,9 +43,9 @@ class PengajuanReimbursementFragment :
             viewModel.getSpinnerReimbursementLiveData.observe(viewLifecycleOwner) {
                 when (it) {
                     is NetworkResult.Success -> {
+                        loadingInclude.loading.visibility = View.GONE
                         val response = it.data!!
                         val data = response.data
-
                         adapter = DataSpinnerAdapter(requireContext(), data)
                         spinnerJenisReimbursement.adapter = adapter
                         spinnerJenisReimbursement.onItemSelectedListener =
@@ -103,13 +67,39 @@ class PengajuanReimbursementFragment :
                     }
 
                     is NetworkResult.Loading -> {
-                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                        loadingInclude.loading.visibility = View.VISIBLE
+
                     }
 
                     is NetworkResult.Error -> {
+                        loadingInclude.loading.visibility = View.GONE
                         handleApiError(it.message)
                     }
                 }
+            }
+
+        }
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.save -> {
+                    if (binding.edtNominal.text.toString()
+                            .isNotEmpty() && binding.edtKeterangan.text.toString().isNotEmpty()
+                    ) {
+                        saveReimbursement(savedUser)
+                    }
+                    if (binding.edtNominal.text.isEmpty()) {
+                        binding.edtNominal.error = "Harap isi bidang ini!!"
+                        binding.edtNominal.requestFocus()
+                    }
+                    if (binding.edtKeterangan.text.isEmpty()) {
+                        binding.edtKeterangan.error = "Harap isi bidang ini!!"
+                        binding.edtKeterangan.requestFocus()
+
+                    }
+                    true
+                }
+
+                else -> false
             }
         }
     }
@@ -119,33 +109,12 @@ class PengajuanReimbursementFragment :
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
+        val menuLogout = menu.findItem(R.id.logout)
 
+        menuLogout.isVisible = false
         menuSave?.isVisible = true // menyembunyikan menu tertentu
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
-        val item = menu.findItem(R.id.save)
-        item.setActionView(R.layout.item_menu_toolbar)
-
-        val actionView = item.actionView
-        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
-        btnSimpan?.setOnClickListener {
-
-            if (binding.edtNominal.text.toString()
-                    .isNotEmpty() && binding.edtKeterangan.text.toString().isNotEmpty()
-            ) {
-                saveReimbursement(savedUser)
-            }
-            if (binding.edtNominal.text.isEmpty()) {
-                binding.edtNominal.error = "Harap isi bidang ini!!"
-                binding.edtNominal.requestFocus()
-            }
-            if (binding.edtKeterangan.text.isEmpty()) {
-                binding.edtKeterangan.error = "Harap isi bidang ini!!"
-                binding.edtKeterangan.requestFocus()
-
-            }
-
-        }
 
     }
 
@@ -166,14 +135,17 @@ class PengajuanReimbursementFragment :
                     }
                     val response = it.data!!
                     val messages = response.data.messages
-                    val builder = AlertDialog.Builder(requireContext())
-                    builder.setMessage(messages)
 
-                        .setNegativeButton("Ya") { dialog, _ ->
-                            dialog.cancel()
-                        }
-                    val alert = builder.create()
-                    alert.show()
+                    if(messages != null){
+                        val builder = AlertDialog.Builder(requireContext())
+                        builder.setMessage(messages)
+                            .setNegativeButton("Ya") { dialog, _ ->
+                                dialog.cancel()
+                            }
+                        val alert = builder.create()
+                        alert.show()
+                    }
+                    requireActivity().onBackPressed()
                 }
 
                 is NetworkResult.Loading -> {

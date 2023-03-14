@@ -304,7 +304,7 @@ Silahkan Hubungi Admin"
                         android:id="@+id/img_finger"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/_danger"
+                        android:background="@color/_success"
                         android:paddingVertical="@dimen/_10sdp"
                         android:src="@drawable/finger_absen" />
 

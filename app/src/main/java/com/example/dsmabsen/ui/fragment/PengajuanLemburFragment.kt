@@ -5,10 +5,7 @@ import android.text.format.DateFormat
 import android.util.Log
 import android.view.*
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import com.example.dsmabsen.R
 import com.example.dsmabsen.databinding.FragmentPengajuanLemburBinding
@@ -16,7 +13,6 @@ import com.example.dsmabsen.helper.handleApiError
 import com.example.dsmabsen.model.DataX
 import com.example.dsmabsen.repository.NetworkResult
 import com.example.dsmabsen.ui.viewModel.AttendanceViewModel
-import com.example.dsmabsen.ui.viewModel.HomeViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -51,7 +47,41 @@ class PengajuanLemburFragment :
         }
         setHasOptionsMenu(true)
         setupToolbar("Ajukan Lembur")
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.save -> {
+                    var i = 0;
+                    if(binding.jamMulai.text.isEmpty()){
+                        binding.jamMulai.error = "Harap isi bidang ini!!"
+                        binding.jamMulai.requestFocus()
+                        i++
+                    }
+                    if (binding.jamSelesai.text.isEmpty()) {
+                        binding.jamSelesai.error = "Harap isi bidang ini!!"
+                        binding.jamSelesai.requestFocus()
+                        i++
 
+                    }
+                    if(binding.tanggalPenggajuan.text.isEmpty()){
+                        binding.tanggalPenggajuan.error = "Harap isi bidang ini!!"
+                        binding.tanggalPenggajuan.requestFocus()
+                        i++
+
+                    }
+                    if (binding.keteranganPenggajuan.text.isEmpty()) {
+                        binding.keteranganPenggajuan.error = "Harap isi bidang ini!!"
+                        binding.keteranganPenggajuan.requestFocus()
+                        i++
+                    }
+                    if(i == 0){
+                        saveLembur()
+                    }
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 
     private fun saveLembur() {
@@ -73,14 +103,16 @@ class PengajuanLemburFragment :
                         binding.loadingInclude.loading.visibility = View.GONE
                         scrollView2.visibility = View.VISIBLE
                     }
-                    val builder = AlertDialog.Builder(requireContext())
-                    builder.setMessage(messages)
-
-                        .setNegativeButton("Ya") { dialog, _ ->
-                            dialog.cancel()
-                        }
-                    val alert = builder.create()
-                    alert.show()
+                    if(messages != null){
+                        val builder = AlertDialog.Builder(requireContext())
+                        builder.setMessage(messages)
+                            .setNegativeButton("Ya") { dialog, _ ->
+                                dialog.cancel()
+                            }
+                        val alert = builder.create()
+                        alert.show()
+                    }
+                    requireActivity().onBackPressed()
 
                 }
 
@@ -106,44 +138,12 @@ class PengajuanLemburFragment :
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
+        val menuLogout = menu.findItem(R.id.logout)
 
+        menuLogout.isVisible = false
         menuSave?.isVisible = true // menyembunyikan menu tertentu
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
-        val item = menu.findItem(R.id.save)
-        item.setActionView(R.layout.item_menu_toolbar)
-
-        val actionView = item.actionView
-        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
-        btnSimpan?.setOnClickListener {
-            var i = 0;
-            if(binding.jamMulai.text.isEmpty()){
-                binding.jamMulai.error = "Harap isi bidang ini!!"
-                binding.jamMulai.requestFocus()
-                i++
-            }
-            if (binding.jamSelesai.text.isEmpty()) {
-                binding.jamSelesai.error = "Harap isi bidang ini!!"
-                binding.jamSelesai.requestFocus()
-                i++
-
-            }
-            if(binding.tanggalPenggajuan.text.isEmpty()){
-                binding.tanggalPenggajuan.error = "Harap isi bidang ini!!"
-                binding.tanggalPenggajuan.requestFocus()
-                i++
-
-            }
-            if (binding.keteranganPenggajuan.text.isEmpty()) {
-                binding.keteranganPenggajuan.error = "Harap isi bidang ini!!"
-                binding.keteranganPenggajuan.requestFocus()
-                i++
-            }
-            if(i == 0){
-                saveLembur()
-            }
-
-        }
 
     }
 

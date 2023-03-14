@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -23,7 +22,6 @@ import com.example.dsmabsen.model.DataX
 import com.example.dsmabsen.model.RequestNip
 import com.example.dsmabsen.repository.NetworkResult
 import com.example.dsmabsen.ui.activity.LoginActivity
-import com.example.dsmabsen.ui.activity.MainActivity
 import com.example.dsmabsen.ui.viewModel.AuthViewModel
 import com.example.dsmabsen.ui.viewModel.UserProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -163,20 +161,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
+        val menuLogout = menu.findItem(R.id.logout)
 
-        menuSave?.isVisible = true
+        menuLogout.isVisible = true
+        menuSave?.isVisible = false
         menuPlus?.isVisible = false
 
-        val item = menu.findItem(R.id.save)
-        item.setActionView(R.layout.item_menu_toolbar)
-
-        val actionView = item.actionView
-        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
-        val textLogout = actionView?.findViewById<TextView>(R.id.textLogout)
-        btnSimpan!!.isVisible = false
-        textLogout!!.visibility = View.VISIBLE
-        textLogout.setOnClickListener {
+        menuLogout.actionView?.setOnClickListener {
+            // kode yang akan dieksekusi ketika item menu diklik
             logout(nipUser)
         }
+
     }
 }

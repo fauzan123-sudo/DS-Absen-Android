@@ -55,7 +55,9 @@ class AllMenuFragment :BaseFragment<FragmentAllMenuBinding>(FragmentAllMenuBindi
 
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
+        val menuLogout = menu.findItem(R.id.textLogout)
 
+        menuLogout.isVisible = false
         menuSave?.isVisible = false // menyembunyikan menu tertentu
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
 

@@ -1,12 +1,15 @@
 package com.example.dsmabsen.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dsmabsen.R
 import com.example.dsmabsen.adapter.AttendanceAdapter
 import com.example.dsmabsen.adapter.PerizinanAdapter
-import com.example.dsmabsen.databinding.FragmentMenuPerizinanBinding
+import com.example.dsmabsen.databinding.FragmentPerizinanBinding
 import com.example.dsmabsen.helper.handleApiError
 import com.example.dsmabsen.model.DataX
 import com.example.dsmabsen.repository.NetworkResult
@@ -24,7 +27,7 @@ import io.paperdb.Paper
 
 @AndroidEntryPoint
 class MenuPerizinanFragment :
-    BaseFragment<FragmentMenuPerizinanBinding>(FragmentMenuPerizinanBinding::inflate) {
+    BaseFragment<FragmentPerizinanBinding>(FragmentPerizinanBinding::inflate) {
 
     private val viewModel: PerizinanViewModel by viewModels()
     private lateinit var adapter: PerizinanAdapter
@@ -36,6 +39,8 @@ class MenuPerizinanFragment :
         setupToolbar("Perizinan")
         val savedUser = Paper.book().read<DataX>("user")
         with(binding) {
+            loadingInclude.loading.visibility = View.VISIBLE
+            imgNoData.isVisible = false
 
             adapter = PerizinanAdapter(requireContext())
             recyclerView = recPerizinan
@@ -46,20 +51,18 @@ class MenuPerizinanFragment :
             viewModel.perizinanLiveData.observe(viewLifecycleOwner) {
                 when (it) {
                     is NetworkResult.Success -> {
-                        binding.apply {
-                            loadingInclude.loading.visibility = View.GONE
-                            recPerizinan.visibility = View.VISIBLE
-                        }
+                        loadingInclude.loading.visibility = View.GONE
                         val data = it.data!!
                         val status = data.status
                         if (status) {
-                            adapter.differ.submitList(data.data.data)
-                        } else {
-                            Toast.makeText(
-                                requireContext(),
-                                "data perizinan salah",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            if(data.data.data.isEmpty()){
+                                recPerizinan.isVisible = false
+                                imgNoData.isVisible = true
+                            }else{
+                                adapter.differ.submitList(data.data.data)
+                                recPerizinan.isVisible = true
+                                imgNoData.isVisible = false
+                            }
                         }
                     }
 
@@ -98,9 +101,14 @@ class MenuPerizinanFragment :
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
+        val menuLogout = menu.findItem(R.id.logout)
 
-        menuSave?.isVisible = false // menyembunyikan menu tertentu
-        menuPlus?.isVisible = true // menyembunyikan menu tertentu
+        menuSave?.isVisible = false
+        menuPlus?.isVisible = true
+        menuLogout?.isVisible = false
+
+
     }
+
 
 }

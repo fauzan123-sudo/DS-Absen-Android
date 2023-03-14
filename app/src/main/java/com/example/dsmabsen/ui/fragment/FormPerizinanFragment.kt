@@ -1,17 +1,18 @@
 package com.example.dsmabsen.ui.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.widget.AdapterView
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.dsmabsen.R
 import com.example.dsmabsen.adapter.SpinnerAdapter
 import com.example.dsmabsen.databinding.FragmentFormPerizinanBinding
@@ -42,6 +43,7 @@ class FormPerizinanFragment :
             toolbar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.save -> {
+                        savePerizinan(savedUser)
                         true
                     }
 
@@ -123,8 +125,39 @@ class FormPerizinanFragment :
                     else -> ""
                 }
             }
-        }
 
+        }
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            var i = 0
+            when (menuItem.itemId) {
+                R.id.save -> {
+
+                    if (binding.etTanggalMulai.text.isEmpty()) {
+                        binding.etTanggalMulai.error = "Harap isi bidang ini!!"
+                        binding.etTanggalMulai.requestFocus()
+                        i++
+
+                    }
+                    if(binding.etTanggalSelesai.text.isEmpty()){
+                        binding.etTanggalSelesai.error = "Harap isi bidang ini!!"
+                        binding.etTanggalSelesai.requestFocus()
+                        i++
+
+                    }
+                    if (binding.etKeterangan.text.isEmpty()) {
+                        binding.etKeterangan.error = "Harap isi bidang ini!!"
+                        binding.etKeterangan.requestFocus()
+                        i++
+                    }
+                    if(i == 0){
+                        savePerizinan(savedUser)
+                    }
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 
 
@@ -132,21 +165,13 @@ class FormPerizinanFragment :
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
+        val menuLogout = menu.findItem(R.id.logout)
 
+        menuLogout.isVisible = false
         menuSave?.isVisible = true // menyembunyikan menu tertentu
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
-        val item = menu.findItem(R.id.save)
-        item.setActionView(R.layout.item_menu_toolbar)
-
-        val actionView = item.actionView
-        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
-        btnSimpan?.setOnClickListener {
-            savePerizinan(savedUser)
-        }
-
     }
-
     private fun getCalendarEnd() {
         val datePicker = MaterialDatePicker.Builder
             .datePicker()
@@ -198,10 +223,10 @@ class FormPerizinanFragment :
         viewModel.requestSendPermission(
             savedUser!!.nip,
             kode_perizinan!!,
-            binding.etTanggalMulai.toString(),
-            binding.etTanggalSelesai.toString(),
+            binding.etTanggalMulai.text.toString(),
+            binding.etTanggalSelesai.text.toString(),
             "",
-            binding.etKeterangan.toString()
+            binding.etKeterangan.text.toString()
         )
 
         viewModel.sendPermissionLiveData.observe(viewLifecycleOwner) {
@@ -213,13 +238,16 @@ class FormPerizinanFragment :
                     }
                     val response = it.data!!
                     val messages = response.data.messages
-                    val builder = AlertDialog.Builder(requireContext())
-                    builder.setMessage(messages)
-                        .setNegativeButton("Ya") { dialog, _ ->
-                            dialog.cancel()
-                        }
-                    val alert = builder.create()
-                    alert.show()
+                    if(messages != null){
+                        val builder = AlertDialog.Builder(requireContext())
+                        builder.setMessage(messages)
+                            .setNegativeButton("Ya") { dialog, _ ->
+                                dialog.cancel()
+                            }
+                        val alert = builder.create()
+                        alert.show()
+                    }
+                    requireActivity().onBackPressed()
                 }
 
                 is NetworkResult.Loading -> {

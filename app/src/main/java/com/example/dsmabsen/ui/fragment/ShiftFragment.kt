@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,6 +36,10 @@ class ShiftFragment : BaseFragment<FragmentShiftBinding>(FragmentShiftBinding::i
         val savedUser = Paper.book().read<DataX>("user")
 
         with(binding) {
+            loadingInclude.loading.visibility = View.VISIBLE
+            imgNoData.isVisible = false
+
+
             adapter = ShiftAdapter(requireContext())
             recyclerView = recyclerShift
             recyclerView.adapter = adapter
@@ -43,23 +48,36 @@ class ShiftFragment : BaseFragment<FragmentShiftBinding>(FragmentShiftBinding::i
 
             viewModel.requestShift(savedUser!!.nip)
             viewModel.getShiftLiveData.observe(viewLifecycleOwner) {
+
                 when (it) {
                     is NetworkResult.Success -> {
+                        loadingInclude.loading.visibility = View.GONE
                         val response = it.data!!
                         val status = response.status
                         if (status) {
-                            adapter.differ.submitList(response.data.data)
-                        } else {
-                            Toast.makeText(requireContext(), "status False", Toast.LENGTH_SHORT)
-                                .show()
+                            if(response.data.data.isEmpty()){
+                                recyclerShift.isVisible = false
+                                imgNoData.isVisible = true
+                            }else{
+                                adapter.differ.submitList(response.data.data)
+                                recyclerShift.isVisible = true
+                                imgNoData.isVisible = false
+                            }
                         }
                     }
 
                     is NetworkResult.Loading -> {
-                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.VISIBLE
+                            recyclerShift.visibility = View.GONE
+                        }
                     }
 
                     is NetworkResult.Error -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            recyclerShift.visibility = View.VISIBLE
+                        }
                         handleApiError(it.message)
                     }
                 }
@@ -82,7 +100,9 @@ class ShiftFragment : BaseFragment<FragmentShiftBinding>(FragmentShiftBinding::i
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)
         val menuPlus = menu.findItem(R.id.add)
+        val menuLogout = menu.findItem(R.id.logout)
 
+        menuLogout.isVisible = false
         menuSave?.isVisible = false // menyembunyikan menu tertentu
         menuPlus?.isVisible = true // menyembunyikan menu tertentu
 

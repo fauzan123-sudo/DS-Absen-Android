@@ -1,15 +1,16 @@
 package com.example.dsmabsen.ui.fragment
 
+import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -24,9 +25,6 @@ import com.example.dsmabsen.ui.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
 import java.util.*
 import javax.inject.Inject
 
@@ -35,9 +33,9 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
     private val viewModel: HomeViewModel by viewModels()
     private val cacheManager = CacheManager()
     private lateinit var customAnalogClock: CustomAnalogClock
-
     private val handler = Handler()
     private lateinit var runnable: Runnable
+
 
     @Inject
     lateinit var tokenManager: TokenManager
@@ -48,9 +46,9 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
 
         hideToolbar()
 
+
         val data = cacheManager.getPass()
         val savedUser = Paper.book().read<DataX>("user")
-//        val token = tokenManager.getToken()
 
         with(binding) {
 
@@ -140,8 +138,8 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                         textView7.text = dataHome.jabatan
 
                         Glide.with(requireContext())
-                        .load(IMAGE_URL + "/" +dataHome.foto)
-                        .into(imageView3)
+                            .load(IMAGE_URL + "/" + dataHome.foto)
+                            .into(imageView3)
 
                         textView8.text = dataHome.nama_shift
                         textView9.text = dataHome.jam_shift
@@ -186,9 +184,9 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
         }
 
         viewModel.getAbsenRequest(savedUser!!.nip)
-        viewModel.getAbsenLiveData.observe(viewLifecycleOwner){
-            when(it){
-                is NetworkResult.Success ->{
+        viewModel.getAbsenLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is NetworkResult.Success -> {
                     binding.apply {
                         val response = it.data!!
                         tvCheckin.text = response.data.datang
@@ -196,11 +194,11 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                     }
                 }
 
-                is NetworkResult.Loading ->{
+                is NetworkResult.Loading -> {
                     Log.d("TAG", "onViewCreated: ")
                 }
 
-                is NetworkResult.Error ->{
+                is NetworkResult.Error -> {
                     handleApiError(it.message)
                 }
             }
@@ -221,7 +219,8 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
-    fun showExitConfirmationDialog(){
+
+    fun showExitConfirmationDialog() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Konfirmasi")
         builder.setMessage("Apakah Anda yakin ingin keluar dari aplikasi?")
@@ -238,5 +237,23 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
 
     }
 
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            scrollView.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+            Toast.makeText(requireContext(), "terkonekasi", Toast.LENGTH_SHORT).show()
+        }
+    }
 
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            scrollView.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+        }
+        Toast.makeText(requireContext(), "tidak terkonekasi", Toast.LENGTH_SHORT).show()
+    }
 }
