@@ -138,7 +138,7 @@ class FormPerizinanFragment :
                         i++
 
                     }
-                    if(binding.etTanggalSelesai.text.isEmpty()){
+                    if (binding.etTanggalSelesai.text.isEmpty()) {
                         binding.etTanggalSelesai.error = "Harap isi bidang ini!!"
                         binding.etTanggalSelesai.requestFocus()
                         i++
@@ -149,7 +149,7 @@ class FormPerizinanFragment :
                         binding.etKeterangan.requestFocus()
                         i++
                     }
-                    if(i == 0){
+                    if (i == 0) {
                         savePerizinan(savedUser)
                     }
                     true
@@ -172,6 +172,7 @@ class FormPerizinanFragment :
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
     }
+
     private fun getCalendarEnd() {
         val datePicker = MaterialDatePicker.Builder
             .datePicker()
@@ -238,7 +239,7 @@ class FormPerizinanFragment :
                     }
                     val response = it.data!!
                     val messages = response.data.messages
-                    if(messages != null){
+                    if (messages != null) {
                         val builder = AlertDialog.Builder(requireContext())
                         builder.setMessage(messages)
                             .setNegativeButton("Ya") { dialog, _ ->
@@ -265,6 +266,24 @@ class FormPerizinanFragment :
                     handleApiError(it.message)
                 }
             }
+        }
+    }
+
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            scrollView.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+        }
+    }
+
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            scrollView.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
         }
     }
 

@@ -112,8 +112,24 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
         btnSimpan?.setOnClickListener {
 
         }
-
     }
 
+    override fun onConnectionAvailable() {
+        super.onConnectionAvailable()
+        binding.apply {
+            toolbar.toolbar.visibility = View.VISIBLE
+            recSallary.visibility = View.VISIBLE
+            noInternetConnection.ivNoConnection.visibility = View.GONE
+        }
+    }
+
+    override fun onConnectionLost() {
+        super.onConnectionLost()
+        binding.apply {
+            toolbar.toolbar.visibility = View.GONE
+            recSallary.visibility = View.GONE
+            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+        }
+    }
 
 }

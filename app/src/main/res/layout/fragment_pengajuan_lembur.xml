@@ -212,4 +212,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
