@@ -57,6 +57,8 @@ class AttendanceFragment :
     private val LOCATION_PERMISSION_CODE = 123 // kode permintaan izin
     private val viewModel: AttendanceViewModel by viewModels()
     private val handler = Handler()
+    var latittudeUser1: String? = null
+    var longitudeUser2: String? = null
     private lateinit var runnable: Runnable
 
     @Inject
@@ -175,23 +177,25 @@ class AttendanceFragment :
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireContext())
-        Log.d("ambil_lokasi","On2 Proses")
+        Log.d("ambil_lokasi", "On2 Proses")
         val task = fusedLocationProviderClient.lastLocation
         task.addOnSuccessListener {
             if (it != null) {
                 with(binding) {
+                    latittudeUser1 = it.latitude.toString()
+                    longitudeUser2 = it.longitude.toString()
                     lattitudeUser.text = it.latitude.toString()
                     longitudeUser.text = it.longitude.toString()
                 }
                 enableAbsen()
-            }else{
+            } else {
                 with(binding) {
                     lattitudeUser.text = "-"
-                    longitudeUser.text ="-"
+                    longitudeUser.text = "-"
                 }
                 disableAbsen()
             }
-            Log.d("ambil_lokasi","On3 Proses")
+            Log.d("ambil_lokasi", "On3 Proses")
             getAddressAboveSDK29()
         }
     }
@@ -205,7 +209,7 @@ class AttendanceFragment :
             0f,
             locationListener
         )
-        Log.d("ambil_lokasi","On Proses")
+        Log.d("ambil_lokasi", "On Proses")
         getLocationUser()
     }
 
@@ -279,6 +283,7 @@ class AttendanceFragment :
     @RequiresApi(Build.VERSION_CODES.O)
     private fun absen(uri: Bitmap) {
 
+
         val photo = uriToMultipartBody(uri)
 
 
@@ -289,9 +294,16 @@ class AttendanceFragment :
         val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
         val dateRequestBody = MultipartBody.Part.createFormData("date", timeNow)
         val timezoneRequestBody = MultipartBody.Part.createFormData("timezone", "")
-        val kordinatRequestBody = MultipartBody.Part.createFormData("kordinat", "123, 456")
-        val kodeShiftRequestBody = MultipartBody.Part.createFormData("kode_shift", "12")
+        val kordinatRequestBody =
+            MultipartBody.Part.createFormData("kordinat", "$latittudeUser1,$longitudeUser2")
+        val kodeShiftRequestBody =
+            MultipartBody.Part.createFormData("kode_shift", savedUser!!.shift!!)
         val kodeTingkatRequestBody = MultipartBody.Part.createFormData("kode_tingkat", "0")
+
+        Log.d(
+            "TAG",
+            "nip :$nipRequestBody date:$dateRequestBody timeZone:$timezoneRequestBody kordinat:$latittudeUser1,$longitudeUser2 kodeshift:$kodeShiftRequestBody kodetingkat:$kodeTingkatRequestBody"
+        )
 
         viewModel.attendanceToday2(
             photo,
@@ -311,7 +323,7 @@ class AttendanceFragment :
                     val statusServer = response.status
                     val statusPresensi = response.data.status
                     val message = response.data.messages
-                    if (statusPresensi == "Error"){
+                    if (statusPresensi == "Error") {
                         binding.apply {
                             materialCardView21.isVisible = true
                             notificationUser.isVisible = true
@@ -324,7 +336,7 @@ class AttendanceFragment :
                                 )
                             )
                         }
-                    }else{
+                    } else {
                         binding.apply {
                             binding.materialCardView21.isVisible = true
                             binding.notificationUser.isVisible = true
@@ -338,10 +350,6 @@ class AttendanceFragment :
                             )
                         }
                     }
-
-//                    Toast.makeText(requireContext(),message , Toast.LENGTH_SHORT).show()
-
-
 
                 }
                 is NetworkResult.Loading -> {
@@ -394,7 +402,7 @@ class AttendanceFragment :
                 requireContext(),
                 ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
-        ) Log.d("ambil_lokasi","On4 Proses")
+        ) Log.d("ambil_lokasi", "On4 Proses")
         runLoading()
 
         fusedLocationProviderClient.lastLocation
@@ -416,19 +424,24 @@ class AttendanceFragment :
                             } else {
                                 binding.currentLocation.text = "-"
 //                                disableAbsen()
-                                alertDialogHelper.showAlertDialog("Absen", "Lokasi tidak di temukan")
+                                alertDialogHelper.showAlertDialog(
+                                    "Absen",
+                                    "Lokasi tidak di temukan"
+                                )
                             }
                         } catch (e: IOException) {
                             binding.currentLocation.text = "-"
 //                            disableAbsen()
-                            alertDialogHelper.showAlertDialog("Absen", "Lokasi tidak di temukan, periksa kembali koneksi anda")
+                            alertDialogHelper.showAlertDialog(
+                                "Absen",
+                                "Lokasi tidak di temukan, periksa kembali koneksi anda"
+                            )
                             e.printStackTrace()
                         }
                         stopLoading()
                     } else {
                         // Tidak dapat menemukan lokasi terkini
                     }
-
 
 
 //                    geocoder.getFromLocation(
@@ -443,8 +456,8 @@ class AttendanceFragment :
 //                        binding.currentLocation.text =
 //                            "$address"
 //                    }
-                }catch (e:Exception){
-                    Log.d("ambil_lokasi","Error : ${e.message}")
+                } catch (e: Exception) {
+                    Log.d("ambil_lokasi", "Error : ${e.message}")
                 }
 
             }
@@ -626,13 +639,15 @@ class AttendanceFragment :
         handler.removeCallbacks(runnable)
     }
 
-    fun runLoading(){
+    fun runLoading() {
         binding.searchLocationLoading.visibility = View.VISIBLE
     }
-    fun stopLoading(){
+
+    fun stopLoading() {
         binding.searchLocationLoading.visibility = View.GONE
         binding.searchLocationLoading.cancelAnimation()
     }
+
     override fun onConnectionAvailable() {
         super.onConnectionAvailable()
         binding.apply {

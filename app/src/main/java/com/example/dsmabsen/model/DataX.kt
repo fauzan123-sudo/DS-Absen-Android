@@ -9,5 +9,6 @@ data class DataX(
     val nip: String,
     val no_hp: String,
     val skpd: String,
+    val shift:String?,
     val tanggal_tmt: String
 )

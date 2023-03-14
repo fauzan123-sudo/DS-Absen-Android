@@ -92,6 +92,7 @@ class LoginActivity : AppCompatActivity() {
 
                             val data = it.data.data
                             saveDataNip(data)
+                            Log.d("data user", "$data")
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                             finish()
                         } else {

@@ -80,6 +80,11 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                 findNavController().navigate(R.id.action_berandaFragment_to_pengumumanFragment)
             }
 
+            imageView3.setOnClickListener {
+                findNavController().navigate(R.id.action_berandaFragment_to_profileFragment)
+                Log.d("tombol profile", "onViewCreated: ")
+            }
+
 
 
             loadingInclude.loading.isVisible = false
@@ -159,9 +164,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                             textView11.text = Helper().getMY()
                         }
 
-                        imageView3.setOnClickListener {
-                            findNavController().navigate(R.id.action_berandaFragment_to_profileFragment)
-                        }
+
 
                     }
 
