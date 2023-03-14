@@ -57,7 +57,7 @@ class DataAbsenFragment :
             namaUser.text = savedUser!!.name
             jabatan.text = savedUser!!.nama_jabatan
             Glide.with(requireContext())
-                .load(Constans.IMAGE_URL + savedUser!!.image)
+                .load(Constans.IMAGE_URL + savedUser.image)
                 .into(imageUser)
 
             imageUser.setOnClickListener {
@@ -103,7 +103,7 @@ class DataAbsenFragment :
                 }
             }
 
-            viewModel.attendanceTotalRequest(savedUser.nip)
+            viewModel.attendanceTotalRequest(savedUser!!.nip)
             viewModel.totalAttendanceLiveData.observe(viewLifecycleOwner) {
 
                 when (it) {

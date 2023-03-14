@@ -144,7 +144,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                         textView7.text = dataHome.jabatan
 
                         Glide.with(requireContext())
-                            .load(IMAGE_URL + "/" + dataHome.foto)
+                            .load(IMAGE_URL + dataHome.foto)
                             .into(imageView3)
 
                         textView8.text = dataHome.nama_shift

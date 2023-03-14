@@ -9,6 +9,7 @@
     tools:context=".ui.fragment.ProfileFragment">
 
     <include
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout" />

@@ -89,7 +89,7 @@ class AttendanceFragment :
             namaUser.text = savedUser!!.name
             jabatan.text = savedUser!!.nama_jabatan
             Glide.with(requireContext())
-                .load(Constans.IMAGE_URL + savedUser!!.image)
+                .load(Constans.IMAGE_URL + savedUser.image)
                 .into(imageUser)
 
 

@@ -65,7 +65,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                         }
                         if (data.status) {
                             Glide.with(requireContext())
-                                .load(Constans.IMAGE_URL + data.data.foto)
+                                .load(Constans.IMAGE_URL + "/" + data.data.foto)
                                 .into(civProfile)
                         } else {
                             Toast.makeText(requireContext(), "error in here", Toast.LENGTH_SHORT)
