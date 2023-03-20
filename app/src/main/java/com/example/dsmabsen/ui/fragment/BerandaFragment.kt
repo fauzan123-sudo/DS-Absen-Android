@@ -257,7 +257,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
     override fun onConnectionAvailable() {
         super.onConnectionAvailable()
         binding.apply {
-            toolbar.toolbar.visibility = View.VISIBLE
+            toolbar.toolbar.visibility = View.GONE
             scrollView.visibility = View.VISIBLE
             noInternetConnection.ivNoConnection.visibility = View.GONE
         }
@@ -266,7 +266,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
     override fun onConnectionLost() {
         super.onConnectionLost()
         binding.apply {
-            toolbar.toolbar.visibility = View.VISIBLE
+            toolbar.toolbar.visibility = View.GONE
             scrollView.visibility = View.VISIBLE
             noInternetConnection.ivNoConnection.visibility = View.VISIBLE
         }

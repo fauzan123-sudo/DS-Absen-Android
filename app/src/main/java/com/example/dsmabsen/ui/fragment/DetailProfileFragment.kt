@@ -27,19 +27,7 @@ class DetailProfileFragment : BaseFragment<FragmentDetailProfileBinding>(Fragmen
         val savedUser = Paper.book().read<DataX>("user")
         setHasOptionsMenu(true)
         setupToolbar("Detail Profil")
-        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
-            toolbar.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.save -> {
-                        // Handle add menu item click
-//                        saveReimbursement(savedUser)
-                        true
-                    }
 
-                    else -> false
-                }
-            }
-        }
         with(binding) {
             viewModel.detailProfileRequest(savedUser!!.nip)
             viewModel.profileDetailLivedata.observe(viewLifecycleOwner) {
@@ -69,16 +57,6 @@ class DetailProfileFragment : BaseFragment<FragmentDetailProfileBinding>(Fragmen
         menuSave?.isVisible = false // menyembunyikan menu tertentu
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
-        val item = menu.findItem(R.id.save)
-        item.setActionView(R.layout.item_menu_toolbar_simpan)
-
-        val actionView = item.actionView
-        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
-        btnSimpan?.setOnClickListener {
-            // your code here
-//            saveReimbursement(savedUser)
-
-        }
 
     }
     override fun onConnectionAvailable() {

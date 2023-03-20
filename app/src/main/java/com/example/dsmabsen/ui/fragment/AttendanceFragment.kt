@@ -651,7 +651,7 @@ class AttendanceFragment :
     override fun onConnectionAvailable() {
         super.onConnectionAvailable()
         binding.apply {
-            toolbar.toolbar.visibility = View.VISIBLE
+            toolbar.toolbar.visibility = View.GONE
             rcycleview.visibility = View.VISIBLE
             noInternetConnection.ivNoConnection.visibility = View.GONE
         }

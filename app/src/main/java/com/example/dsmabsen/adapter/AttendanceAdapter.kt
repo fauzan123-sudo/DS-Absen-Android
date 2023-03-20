@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dsmabsen.R
 import com.example.dsmabsen.databinding.ItemRekapAbsensiBinding
 import com.example.dsmabsen.helper.Helper
-import com.example.dsmabsen.model.DataXXXXXXXXXX
 import com.example.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 class AttendanceAdapter(private val context: Context) :
@@ -26,12 +25,12 @@ class AttendanceAdapter(private val context: Context) :
                     textView31.text = Helper().convertTanggal(absen!!, newFormat)
 
                     if (status == 1) {
-                        imageView11.setImageResource(R.drawable.round_icon1)
+                        imageView11.setImageResource(R.drawable.icon_checkin)
                         textView30.text = "Check In"
                         textView31.setTextColor(ContextCompat.getColor(context, R.color._success))
 
                     } else {
-                        imageView11.setBackgroundResource(R.drawable.round_icon2)
+                        imageView11.setBackgroundResource(R.drawable.icon_checkout)
                         textView30.text = "Check out"
                         textView31.setTextColor(ContextCompat.getColor(context, R.color.danger))
                     }

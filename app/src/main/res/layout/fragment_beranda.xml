@@ -9,15 +9,14 @@
     tools:context=".ui.fragment.BerandaFragment">
 
     <include
-        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout" />
 
-<!--    <include-->
-<!--        android:visibility="gone"-->
-<!--        android:id="@+id/loadingInclude"-->
-<!--        layout="@layout/loading" />-->
+    <include
+        android:visibility="visible"
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -222,7 +221,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView4"
+                    android:id="@+id/cardCheckin"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
@@ -240,25 +239,25 @@
                         android:background="@color/white">
 
                         <com.makeramen.roundedimageview.RoundedImageView
-                            android:id="@+id/roundedImageView"
+                            android:id="@+id/icon_cardCheckin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/round_icon1"
+                            android:src="@drawable/icon_checkin"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/textView13"
+                            android:id="@+id/title_cardCheckin"
                             android:layout_width="0dp"
                             android:maxLines="1"
                             android:layout_height="wrap_content"
                             android:paddingStart="@dimen/_10sdp"
                             android:text="Datang"
                             android:textAlignment="textStart"
-                            app:layout_constraintBottom_toBottomOf="@+id/roundedImageView"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_cardCheckin"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/roundedImageView"
-                            app:layout_constraintTop_toTopOf="@+id/roundedImageView" />
+                            app:layout_constraintStart_toEndOf="@+id/icon_cardCheckin"
+                            app:layout_constraintTop_toTopOf="@+id/icon_cardCheckin" />
 
                         <TextView
                             android:id="@+id/tv_checkin"
@@ -271,10 +270,10 @@
                             android:textSize="@dimen/_18ssp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/roundedImageView" />
+                            app:layout_constraintTop_toBottomOf="@+id/icon_cardCheckin" />
 
                         <TextView
-                            android:id="@+id/textView15"
+                            android:id="@+id/footerText_cardCheckin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="On Time"
@@ -284,7 +283,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/tv_checkin" />
 
                         <TextView
-                            android:id="@+id/textView16"
+                            android:id="@+id/tv_kpiCheckIn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="+120 pt"
@@ -292,13 +291,13 @@
                             android:textSize="@dimen/_10ssp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/textView15"
+                            app:layout_constraintStart_toEndOf="@+id/footerText_cardCheckin"
                             app:layout_constraintTop_toBottomOf="@+id/tv_checkin" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView3"
+                    android:id="@+id/cardBreak"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
@@ -318,28 +317,182 @@
                         android:background="@color/white">
 
                         <com.makeramen.roundedimageview.RoundedImageView
-                            android:id="@+id/roundedImageView1"
+                            android:id="@+id/icon_cardBreak"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/round_icon2"
+                            android:src="@drawable/icon_break"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/textView17"
+                            android:id="@+id/title_cardCheckout"
                             android:layout_width="0dp"
                             android:maxLines="1"
                             android:layout_height="wrap_content"
                             android:paddingStart="@dimen/_10sdp"
                             android:text="Pulang"
                             android:textAlignment="textStart"
-                            app:layout_constraintBottom_toBottomOf="@+id/roundedImageView1"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_cardBreak"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/roundedImageView1"
-                            app:layout_constraintTop_toTopOf="@+id/roundedImageView1" />
+                            app:layout_constraintStart_toEndOf="@+id/icon_cardBreak"
+                            app:layout_constraintTop_toTopOf="@+id/icon_cardBreak" />
+
+                        <TextView
+                            android:id="@+id/tv_break"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="23:00:34"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black_text"
+                            android:textSize="@dimen/_18ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.507"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/icon_cardBreak" />
+
+                        <TextView
+                            android:id="@+id/footerText_cardCheckOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="On Time"
+                            android:textColor="@color/_grey"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_break" />
+
+                        <TextView
+                            android:id="@+id/tv_kpiBreak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+120 pt"
+                            android:textColor="@color/_success"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_break" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+                
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardCheackOut"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="@id/guideline"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/cardCheckin"
+                    app:layout_constraintTop_toBottomOf="@+id/cardCheckin">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_18sdp"
+                        android:background="@color/white">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/icon_cardCheackOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_checkout"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/title_cardCheackOut"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:text="Pulang"
+                            android:textAlignment="textStart"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_cardCheackOut"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/icon_cardCheackOut"
+                            app:layout_constraintTop_toTopOf="@+id/icon_cardCheackOut" />
 
                         <TextView
                             android:id="@+id/tv_checkout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="23:00:34"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black_text"
+                            android:textSize="@dimen/_18ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/icon_cardCheackOut" />
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="On Time"
+                            android:textColor="@color/_grey"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_checkout" />
+
+                        <TextView
+                            android:id="@+id/tv_kpiCheckout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+120 pt"
+                            android:textColor="@color/_success"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toEndOf="@+id/textView15"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_checkout" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardVisitCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/shadow_bg"
+                    android:clipToOutline="false"
+                    android:clipToPadding="false"
+                    app:layout_constraintEnd_toEndOf="@+id/cardBreak"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/cardBreak">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_18sdp"
+                        android:background="@color/white">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/icon_cardVisitCheck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_visitcheck"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/title_cardVisitCheck"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:text="Visit"
+                            android:textAlignment="textStart"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_cardVisitCheck"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/icon_cardVisitCheck"
+                            app:layout_constraintTop_toTopOf="@+id/icon_cardVisitCheck" />
+
+                        <TextView
+                            android:id="@+id/tv_visit"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
@@ -350,27 +503,27 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.507"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/roundedImageView1" />
+                            app:layout_constraintTop_toBottomOf="@+id/icon_cardVisitCheck" />
 
                         <TextView
-                            android:id="@+id/textView19"
+                            android:id="@+id/footerText_cardVisitCheck"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="On Time"
                             android:textColor="@color/_grey"
                             android:textSize="@dimen/_10ssp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_checkout" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_visit" />
 
                         <TextView
-                            android:id="@+id/textView20"
+                            android:id="@+id/tv_kpiVisit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="+120 pt"
                             android:textColor="@color/_success"
                             android:textSize="@dimen/_10ssp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_checkout" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_visit" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.card.MaterialCardView>

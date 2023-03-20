@@ -68,18 +68,7 @@ class PengumumanFragment :
             }
         }
 
-        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
-            toolbar.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.add -> {
-//                        findNavController().navigate(R.id.action_reimbursementFragment_to_pengajuanReimbursementFragment)
-                        true
-                    }
-
-                    else -> false
-                }
-            }
-        }
+        setupToolbar("Pengumuman")
 
     }
 

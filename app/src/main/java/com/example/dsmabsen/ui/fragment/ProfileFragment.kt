@@ -98,7 +98,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
 
         toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.textLogout -> {
+                R.id.logout -> {
                     logout(nipUser)
                     true
                 }
@@ -167,10 +167,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         menuSave?.isVisible = false
         menuPlus?.isVisible = false
 
-        menuLogout.actionView?.setOnClickListener {
-            // kode yang akan dieksekusi ketika item menu diklik
-            logout(nipUser)
-        }
 
     }
     override fun onConnectionAvailable() {

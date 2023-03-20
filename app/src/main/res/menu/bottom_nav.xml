@@ -5,17 +5,29 @@
         android:id="@+id/berandaFragment"
         android:enabled="true"
         android:icon="@drawable/beranda"
-        android:title="BERANDA"/>
+        android:title="Beranda"/>
+    <item
+        android:id="@+id/visitFragment"
+        android:enabled="true"
+        android:icon="@drawable/locate"
+        android:title="Visit"/>
+
     <item
         android:id="@+id/attendanceFragment"
         android:enabled="true"
         android:icon="@drawable/target"
-        android:title="ABSEN"/>
+        android:title="Absen"/>
 
     <item
         android:id="@+id/dataAbsenFragment"
         android:enabled="true"
         android:icon="@drawable/data_absensi"
-        android:title="DATA ABSENSI"/>
+        android:title="Data Absen"/>
+
+    <item
+        android:id="@+id/profileFragment"
+        android:enabled="true"
+        android:icon="@drawable/user"
+        android:title="Profil"/>
 
 </menu>

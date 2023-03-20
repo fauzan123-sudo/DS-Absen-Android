@@ -14,7 +14,7 @@
         android:layout_height="@dimen/_33sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/round_icon2" />
+        app:srcCompat="@drawable/icon_checkout" />
 
     <TextView
         android:id="@+id/textView29"
