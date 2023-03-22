@@ -203,6 +203,9 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                         val response = it.data!!
                         tvCheckin.text = response.data.datang
                         tvCheckout.text = response.data.pulang
+                        tvVisit.text = response.data.visit
+                        tvBreak.text = response.data.istirahat
+
                     }
                 }
 

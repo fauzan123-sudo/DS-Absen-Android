@@ -73,7 +73,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textView7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView6"
-                    tools:src="@drawable/man" />
+                    android:src="@drawable/user" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/materialCardView"
@@ -264,7 +264,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="23:00:34"
+                            android:text="-"
                             android:textAlignment="textStart"
                             android:textColor="@color/black_text"
                             android:textSize="@dimen/_18ssp"
@@ -330,7 +330,7 @@
                             android:maxLines="1"
                             android:layout_height="wrap_content"
                             android:paddingStart="@dimen/_10sdp"
-                            android:text="Pulang"
+                            android:text="Istirahat"
                             android:textAlignment="textStart"
                             app:layout_constraintBottom_toBottomOf="@+id/icon_cardBreak"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -342,7 +342,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="23:00:34"
+                            android:text="-"
                             android:textAlignment="textStart"
                             android:textColor="@color/black_text"
                             android:textSize="@dimen/_18ssp"
@@ -418,7 +418,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="23:00:34"
+                            android:text="-"
                             android:textAlignment="textStart"
                             android:textColor="@color/black_text"
                             android:textSize="@dimen/_18ssp"
@@ -496,7 +496,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="_"
+                            android:text="-"
                             android:textAlignment="textStart"
                             android:textColor="@color/black_text"
                             android:textSize="@dimen/_18ssp"

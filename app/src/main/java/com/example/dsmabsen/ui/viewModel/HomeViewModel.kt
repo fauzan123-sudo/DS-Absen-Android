@@ -31,11 +31,11 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
         }
     }
 
-        fun getAbsenRequest(nip: String) {
-            viewModelScope.launch {
-                _getAbsen.postValue(NetworkResult.Loading())
-                _getAbsen.postValue(repository.getAbsen(nip))
-            }
-
+    fun getAbsenRequest(nip: String) {
+        viewModelScope.launch {
+            _getAbsen.postValue(NetworkResult.Loading())
+            _getAbsen.postValue(repository.getAbsen(nip))
         }
+
     }
+}

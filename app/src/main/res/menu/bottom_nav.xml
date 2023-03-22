@@ -7,7 +7,7 @@
         android:icon="@drawable/beranda"
         android:title="Beranda"/>
     <item
-        android:id="@+id/visitFragment"
+        android:id="@+id/visitFragment2"
         android:enabled="true"
         android:icon="@drawable/locate"
         android:title="Visit"/>

@@ -30,7 +30,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
     lateinit var navController: NavController
     private lateinit var cld: ConnectionLiveData
-    lateinit var binding : ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -72,34 +72,37 @@ class MainActivity : AppCompatActivity() {
             onBackPressedDispatcher.addCallback(this@MainActivity, callback)
         }
 
-            navController.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
 
-                val arrayHideNavbar = arrayOf(
-                    R.id.berandaFragment,
-                    R.id.attendanceFragment,
-                    R.id.dataAbsenFragment,
-                )
-                val arrayFragmentBgWhite = arrayOf(
-                    R.id.profileFragment,
-                    R.id.allProfileFragment,
-                    R.id.personalDataFragment,
-                )
+            val arrayHideNavbar = arrayOf(
+                R.id.berandaFragment,
+                R.id.attendanceFragment,
+                R.id.dataAbsenFragment,
+            )
+            val arrayFragmentBgWhite = arrayOf(
+                R.id.profileFragment,
+                R.id.allProfileFragment,
+                R.id.personalDataFragment,
+            )
 
-                if (arrayHideNavbar.contains(destination.id)) {
+            if (arrayHideNavbar.contains(destination.id)) {
 
-                    binding.bottomNavigationView.visibility = View.VISIBLE
-                } else {
-                    binding.bottomNavigationView.visibility = View.GONE
+                binding.bottomNavigationView.visibility = View.VISIBLE
+            } else {
+                binding.bottomNavigationView.visibility = View.GONE
 
-                }
-                if (arrayFragmentBgWhite.contains(destination.id)) {
-                    binding.main.setBackgroundColor(Color.WHITE)
-
-                } else {
-
-                    binding.main.background = AppCompatResources.getDrawable(applicationContext,R.drawable.gradiend_background)
-                }
             }
+            if (arrayFragmentBgWhite.contains(destination.id)) {
+                binding.main.setBackgroundColor(Color.WHITE)
+
+            } else {
+
+                binding.main.background = AppCompatResources.getDrawable(
+                    applicationContext,
+                    R.drawable.gradiend_background
+                )
+            }
+        }
 
 //            bottomNavigationView.setOnItemSelectedListener { item ->
 //                when (item.itemId) {
@@ -164,6 +167,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
     private fun checkNetworkConnection() {
         cld = ConnectionLiveData(application)
 

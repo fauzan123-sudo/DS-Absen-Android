@@ -47,16 +47,7 @@ class AllProfileFragment :BaseFragment<FragmentAllProfileBinding>(FragmentAllPro
         menuSave?.isVisible = false // menyembunyikan menu tertentu
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
 
-        val item = menu.findItem(R.id.save)
-        item.setActionView(R.layout.item_menu_toolbar_simpan)
 
-        val actionView = item.actionView
-        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
-        btnSimpan?.setOnClickListener {
-            // your code here
-//            saveReimbursement(savedUser)
-
-        }
 
     }
 

@@ -20,4 +20,11 @@ interface HomeApi {
     suspend fun getAbsen(
         @Path("nip") nip:String
     ) : Response<PresensiHariIni>
+
+//    @GET("absen/{nip}")
+//    suspend fun getAbsen(
+//        @Path("nip") nip:String
+//    ) : Response<PresensiHariIni>
+
+
 }

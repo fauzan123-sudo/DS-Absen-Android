@@ -109,4 +109,13 @@ object NetworkModule {
         return retrofitBuilder.client(okHttpClient).build().create(PengumumanApi::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun providesVisit(
+        retrofitBuilder: Retrofit.Builder,
+        okHttpClient: OkHttpClient
+    ): VisitApi {
+        return retrofitBuilder.client(okHttpClient).build().create(VisitApi::class.java)
+    }
+
 }

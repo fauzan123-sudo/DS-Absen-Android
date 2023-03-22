@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_berandaFragment_to_pengumumanFragment"
             app:destination="@id/pengumumanFragment" />
+        <action
+            android:id="@+id/action_berandaFragment_to_visitFragment2"
+            app:destination="@id/visitFragment2" />
     </fragment>
     <fragment
         android:id="@+id/scanFragment"
@@ -253,4 +256,9 @@
         android:name="com.example.dsmabsen.ui.fragment.PengumumanFragment"
         android:label="fragment_pengumuman"
         tools:layout="@layout/fragment_pengumuman" />
+    <fragment
+        android:id="@+id/visitFragment2"
+        android:name="com.example.dsmabsen.ui.fragment.VisitFragment"
+        android:label="fragment_visit"
+        tools:layout="@layout/fragment_visit" />
 </navigation>
