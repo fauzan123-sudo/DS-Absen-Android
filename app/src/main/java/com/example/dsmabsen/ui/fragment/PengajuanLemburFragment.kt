@@ -3,8 +3,9 @@ package com.example.dsmabsen.ui.fragment
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
-import android.view.*
-import android.widget.TextView
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.example.dsmabsen.R
@@ -50,7 +51,7 @@ class PengajuanLemburFragment :
         toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.save -> {
-                    var i = 0;
+                    var i = 0
                     if(binding.jamMulai.text.isEmpty()){
                         binding.jamMulai.error = "Harap isi bidang ini!!"
                         binding.jamMulai.requestFocus()

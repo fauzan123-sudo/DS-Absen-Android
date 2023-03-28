@@ -16,10 +16,12 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.viewbinding.ViewBinding
 import com.example.dsmabsen.R
 import com.example.dsmabsen.helper.ConnectionLiveData
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 abstract class BaseFragment<VB : ViewBinding>(
     private val bindingInflater: (inflater: LayoutInflater) -> VB
 ) : Fragment() {
+    lateinit var bottomNavigationView: BottomNavigationView
     protected lateinit var toolbar: Toolbar
     var _binding: VB? = null
     protected lateinit var connectionLiveData: ConnectionLiveData
@@ -35,6 +37,7 @@ abstract class BaseFragment<VB : ViewBinding>(
         if(_binding == null)
             throw IllegalArgumentException("Binding cannot be null")
         toolbar = binding.root.findViewById(R.id.toolbar)
+        bottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
         return binding.root
     }
 

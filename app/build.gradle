@@ -20,6 +20,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -127,14 +128,33 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'com.airbnb.android:lottie:4.2.0'
 
+//    Leaflet
+//    implementation 'org.osmdroid:osmdroid-android:6.2.2'
+    implementation 'org.osmdroid:osmdroid-android:6.1.10'
+    implementation 'androidx.preference:preference:1.1.1'
+//    implementation 'org.osmdroid:osmdroid-mapsforge:6.2.2'
+//    implementation 'org.osmdroid:osmdroid-mapsforge-ext:6.2.2'
+//    implementation 'org.osmdroid:osmdroid-geopackage:6.2.2'
+//    implementation 'org.osmdroid:osmdroid-third-party:6.2.2'
+
+
 //    Location
     implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
 
 //    flex box
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
 
-    implementation "com.android.volley:volley:1.2.0"
+    implementation "com.android.volley:volley:1.2.1"
 
     implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+
+//    Piccaso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
+
+
 
 }

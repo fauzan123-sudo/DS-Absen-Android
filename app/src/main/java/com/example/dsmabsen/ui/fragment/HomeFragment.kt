@@ -34,7 +34,8 @@ class HomeFragment : Fragment() {
     val permissions = arrayOf(
         Manifest.permission.CAMERA,
         Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.READ_PHONE_STATE
+        Manifest.permission.READ_PHONE_STATE,
+        Manifest.permission.READ_EXTERNAL_STORAGE,
     )
 
 
@@ -72,12 +73,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-
             if (checkAllPermissionsGranted(permissions)) {
-                binding.requestPermissionsButton.visibility = View.GONE
+                requestPermissionsButton.visibility = View.GONE
             } else {
-                binding.requestPermissionsButton.visibility = View.VISIBLE
-                binding.requestPermissionsButton.setOnClickListener {
+                requestPermissionsButton.visibility = View.VISIBLE
+                requestPermissionsButton.setOnClickListener {
                     requestPermissions(permissions, ALL_PERMISSIONS_CODE)
                 }
             }

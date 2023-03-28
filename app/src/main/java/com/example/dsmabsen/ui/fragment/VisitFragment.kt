@@ -34,6 +34,9 @@ class VisitFragment : BaseFragment<FragmentVisitBinding>(FragmentVisitBinding::i
             loadingInclude.loading.visibility = View.VISIBLE
             imgNoData.isVisible = false
 
+            addVisited.setOnClickListener {
+                findNavController().navigate(R.id.action_visitFragment2_to_penganjuanVisitFragment)
+            }
 
             adapter = VisitAdapter(requireContext())
             recyclerView = recVisit
@@ -80,17 +83,8 @@ class VisitFragment : BaseFragment<FragmentVisitBinding>(FragmentVisitBinding::i
         }
 
         setHasOptionsMenu(true)
-        setupToolbar("Visit")
-        toolbar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.add -> {
-                    findNavController().navigate(R.id.action_shiftFragment_to_pengajuanShiftFragment)
-                    true
-                }
-
-                else -> false
-            }
-        }
+        hideToolbar()
+        toolbar.visibility = View.GONE
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -101,7 +95,7 @@ class VisitFragment : BaseFragment<FragmentVisitBinding>(FragmentVisitBinding::i
 
         menuLogout.isVisible = false
         menuSave?.isVisible = false // menyembunyikan menu tertentu
-        menuPlus?.isVisible = true // menyembunyikan menu tertentu
+        menuPlus?.isVisible = false // menyembunyikan menu tertentu
     }
 
     override fun onConnectionAvailable() {

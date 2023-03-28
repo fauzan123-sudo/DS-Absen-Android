@@ -21,7 +21,6 @@ class DetailProfileFragment : BaseFragment<FragmentDetailProfileBinding>(Fragmen
 
     private val viewModel: UserProfileViewModel by viewModels()
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val savedUser = Paper.book().read<DataX>("user")

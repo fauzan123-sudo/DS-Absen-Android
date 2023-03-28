@@ -22,14 +22,6 @@
             app:popExitAnim="@anim/slide_out_right"
             app:popUpToInclusive="false" />
         <action
-            android:id="@+id/action_berandaFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/berandaFragment" />
-        <action
             android:id="@+id/action_berandaFragment_to_attendanceFragment"
             app:destination="@id/attendanceFragment"
             app:popUpToInclusive="false" />
@@ -54,9 +46,6 @@
         <action
             android:id="@+id/action_berandaFragment_to_pengumumanFragment"
             app:destination="@id/pengumumanFragment" />
-        <action
-            android:id="@+id/action_berandaFragment_to_visitFragment2"
-            app:destination="@id/visitFragment2" />
     </fragment>
     <fragment
         android:id="@+id/scanFragment"
@@ -88,12 +77,15 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
+            app:popUpToInclusive="false"
             android:id="@+id/action_profileFragment_to_berandaFragment"
             app:destination="@id/berandaFragment" />
         <action
+            app:popUpToInclusive="false"
             android:id="@+id/action_profileFragment_to_dataAbsenFragment"
             app:destination="@id/dataAbsenFragment" />
         <action
+            app:popUpToInclusive="false"
             android:id="@+id/action_profileFragment_to_allProfileFragment"
             app:destination="@id/allProfileFragment" />
     </fragment>
@@ -149,6 +141,21 @@
         <action
             android:id="@+id/action_allProfileFragment_to_personalDataFragment"
             app:destination="@id/personalDataFragment" />
+        <action
+            android:id="@+id/action_allProfileFragment_to_jabatanDanPosisiFragment"
+            app:destination="@id/jabatanDanPosisiFragment" />
+        <action
+            android:id="@+id/action_allProfileFragment_to_lokasiKerjaFragment"
+            app:destination="@id/lokasiKerjaFragment" />
+        <action
+            android:id="@+id/action_allProfileFragment_to_pengalamanKerjaFragment"
+            app:destination="@id/pengalamanKerjaFragment" />
+        <action
+            android:id="@+id/action_allProfileFragment_to_penguasaanBahasaFragment"
+            app:destination="@id/penguasaanBahasaFragment" />
+        <action
+            android:id="@+id/action_allProfileFragment_to_pendidikanFragment"
+            app:destination="@id/pendidikanFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -260,5 +267,39 @@
         android:id="@+id/visitFragment2"
         android:name="com.example.dsmabsen.ui.fragment.VisitFragment"
         android:label="fragment_visit"
-        tools:layout="@layout/fragment_visit" />
+        tools:layout="@layout/fragment_visit" >
+        <action
+            android:id="@+id/action_visitFragment2_to_penganjuanVisitFragment"
+            app:destination="@id/penganjuanVisitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/penganjuanVisitFragment"
+        android:name="com.example.dsmabsen.ui.fragment.PenganjuanVisitFragment"
+        android:label="fragment_penganjuan_visit"
+        tools:layout="@layout/fragment_penganjuan_visit" />
+    <fragment
+        android:id="@+id/jabatanDanPosisiFragment"
+        android:name="com.example.dsmabsen.ui.fragment.JabatanDanPosisiFragment"
+        android:label="fragment_jabatan_dan_posisi"
+        tools:layout="@layout/fragment_jabatan_dan_posisi" />
+    <fragment
+        android:id="@+id/lokasiKerjaFragment"
+        android:name="com.example.dsmabsen.ui.fragment.LokasiKerjaFragment"
+        android:label="fragment_lokasi_kerja"
+        tools:layout="@layout/fragment_lokasi_kerja" />
+    <fragment
+        android:id="@+id/pengalamanKerjaFragment"
+        android:name="com.example.dsmabsen.ui.fragment.PengalamanKerjaFragment"
+        android:label="fragment_pengalaman_kerja"
+        tools:layout="@layout/fragment_pengalaman_kerja" />
+    <fragment
+        android:id="@+id/penguasaanBahasaFragment"
+        android:name="com.example.dsmabsen.ui.fragment.PenguasaanBahasaFragment"
+        android:label="fragment_penguasaan_bahasa"
+        tools:layout="@layout/fragment_penguasaan_bahasa" />
+    <fragment
+        android:id="@+id/pendidikanFragment"
+        android:name="com.example.dsmabsen.ui.fragment.PendidikanFragment"
+        android:label="fragment_pendidikan"
+        tools:layout="@layout/fragment_pendidikan" />
 </navigation>

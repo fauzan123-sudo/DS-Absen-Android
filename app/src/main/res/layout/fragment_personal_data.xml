@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -52,13 +53,13 @@
                     android:textSize="@dimen/_11ssp"/>
 
                 <TextView
-                    android:id="@+id/nip"
+                    android:id="@+id/tv_nip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow1"
                     android:fontFamily="@font/poppins"
-                    android:text="0341"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp"/>
 
@@ -92,7 +93,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow_gelar_depan"
                     android:fontFamily="@font/poppins"
-                    android:text="Rizki Andryant"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 
@@ -127,7 +128,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow2"
                     android:fontFamily="@font/poppins"
-                    android:text="Rizki Andryant"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 
@@ -152,7 +153,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gelar Depan"
+                    android:text="Gelar Belakang"
                     android:textSize="@dimen/_11ssp"/>
 
                 <TextView
@@ -162,7 +163,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow_gelar_belakang"
                     android:fontFamily="@font/poppins"
-                    android:text="Rizki Andryant"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 
@@ -197,7 +198,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow3"
                     android:fontFamily="@font/poppins"
-                    android:text="Malang"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 
@@ -232,7 +233,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow4"
                     android:fontFamily="@font/poppins"
-                    android:text="10 Maret 1998"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 
@@ -267,7 +268,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow5"
                     android:fontFamily="@font/poppins"
-                    android:text="Laki - laki"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 
@@ -302,7 +303,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow6"
                     android:fontFamily="@font/poppins"
-                    android:text="Islam"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 
@@ -337,7 +338,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow7"
                     android:fontFamily="@font/poppins"
-                    android:text="Kawin"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 
@@ -372,7 +373,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow8"
                     android:fontFamily="@font/poppins"
-                    android:text="A"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 
@@ -407,7 +408,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow9"
                     android:fontFamily="@font/poppins"
-                    android:text="3501201950005"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 
@@ -455,7 +456,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow10"
                     android:fontFamily="@font/poppins"
-                    android:text="0818666777666"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 
@@ -491,7 +492,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_toStartOf="@+id/arrow11"
                     android:fontFamily="@font/poppins"
-                    android:text="andrian.falco@gmail.com"
+                    android:text="-"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp" />
 

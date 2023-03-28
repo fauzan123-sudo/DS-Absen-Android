@@ -4,12 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.dsmabsen.model.ResponsePengajuanIzin
 import com.example.dsmabsen.model.SpinnerVisit
 import com.example.dsmabsen.model.VisitResponse
 import com.example.dsmabsen.repository.NetworkResult
 import com.example.dsmabsen.repository.VisitRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import xyz.teamgravity.checkinternet.CheckInternet
 import javax.inject.Inject
 
@@ -25,6 +28,11 @@ class VisitViewModel @Inject constructor(private val repository: VisitRepository
     private val _spinnerVisit = MutableLiveData<NetworkResult<SpinnerVisit>>()
     val spinnerVisitLiveData: LiveData<NetworkResult<SpinnerVisit>>
         get() = _spinnerVisit
+
+    private val _sendDataVisit = MutableLiveData<NetworkResult<ResponsePengajuanIzin>>()
+    val sendDataVisitLiveData: LiveData<NetworkResult<ResponsePengajuanIzin>>
+        get() = _sendDataVisit
+
 
     fun visitRequest(nip: String) {
         viewModelScope.launch {
@@ -46,6 +54,23 @@ class VisitViewModel @Inject constructor(private val repository: VisitRepository
                 _spinnerVisit.value = repository.spinnerVisit()
             } else {
                 _spinnerVisit.value = NetworkResult.Error("Tidak ada koneksi internet")
+            }
+        }
+    }
+
+    fun sendDataVisitRequest(nip: RequestBody,
+                      kode_cuti: RequestBody,
+                      timezone: RequestBody,
+                      kordinat: RequestBody,
+                      image: MultipartBody.Part)
+    {
+        viewModelScope.launch {
+            val connected = CheckInternet().check()
+            if (connected) {
+                _sendDataVisit.value = NetworkResult.Loading()
+                _sendDataVisit.value = repository.sendDataVisit(nip,kode_cuti,timezone,kordinat,image)
+            } else {
+                _sendDataVisit.value = NetworkResult.Error("Tidak ada koneksi internet")
             }
         }
     }

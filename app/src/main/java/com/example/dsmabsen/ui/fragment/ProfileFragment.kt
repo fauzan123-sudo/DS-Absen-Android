@@ -37,20 +37,19 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
     @Inject
     lateinit var tokenManager: TokenManager
     val savedUser = Paper.book().read<DataX>("user")
-    val nipUser = savedUser!!.nip
+    private val nipUser = savedUser!!.nip
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        setHasOptionsMenu(true)
-        setupToolbar("Profile")
-
         with(binding) {
+            setHasOptionsMenu(true)
+            setupToolbar("Profile")
             rvProfileLengkap.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_allProfileFragment)
             }
-
+            logout.setOnClickListener {
+                logout(nipUser)
+            }
         }
 
         viewModel.profileUserRequest(savedUser!!.nip)
@@ -95,17 +94,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 }
             }
         }
-
-        toolbar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.logout -> {
-                    logout(nipUser)
-                    true
-                }
-
-                else -> false
-            }
-        }
     }
 
     private fun logout(nipUser: String) {
@@ -145,7 +133,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                             handleApiError(it.message)
                             Log.d("TAG", it.message.toString())
                             binding.loadingInclude.loading.isVisible = false
-    //                            Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG).show()
+                            //                            Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG).show()
                         }
                     }
                 }
@@ -163,16 +151,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         val menuPlus = menu.findItem(R.id.add)
         val menuLogout = menu.findItem(R.id.logout)
 
-        menuLogout.isVisible = true
-        menuSave?.isVisible = false
-        menuPlus?.isVisible = false
-
-
+        menuLogout.isVisible = false
+        menuSave?.isVisible = false // menyembunyikan menu tertentu
+        menuPlus?.isVisible = false // menyembunyikan menu tertentu
     }
+
     override fun onConnectionAvailable() {
         super.onConnectionAvailable()
         binding.apply {
-            toolbar.toolbar.visibility = View.VISIBLE
             constraintLayout3.visibility = View.VISIBLE
             noInternetConnection.ivNoConnection.visibility = View.GONE
         }
@@ -181,7 +167,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
     override fun onConnectionLost() {
         super.onConnectionLost()
         binding.apply {
-            toolbar.toolbar.visibility = View.GONE
             constraintLayout3.visibility = View.GONE
             noInternetConnection.ivNoConnection.visibility = View.VISIBLE
         }

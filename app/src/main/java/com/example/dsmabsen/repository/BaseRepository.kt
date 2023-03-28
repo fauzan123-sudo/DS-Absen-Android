@@ -36,7 +36,7 @@ abstract class BaseRepository {
 //                NetworkResult.Error("Request Time Out")
             } catch (e: Exception) {
 //                NetworkResult.Error(e.toString() + "Url not found error code 404" )
-                NetworkResult.Error("alamat URL tidak ditemukan")
+                NetworkResult.Error("alamat URL tidak ditemukan $e")
             } catch (e: Throwable) {
                 NetworkResult.Error(e.toString() + "terjadi kesalahan")
             } catch (e: SocketTimeoutException) {

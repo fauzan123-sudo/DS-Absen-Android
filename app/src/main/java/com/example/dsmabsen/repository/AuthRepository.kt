@@ -3,6 +3,7 @@ package com.example.dsmabsen.repository
 import com.example.dsmabsen.network.AuthApi
 import okhttp3.ResponseBody
 import retrofit2.Response
+import retrofit2.http.Field
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(private val api: AuthApi) : BaseRepository() {
@@ -13,7 +14,17 @@ class AuthRepository @Inject constructor(private val api: AuthApi) : BaseReposit
     suspend fun logOut(nip: String) =
         safeApiCall { api.logOut(nip) }
 
+
     suspend fun logOuts(nip: String) =
         api.logOuts(nip)
 
+    suspend fun ubahPassword(
+        nip: String,
+        password_lama: String,
+        password_baru: String
+    ) =
+        safeApiCall { api.ubahPassword(nip, password_lama, password_baru) }
+
+    suspend fun passwordCheck(nip: String) =
+        safeApiCall { api.passwordCheck(nip) }
 }

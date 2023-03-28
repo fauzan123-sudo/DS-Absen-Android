@@ -118,4 +118,13 @@ object NetworkModule {
         return retrofitBuilder.client(okHttpClient).build().create(VisitApi::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun providesPassword(
+        retrofitBuilder: Retrofit.Builder,
+        okHttpClient: OkHttpClient
+    ): PasswordApi {
+        return retrofitBuilder.client(okHttpClient).build().create(PasswordApi::class.java)
+    }
+
 }

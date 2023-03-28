@@ -6,6 +6,7 @@ import com.example.dsmabsen.network.HomeApi
 import com.example.dsmabsen.network.PerizinanApi
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.Part
 import javax.inject.Inject
 
 class DataPerizinanRepository @Inject constructor(private val api: PerizinanApi) :
@@ -18,12 +19,12 @@ class DataPerizinanRepository @Inject constructor(private val api: PerizinanApi)
         safeApiCall { api.getSpinner() }
 
     suspend fun sendPermission(
-        nip: String,
-        kode_cuti: String,
-        tanggal_mulai:String,
-        tanggal_selesai:String,
-        file: String,
-        keterangan: String
+        nip: RequestBody,
+        kode_cuti: RequestBody,
+        tanggal_mulai: RequestBody,
+        tanggal_selesai: RequestBody,
+        file: MultipartBody.Part,
+        keterangan: RequestBody
     ) =
         safeApiCall { api.sendPermission(nip,kode_cuti,tanggal_mulai,tanggal_selesai,file,keterangan) }
 

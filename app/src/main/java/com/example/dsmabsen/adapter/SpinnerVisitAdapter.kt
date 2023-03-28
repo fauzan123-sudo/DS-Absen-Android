@@ -1,11 +1,13 @@
 package com.example.dsmabsen.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.example.dsmabsen.R
 import com.example.dsmabsen.model.DataXXXXXXXXXXXXX
 import com.example.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXX
@@ -28,11 +30,24 @@ class SpinnerVisitAdapter(context: Context, list: List<DataXXXXXXXXXXXXXXXXXXXXX
             R.layout.item_spinner, parent, false
         )
 
-        list.let {
+        if (position == 0) {
             val textPermission = view.findViewById<TextView>(R.id.permissions)
-            textPermission.text = list!!.kode_visit
+            textPermission.text = "Pilih Lokasi Visit"
+            textPermission.setTextColor(ContextCompat.getColor(context, R.color._grey))
+        } else {
+            list.let {
+                val textPermission = view.findViewById<TextView>(R.id.permissions)
+                textPermission.text = list!!.nama
+                textPermission.setTextColor(ContextCompat.getColor(context, R.color.black))
+            }
         }
 
         return view
     }
 }
+
+
+
+
+
+

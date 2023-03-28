@@ -10,7 +10,6 @@ import com.example.dsmabsen.repository.NetworkResult
 import com.example.dsmabsen.repository.UserProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import xyz.teamgravity.checkinternet.CheckInternet
 import javax.inject.Inject
 
 @HiltViewModel

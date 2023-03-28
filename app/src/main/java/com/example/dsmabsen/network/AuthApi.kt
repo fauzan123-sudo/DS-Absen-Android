@@ -1,7 +1,6 @@
 package com.example.dsmabsen.network
 
-import com.example.dsmabsen.model.LoginResponse
-import com.example.dsmabsen.model.Logout
+import com.example.dsmabsen.model.*
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Field
@@ -30,5 +29,19 @@ interface AuthApi {
         @Field("nip") nip:String
     ) : ResponseBody
 
+    @FormUrlEncoded
+    @POST("ubah-password")
+    suspend fun ubahPassword(
+        @Field("nip") nip:String,
+        @Field("password_lama") password_lama:String,
+        @Field("password_baru") password_baru:String
+    ) : Response<UbahPassword>
+
+    @FormUrlEncoded
+    @POST("password-check")
+    suspend fun passwordCheck(
+        @Field("nip") nip:String
+    ): Response<ResponseBody>
+//    ): Response<PasswordCheck>
 
 }

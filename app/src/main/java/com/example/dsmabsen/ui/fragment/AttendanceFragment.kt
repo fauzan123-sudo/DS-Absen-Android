@@ -1,7 +1,6 @@
 package com.example.dsmabsen.ui.fragment
 
 import android.Manifest.permission.*
-import android.animation.Animator
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -24,7 +23,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.airbnb.lottie.LottieDrawable
 import com.bumptech.glide.Glide
 import com.example.dsmabsen.R
 import com.example.dsmabsen.databinding.FragmentAttendanceBinding
@@ -36,9 +34,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withTimeout
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody

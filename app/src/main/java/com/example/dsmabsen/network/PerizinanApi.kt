@@ -4,13 +4,10 @@ import com.example.dsmabsen.model.DataXXXXXXXXXX
 import com.example.dsmabsen.model.Perizinan
 import com.example.dsmabsen.model.ResponsePengajuanIzin
 import com.example.dsmabsen.model.SpinnerIzin
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface PerizinanApi {
 
@@ -23,14 +20,14 @@ interface PerizinanApi {
     suspend fun getSpinner(
     ): Response<SpinnerIzin>
 
-    @FormUrlEncoded
+    @Multipart
     @POST("pengajuan/cuti/store")
     suspend fun sendPermission(
-        @Field("nip") nip: String,
-        @Field("kode_cuti") kode_cuti: String,
-        @Field("tanggal_mulai") tanggal_mulai: String,
-        @Field("tanggal_selesai") tanggal_selesai: String,
-        @Field("file") file: String,
-        @Field("keterangan") keterangan: String
+        @Part("nip") nip: RequestBody,
+        @Part("kode_cuti") kode_cuti: RequestBody,
+        @Part("tanggal_mulai") tanggal_mulai: RequestBody,
+        @Part("tanggal_selesai") tanggal_selesai: RequestBody,
+        @Part file: MultipartBody.Part,
+        @Part("keterangan") keterangan: RequestBody
     ): Response<ResponsePengajuanIzin>
 }

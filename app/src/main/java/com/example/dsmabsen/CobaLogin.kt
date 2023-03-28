@@ -13,9 +13,9 @@ class CobaLogin : AppCompatActivity() {
 
         binding = ActivityCobaLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.frame8.background = ContextCompat.getDrawable(this, R.drawable.bg_white_input)
-        binding.frame8.setOnFocusChangeListener { view, b ->
-            binding.frame8.background = ContextCompat.getDrawable(this, R.drawable.bg_input_focus)
-        }
+//        binding.frame8.background = ContextCompat.getDrawable(this, R.drawable.bg_white_input)
+//        binding.frame8.setOnFocusChangeListener { view, b ->
+//            binding.frame8.background = ContextCompat.getDrawable(this, R.drawable.bg_input_focus)
+//        }
     }
 }

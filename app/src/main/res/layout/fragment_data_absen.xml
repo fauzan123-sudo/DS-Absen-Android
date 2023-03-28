@@ -137,7 +137,7 @@
                         android:padding="@dimen/_20sdp"
                         android:src="@drawable/no_data_found"
                         android:visibility="gone"
-                        app:layout_constraintTop_toBottomOf="@id/pie_chart" />
+                        app:layout_constraintTop_toBottomOf="@id/textView27" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -181,7 +181,8 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recAttendance"
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
+                        android:layout_height="wrap_content"
+                        android:maxHeight="@dimen/_300sdp"
                         android:layout_marginTop="@dimen/_20sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -192,10 +193,11 @@
                         android:id="@+id/img_no_data"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:layout_constraintDimensionRatio="1:1"
                         android:padding="@dimen/_20sdp"
                         android:src="@drawable/no_data_found"
                         android:visibility="gone"
-                        app:layout_constraintTop_toBottomOf="@id/recAttendance" />
+                        app:layout_constraintTop_toBottomOf="@id/textView28" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>

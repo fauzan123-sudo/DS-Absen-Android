@@ -45,12 +45,12 @@ class PerizinanViewModel @Inject constructor(private val repository: DataPerizin
     }
 
     fun requestSendPermission(
-        nip: String,
-        kode_cuti: String,
-        tanggal_mulai: String,
-        tanggal_selesai: String,
-        file: String,
-        keterangan: String
+        nip: RequestBody,
+        kode_cuti: RequestBody,
+        tanggal_mulai: RequestBody,
+        tanggal_selesai: RequestBody,
+        file: MultipartBody.Part,
+        keterangan: RequestBody
     ) {
         viewModelScope.launch {
             _sendPermission.postValue(NetworkResult.Loading())

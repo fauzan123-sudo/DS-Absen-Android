@@ -36,6 +36,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
     private val handler = Handler()
     private lateinit var runnable: Runnable
 
+    val savedUser = Paper.book().read<DataX>("user")
 
     @Inject
     lateinit var tokenManager: TokenManager
@@ -45,10 +46,6 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
         super.onViewCreated(view, savedInstanceState)
 
         hideToolbar()
-
-
-        val data = cacheManager.getPass()
-        val savedUser = Paper.book().read<DataX>("user")
 
         with(binding) {
 
@@ -80,15 +77,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                 findNavController().navigate(R.id.action_berandaFragment_to_pengumumanFragment)
             }
 
-            imageView3.setOnClickListener {
-                findNavController().navigate(R.id.action_berandaFragment_to_profileFragment)
-                Log.d("tombol profile", "onViewCreated: ")
-            }
-
-
-
             loadingInclude.loading.isVisible = false
-
             val customAnalogClock = binding.customAnalogClock
             // Set waktu pada custom analog clock
             val calendar = Calendar.getInstance()
@@ -163,9 +152,6 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                             textView10.text = Helper().getDate()
                             textView11.text = Helper().getMY()
                         }
-
-
-
                     }
 
 

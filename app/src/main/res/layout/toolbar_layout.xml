@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
         android:textColor="@color/_dark"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="@dimen/_12ssp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:textStyle="bold" />
 
