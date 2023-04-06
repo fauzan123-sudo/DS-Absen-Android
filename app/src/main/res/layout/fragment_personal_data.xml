@@ -1,517 +1,533 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.PersonalDataFragment"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".ui.fragment.PersonalDataFragment">
 
     <include
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout"/>
+        layout="@layout/toolbar_layout"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:id="@+id/scrollview"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_personal_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/_10sdp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
+            android:id="@+id/scrollview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_10sdp">
 
-            <TextView
-                android:id="@+id/tv_personal_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Personal Data"
-                android:textColor="@color/black_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="@dimen/_12ssp"/>
-
-            <RelativeLayout
-                android:id="@+id/rv_nip"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/tv_personal_data">
+                android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tv_personal_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NIP"
-                    android:textSize="@dimen/_11ssp"/>
-
-                <TextView
-                    android:id="@+id/tv_nip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow1"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Personal Data"
                     android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp"/>
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/arrow1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
+                <RelativeLayout
+                    android:id="@+id/rv_nip"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_personal_data">
 
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/rv_gelar_depam"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/rv_nip">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NIP"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_nip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow1"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <ImageView
+                        android:visibility="invisible"
+                        android:id="@+id/arrow1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rv_gelar_depan"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_nip">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gelar Depan"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_gelar_depan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow_gelar_depan"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <ImageView
+                        android:id="@+id/arrow_gelar_depan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rv_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_gelar_depan">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_nama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow2"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <ImageView
+                        android:id="@+id/arrow2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rv_gelar_belakang"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_nama">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gelar Belakang"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_gelar_belakang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow_gelar_belakang"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <ImageView
+                        android:id="@+id/arrow_gelar_belakang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rv_tempat_lahir"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_gelar_belakang">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tempat Lahir"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_tempat_lahir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow3"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <ImageView
+                        android:id="@+id/arrow3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rv_tanggal_lahir"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_tempat_lahir">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tanggal Lahir"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_tanggal_lahir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow4"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <ImageView
+                        android:id="@+id/arrow4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rv_jenis_kelamin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_tanggal_lahir">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jenis Kelamin"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_jenis_kelamin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow5"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <ImageView
+                        android:id="@+id/arrow5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rv_agama"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_jenis_kelamin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agama"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_agama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow6"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <ImageView
+                        android:id="@+id/arrow6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rv_status_perkawinan"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_agama">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Status Perkawinan"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_status_perkawinan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow7"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <ImageView
+                        android:id="@+id/arrow7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rv_golongan"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_status_perkawinan">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Golongan Darah"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_golongan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow8"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <ImageView
+                        android:id="@+id/arrow8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rv_no_ktp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_golongan">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NIK"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_no_ktp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow9"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <ImageView
+                        android:id="@+id/arrow9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
+
+                </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/tv_kontak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gelar Depan"
-                    android:textSize="@dimen/_11ssp"/>
-
-                <TextView
-                    android:id="@+id/tv_gelar_depan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow_gelar_depan"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Kontak"
                     android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_no_ktp" />
 
-                <ImageView
-                    android:id="@+id/arrow_gelar_depan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
+                <RelativeLayout
+                    android:id="@+id/rv_no_hp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_kontak">
 
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nomor HP"
+                        android:textSize="@dimen/_11ssp" />
 
-            <RelativeLayout
-                android:id="@+id/rv_nama"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/rv_gelar_depam">
+                    <TextView
+                        android:id="@+id/tv_no_hp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow10"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nama"
-                    android:textSize="@dimen/_11ssp"/>
+                    <ImageView
+                        android:id="@+id/arrow10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
 
-                <TextView
-                    android:id="@+id/tv_nama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow2"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
+                </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/arrow2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
+                <RelativeLayout
+                    android:id="@+id/rv_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/retangle_stroke"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_no_hp">
 
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textSize="@dimen/_11ssp" />
 
-            <RelativeLayout
-                android:id="@+id/rv_gelar_belakang"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/rv_nama">
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toStartOf="@+id/arrow11"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11ssp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gelar Belakang"
-                    android:textSize="@dimen/_11ssp"/>
+                    <ImageView
+                        android:id="@+id/arrow11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/vector" />
 
-                <TextView
-                    android:id="@+id/tv_gelar_belakang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow_gelar_belakang"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
+                </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/arrow_gelar_belakang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </RelativeLayout>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-            <RelativeLayout
-                android:id="@+id/rv_tempat_lahir"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/rv_gelar_belakang">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tempat Lahir"
-                    android:textSize="@dimen/_11ssp"/>
-
-                <TextView
-                    android:id="@+id/tv_tempat_lahir"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow3"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
-
-                <ImageView
-                    android:id="@+id/arrow3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rv_tanggal_lahir"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/rv_tempat_lahir">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tanggal Lahir"
-                    android:textSize="@dimen/_11ssp"/>
-
-                <TextView
-                    android:id="@+id/tv_tanggal_lahir"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow4"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
-
-                <ImageView
-                    android:id="@+id/arrow4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rv_jenis_kelamin"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/rv_tanggal_lahir">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jenis Kelamin"
-                    android:textSize="@dimen/_11ssp"/>
-
-                <TextView
-                    android:id="@+id/tv_jenis_kelamin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow5"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
-
-                <ImageView
-                    android:id="@+id/arrow5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rv_agama"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/rv_jenis_kelamin">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Agama"
-                    android:textSize="@dimen/_11ssp"/>
-
-                <TextView
-                    android:id="@+id/tv_agama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow6"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
-
-                <ImageView
-                    android:id="@+id/arrow6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rv_status_perkawinan"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/rv_agama">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Status Perkawinan"
-                    android:textSize="@dimen/_11ssp" />
-
-                <TextView
-                    android:id="@+id/tv_status_perkawinan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow7"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
-
-                <ImageView
-                    android:id="@+id/arrow7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rv_golongan"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/rv_status_perkawinan">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Golongan Darah"
-                    android:textSize="@dimen/_11ssp"/>
-
-                <TextView
-                    android:id="@+id/tv_golongan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow8"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
-
-                <ImageView
-                    android:id="@+id/arrow8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rv_no_ktp"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/rv_golongan">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nomor KTP"
-                    android:textSize="@dimen/_11ssp"/>
-
-                <TextView
-                    android:id="@+id/tv_no_ktp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow9"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
-
-                <ImageView
-                    android:id="@+id/arrow9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/tv_kontak"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Kontak"
-                android:textColor="@color/black_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_no_ktp"
-                android:textSize="@dimen/_12ssp" />
-
-            <RelativeLayout
-                android:id="@+id/rv_no_hp"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/tv_kontak">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nomor HP"
-                    android:textSize="@dimen/_11ssp"/>
-
-                <TextView
-                    android:id="@+id/tv_no_hp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow10"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
-
-                <ImageView
-                    android:id="@+id/arrow10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rv_email"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/rv_no_hp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    android:textSize="@dimen/_11ssp"/>
-
-                <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow11"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
-
-                <ImageView
-                    android:id="@+id/arrow11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
-
-            </RelativeLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
     <include
-        android:visibility="gone"
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
-        />
+        android:visibility="gone" />
+    <include
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

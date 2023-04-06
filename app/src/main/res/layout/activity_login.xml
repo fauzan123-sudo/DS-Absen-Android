@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_light"
-        android:text="PT. Deta Sumber Makmur"
+        android:text="PT. Deta Sukses Makmur"
         android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -66,18 +66,18 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_light"
-        android:includeFontPadding="false"
-        android:textSize="@dimen/_13ssp"
-        android:text="Silahkan masuk Ke Akun anda yag sudah terdaftar"
-        android:textColor="@color/crown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_light"
+            android:includeFontPadding="false"
+            android:text="Silahkan masuk Ke Akun anda yag sudah terdaftar"
+            android:textColor="@color/crown"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -93,16 +93,32 @@
         android:orientation="vertical"
         app:layout_constraintDimensionRatio="0.90" />
 
+        <TextView
+            android:id="@+id/errorNipOrPassword"
+            android:visibility="gone"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:background="@color/_danger"
+            android:textColor="@color/white"
+            android:layout_width="0dp"
+            android:padding="@dimen/_10sdp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:text="Nomor pegawai atau password tidak benar."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username"
         android:background="@color/white"
         app:startIconDrawable="@drawable/user"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintTop_toBottomOf="@+id/errorNipOrPassword"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:boxStrokeColor="@android:color/transparent"
         android:hint="Nomor Induk Pegawai">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nip"
             android:imeOptions="actionGo"
@@ -146,7 +162,7 @@
         android:background="@color/blue"
         android:fontFamily="@font/poppins_bold"
         android:text="Login"
-        app:cornerRadius="@dimen/_2sdp"
+        app:cornerRadius="30dp"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_14ssp"

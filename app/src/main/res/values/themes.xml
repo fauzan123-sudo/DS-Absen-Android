@@ -13,6 +13,12 @@
         <item name="android:statusBarColor">@color/primary</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/bg_rounded_take_image</item>
+        <item name="strokeColor">#AEAEAE</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+
 
     <style name="MyBottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="itemTextAppearanceActive">@style/MyBottomNavigationView.TextAppearance</item>

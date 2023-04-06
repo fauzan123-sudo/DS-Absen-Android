@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/splashScreenFragment2"
-        android:name="com.example.dsmabsen.ui.fragment.SplashScreenFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.example.dsmabsen.ui.fragment.ViewPagerFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.ViewPagerFragment"
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.dsmabsen.ui.fragment.HomeFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 </navigation>

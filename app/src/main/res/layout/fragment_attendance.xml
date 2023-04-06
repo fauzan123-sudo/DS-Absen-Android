@@ -13,14 +13,6 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout" />
 
-    <include
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/loadingInclude"
-        layout="@layout/loading" />
-
     <ScrollView
         android:id="@+id/rcycleview"
         android:layout_width="match_parent"
@@ -74,7 +66,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/jabatan"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/namaUser"
-                    tools:src="@drawable/man" />
+                    android:src="@drawable/man" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,7 +80,6 @@
                 tools:layout_editor_absoluteX="0dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_15sdp">
@@ -154,7 +145,6 @@
                         tools:layout_editor_absoluteX="144dp" />
 
                     <com.airbnb.lottie.LottieAnimationView
-
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -326,6 +316,30 @@ Silahkan Hubungi Admin"
                         android:src="@drawable/finger_absen" />
 
                 </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn_scan_wajah"
+                    android:visibility="gone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/btn_refresh"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_absen">
+
+                    <ImageView
+                        android:id="@+id/img_scan_wajah"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/_success"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:src="@drawable/finger_absen" />
+
+                </com.google.android.material.card.MaterialCardView>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -337,5 +351,12 @@ Silahkan Hubungi Admin"
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
         />
-
+    <include
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading" />
 </androidx.constraintlayout.widget.ConstraintLayout>

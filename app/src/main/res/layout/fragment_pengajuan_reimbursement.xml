@@ -12,6 +12,14 @@
         layout="@layout/toolbar_layout"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <include
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -22,6 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingBottom="@dimen/_50sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -95,15 +104,17 @@
 
                     <EditText
                         android:id="@+id/edtNominal"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:background="@null"
                         android:fontFamily="@font/poppins"
                         android:hint="Masukan Nominal"
                         android:inputType="number"
+                        android:gravity="end|top"
                         android:textAlignment="textEnd"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:textCursorDrawable="@null" />
 
                 </LinearLayout>
 
@@ -120,7 +131,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/rv_nominal">
 
                 <TextView
-
                     android:id="@+id/label_keterangan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,26 +149,82 @@
                     android:backgroundTint="@color/white"
                     android:dropDownSelector="@drawable/arrow_bottom"
                     android:fontFamily="@font/poppins"
-                    android:gravity="end|top"
+                    android:gravity="start|top"
                     android:lines="4"
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:paddingVertical="@dimen/_15sdp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rv_image_create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/rounded_menu"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_perizinan_create">
+
+                <TextView
+                    android:id="@+id/label_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Gambar"
+                    android:visibility="gone"
+                    android:textColor="@color/black_text"
+                    android:textSize="@dimen/_11ssp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ll_send_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_image"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_margin="@dimen/_10sdp"
+                        android:id="@+id/img_upload"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_109sdp"
+                        android:src="@drawable/take_a_photo"
+                        android:visibility="gone"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/add_image"
+                        style="@style/CustomButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:outlineProvider="none"
+                        android:stateListAnimator="@null"
+                        android:text="Ambil Gambar"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/_primary"
+                        app:icon="@drawable/ic_add_primary"
+                        app:iconTint="@color/_primary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_upload" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <include
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/loadingInclude"
-        layout="@layout/loading" />
-
-    <include
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
-        />
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

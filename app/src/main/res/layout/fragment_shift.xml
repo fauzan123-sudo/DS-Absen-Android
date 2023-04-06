@@ -23,10 +23,7 @@
         app:layout_constraintTop_toBottomOf="@id/recyclerShift"
         />
 
-    <include
-        android:id="@+id/loading_include"
-        layout="@layout/loading"
-        />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerShift"
@@ -45,5 +42,10 @@
     <include
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
+        />
+
+    <include
+        android:id="@+id/loading_include"
+        layout="@layout/loading"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

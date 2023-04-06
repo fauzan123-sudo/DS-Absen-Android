@@ -104,7 +104,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0">
 
-                            <com.example.dsmabsen.ui.fragment.CustomAnalogClock
+                            <com.infinity.dsmabsen.ui.fragment.CustomAnalogClock
                                 android:id="@+id/custom_analog_clock"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
@@ -770,6 +770,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout2"
+                        android:visibility="gone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -923,7 +924,6 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </com.google.android.material.card.MaterialCardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>

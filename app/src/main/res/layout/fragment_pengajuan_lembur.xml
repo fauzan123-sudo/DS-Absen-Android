@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:background="@drawable/gradiend_background"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradiend_background"
     tools:context=".ui.fragment.PengajuanLemburFragment">
 
     <include
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout"/>
+        layout="@layout/toolbar_layout"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/loading_include"
-        layout="@layout/loading"
-        />
+
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -29,192 +25,262 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_50sdp"
             android:layout_height="wrap_content">
-        <RelativeLayout
-            android:id="@+id/rv_tanggal_mulai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/_10sdp"
-            android:paddingHorizontal="@dimen/_15sdp"
-            android:background="@drawable/rounded_menu"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/_10sdp">
 
-            <TextView
-                android:id="@+id/tv_tanggal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tanggal"
-                android:fontFamily="@font/poppins_bold"
-                android:textSize="@dimen/_11ssp"
-                android:textColor="@color/_dark"/>
-
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/rv_tanggal_mulai"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_47sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/rounded_menu"
-                android:backgroundTint="@color/white"
-                android:layout_below="@+id/tv_tanggal"
-                android:paddingHorizontal="@dimen/_10sdp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="@dimen/_13sdp"
-                    android:fontFamily="@font/poppins"
-                    android:src="@drawable/icon_tanggal"
-                    android:layout_marginEnd="@dimen/_10sdp"/>
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tanggalPenggajuan"
+                    android:id="@+id/tv_tanggal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Tanggal"
+                    android:textColor="@color/_dark"
+                    android:textSize="@dimen/_11ssp" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_47sdp"
-                    android:fontFamily="@font/poppins"
-                    android:background="@null"
-                    android:gravity="end|center_vertical"
-                    android:hint="dd/mm/yyyy"/>
+                    android:layout_below="@+id/tv_tanggal"
+                    android:background="@drawable/rounded_menu"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="@dimen/_10sdp">
 
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_13sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins"
+                        android:src="@drawable/icon_tanggal" />
 
-        </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tanggalPenggajuan"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_47sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="end|center_vertical"
+                        android:hint="dd/mm/yyyy" />
 
-        <RelativeLayout
-            android:id="@+id/rv_jam_mulai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/_10sdp"
-            android:paddingHorizontal="@dimen/_15sdp"
-            app:layout_constraintTop_toBottomOf="@+id/rv_tanggal_mulai"
-            android:background="@drawable/rounded_menu"
-            android:layout_marginTop="@dimen/_10sdp">
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_jam_mulai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jam Mulai"
-                android:fontFamily="@font/poppins_bold"
-                android:textSize="@dimen/_11ssp"
-                android:textColor="@color/_dark"/>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/rv_jam_mulai"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_47sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/rounded_menu"
-                android:backgroundTint="@color/white"
-                android:layout_below="@+id/tv_jam_mulai"
-                android:paddingHorizontal="@dimen/_10sdp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="@dimen/_13sdp"
-                    android:fontFamily="@font/poppins"
-                    android:src="@drawable/icon_jam"
-                    android:layout_marginEnd="@dimen/_10sdp"/>
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_tanggal_mulai">
 
                 <TextView
-                    android:id="@+id/jamMulai"
+                    android:id="@+id/tv_jam_mulai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Jam Mulai"
+                    android:textColor="@color/_dark"
+                    android:textSize="@dimen/_11ssp" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_47sdp"
-                    android:gravity="end|center_vertical"
-                    android:fontFamily="@font/poppins"
-                    android:background="@null"
-                    android:textAlignment="textEnd"
-                    android:hint="--:--"/>
+                    android:layout_below="@+id/tv_jam_mulai"
+                    android:background="@drawable/rounded_menu"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="@dimen/_10sdp">
 
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_13sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins"
+                        android:src="@drawable/icon_jam" />
 
-        </RelativeLayout>
+                    <TextView
+                        android:id="@+id/jamMulai"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_47sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="end|center_vertical"
+                        android:hint="--:--"
+                        android:textAlignment="textEnd" />
 
-        <RelativeLayout
-            android:id="@+id/rv_jam_selesai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/_10sdp"
-            android:paddingHorizontal="@dimen/_15sdp"
-            app:layout_constraintTop_toBottomOf="@+id/rv_jam_mulai"
-            android:background="@drawable/rounded_menu"
-            android:layout_marginTop="@dimen/_10sdp">
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_jam_selesai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jam Selesai"
-                android:fontFamily="@font/poppins_bold"
-                android:textSize="@dimen/_11ssp"
-                android:textColor="@color/_dark"/>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/rv_jam_selesai"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_47sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/rounded_menu"
-                android:backgroundTint="@color/white"
-                android:layout_below="@+id/tv_jam_selesai"
-                android:paddingHorizontal="@dimen/_10sdp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="@dimen/_13sdp"
-                    android:fontFamily="@font/poppins"
-                    android:src="@drawable/icon_jam"
-                    android:layout_marginEnd="@dimen/_10sdp"/>
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_jam_mulai">
 
                 <TextView
-                    android:gravity="end|center_vertical"
-                    android:id="@+id/jamSelesai"
+                    android:id="@+id/tv_jam_selesai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Jam Selesai"
+                    android:textColor="@color/_dark"
+                    android:textSize="@dimen/_11ssp" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_47sdp"
-                    android:fontFamily="@font/poppins"
-                    android:background="@null"
-                    android:textAlignment="textEnd"
-                    android:hint="--:--"/>
+                    android:layout_below="@+id/tv_jam_selesai"
+                    android:background="@drawable/rounded_menu"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="@dimen/_10sdp">
 
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_13sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins"
+                        android:src="@drawable/icon_jam" />
 
-        </RelativeLayout>
+                    <TextView
+                        android:id="@+id/jamSelesai"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_47sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="end|center_vertical"
+                        android:hint="--:--"
+                        android:textAlignment="textEnd" />
 
-        <RelativeLayout
-            android:id="@+id/rv_keterangan_lembur_create"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_152sdp"
-            android:paddingVertical="@dimen/_10sdp"
-            android:paddingHorizontal="@dimen/_15sdp"
-            app:layout_constraintTop_toBottomOf="@+id/rv_jam_selesai"
-            android:background="@drawable/rounded_menu"
-            android:layout_marginTop="@dimen/_10sdp">
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_keterangan_lembur_create"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Keterangan"
-                android:fontFamily="@font/poppins_bold"
-                android:textSize="@dimen/_11ssp"
-                android:textColor="@color/_dark"/>
+            </RelativeLayout>
 
-            <EditText
-                android:id="@+id/keteranganPenggajuan"
+            <RelativeLayout
+                android:id="@+id/rv_keterangan_lembur_create"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_109sdp"
+                android:layout_height="@dimen/_152sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/rounded_menu"
-                android:layout_below="@+id/tv_keterangan_lembur_create"
-                android:backgroundTint="@color/white"
-                android:dropDownSelector="@drawable/arrow_bottom"
-                android:paddingHorizontal="@dimen/_10sdp"
-                android:paddingVertical="@dimen/_15sdp"
-                android:lines="4"
-                android:textAlignment="textEnd"/>
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_jam_selesai">
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_keterangan_lembur_create"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Keterangan"
+                    android:textColor="@color/_dark"
+                    android:textSize="@dimen/_11ssp" />
+
+                <EditText
+                    android:id="@+id/keteranganPenggajuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_109sdp"
+                    android:layout_below="@+id/tv_keterangan_lembur_create"
+                    android:background="@drawable/rounded_menu"
+                    android:backgroundTint="@color/white"
+                    android:dropDownSelector="@drawable/arrow_bottom"
+                    android:lines="4"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_15sdp"
+                    android:gravity="top|left" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rv_image_create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/rounded_menu"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_lembur_create">
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/label_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Gambar"
+                    android:textColor="@color/black_text"
+                    android:textSize="@dimen/_11ssp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ll_send_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_image"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/img_upload"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_109sdp"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:src="@drawable/take_a_photo"
+                        android:visibility="gone"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/add_image"
+                        style="@style/CustomButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:outlineProvider="none"
+                        android:stateListAnimator="@null"
+                        android:text="Ambil Gambar"
+                        android:textAllCaps="false"
+                        android:textColor="@color/_primary"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center"
+                        app:icon="@drawable/ic_add_primary"
+                        app:iconTint="@color/_primary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_upload"
+                        app:strokeColor="#AEAEAE" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <include
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
+        android:visibility="gone" />
+    <include
+        android:id="@+id/loading_include"
+        layout="@layout/loading"
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

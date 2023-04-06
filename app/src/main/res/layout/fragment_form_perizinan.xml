@@ -12,14 +12,6 @@
         layout="@layout/toolbar_layout"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/loadingInclude"
-        layout="@layout/loading"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -30,9 +22,9 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:paddingBottom="@dimen/_50sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_50sdp">
 
             <RelativeLayout
                 android:id="@+id/rv_nama_reimbursement"
@@ -191,20 +183,71 @@
                     android:layout_below="@+id/label_keterangan"
                     android:background="@drawable/rounded_menu"
                     android:backgroundTint="@color/white"
-                    android:lines="4"
-                    android:textAlignment="textEnd" />
+                    android:padding="@dimen/_10sdp"
+                    android:gravity="top|left"/>
 
             </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/uploadFile"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:src="@drawable/take_a_photo"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_perizinan_create" />
+            <RelativeLayout
+                android:id="@+id/rv_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/rounded_menu"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_perizinan_create">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/label_gambar"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="@dimen/_5sdp"-->
+<!--                        android:fontFamily="@font/poppins_bold"-->
+<!--                        android:text="Gambar"-->
+<!--                        android:textColor="@color/black_text"-->
+<!--                        android:textSize="@dimen/_11ssp" />-->
+
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/uploadFile"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_109sdp"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:src="@drawable/take_a_photo"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/pickImage"
+                        style="@style/CustomButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:outlineProvider="none"
+                        android:stateListAnimator="@null"
+                        android:text="Ambil Gambar"
+                        android:textAllCaps="false"
+                        android:textColor="@color/_primary"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center"
+                        app:icon="@drawable/ic_add_primary"
+                        app:iconTint="@color/_primary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_upload" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -212,4 +255,12 @@
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
         android:visibility="gone" />
+
+    <include
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

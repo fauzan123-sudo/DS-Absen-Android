@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/rv_lembur"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_101sdp"
+        android:layout_height="wrap_content"
         android:background="@drawable/retangle_stroke"
         android:padding="@dimen/_15sdp"
         android:elevation="@dimen/_15sdp"
@@ -47,61 +47,67 @@
             android:id="@+id/tv_keterangan_lembur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Acara Ketemu Keluarga Jauh"
-            android:fontFamily="@font/poppins"
-            android:layout_above="@+id/tv_durasi"
-            android:textSize="@dimen/_10ssp"
-            android:textColor="@color/black_text"
-            android:textStyle="bold"
+            android:layout_below="@+id/vi_1"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_below="@+id/vi_1"/>
+            android:fontFamily="@font/poppins"
+            android:text="Acara Ketemu Keluarga Jauh"
+            android:textColor="@color/black_text"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_durasi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Durasi izin :"
+            android:layout_below="@+id/tv_keterangan_lembur"
+            android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/poppins"
-            android:textSize="@dimen/_8ssp"
+            android:text="Durasi Lembur :"
             android:textColor="@color/_dark"
-            android:textStyle="bold"
-            android:layout_above="@+id/tv_untuk_tanggal"
-            android:layout_marginBottom="@dimen/_5sdp"/>
+            android:textSize="@dimen/_8ssp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_untuk_tanggal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Untuk tanggal :"
+            android:layout_below="@+id/tv_durasi"
+            android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/poppins"
-            android:layout_alignParentBottom="true"
-            android:textSize="@dimen/_8ssp"
+            android:text="Untuk Tanggal :"
             android:textColor="@color/_dark"
-            android:textStyle="bold"/>
+            android:textSize="@dimen/_8ssp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/jam_lembur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_durasi"
+            android:layout_alignBottom="@+id/tv_durasi"
             android:layout_alignParentEnd="true"
-            android:layout_above="@+id/tanggal_lembur"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="2dp"
             android:fontFamily="@font/poppins"
             android:text="12:00 - 18:00"
             android:textColor="@color/grey"
-            android:textSize="@dimen/_8ssp"
-            android:layout_marginBottom="@dimen/_5sdp"/>
+            android:textSize="@dimen/_8ssp" />
 
         <TextView
             android:id="@+id/tanggal_lembur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_durasi"
+            android:layout_alignBottom="@+id/tv_untuk_tanggal"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="2dp"
             android:fontFamily="@font/poppins"
             android:text="14/02/03"
             android:textColor="@color/grey"
-            android:textSize="@dimen/_8ssp"/>
+            android:textSize="@dimen/_8ssp" />
 
     </RelativeLayout>
 

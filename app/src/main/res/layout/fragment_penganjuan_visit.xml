@@ -33,47 +33,14 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/rv_pilih_visit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_menu"
-                android:paddingHorizontal="@dimen/_15sdp"
-                android:paddingVertical="@dimen/_10sdp"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_pilih_visit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="Pilih Visit"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Spinner
-                    android:id="@+id/spinner_visit"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_47sdp"
-                    android:layout_below="@+id/tv_pilih_visit"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/rounded_menu"
-                    android:backgroundTint="@color/white"
-                    android:textAlignment="textEnd"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_pilih_visit" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rv_keterangan_perizinan_create"
+                app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/rounded_menu"
                 android:paddingHorizontal="@dimen/_15sdp"
-                android:paddingVertical="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@+id/rv_pilih_visit">
+                android:paddingVertical="@dimen/_10sdp">
 
                 <TextView
                     android:id="@+id/tv_keterangan_perizinan_create"
@@ -96,16 +63,75 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_keterangan_perizinan_create" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <ImageView
-                android:layout_marginTop="@dimen/_10sdp"
-                android:id="@+id/uploadFile"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1:1"
-                android:src="@drawable/take_a_photo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_perizinan_create" />
+
+            <RelativeLayout
+                android:id="@+id/rv_tanggal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/retangle_stroke"
+                android:padding="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_perizinan_create">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal"
+                    android:textSize="@dimen/_11ssp" />
+
+                <TextView
+                    android:id="@+id/tv_tanggal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_toStartOf="@+id/arrow1"
+                    android:fontFamily="@font/poppins"
+                    android:text="-"
+                    android:textColor="@color/black_text"
+                    android:textSize="@dimen/_11ssp" />
+
+                <ImageView
+                    android:id="@+id/arrow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/vector" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rv_lokasi"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/retangle_stroke"
+                android:padding="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_tanggal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lokasi"
+                    android:textSize="@dimen/_11ssp" />
+
+                <TextView
+                    android:id="@+id/tv_lokasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_toStartOf="@+id/arrow2"
+                    android:fontFamily="@font/poppins"
+                    android:text="-"
+                    android:textColor="@color/black_text"
+                    android:textSize="@dimen/_11ssp" />
+
+                <ImageView
+                    android:id="@+id/arrow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/vector" />
+
+            </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

@@ -1,0 +1,31 @@
+package com.infinity.dsmabsen.model
+
+data class Pribadi(
+    val alamat: String?,
+    val alamat_ktp: String?,
+    val created_at: String?,
+    val deleted_at: String?,
+    val email: String?,
+    val email_verified_at: String?,
+    val gelar_belakang: String?,
+    val gelar_depan: String?,
+    val golongan_darah: String?,
+    val id: Int?,
+    val images: String?,
+    val jarak: Int?,
+    val jenis_kelamin: String?,
+    val kode_agama: String?,
+    val kode_kawin: String?,
+    val kode_status: Int?,
+    val kode_suku: Int?,
+    val kordinat: String?,
+    val latitude: String?,
+    val longitude: String?,
+    val name: String?,
+    val nik: String?,
+    val nip: String?,
+    val no_hp: String?,
+    val tanggal_lahir: String?,
+    val tempat_lahir: String?,
+    val updated_at: String?
+)

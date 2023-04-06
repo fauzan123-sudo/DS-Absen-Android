@@ -3,13 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="@dimen/_20sdp"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.VisitFragment">
+    tools:context=".ui.fragment.VisitFragment"
+    android:background="@drawable/gradiend_background">
 
     <include
-        android:visibility="gone"
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +23,22 @@
         android:src="@drawable/no_data_found"
         app:layout_constraintTop_toBottomOf="@id/recVisit" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingHorizontal="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_45sdp"
+        android:id="@+id/recVisit"
+        tools:listitem="@layout/item_visit"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <include
+        android:visibility="gone"
+        android:id="@+id/noInternetConnection"
+        layout="@layout/fake"
+        />
+
     <include
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -32,37 +47,5 @@
         android:id="@+id/loadingInclude"
         layout="@layout/loading" />
 
-    <TextView
-        android:text="Visit"
-        android:fontFamily="@font/poppins_semibold"
-        android:textSize="@dimen/_12ssp"
-        android:textColor="@color/black_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-
-    <ImageView
-        android:id="@+id/addVisited"
-        android:src="@drawable/add_primary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recVisit"
-        tools:listitem="@layout/item_visit"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_20sdp"
-        app:layout_constraintTop_toBottomOf="@id/addVisited" />
-
-    <include
-        android:visibility="gone"
-        android:id="@+id/noInternetConnection"
-        layout="@layout/fake"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

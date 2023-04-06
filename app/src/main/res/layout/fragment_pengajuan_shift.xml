@@ -13,10 +13,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"/>
 
-    <include
-        android:id="@+id/loading_include"
-        layout="@layout/loading"
-        />
+
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -92,12 +89,11 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/rounded_menu"
                     android:backgroundTint="@color/white"
-                    android:gravity="end|top"
+                    android:gravity="top|start"
                     android:imeOptions="actionGo"
                     android:lines="4"
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:paddingVertical="@dimen/_15sdp"
-                    android:textAlignment="textEnd"
                     app:layout_constraintTop_toBottomOf="@+id/tv_keterangan_perizinan_create" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -108,5 +104,8 @@
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
         />
-
+    <include
+        android:id="@+id/loading_include"
+        layout="@layout/loading"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

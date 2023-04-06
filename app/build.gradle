@@ -9,15 +9,15 @@ plugins {
 }
 
 android {
-    namespace 'com.example.dsmabsen'
+    namespace 'com.infinity.dsmabsen'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.dsmabsen"
+        applicationId "com.infinity.dsmabsen"
         minSdk 23
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -41,7 +41,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-
 }
 
 dependencies {
@@ -130,7 +129,7 @@ dependencies {
 
 //    Leaflet
 //    implementation 'org.osmdroid:osmdroid-android:6.2.2'
-    implementation 'org.osmdroid:osmdroid-android:6.1.10'
+
     implementation 'androidx.preference:preference:1.1.1'
 //    implementation 'org.osmdroid:osmdroid-mapsforge:6.2.2'
 //    implementation 'org.osmdroid:osmdroid-mapsforge-ext:6.2.2'
@@ -141,6 +140,19 @@ dependencies {
 //    Location
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'org.osmdroid:osmdroid-android:6.1.11'
+    implementation 'org.osmdroid:osmdroid-wms:6.1.11'
+    implementation 'org.osmdroid:osmdroid-mapsforge:6.1.11'
+
+    implementation 'org.osmdroid:osmdroid-shape:6.1.11'
+
+
+//    FaceRecognize
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
+
+
+//    Face Detection
+//    implementation 'org.opencv:opencv-android:4.5.4'
 
 
 //    flex box
@@ -155,6 +167,7 @@ dependencies {
 
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
 
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
 
 }

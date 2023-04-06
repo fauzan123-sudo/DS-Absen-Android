@@ -4,6 +4,7 @@ pluginManagement {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+//        maven { url "https://opencv.org/releases/" } // repositori OpenCV
     }
 }
 dependencyResolutionManagement {
@@ -13,6 +14,7 @@ dependencyResolutionManagement {
         jcenter()
         maven { url 'https://jitpack.io' }
         mavenCentral()
+//        maven { url "https://opencv.org/releases/" } // repositori OpenCV
     }
 }
 rootProject.name = "DSM Absen"

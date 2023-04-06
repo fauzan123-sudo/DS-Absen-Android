@@ -23,4 +23,11 @@
         android:title="@string/add"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/scan"
+        android:enabled="true"
+        android:icon="@drawable/ic_qr_code_scanner"
+        android:title="@string/add"
+        app:showAsAction="ifRoom"/>
+
 </menu>
