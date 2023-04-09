@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.telephony.TelephonyManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,15 +46,10 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-
-        // Check for all permissions
         if (!checkAllPermissionsGranted(permissions)) {
-            // Show the "Request Permissions" button
             binding.requestPermissionsButton.visibility = View.VISIBLE
 
-            // Set button click listener
             binding.requestPermissionsButton.setOnClickListener {
-                // Request the permissions
                 ActivityCompat.requestPermissions(
                     requireActivity(),
                     permissions,
@@ -61,7 +57,6 @@ class HomeFragment : Fragment() {
                 )
             }
         } else {
-            // Hide the "Request Permissions" button
             binding.requestPermissionsButton.visibility = View.GONE
 
             startLoginActivity()
@@ -110,8 +105,16 @@ class HomeFragment : Fragment() {
                     break
                 }
             }
+            for (i in permissions.indices) {
+                if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                    allGranted = false
+                    Log.d("Perizinan", "Permission denied: ${permissions[i]}")
+                    break
+                } else {
+                    Log.d("Perizinan", "Permission granted: ${permissions[i]}")
+                }
+            }
             if (allGranted) {
-                // Hide the "Request Permissions" button
                 binding.requestPermissionsButton.visibility = View.GONE
 
                 startLoginActivity()

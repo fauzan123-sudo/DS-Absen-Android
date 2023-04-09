@@ -1,10 +1,13 @@
 package com.infinity.dsmabsen.ui.activity
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.telephony.SubscriptionManager
 import android.telephony.TelephonyManager
 import android.util.Log
 import android.view.View
@@ -13,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import com.infinity.dsmabsen.databinding.ActivityLoginBinding
@@ -53,13 +57,16 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
+        val imeinya = getIMEI(this)
+        Log.d("imei", imeinya)
+        Toast.makeText(this, imeinya, Toast.LENGTH_SHORT).show()
         telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
         val mId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        } else {
-            val permission = Manifest.permission.READ_PHONE_STATE
-            singlePermissionLaunch.launch(permission)
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//        } else {
+//            val permission = Manifest.permission.READ_PHONE_STATE
+//            singlePermissionLaunch.launch(permission)
+//        }
 
         with(binding) {
             btnLogin.setOnClickListener {
@@ -74,13 +81,16 @@ class LoginActivity : AppCompatActivity() {
                         password.error = "harap isi passwordnya!!"
                         password.requestFocus()
                     }
+                    imeinya == "" ->{
+                        Log.d(TAG, "perangkat anda tidak mendukung imei ")
+                    }
                     else -> {
                         constrain.isVisible = false
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                            viewModel.login(myUserName, myPassword, mId)
-                        } else {
-                            viewModel.login(myUserName, myPassword, imei)
-                        }
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            viewModel.login(myUserName, myPassword, imeinya)
+//                        } else {
+//                            viewModel.login(myUserName, myPassword, imei)
+//                        }
                     }
                 }
             }
@@ -120,6 +130,35 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun getIMEI(context: Context): String {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            if (context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+                val telephonyManager =
+                    context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+                val imei = telephonyManager.imei
+                if (!imei.isNullOrEmpty()) {
+                    return imei
+                }
+            }
+        } else {
+            if (context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+                val subscriptionManager =
+                    context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
+                val subscriptionInfoList = subscriptionManager.activeSubscriptionInfoList
+                if (subscriptionInfoList != null && subscriptionInfoList.isNotEmpty()) {
+                    val subscriptionInfo = subscriptionInfoList[0]
+                    val imei = subscriptionInfo?.iccId
+                    if (!imei.isNullOrEmpty()) {
+                        return imei
+                    }
+                }
+            }
+        }
+
+        return ""
+    }
+
+
     private fun checkNetworkConnection() {
         cld = ConnectionLiveData(application)
 
@@ -140,17 +179,18 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private val singlePermissionLaunch =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            Log.d(TAG, "permission is Granted: $isGranted")
-            if (isGranted) {
-                Toast.makeText(this, "Permission is granted", Toast.LENGTH_SHORT).show()
-                imei = telephonyManager.imei
-                Toast.makeText(this, imei, Toast.LENGTH_SHORT).show()
-            } else {
-                Log.d(TAG, "Permission Single : Permission Denied ")
-                Toast.makeText(this, "Permission Denied ", Toast.LENGTH_SHORT).show()
-            }
-        }
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    private val singlePermissionLaunch =
+//        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+//            Log.d(TAG, "permission is Granted: $isGranted")
+//            if (isGranted) {
+//                Toast.makeText(this, "Permission is granted", Toast.LENGTH_SHORT).show()
+//                imei = telephonyManager.imei
+//                Log.d(TAG, imei)
+//                Toast.makeText(this, imei, Toast.LENGTH_SHORT).show()
+//            } else {
+//                Log.d(TAG, "Permission Single : Permission Denied ")
+//                Toast.makeText(this, "Permission Denied ", Toast.LENGTH_SHORT).show()
+//            }
+//        }
 }

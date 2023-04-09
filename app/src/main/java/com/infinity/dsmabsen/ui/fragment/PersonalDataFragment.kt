@@ -29,8 +29,6 @@ class PersonalDataFragment :
     BaseFragment<FragmentPersonalDataBinding>(FragmentPersonalDataBinding::inflate) {
     val savedUser = Paper.book().read<DataX>("user")
 
-    @Inject
-    lateinit var tokenManager: TokenManager
     private val viewModel: UserProfileViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +36,6 @@ class PersonalDataFragment :
         val myActivities = activity as MainActivity
         myActivities.hideMyBottomNav()
         hideBottomNavigation()
-        val profileUser = Paper.book().read<DataXXXXX>("profileUser")
         loadData()
         binding.swipePersonalData.setOnRefreshListener {
 //            Handler(Looper.getMainLooper()).postDelayed({
@@ -269,7 +266,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvGelarBelakang.setOnClickListener {
-                            val text = "Belar Belakang"
+                            val text = "Gelar Belakang"
                             val data = "gelar_belakang"
                             val value = response.data.pribadi.gelar_belakang
                             val action =

@@ -28,7 +28,8 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     protected lateinit var connectionLiveData: ConnectionLiveData
     val binding: VB
-        get() = _binding as VB
+        //        get() = _binding as VB
+        get() = _binding ?: throw IllegalStateException("ViewBinding is not initialized.")
 
     override fun onCreateView(
         inflater: LayoutInflater,

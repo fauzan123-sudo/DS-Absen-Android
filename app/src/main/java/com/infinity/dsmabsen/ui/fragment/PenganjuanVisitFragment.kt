@@ -130,7 +130,10 @@ class PenganjuanVisitFragment :
                 location?.let {
                     val latitude = location.latitude
                     val longitude = location.longitude
+
                     val kordinat: String? = "$latitude, $longitude"
+                    binding.tvLokasi.text = "$kordinat"
+                    Log.d("TAG", "sendVisit: $kordinat")
                     val nip = savedUser!!.nip
                     viewModel.sendDataVisitRequest(
                         nip,
