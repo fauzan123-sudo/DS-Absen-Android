@@ -34,7 +34,7 @@ class PersonalDataFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val myActivities = activity as MainActivity
-        myActivities.hideMyBottomNav()
+//        myActivities.hideMyBottomNav()
         hideBottomNavigation()
         loadData()
         binding.swipePersonalData.setOnRefreshListener {
@@ -61,6 +61,9 @@ class PersonalDataFragment :
     }
 
     private fun loadData() {
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
+        hideBottomNavigation()
         binding.apply {
             viewModel.detailProfileRequest(savedUser!!.nip)
             viewModel.profileDetailLivedata.observe(viewLifecycleOwner) {
@@ -223,6 +226,9 @@ class PersonalDataFragment :
     }
 
     private fun loadDataResfresh() {
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
+        hideBottomNavigation()
         binding.apply {
             viewModel.detailProfileRequest(savedUser!!.nip)
             viewModel.profileDetailLivedata.observe(viewLifecycleOwner) {
@@ -398,43 +404,38 @@ class PersonalDataFragment :
 
     override fun onConnectionAvailable() {
         super.onConnectionAvailable()
-        binding.apply {
-            toolbar.toolbar.visibility = View.VISIBLE
-            scrollview.visibility = View.VISIBLE
-            noInternetConnection.ivNoConnection.visibility = View.GONE
-        }
     }
 
     override fun onConnectionLost() {
         super.onConnectionLost()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            scrollview.visibility = View.GONE
-            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        val myActivities = activity as MainActivity
-        myActivities.hideMyBottomNav()
+//        showBottomNavigation()
     }
 
     override fun onResume() {
         super.onResume()
+        Log.d("TAG", "onDestroyView: hide PersonalData")
         val myActivities = activity as MainActivity
         myActivities.hideMyBottomNav()
+        hideBottomNavigation()
     }
 
     override fun onStart() {
         super.onStart()
+        Log.d("TAG", "onDestroyView: hide PersonalData")
         val myActivities = activity as MainActivity
         myActivities.hideMyBottomNav()
+        hideBottomNavigation()
     }
 
     override fun onPause() {
         super.onPause()
+        Log.d("TAG", "onDestroyView: hide PersonalData")
         val myActivities = activity as MainActivity
         myActivities.hideMyBottomNav()
+        hideBottomNavigation()
     }
 }

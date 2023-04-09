@@ -195,21 +195,14 @@ class AllProfileFragment :
 
     override fun onDestroyView() {
         super.onDestroyView()
-        showBottomNavigation()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        hideBottomNavigation()
+        Log.d("TAG", "onDestroyView: AllProfile")
+//        showBottomNavigation()
     }
 
     override fun onStart() {
+        Log.d("TAG", "onStart: hide AllProfile")
         super.onStart()
         hideBottomNavigation()
     }
 
-    override fun onPause() {
-        super.onPause()
-        hideBottomNavigation()
-    }
 }

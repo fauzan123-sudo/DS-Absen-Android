@@ -274,8 +274,10 @@ class MainActivity : AppCompatActivity() {
                 if (isConnected) {
                     binding.fragmentContainerView2.visibility = View.VISIBLE
                     if (arrayShowNavbar.contains(destination.id)) {
+                        Log.d("BN","SHOW IN CONNECT")
                         binding.bottomNavigationView.visibility = View.VISIBLE
                     } else {
+                        Log.d("BN","HIDE IN CONNECT")
                         binding.bottomNavigationView.visibility = View.GONE
                     }
                     binding.noInternetConnection.ivNoConnection.visibility = View.GONE
@@ -293,6 +295,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun hideMyBottomNav() {
+        Log.d("BN","HIDE IN MAIN")
         binding.bottomNavigationView.visibility = View.GONE
     }
 

@@ -3,6 +3,7 @@ package com.infinity.dsmabsen.ui.fragment
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -112,10 +113,12 @@ abstract class BaseFragment<VB : ViewBinding>(
     }
 
     fun showBottomNavigation() {
+//        Log.d("BN","SHOW IN BASE")
         bottomNavigationView.visibility = View.VISIBLE
     }
 
     fun hideBottomNavigation() {
+//        Log.d("BN","HIDE IN BASE")
         bottomNavigationView.visibility = View.GONE
     }
 
