@@ -43,11 +43,6 @@ class ShiftFragment : BaseFragment<FragmentShiftBinding>(FragmentShiftBinding::i
             imgNoData.isVisible = false
             val myActivities = activity as MainActivity
             myActivities.hideMyBottomNav()
-            adapter = ShiftAdapter(requireContext())
-            recyclerView = recyclerShift
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.setHasFixedSize(true)
 
             viewModel.requestShift(savedUser!!.nip)
             viewModel.getShiftLiveData.observe(viewLifecycleOwner) {
@@ -62,7 +57,11 @@ class ShiftFragment : BaseFragment<FragmentShiftBinding>(FragmentShiftBinding::i
                                 recyclerShift.isVisible = false
                                 imgNoData.isVisible = true
                             }else{
-                                adapter.differ.submitList(response.data.data)
+                                adapter = ShiftAdapter(requireContext(), response.data.data)
+                                recyclerView = recyclerShift
+                                recyclerView.adapter = adapter
+                                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                                recyclerView.setHasFixedSize(true)
                                 recyclerShift.isVisible = true
                                 imgNoData.isVisible = false
                             }

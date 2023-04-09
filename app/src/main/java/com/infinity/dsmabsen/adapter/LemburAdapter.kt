@@ -14,7 +14,7 @@ import com.infinity.dsmabsen.helper.Helper
 import com.infinity.dsmabsen.model.DataXXXXXXXXXX
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXX
 
-class LemburAdapter(private val context: Context) :
+class LemburAdapter(private val context: Context, private val dataList: List<DataXXXXXXXXXXXXXXXXX>) :
     RecyclerView.Adapter<LemburAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemLemburBinding) :
@@ -50,23 +50,11 @@ class LemburAdapter(private val context: Context) :
         ItemLemburBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
+    override fun getItemCount() = dataList.size
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setData(differ.currentList[position])
+        holder.setData(dataList[position])
         holder.setIsRecyclable(false)
     }
 
-    override fun getItemCount() = differ.currentList.size
-
-    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXXXXXXXXXXXX>() {
-        override fun areItemsTheSame(oldItem: DataXXXXXXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXXXXXXX): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: DataXXXXXXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXXXXXXX): Boolean {
-            return oldItem.id == newItem.id
-        }
-    }
-
-    val differ = AsyncListDiffer(this, differCallback)
 
 }

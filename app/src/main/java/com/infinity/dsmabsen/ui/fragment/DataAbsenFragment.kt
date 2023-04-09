@@ -25,6 +25,7 @@ import com.infinity.dsmabsen.helper.TokenManager
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.model.DataXX
+import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXX
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.viewModel.AttendanceViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,12 +61,6 @@ class DataAbsenFragment :
                 findNavController().navigate(R.id.action_dataAbsenFragment_to_profileFragment)
             }
 
-            adapter =
-                AttendanceAdapter(requireContext())
-            recyclerView = recAttendance
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.setHasFixedSize(true)
 
             val savedUser = Paper.book().read<DataX>("user")
             viewModel.attendanceHistoryRequest2(savedUser!!.nip)
@@ -80,7 +75,12 @@ class DataAbsenFragment :
                             binding.recAttendance.visibility = View.GONE
                             binding.imgNoData.visibility = View.VISIBLE
                         } else {
-                            adapter.differ.submitList(attendance)
+                            adapter =
+                                AttendanceAdapter(requireContext(),attendance)
+                            recyclerView = recAttendance
+                            recyclerView.adapter = adapter
+                            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                            recyclerView.setHasFixedSize(true)
                             binding.recAttendance.visibility = View.VISIBLE
                             binding.imgNoData.visibility = View.GONE
                         }

@@ -42,6 +42,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rv_jabatan"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
@@ -53,7 +54,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jabatan dan Posisi" />
+                android:text="Jabatan dan Divisi" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -65,6 +66,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rv_lokasi_kerja"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
@@ -88,6 +90,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rv_pendidikan"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
@@ -111,6 +114,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rv_penguasaan_bahasa"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
@@ -134,6 +138,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rv_pengalaman_kerja"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"

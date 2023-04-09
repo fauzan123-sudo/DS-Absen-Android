@@ -46,11 +46,6 @@ class MenuPerizinanFragment :
             loadingInclude.loading.visibility = View.VISIBLE
             imgNoData.isVisible = false
 
-            adapter = PerizinanAdapter(requireContext())
-            recyclerView = recPerizinan
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.setHasFixedSize(true)
             viewModel.requestPerizinan(savedUser!!.nip)
             viewModel.perizinanLiveData.observe(viewLifecycleOwner) {
                 when (it) {
@@ -63,7 +58,11 @@ class MenuPerizinanFragment :
                                 recPerizinan.isVisible = false
                                 imgNoData.isVisible = true
                             } else {
-                                adapter.differ.submitList(data.data.data)
+                                adapter = PerizinanAdapter(requireContext(), data.data.data)
+                                recyclerView = recPerizinan
+                                recyclerView.adapter = adapter
+                                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                                recyclerView.setHasFixedSize(true)
                                 recPerizinan.isVisible = true
                                 imgNoData.isVisible = false
                             }

@@ -41,16 +41,9 @@ class JabatanDanPosisiFragment :
                     val jabPos = response.data.posisi
                     with(binding) {
                         with(jabPos) {
-                            tvNip.text = nip
-                            tvNama.text = name
-                            tvTempatLahir.text = tempat_lahir
-                            tvTanggalLahir.text = tanggal_lahir
                             tvSkpd.text = skpd
                             tvJabatan.text = jabatan
-                            tvAlamat.text = alamat
-                            tvNoHp.text = no_hp
                             tvTmtJabatan.text = tmt_jabatan
-                            tvJenisJabatan.text = jabatan
                             tvMasaKerja.text = masa_kerja
 
 //                            rvJabatan.setOnClickListener {

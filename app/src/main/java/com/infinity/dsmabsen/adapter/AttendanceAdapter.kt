@@ -12,7 +12,7 @@ import com.infinity.dsmabsen.databinding.ItemRekapAbsensiBinding
 import com.infinity.dsmabsen.helper.Helper
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-class AttendanceAdapter(private val context: Context) :
+class AttendanceAdapter(private val context: Context, private val dataList: List<DataXXXXXXXXXXXXXXXXXXXXXXXXXX>) :
     RecyclerView.Adapter<AttendanceAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemRekapAbsensiBinding) :
@@ -22,7 +22,9 @@ class AttendanceAdapter(private val context: Context) :
                 with(item) {
                     val newFormat = "kk:mm:ss"
                     textView29.text = tanggal
-                    textView31.text = Helper().convertTanggal(absen!!, newFormat)
+                    val tanggal:String? = if (absen != null) Helper().convertTanggalBesengek(absen, newFormat) else "-"
+
+                    textView31.text = tanggal!!
 
                     if (status == 1) {
                         imageView11.setImageResource(R.drawable.icon_checkin)
@@ -39,27 +41,18 @@ class AttendanceAdapter(private val context: Context) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        ItemRekapAbsensiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttendanceAdapter.ViewHolder {
+        val binding = ItemRekapAbsensiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
+    }
 
     override fun onBindViewHolder(holder: AttendanceAdapter.ViewHolder, position: Int) {
-        holder.setData(differ.currentList[position])
+        holder.setData(dataList[position])
         holder.setIsRecyclable(false)
     }
 
-    override fun getItemCount() = differ.currentList.size
-
-    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXXXXXXXXXXXXXXXXXXXXX>() {
-        override fun areItemsTheSame(oldItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXX): Boolean {
-            return oldItem.absen == newItem.absen
-        }
-
-        override fun areContentsTheSame(oldItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXX): Boolean {
-            return oldItem.absen == newItem.absen
-        }
+    override fun getItemCount(): Int {
+        return dataList.size
     }
-
-    val differ = AsyncListDiffer(this, differCallback)
 
 }

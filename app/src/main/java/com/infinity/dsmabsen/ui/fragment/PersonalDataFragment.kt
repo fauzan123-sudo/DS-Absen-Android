@@ -1,8 +1,10 @@
 package com.infinity.dsmabsen.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -16,6 +18,7 @@ import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.model.DataXXXXX
 import com.infinity.dsmabsen.repository.NetworkResult
+import com.infinity.dsmabsen.ui.activity.MainActivity
 import com.infinity.dsmabsen.ui.viewModel.UserProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
@@ -29,10 +32,12 @@ class PersonalDataFragment :
     @Inject
     lateinit var tokenManager: TokenManager
     private val viewModel: UserProfileViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
+        hideBottomNavigation()
         val profileUser = Paper.book().read<DataXXXXX>("profileUser")
         loadData()
         binding.swipePersonalData.setOnRefreshListener {
@@ -83,7 +88,7 @@ class PersonalDataFragment :
                         tvNoKtp.text = response.data.pribadi.nik
 
                         rvGelarDepan.setOnClickListener {
-                            val text = "Gelar depan"
+                            val text = "Gelar Depan"
                             val data = "gelar_depan"
                             val value = response.data.pribadi.gelar_depan
                             val action =
@@ -103,7 +108,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvGelarBelakang.setOnClickListener {
-                            val text = "Belar belakang"
+                            val text = "Belar Belakang"
                             val data = "gelar_belakang"
                             val value = response.data.pribadi.gelar_belakang
                             val action =
@@ -113,7 +118,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvTempatLahir.setOnClickListener {
-                            val text = "Tempat lahir"
+                            val text = "Tempat Lahir"
                             val data = "tempat_lahir"
                             val value = response.data.pribadi.tempat_lahir
                             val action =
@@ -123,7 +128,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvTanggalLahir.setOnClickListener {
-                            val text = "tanggal lahir"
+                            val text = "Tanggal Lahir"
                             val data = "tanggal_lahir"
                             val tanggal = response.data.pribadi.tanggal_lahir
                             val value = Helper().convertTanggal(tanggal!!, "dd-MM-yyyy")
@@ -134,7 +139,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvJenisKelamin.setOnClickListener {
-                            val text = "Jenis kelamin"
+                            val text = "Jenis Kelamin"
                             val data = "jenis_kelamin"
                             val value = response.data.pribadi.jenis_kelamin
                             val action =
@@ -154,7 +159,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvStatusPerkawinan.setOnClickListener {
-                            val text = "Status kawin"
+                            val text = "Status Kawin"
                             val data = "kode_kawin"
                             val value = response.data.pribadi.kode_kawin
                             val action =
@@ -164,7 +169,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvGolongan.setOnClickListener {
-                            val text = "Golongan darah"
+                            val text = "Golongan Darah"
                             val data = "golongan_darah"
                             val value = response.data.pribadi.golongan_darah
                             val action =
@@ -244,7 +249,7 @@ class PersonalDataFragment :
                         tvNoKtp.text = response.data.pribadi.nik
 
                         rvGelarDepan.setOnClickListener {
-                            val text = "Gelar depan"
+                            val text = "Gelar Depan"
                             val data = "gelar_depan"
                             val value = response.data.pribadi.gelar_depan
                             val action =
@@ -264,7 +269,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvGelarBelakang.setOnClickListener {
-                            val text = "Belar belakang"
+                            val text = "Belar Belakang"
                             val data = "gelar_belakang"
                             val value = response.data.pribadi.gelar_belakang
                             val action =
@@ -274,7 +279,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvTempatLahir.setOnClickListener {
-                            val text = "Tempat lahir"
+                            val text = "Tempat Lahir"
                             val data = "tempat_lahir"
                             val value = response.data.pribadi.tempat_lahir
                             val action =
@@ -284,7 +289,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvTanggalLahir.setOnClickListener {
-                            val text = "tanggal lahir"
+                            val text = "Tanggal Lahir"
                             val data = "tanggal_lahir"
                             val value = response.data.pribadi.tanggal_lahir
                             val action =
@@ -294,7 +299,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvJenisKelamin.setOnClickListener {
-                            val text = "Jenis kelamin"
+                            val text = "Jenis Kelamin"
                             val data = "jenis_kelamin"
                             val value = response.data.pribadi.jenis_kelamin
                             val action =
@@ -314,7 +319,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvStatusPerkawinan.setOnClickListener {
-                            val text = "Status kawin"
+                            val text = "Status Kawin"
                             val data = "kode_kawin"
                             val value = response.data.pribadi.kode_kawin
                             val action =
@@ -324,7 +329,7 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvGolongan.setOnClickListener {
-                            val text = "Golongan darah"
+                            val text = "Golongan Darah"
                             val data = "golongan_darah"
                             val value = response.data.pribadi.golongan_darah
                             val action =
@@ -414,21 +419,25 @@ class PersonalDataFragment :
 
     override fun onDestroyView() {
         super.onDestroyView()
-        showBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
     }
 
     override fun onResume() {
         super.onResume()
-        hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
     }
 
     override fun onStart() {
         super.onStart()
-        hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
     }
 
     override fun onPause() {
         super.onPause()
-        hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
     }
 }

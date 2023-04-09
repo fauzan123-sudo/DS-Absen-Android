@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val rootView = binding.root
 //        checkNetworkConnection()
 
 
@@ -106,10 +106,9 @@ class LoginActivity : AppCompatActivity() {
                     }
                     is NetworkResult.Error -> {
                         constrain.isVisible = true
-                        val rootView = findViewById<View>(android.R.id.content)
-                        val error = it.message.toString()
-                            Snackbar.make(rootView, it.message!!, Snackbar.LENGTH_LONG)
+//
 //                        handleApiErrorActivity(error)
+                        Snackbar.make(rootView, it.message!!, Snackbar.LENGTH_SHORT).show()
                         Log.d("login error response", (it.message.toString()))
                     }
 

@@ -11,7 +11,10 @@ import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.ItemPengumumanBinding
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-class PengumumanAdapter(private val context: Context) :
+class PengumumanAdapter(
+    private val context: Context,
+    private val listData: List<DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX>
+) :
     RecyclerView.Adapter<PengumumanAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemPengumumanBinding) :
@@ -19,8 +22,6 @@ class PengumumanAdapter(private val context: Context) :
         fun setData(item: DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX) {
             binding.apply {
                 with(item) {
-
-
                     tvJudul.text = judul
                     tvCreateAt.text = created_at
                     tvKeteranganPengumuman.text = deskripsi
@@ -47,29 +48,11 @@ class PengumumanAdapter(private val context: Context) :
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setData(differ.currentList[position])
+        holder.setData(listData[position])
         holder.setIsRecyclable(false)
     }
 
-    override fun getItemCount() = differ.currentList.size
+    override fun getItemCount() = listData.size
 
-    private val differCallback =
-        object : DiffUtil.ItemCallback<DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX>() {
-            override fun areItemsTheSame(
-                oldItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX,
-                newItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            ): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(
-                oldItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX,
-                newItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            ): Boolean {
-                return oldItem.id == newItem.id
-            }
-        }
-
-    val differ = AsyncListDiffer(this, differCallback)
 
 }

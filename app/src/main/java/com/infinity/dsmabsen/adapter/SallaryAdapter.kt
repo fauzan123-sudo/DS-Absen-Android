@@ -11,9 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.infinity.dsmabsen.databinding.ItemSallaryBinding
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXX
 
-class SallaryAdapter(private val context: Context) :
+class SallaryAdapter(
+    private val context: Context,
+    private val listData: List<DataXXXXXXXXXXXXXXX>
+) :
     RecyclerView.Adapter<SallaryAdapter.ViewHolder>() {
-    var listener:RecyclerViewHandler? = null
+    var listener: RecyclerViewHandler? = null
 
     inner class ViewHolder(private val binding: ItemSallaryBinding) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
@@ -25,14 +28,14 @@ class SallaryAdapter(private val context: Context) :
                     idGaji.text = kode_payroll
 
                     itemView.setOnClickListener {
-                        listener?.onItemSelected(differ.currentList[adapterPosition])
+                        listener?.onItemSelected(listData[adapterPosition])
                     }
                 }
             }
         }
 
         override fun onClick(p0: View?) {
-            listener?.onItemSelected(differ.currentList[adapterPosition])
+            listener?.onItemSelected(listData[adapterPosition])
         }
     }
 
@@ -41,22 +44,11 @@ class SallaryAdapter(private val context: Context) :
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setData(differ.currentList[position])
+        holder.setData(listData[position])
         holder.setIsRecyclable(false)
     }
 
-    override fun getItemCount() = differ.currentList.size
+    override fun getItemCount() = listData.size
 
-    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXXXXXXXXXX>() {
-        override fun areItemsTheSame(oldItem: DataXXXXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXXXXX): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: DataXXXXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXXXXX): Boolean {
-            return oldItem.id == newItem.id
-        }
-    }
-
-    val differ = AsyncListDiffer(this, differCallback)
 
 }

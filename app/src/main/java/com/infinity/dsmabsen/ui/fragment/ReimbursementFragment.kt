@@ -43,12 +43,6 @@ class ReimbursementFragment :
         with(binding) {
             loadingInclude.loading.visibility = View.VISIBLE
             imgNoData.isVisible = false
-            adapter = ReimbursementAdapter(requireContext())
-            recyclerView = recReimbursement
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.setHasFixedSize(true)
-
             viewModel.requestReimbursement(savedUser!!.nip)
             viewModel.getReimbursementLiveData.observe(viewLifecycleOwner) {
                 when (it) {
@@ -63,7 +57,11 @@ class ReimbursementFragment :
                                 imgNoData.isVisible = true
                             } else {
                                 Log.d("semua reimburement", response.data.data.toString())
-                                adapter.differ.submitList(response.data.data)
+                                adapter = ReimbursementAdapter(requireContext(), response.data.data)
+                                recyclerView = recReimbursement
+                                recyclerView.adapter = adapter
+                                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                                recyclerView.setHasFixedSize(true)
                                 recReimbursement.isVisible = true
                                 imgNoData.isVisible = false
                             }

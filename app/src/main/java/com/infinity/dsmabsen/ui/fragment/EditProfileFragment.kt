@@ -39,7 +39,7 @@ class EditProfileFragment :
             val argument = argss.txtProfile
             txtEdit.text = argument
             edtProfile.setText(argss.valueProfile)
-            if (argument == "tanggal lahir") {
+            if (argument == "Tanggal Lahir") {
                 edtProfile.keyListener = null
                 btnUbahTanggal.visibility = View.VISIBLE
                 btnUbahTanggal.setOnClickListener {

@@ -56,15 +56,6 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
 
             val savedUser = Paper.book().read<DataX>("user")
 
-//            ajukanLembur.setOnClickListener {
-//                findNavController().navigate(R.id.action_lemburFragment_to_pengajuanLemburFragment)
-//            }
-            adapter = LemburAdapter(requireContext())
-            recyclerView = reclembur
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.setHasFixedSize(true)
-
             viewModel.requestListLembur(savedUser!!.nip)
             viewModel.getListLemburLiveData.observe(viewLifecycleOwner) {
                 when (it) {
@@ -77,7 +68,11 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
                                 reclembur.isVisible = false
                                 imgNoData.isVisible = true
                             }else{
-                                adapter.differ.submitList(response.data.data)
+                                adapter = LemburAdapter(requireContext(), response.data.data)
+                                recyclerView = reclembur
+                                recyclerView.adapter = adapter
+                                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                                recyclerView.setHasFixedSize(true)
                                 reclembur.isVisible = true
                                 imgNoData.isVisible = false
                             }

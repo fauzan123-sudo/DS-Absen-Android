@@ -29,41 +29,40 @@ class PengumumanFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = PengumumanAdapter(requireContext())
         with(binding) {
-            recyclerView = recPengumuman
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.setHasFixedSize(true)
-        }
-        viewModel.pengumumanRequest()
-        viewModel.pengumumanLivedata.observe(viewLifecycleOwner) {
-            when (it) {
-                is NetworkResult.Success -> {
-                    binding.loadingInclude.loading.visibility = View.GONE
-                    val response = it.data!!
-                    val data = response.data.data
-                    if (data.isEmpty()) {
-                        binding.apply {
-                            imgNoData.visibility = View.VISIBLE
-                            recPengumuman.visibility = View.GONE
-                        }
-                    } else {
-                        binding.apply {
-                            imgNoData.visibility = View.GONE
-                            recPengumuman.visibility = View.VISIBLE
-                            adapter.differ.submitList(data)
+            viewModel.pengumumanRequest()
+            viewModel.pengumumanLivedata.observe(viewLifecycleOwner) {
+                when (it) {
+                    is NetworkResult.Success -> {
+                        binding.loadingInclude.loading.visibility = View.GONE
+                        val response = it.data!!
+                        val data = response.data.data
+                        if (data.isEmpty()) {
+                            binding.apply {
+                                imgNoData.visibility = View.VISIBLE
+                                recPengumuman.visibility = View.GONE
+                            }
+                        } else {
+                            binding.apply {
+                                imgNoData.visibility = View.GONE
+                                recPengumuman.visibility = View.VISIBLE
+                                adapter = PengumumanAdapter(requireContext(), data)
+                                recyclerView = recPengumuman
+                                recyclerView.adapter = adapter
+                                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                                recyclerView.setHasFixedSize(true)
+                            }
                         }
                     }
-                }
 
-                is NetworkResult.Loading -> {
-                    binding.loadingInclude.loading.visibility = View.VISIBLE
-                }
+                    is NetworkResult.Loading -> {
+                        binding.loadingInclude.loading.visibility = View.VISIBLE
+                    }
 
-                is NetworkResult.Error -> {
-                    binding.loadingInclude.loading.visibility = View.GONE
-                    handleApiError(it.message)
+                    is NetworkResult.Error -> {
+                        binding.loadingInclude.loading.visibility = View.GONE
+                        handleApiError(it.message)
+                    }
                 }
             }
         }

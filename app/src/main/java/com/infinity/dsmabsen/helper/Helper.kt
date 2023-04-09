@@ -122,6 +122,17 @@ class Helper {
         return convert.let { dateFormat.format(it!!) }
     }
 
+    fun convertTanggalBesengek(
+        tgl: String,
+        newFormat: String,
+        oldFormat: String = "yyyy-MM-dd HH:mm:ss"
+    ): String {
+        val dateFormat = SimpleDateFormat(oldFormat)
+        val convert = dateFormat.parse(tgl)
+        dateFormat.applyPattern(newFormat)
+        return convert.let { dateFormat.format(it!!) }
+    }
+
 //    fun convertTanggal(
 //        tgl: String,
 //        newFormat: String,

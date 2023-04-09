@@ -25,8 +25,6 @@ import io.paperdb.Paper
 
 @AndroidEntryPoint
 class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBinding::inflate) {
-
-
     private val viewModel: AttendanceViewModel by viewModels()
     private lateinit var adapter: SallaryAdapter
     private lateinit var recyclerView: RecyclerView
@@ -41,21 +39,6 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
             myActivities.hideMyBottomNav()
             loadingInclude.loading.visibility = View.VISIBLE
             imgNoData.isVisible = false
-            adapter = SallaryAdapter(requireContext())
-
-            adapter.listener = object : RecyclerViewHandler {
-                override fun onItemSelected(data: DataXXXXXXXXXXXXXXX) {
-                    val action =
-                        SallaryFragmentDirections.actionSallaryFragmentToDetailGajiFragment(data)
-                    findNavController().navigate(action)
-                }
-
-            }
-            recyclerView = recSallary
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.setHasFixedSize(true)
-
             viewModel.requestSallary(savedUser!!.nip)
             viewModel.getSallaryLiveData.observe(viewLifecycleOwner) {
                 when (it) {
@@ -64,13 +47,28 @@ class SallaryFragment : BaseFragment<FragmentSallaryBinding>(FragmentSallaryBind
                         val response = it.data!!
                         val status = response.status
                         if (status) {
-                            if(response.data.isEmpty()){
+                            if (response.data.isEmpty()) {
                                 recSallary.isVisible = false
                                 imgNoData.isVisible = true
-                            }else{
-                                adapter.differ.submitList(response.data)
+                            } else {
+                                adapter = SallaryAdapter(requireContext(), response.data)
+                                recyclerView = recSallary
+                                recyclerView.adapter = adapter
+                                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                                recyclerView.setHasFixedSize(true)
                                 recSallary.isVisible = true
                                 imgNoData.isVisible = false
+                                adapter.listener = object : RecyclerViewHandler {
+                                    override fun onItemSelected(data: DataXXXXXXXXXXXXXXX) {
+                                        val action =
+                                            SallaryFragmentDirections.actionSallaryFragmentToDetailGajiFragment(
+                                                data
+                                            )
+                                        findNavController().navigate(action)
+                                    }
+
+                                }
+
                             }
                         }
                     }

@@ -15,7 +15,7 @@ import com.infinity.dsmabsen.helper.Helper
 import com.infinity.dsmabsen.model.DataXXXXXXXXXX
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXX
 
-class PerizinanAdapter(private val context: Context) :
+class PerizinanAdapter(private val context: Context, private val listData: List<DataXXXXXXXXXXXX>) :
     RecyclerView.Adapter<PerizinanAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemPerizinanBinding) :
@@ -35,7 +35,12 @@ class PerizinanAdapter(private val context: Context) :
                         }
                         "Diterima" -> {
                             tvApprove.text = status
-                            tvApprove.setTextColor(ContextCompat.getColor(context, R.color._success))
+                            tvApprove.setTextColor(
+                                ContextCompat.getColor(
+                                    context,
+                                    R.color._success
+                                )
+                            )
                         }
                         "Ditolak" -> {
                             tvApprove.text = status
@@ -52,22 +57,10 @@ class PerizinanAdapter(private val context: Context) :
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setData(differ.currentList[position])
+        holder.setData(listData[position])
         holder.setIsRecyclable(false)
     }
 
-    override fun getItemCount() = differ.currentList.size
-
-    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXXXXXXX>() {
-        override fun areItemsTheSame(oldItem: DataXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXX): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: DataXXXXXXXXXXXX, newItem: DataXXXXXXXXXXXX): Boolean {
-            return oldItem.id == newItem.id
-        }
-    }
-
-    val differ = AsyncListDiffer(this, differCallback)
+    override fun getItemCount() = listData.size
 
 }

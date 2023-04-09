@@ -72,8 +72,6 @@ class AttendanceFragment :
         binding.apply {
             Log.d("TAG", args.hasilScan)
 
-
-
             btnScanWajah.setOnClickListener {
                 findNavController().navigate(R.id.action_attendanceFragment_to_faceScanningFragment3)
             }
@@ -91,9 +89,10 @@ class AttendanceFragment :
             namaUser.text = savedUser!!.name
             jabatan.text = savedUser!!.nama_jabatan
             Glide.with(requireContext())
-                .load(Constans.IMAGE_URL + savedUser.image)
+                .load(savedUser.image)
                 .into(imageUser)
 
+            Log.d("foto", Constans.IMAGE_URL + savedUser.image)
 
             imageUser.setOnClickListener {
                 findNavController().navigate(R.id.action_attendanceFragment_to_profileFragment)

@@ -1,5 +1,6 @@
 package com.infinity.dsmabsen.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -16,6 +17,7 @@ import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXX
 import com.infinity.dsmabsen.repository.NetworkResult
+import com.infinity.dsmabsen.ui.activity.MainActivity
 import com.infinity.dsmabsen.ui.viewModel.ShiftViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
@@ -30,10 +32,9 @@ class PengajuanShiftFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         with(binding) {
-
+            val myActivities = activity as MainActivity
+            myActivities.hideMyBottomNav()
             viewModel.requestSpinnerShift()
             viewModel.spinnerShiftLiveData.observe(viewLifecycleOwner) {
                 when (it) {
@@ -199,5 +200,59 @@ class PengajuanShiftFragment :
             scrollView2.visibility = View.GONE
             noInternetConnection.ivNoConnection.visibility = View.VISIBLE
         }
+    }
+
+    override fun onResume() {
+        Log.d("TAG", "onResume: ")
+        hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
+        super.onResume()
+    }
+
+    override fun onStart() {
+        Log.d("TAG", "onStart: ")
+        hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
+        super.onStart()
+    }
+
+    override fun onPause() {
+        Log.d("TAG", "onPause: ")
+        hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
+        super.onPause()
+    }
+
+    override fun onStop() {
+        Log.d("TAG", "onStop: ")
+        hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
+        super.onStop()
+    }
+
+    override fun onDestroyView() {
+        Log.d("TAG", "onDestroyView: ")
+        showBottomNavigation()
+        super.onDestroyView()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("TAG", "onDetach: ")
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d("TAG", "onAttach: ")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        hideBottomNavigation()
+        Log.d("TAG", "onCreate: ")
     }
 }

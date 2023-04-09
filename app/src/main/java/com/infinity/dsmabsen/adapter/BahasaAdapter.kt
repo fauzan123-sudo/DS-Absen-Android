@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.infinity.dsmabsen.databinding.ItemBahasaBinding
 import com.infinity.dsmabsen.model.Bahasa
 
-class BahasaAdapter(private val context: Context) :
+class BahasaAdapter(private val context: Context ) :
     RecyclerView.Adapter<BahasaAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemBahasaBinding) :

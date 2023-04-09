@@ -1,8 +1,6 @@
 package com.infinity.dsmabsen.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
-import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
@@ -34,28 +32,12 @@ class VisitFragment : BaseFragment<FragmentVisitBinding>(FragmentVisitBinding::i
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            val actionBar = (activity as AppCompatActivity).supportActionBar
-
-            actionBar?.setDisplayHomeAsUpEnabled(false)
-
-            view.isFocusableInTouchMode = true
-            view.requestFocus()
-            view.setOnKeyListener { _, keyCode, _ ->
-                if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    Log.d("visit fragment", "back")
-                    return@setOnKeyListener true
-                }
-                false
-            }
-
+            (activity as AppCompatActivity).setSupportActionBar(toolbar.toolbar)
+            (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
             loadingInclude.loading.visibility = View.VISIBLE
             imgNoData.isVisible = false
 
-            adapter = VisitAdapter(requireContext())
-            recyclerView = recVisit
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.setHasFixedSize(true)
+
 
             viewModel.visitRequest(savedUser!!.nip)
             viewModel.visitLiveData.observe(viewLifecycleOwner) {
@@ -70,7 +52,12 @@ class VisitFragment : BaseFragment<FragmentVisitBinding>(FragmentVisitBinding::i
                                 recVisit.isVisible = false
                                 imgNoData.isVisible = true
                             } else {
-                                adapter.differ.submitList(response.data)
+                                adapter = VisitAdapter(requireContext(), response.data)
+                                recyclerView = recVisit
+                                recyclerView.adapter = adapter
+                                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                                recyclerView.setHasFixedSize(true)
+//                                adapter.differ.submitList(response.data)
                                 recVisit.isVisible = true
                                 imgNoData.isVisible = false
                             }

@@ -11,7 +11,10 @@ import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.ItemShiftBinding
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXX
 
-class ShiftAdapter(private val context: Context) :
+class ShiftAdapter(
+    private val context: Context,
+    private val listData: List<DataXXXXXXXXXXXXXXXXXXXXXX>
+) :
     RecyclerView.Adapter<ShiftAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemShiftBinding) :
@@ -30,7 +33,12 @@ class ShiftAdapter(private val context: Context) :
                         }
                         "Diterima" -> {
                             tvApprove.text = status_api
-                            tvApprove.setTextColor(ContextCompat.getColor(context, R.color._success))
+                            tvApprove.setTextColor(
+                                ContextCompat.getColor(
+                                    context,
+                                    R.color._success
+                                )
+                            )
                         }
                         "Ditolak" -> {
                             tvApprove.text = status_api
@@ -47,28 +55,11 @@ class ShiftAdapter(private val context: Context) :
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setData(differ.currentList[position])
+        holder.setData(listData[position])
         holder.setIsRecyclable(false)
     }
 
-    override fun getItemCount() = differ.currentList.size
+    override fun getItemCount() = listData.size
 
-    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXXXXXXXXXXXXXXXXX>() {
-        override fun areItemsTheSame(
-            oldItem: DataXXXXXXXXXXXXXXXXXXXXXX,
-            newItem: DataXXXXXXXXXXXXXXXXXXXXXX
-        ): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(
-            oldItem: DataXXXXXXXXXXXXXXXXXXXXXX,
-            newItem: DataXXXXXXXXXXXXXXXXXXXXXX
-        ): Boolean {
-            return oldItem.id == newItem.id
-        }
-    }
-
-    val differ = AsyncListDiffer(this, differCallback)
 
 }

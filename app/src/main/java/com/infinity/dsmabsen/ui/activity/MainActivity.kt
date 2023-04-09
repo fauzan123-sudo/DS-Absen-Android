@@ -109,10 +109,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 binding.bottomNavigationView.visibility = View.GONE
             }
-
         }
-
-
     }
 
     override fun onResume() {
@@ -192,8 +189,6 @@ class MainActivity : AppCompatActivity() {
                             .setView(dialogBinding.root)
                             .setCancelable(false)
                             .setPositiveButton("Ubah") { dialog, which ->
-
-
                             }
 
 

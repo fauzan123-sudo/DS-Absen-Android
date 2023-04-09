@@ -65,7 +65,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                         }
                         if (data.status) {
                             Glide.with(requireContext())
-                                .load(Constans.IMAGE_URL + "/" + data.data.foto)
+                                .load(data.data.foto)
                                 .into(civProfile)
                         } else {
                             Toast.makeText(requireContext(), "error in here", Toast.LENGTH_SHORT)
@@ -106,7 +106,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                     nipUser
                 )
 
-                Toast.makeText(requireContext(), "$nips", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), "$nips", Toast.LENGTH_SHORT).show()
                 viewModels.requestLogout(nipUser)
                 viewModels.logOutLiveData.observe(viewLifecycleOwner) {
                     binding.loadingInclude.loading.isVisible = false

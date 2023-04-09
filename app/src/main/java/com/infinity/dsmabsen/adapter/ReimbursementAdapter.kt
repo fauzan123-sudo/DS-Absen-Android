@@ -12,7 +12,7 @@ import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.ItemReimbursementBinding
 import com.infinity.dsmabsen.model.DataXXXXXXX
 
-class ReimbursementAdapter(private val context: Context) :
+class ReimbursementAdapter(private val context: Context, private val listData:List<DataXXXXXXX>) :
     RecyclerView.Adapter<ReimbursementAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemReimbursementBinding) :
@@ -38,7 +38,6 @@ class ReimbursementAdapter(private val context: Context) :
                             tvApprove.setTextColor(ContextCompat.getColor(context, R.color._danger))
                         }
                     }
-
                 }
             }
         }
@@ -49,22 +48,10 @@ class ReimbursementAdapter(private val context: Context) :
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setData(differ.currentList[position])
+        holder.setData(listData[position])
         holder.setIsRecyclable(false)
     }
 
-    override fun getItemCount() = differ.currentList.size
-
-    private val differCallback = object : DiffUtil.ItemCallback<DataXXXXXXX>() {
-        override fun areItemsTheSame(oldItem: DataXXXXXXX, newItem: DataXXXXXXX): Boolean {
-            return oldItem.created_at == newItem.created_at
-        }
-
-        override fun areContentsTheSame(oldItem: DataXXXXXXX, newItem: DataXXXXXXX): Boolean {
-            return oldItem.created_at == newItem.created_at
-        }
-    }
-
-    val differ = AsyncListDiffer(this, differCallback)
+    override fun getItemCount() = listData.size
 
 }
