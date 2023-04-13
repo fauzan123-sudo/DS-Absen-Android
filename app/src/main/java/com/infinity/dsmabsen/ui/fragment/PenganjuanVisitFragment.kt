@@ -438,12 +438,12 @@ class PenganjuanVisitFragment :
         mapController.setCenter(GeoPoint(location.latitude, location.longitude))
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        myLocationNewOverlay = MyLocationNewOverlay(binding.mapView)
-        if (::myLocationNewOverlay.isInitialized) {
-            myLocationNewOverlay.disableMyLocation()
-        }
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        myLocationNewOverlay = MyLocationNewOverlay(binding.mapView)
+//        if (::myLocationNewOverlay.isInitialized) {
+//            myLocationNewOverlay.disableMyLocation()
+//        }
+//    }
 }
 

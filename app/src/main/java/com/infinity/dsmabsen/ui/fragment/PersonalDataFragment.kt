@@ -90,17 +90,19 @@ class PersonalDataFragment :
                         rvGelarDepan.setOnClickListener {
                             val text = "Gelar Depan"
                             val data = "gelar_depan"
-                            val value = response.data.pribadi.gelar_depan
+
+                            val value = response.data.pribadi.gelar_depan ?: ""
+
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
-                                    data, value!!, text
+                                    data, value, text
                                 )
                             findNavController().navigate(action)
                         }
                         rvNama.setOnClickListener {
                             val text = "Nama"
                             val data = "name"
-                            val value = response.data.pribadi.name
+                            val value = response.data.pribadi.name ?: ""
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
                                     data, value!!, text
@@ -108,9 +110,9 @@ class PersonalDataFragment :
                             findNavController().navigate(action)
                         }
                         rvGelarBelakang.setOnClickListener {
-                            val text = "Belar Belakang"
+                            val text = "Gelar Belakang"
                             val data = "gelar_belakang"
-                            val value = response.data.pribadi.gelar_belakang
+                            val value = response.data.pribadi.gelar_belakang ?: ""
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
                                     data, value!!, text
@@ -120,7 +122,7 @@ class PersonalDataFragment :
                         rvTempatLahir.setOnClickListener {
                             val text = "Tempat Lahir"
                             val data = "tempat_lahir"
-                            val value = response.data.pribadi.tempat_lahir
+                            val value = response.data.pribadi.tempat_lahir ?: ""
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
                                     data, value!!, text
@@ -130,7 +132,7 @@ class PersonalDataFragment :
                         rvTanggalLahir.setOnClickListener {
                             val text = "Tanggal Lahir"
                             val data = "tanggal_lahir"
-                            val tanggal = response.data.pribadi.tanggal_lahir
+                            val tanggal = response.data.pribadi.tanggal_lahir ?: ""
                             val value = Helper().convertTanggal(tanggal!!, "dd-MM-yyyy")
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
@@ -141,7 +143,7 @@ class PersonalDataFragment :
                         rvJenisKelamin.setOnClickListener {
                             val text = "Jenis Kelamin"
                             val data = "jenis_kelamin"
-                            val value = response.data.pribadi.jenis_kelamin
+                            val value = response.data.pribadi.jenis_kelamin ?: ""
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
                                     data, value!!, text
@@ -151,7 +153,7 @@ class PersonalDataFragment :
                         rvAgama.setOnClickListener {
                             val text = "Agama"
                             val data = "kode_agama"
-                            val value = response.data.pribadi.kode_agama
+                            val value = response.data.pribadi.kode_agama ?: ""
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
                                     data, value!!, text
@@ -161,7 +163,7 @@ class PersonalDataFragment :
                         rvStatusPerkawinan.setOnClickListener {
                             val text = "Status Kawin"
                             val data = "kode_kawin"
-                            val value = response.data.pribadi.kode_kawin
+                            val value = response.data.pribadi.kode_kawin ?: ""
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
                                     data, value!!, text
@@ -171,7 +173,7 @@ class PersonalDataFragment :
                         rvGolongan.setOnClickListener {
                             val text = "Golongan Darah"
                             val data = "golongan_darah"
-                            val value = response.data.pribadi.golongan_darah
+                            val value = response.data.pribadi.golongan_darah ?: ""
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
                                     data, value!!, text
@@ -181,7 +183,7 @@ class PersonalDataFragment :
                         rvNoKtp.setOnClickListener {
                             val text = "NIK"
                             val data = "nik"
-                            val value = response.data.pribadi.nik
+                            val value = response.data.pribadi.nik ?: ""
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
                                     data, value!!, text
@@ -191,7 +193,7 @@ class PersonalDataFragment :
                         rvNoHp.setOnClickListener {
                             val text = "Nomor HP"
                             val data = "no_hp"
-                            val value = response.data.pribadi.no_hp
+                            val value = response.data.pribadi.no_hp ?: ""
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
                                     data, value!!, text
@@ -201,7 +203,7 @@ class PersonalDataFragment :
                         rvEmail.setOnClickListener {
                             val text = "Email"
                             val data = "email"
-                            val value = response.data.pribadi.email
+                            val value = response.data.pribadi.email ?: ""
                             val action =
                                 PersonalDataFragmentDirections.actionPersonalDataFragmentToEditProfileFragment(
                                     data, value!!, text

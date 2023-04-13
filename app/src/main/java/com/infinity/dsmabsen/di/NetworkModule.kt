@@ -25,7 +25,6 @@ object NetworkModule {
     @Provides
     fun providesRetrofit(): Retrofit.Builder {
         val gson = GsonBuilder().setLenient().create()
-
         return Retrofit.Builder()
             .baseUrl(Constans.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
@@ -48,9 +47,10 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providesUserAPI(retrofitBuilder: Retrofit.Builder): AuthApi {
-        return retrofitBuilder.build()
-            .create(AuthApi::class.java)
+    fun providesUserAPI(retrofitBuilder: Retrofit.Builder, okHttpClient: OkHttpClient): AuthApi {
+        return retrofitBuilder.client(okHttpClient).build().create(AuthApi::class.java)
+//        return retrofitBuilder.build()
+//            .create(AuthApi::class.java)
     }
 
     @Singleton
