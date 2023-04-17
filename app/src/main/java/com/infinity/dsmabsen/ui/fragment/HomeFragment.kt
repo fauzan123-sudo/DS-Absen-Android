@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private val permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+    private val permissions = if (Build.VERSION.SDK_INT >= 13) {
         arrayOf(
             Manifest.permission.CAMERA,
             Manifest.permission.ACCESS_FINE_LOCATION,
