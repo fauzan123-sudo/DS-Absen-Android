@@ -36,7 +36,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private val viewModel: AuthViewModel by viewModels()
-    private lateinit var imei: String
+//    private lateinit var imei: String
     private lateinit var telephonyManager: TelephonyManager
     private lateinit var cld: ConnectionLiveData
 
@@ -58,14 +58,14 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
-        var imeinya = getIMEI(this)
-
-        if (imeinya.isEmpty()) {
-            imeinya = "Nomor IMEI tidak ditemukan"
-        } else {
-            Log.d("imei", imeinya)
-
-        }
+//        var imeinya = getIMEI(this)
+//
+//        if (imeinya.isEmpty()) {
+//            imeinya = "Nomor IMEI tidak ditemukan"
+//        } else {
+//            Log.d("imei", imeinya)
+//
+//        }
 
 //        Toast.makeText(this, imeinya, Toast.LENGTH_SHORT).show()
         telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
@@ -89,39 +89,29 @@ class LoginActivity : AppCompatActivity() {
                         password.error = "harap isi passwordnya!!"
                         password.requestFocus()
                     }
-//                    imeinya == "Nomor IMEI tidak ditemukan" ->{
-//                        AlertDialog.Builder(this@LoginActivity)
-//                            .setTitle("Peringatan")
-//                            .setMessage("Nomor IMEI tidak ditemukan")
-//                        //    .setIcon(R.drawable.ic_warning)
-//                            .setPositiveButton("Ya"){ dialog, _ ->
-//                               dialog.dismiss()
-//                            }
-//                            .create().show()
-//                        Log.d(TAG, "perangkat anda tidak mendukung imei ")
-//                    }
                     else -> {
                         constrain.isVisible = false
                         Log.d(TAG, "else button")
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                            viewModel.login(myUserName, myPassword, mId)
-                        } else {
-                            viewModel.login(myUserName, myPassword, imeinya)
-                        }
+                        viewModel.login(myUserName, myPassword, mId)
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//                            viewModel.login(myUserName, myPassword, mId)
+//                        } else {
+//                            viewModel.login(myUserName, myPassword, imeinya)
+//                        }
                     }
                 }
 
-                Log.d(
-                    "data login", "Nip : $myUserName" +
-                            "Password : $myPassword" +
-                            "imei : $mId"
-                )
-
-                Log.d(
-                    "data login2", "Nip : $myUserName" +
-                            "Password : $myPassword" +
-                            "imei : $imeinya"
-                )
+//                Log.d(
+//                    "data login", "Nip : $myUserName" +
+//                            "Password : $myPassword" +
+//                            "imei : $mId"
+//                )
+//
+//                Log.d(
+//                    "data login2", "Nip : $myUserName" +
+//                            "Password : $myPassword" +
+//                            "imei : $imeinya"
+//                )
             }
 
             viewModel.userResponseLiveData.observe(this@LoginActivity) {
@@ -159,37 +149,37 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun getIMEI(context: Context): String {
-        var imei: String? = ""
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            if (context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-                val telephonyManager =
-                    context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-                imei = telephonyManager.imei
-                return if (imei.isNullOrEmpty()) {
-                    "IMEI tidak ditemukan"
-                } else {
-                    imei
-                }
-            }
-        } else {
-            if (context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-                val subscriptionManager =
-                    context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
-                val subscriptionInfoList = subscriptionManager.activeSubscriptionInfoList
-                if (subscriptionInfoList != null && subscriptionInfoList.isNotEmpty()) {
-                    val subscriptionInfo = subscriptionInfoList[0]
-                    imei = subscriptionInfo?.iccId
-                    return if (imei.isNullOrEmpty()) {
-                        "Nomor IMEI tidak ditemukan"
-                    } else {
-                        imei
-                    }
-                }
-            }
-        }
-        return imei!!
-    }
+//    private fun getIMEI(context: Context): String {
+//        var imei: String? = ""
+//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+//            if (context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+//                val telephonyManager =
+//                    context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+//                imei = telephonyManager.imei
+//                return if (imei.isNullOrEmpty()) {
+//                    "IMEI tidak ditemukan"
+//                } else {
+//                    imei
+//                }
+//            }
+//        } else {
+//            if (context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+//                val subscriptionManager =
+//                    context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
+//                val subscriptionInfoList = subscriptionManager.activeSubscriptionInfoList
+//                if (subscriptionInfoList != null && subscriptionInfoList.isNotEmpty()) {
+//                    val subscriptionInfo = subscriptionInfoList[0]
+//                    imei = subscriptionInfo?.iccId
+//                    return if (imei.isNullOrEmpty()) {
+//                        "Nomor IMEI tidak ditemukan"
+//                    } else {
+//                        imei
+//                    }
+//                }
+//            }
+//        }
+//        return imei!!
+//    }
 
 
     private fun checkNetworkConnection() {

@@ -29,8 +29,8 @@ class HomeFragment : Fragment() {
         arrayOf(
             Manifest.permission.CAMERA,
             Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.READ_PHONE_STATE,
-            Manifest.permission.MANAGE_EXTERNAL_STORAGE
+            Manifest.permission.READ_PHONE_STATE
+//            ,Manifest.permission.MANAGE_EXTERNAL_STORAGE
         )
     } else {
         arrayOf(

@@ -20,7 +20,7 @@
         android:padding="@dimen/_20sdp"
         android:src="@drawable/no_data_found"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/recPerizinan" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recPerizinan"
