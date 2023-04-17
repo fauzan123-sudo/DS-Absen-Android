@@ -24,13 +24,23 @@ import com.infinity.dsmabsen.ui.activity.LoginActivity
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private val permissions = arrayOf(
-        Manifest.permission.CAMERA,
-        Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.READ_PHONE_STATE,
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.MANAGE_EXTERNAL_STORAGE
-    )
+
+    private val permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE
+        )
+    } else {
+        arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+    }
+
     private val ALL_PERMISSIONS_CODE = 1
     private val PERMISSION_DENIED_PERMANENTLY_CODE = 2
 
@@ -121,7 +131,7 @@ class HomeFragment : Fragment() {
     private fun showExplanationDialog(requestCode: Int) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("aplikasi membutuhkan perizinan")
-        builder.setMessage("aplikasi membutuhakn beberapa perizinn agar dapat digunakan")
+        builder.setMessage("aplikasi membutuhakan beberapa perizinan agar dapat digunakan")
 
         builder.setPositiveButton("buka pengaturan") { _, _ ->
             if (requestCode == PERMISSION_DENIED_PERMANENTLY_CODE) {
