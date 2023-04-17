@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.Manifest
+import android.content.Context
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
@@ -35,6 +36,7 @@ import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.viewModel.PerizinanViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.infinity.dsmabsen.helper.AlertDialogHelper
+import com.infinity.dsmabsen.ui.activity.MainActivity
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
@@ -64,6 +66,8 @@ class FormPerizinanFragment :
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
         setupToolbar("Ajukan Perizinan")
         view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
             toolbar.setOnMenuItemClickListener { menuItem ->
@@ -441,6 +445,14 @@ class FormPerizinanFragment :
 
     }
 
+    private fun uriToMultipartBody(bitmap: Bitmap): MultipartBody.Part {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        val requestFile = byteArray.toRequestBody("image/png".toMediaTypeOrNull())
+        return MultipartBody.Part.createFormData("file", "image.png", requestFile)
+    }
+
     override fun onConnectionAvailable() {
         super.onConnectionAvailable()
         binding.apply {
@@ -448,14 +460,6 @@ class FormPerizinanFragment :
             scrollView.visibility = View.VISIBLE
             noInternetConnection.ivNoConnection.visibility = View.GONE
         }
-    }
-
-    private fun uriToMultipartBody(bitmap: Bitmap): MultipartBody.Part {
-        val byteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-        val byteArray = byteArrayOutputStream.toByteArray()
-        val requestFile = byteArray.toRequestBody("image/png".toMediaTypeOrNull())
-        return MultipartBody.Part.createFormData("file", "image.png", requestFile)
     }
 
     override fun onConnectionLost() {
@@ -468,28 +472,51 @@ class FormPerizinanFragment :
     }
 
     override fun onResume() {
-        super.onResume()
+        Log.d("TAG", "onResume: ")
         hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
+        super.onResume()
     }
 
     override fun onStart() {
+        Log.d("TAG", "onStart: ")
+        hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
         super.onStart()
-        hideBottomNavigation()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        hideBottomNavigation()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        showBottomNavigation()
     }
 
     override fun onPause() {
-        super.onPause()
+        Log.d("TAG", "onPause: ")
         hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
+        super.onPause()
+    }
+
+    override fun onStop() {
+        Log.d("TAG", "onStop: ")
+        hideBottomNavigation()
+        val myActivities = activity as MainActivity
+        myActivities.hideMyBottomNav()
+        super.onStop()
+    }
+
+    override fun onDestroyView() {
+        Log.d("TAG", "onDestroyView: ")
+//        showBottomNavigation()
+        super.onDestroyView()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("TAG", "onDetach: ")
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d("TAG", "onAttach: ")
     }
 
 }

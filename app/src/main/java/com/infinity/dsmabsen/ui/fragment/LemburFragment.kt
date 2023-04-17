@@ -164,7 +164,7 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
 
     override fun onDestroyView() {
         Log.d("TAG", "onDestroyView: ")
-        showBottomNavigation()
+//        showBottomNavigation()
         super.onDestroyView()
     }
 

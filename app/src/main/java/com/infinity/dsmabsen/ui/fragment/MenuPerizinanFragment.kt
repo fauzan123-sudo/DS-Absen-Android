@@ -167,7 +167,7 @@ class MenuPerizinanFragment :
 
     override fun onDestroyView() {
         Log.d("TAG", "onDestroyView: ")
-        showBottomNavigation()
+//        showBottomNavigation()
         super.onDestroyView()
     }
 

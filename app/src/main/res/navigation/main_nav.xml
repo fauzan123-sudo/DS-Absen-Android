@@ -211,6 +211,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            android:id="@+id/action_allMenuFragment_to_aktivitasFragment"
+            app:destination="@id/aktivitasFragment" />
     </fragment>
     <fragment
         android:id="@+id/allProfileFragment"
@@ -500,5 +507,25 @@
         <action
             android:id="@+id/faceScanning_to_attendance"
             app:destination="@id/attendanceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aktivitasFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.AktivitasFragment"
+        tools:layout="@layout/fragment_aktivitas">
+        <action
+            android:id="@+id/action_aktivitasFragment_to_detailAktivitasFragment"
+            app:destination="@id/detailAktivitasFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/detailAktivitasFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.DetailAktivitasFragment"
+        tools:layout="@layout/fragment_detail_aktivitas" >
+        <argument
+            android:name="detailAktivitas"
+            app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
     </fragment>
 </navigation>

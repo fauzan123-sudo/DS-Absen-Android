@@ -40,7 +40,13 @@ class AllMenuFragment :BaseFragment<FragmentAllMenuBinding>(FragmentAllMenuBindi
                 findNavController().navigate(R.id.action_allMenuFragment_to_reimbursementFragment)
             }
 
+            btnAktivitas.setOnClickListener {
+                findNavController().navigate(R.id.aktivitasFragment)
+            }
 
+            btnBerita.setOnClickListener {
+                findNavController().navigate(R.id.pengumumanFragment)
+            }
         }
 
     }

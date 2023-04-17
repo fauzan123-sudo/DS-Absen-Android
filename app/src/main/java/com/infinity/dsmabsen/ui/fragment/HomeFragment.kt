@@ -29,6 +29,7 @@ class HomeFragment : Fragment() {
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.READ_PHONE_STATE,
         Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.MANAGE_EXTERNAL_STORAGE
     )
     private val ALL_PERMISSIONS_CODE = 1
     private val PERMISSION_DENIED_PERMANENTLY_CODE = 2
@@ -83,27 +84,32 @@ class HomeFragment : Fragment() {
                 if (checkAllPermissionsGranted(permissions)) {
                     startLoginActivity()
                 } else {
-                    // check if any permission was denied permanently
                     var isAnyPermissionDeniedPermanently = false
                     for (i in permissions.indices) {
                         if (!shouldShowRequestPermissionRationale(permissions[i]) &&
                             grantResults[i] != PackageManager.PERMISSION_GRANTED
                         ) {
                             isAnyPermissionDeniedPermanently = true
+                            // log jika perizinan ditolak secara permanen
+                            Log.d("Permission Denied Permanently:", permissions[i])
                             break
+                        } else if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                            // log jika perizinan diizinkan
+                            Log.d("Permission Granted:", "${permissions[i]}")
+                        } else if (shouldShowRequestPermissionRationale(permissions[i])) {
+                            // log jika perizinan ditolak sementara
+                            Log.d("Permission Denied Temporarily:", "${permissions[i]}")
                         }
                     }
                     if (isAnyPermissionDeniedPermanently) {
-                        // show an explanation dialog to the user
                         showExplanationDialog(PERMISSION_DENIED_PERMANENTLY_CODE)
-                    } else {
-                        // show rationale and request permissions again
-                        showExplanationDialog(ALL_PERMISSIONS_CODE)
                     }
+//                    else {
+////                        showExplanationDialog(ALL_PERMISSIONS_CODE)
+//                    }
                 }
             }
             PERMISSION_DENIED_PERMANENTLY_CODE -> {
-                // open device settings so that user can enable the permissions
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                 val uri = Uri.fromParts("package", requireContext().packageName, null)
                 intent.data = uri

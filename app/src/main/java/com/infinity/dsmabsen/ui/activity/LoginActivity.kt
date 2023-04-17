@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
@@ -57,8 +58,15 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
-        val imeinya = getIMEI(this)
-        Log.d("imei", imeinya)
+        var imeinya = getIMEI(this)
+
+        if (imeinya.isEmpty()) {
+            imeinya = "Nomor IMEI tidak ditemukan"
+        } else {
+            Log.d("imei", imeinya)
+
+        }
+
 //        Toast.makeText(this, imeinya, Toast.LENGTH_SHORT).show()
         telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
         val mId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
@@ -81,26 +89,39 @@ class LoginActivity : AppCompatActivity() {
                         password.error = "harap isi passwordnya!!"
                         password.requestFocus()
                     }
-//                    imeinya == "" ->{
+//                    imeinya == "Nomor IMEI tidak ditemukan" ->{
+//                        AlertDialog.Builder(this@LoginActivity)
+//                            .setTitle("Peringatan")
+//                            .setMessage("Nomor IMEI tidak ditemukan")
+//                        //    .setIcon(R.drawable.ic_warning)
+//                            .setPositiveButton("Ya"){ dialog, _ ->
+//                               dialog.dismiss()
+//                            }
+//                            .create().show()
 //                        Log.d(TAG, "perangkat anda tidak mendukung imei ")
 //                    }
                     else -> {
                         constrain.isVisible = false
+                        Log.d(TAG, "else button")
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             viewModel.login(myUserName, myPassword, mId)
                         } else {
-                            viewModel.login(myUserName, myPassword, imei)
+                            viewModel.login(myUserName, myPassword, imeinya)
                         }
                     }
                 }
 
-                Log.d("data login", "Nip : $myUserName" +
-                        "Password : $myPassword" +
-                        "imei : $mId")
+                Log.d(
+                    "data login", "Nip : $myUserName" +
+                            "Password : $myPassword" +
+                            "imei : $mId"
+                )
 
-                Log.d("data login2", "Nip : $myUserName" +
-                        "Password : $myPassword" +
-                        "imei : $imeinya")
+                Log.d(
+                    "data login2", "Nip : $myUserName" +
+                            "Password : $myPassword" +
+                            "imei : $imeinya"
+                )
             }
 
             viewModel.userResponseLiveData.observe(this@LoginActivity) {
@@ -145,8 +166,10 @@ class LoginActivity : AppCompatActivity() {
                 val telephonyManager =
                     context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
                 imei = telephonyManager.imei
-                if (!imei.isNullOrEmpty()) {
-                    return imei
+                return if (imei.isNullOrEmpty()) {
+                    "IMEI tidak ditemukan"
+                } else {
+                    imei
                 }
             }
         } else {
@@ -157,13 +180,14 @@ class LoginActivity : AppCompatActivity() {
                 if (subscriptionInfoList != null && subscriptionInfoList.isNotEmpty()) {
                     val subscriptionInfo = subscriptionInfoList[0]
                     imei = subscriptionInfo?.iccId
-                    if (!imei.isNullOrEmpty()) {
-                        return imei
+                    return if (imei.isNullOrEmpty()) {
+                        "Nomor IMEI tidak ditemukan"
+                    } else {
+                        imei
                     }
                 }
             }
         }
-
         return imei!!
     }
 
@@ -194,12 +218,18 @@ class LoginActivity : AppCompatActivity() {
             Log.d(TAG, "permission is Granted: $isGranted")
             if (isGranted) {
                 Toast.makeText(this, "Permission is granted", Toast.LENGTH_SHORT).show()
-                imei = telephonyManager.imei
-                Log.d(TAG, imei)
-                Toast.makeText(this, imei, Toast.LENGTH_SHORT).show()
+                val imei = telephonyManager.imei
+                if (imei != null) {
+                    Log.d(TAG, imei)
+                    Toast.makeText(this, imei, Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.d(TAG, "Nomor IMEI tidak ditemukan")
+                    Toast.makeText(this, "Nomor IMEI tidak ditemukan", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Log.d(TAG, "Permission Single : Permission Denied ")
                 Toast.makeText(this, "Permission Denied ", Toast.LENGTH_SHORT).show()
             }
         }
+
 }

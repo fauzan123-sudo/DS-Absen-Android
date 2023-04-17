@@ -1,5 +1,6 @@
 package com.infinity.dsmabsen.repository
 
+import com.infinity.dsmabsen.network.AktivitasApi
 import com.infinity.dsmabsen.network.PerizinanApi
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintTop_toTopOf="parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.ReimbursementFragment"
-    android:background="@drawable/gradiend_background">
+    android:background="@drawable/gradiend_background"
+    tools:context=".ui.fragment.AktivitasFragment">
 
     <include
         android:id="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        layout="@layout/toolbar_layout"/>
+        layout="@layout/toolbar_layout"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_aktivitas"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:listitem="@layout/item_aktivitas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/img_no_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,22 +39,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/loadingInclude"
         layout="@layout/loading" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:padding="@dimen/_20sdp"
-        android:id="@+id/recReimbursement"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        tools:listitem="@layout/item_reimbursement"
-        android:paddingHorizontal="@dimen/_10sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <include
-        android:visibility="gone"
-        android:id="@+id/noInternetConnection"
-        layout="@layout/fake"
-        />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

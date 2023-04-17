@@ -1,49 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradiend_background"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.MenuPerizinanFragment">
 
     <include
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout"/>
+        layout="@layout/toolbar_layout"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
-        android:visibility="gone"
         android:id="@+id/img_no_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_20sdp"
         android:src="@drawable/no_data_found"
-        app:layout_constraintTop_toBottomOf="@id/recPerizinan"
-        />
-
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/recPerizinan" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recPerizinan"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_15sdp"
         android:layout_height="0dp"
-        android:paddingHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <include
-        android:visibility="gone"
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
-        />
+        android:visibility="gone" />
 
     <include
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/loadingInclude"
-        layout="@layout/loading" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

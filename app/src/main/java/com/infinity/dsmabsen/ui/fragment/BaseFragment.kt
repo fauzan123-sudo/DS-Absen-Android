@@ -113,12 +113,12 @@ abstract class BaseFragment<VB : ViewBinding>(
     }
 
     fun showBottomNavigation() {
-//        Log.d("BN","SHOW IN BASE")
-        bottomNavigationView.visibility = View.VISIBLE
+        Log.d("BN","SHOW IN BASE")
+        bottomNavigationView.visibility = View.GONE
     }
 
     fun hideBottomNavigation() {
-//        Log.d("BN","HIDE IN BASE")
+        Log.d("BN","HIDE IN BASE")
         bottomNavigationView.visibility = View.GONE
     }
 

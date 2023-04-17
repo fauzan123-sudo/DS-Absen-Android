@@ -1,8 +1,11 @@
 package com.infinity.dsmabsen.ui.fragment
 
 import android.os.Bundle
+import android.text.method.DigitsKeyListener
 import android.util.Log
 import android.view.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -38,36 +41,223 @@ class EditProfileFragment :
         binding.apply {
             val argument = argss.txtProfile
             txtEdit.text = argument
+            val value = argss.valueProfile
+            Log.d("nilai", value)
             edtProfile.setText(argss.valueProfile)
             edtProfile.hint = argument
-            if (argument == "Tanggal Lahir") {
-                edtProfile.keyListener = null
-                btnUbahTanggal.visibility = View.VISIBLE
-                btnUbahTanggal.setOnClickListener {
-                    val datePicker = MaterialDatePicker.Builder
-                        .datePicker()
-                        .setTitleText("")
-                        .build()
-                    datePicker.show(childFragmentManager, "DatePicker")
+            when (argument) {
+                "Tanggal Lahir" -> {
+                    edtProfile.keyListener = null
+                    btnUbahTanggal.visibility = View.VISIBLE
+                    btnUbahTanggal.setOnClickListener {
+                        val datePicker = MaterialDatePicker.Builder
+                            .datePicker()
+                            .setTitleText("")
+                            .build()
+                        datePicker.show(childFragmentManager, "DatePicker")
 
-                    datePicker.addOnPositiveButtonClickListener {
-                        val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
-                        val date = dateFormatter.format(Date(it))
-                        edtProfile.setText(date)
+                        datePicker.addOnPositiveButtonClickListener {
+                            val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
+                            val date = dateFormatter.format(Date(it))
+                            edtProfile.setText(date)
+                        }
+
+                        datePicker.addOnNegativeButtonClickListener {
+
+                        }
+
+                        datePicker.addOnCancelListener {
+
+                        }
+
                     }
-
-                    datePicker.addOnNegativeButtonClickListener {
-
-                    }
-
-                    datePicker.addOnCancelListener {
-
-                    }
-
                 }
-            } else {
-                edtProfile.isEnabled = true
-                btnUbahTanggal.visibility = View.GONE
+                "Golongan Darah" -> {
+                    edtProfile.keyListener = null
+                    edtProfile.visibility = View.INVISIBLE
+                    spinnerGolonganDarah.visibility = View.VISIBLE
+                    val bloodTypes = resources.getStringArray(R.array.blood_types)
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        bloodTypes
+                    )
+                    spinnerGolonganDarah.adapter = adapter
+
+                    if (value.isNotEmpty()) {
+                        val position = bloodTypes.indexOf(value)
+                        Log.d("posisi", position.toString())
+                        if (position >= 0) {
+                            val getSpinner = spinnerGolonganDarah.setSelection(position)
+                            val getSpinners = spinnerGolonganDarah.selectedItem.toString()
+//                            Log.d("spinner", getSpinner.toString())
+                            Log.d("spinners", getSpinners)
+                        }
+                    }
+
+                    spinnerGolonganDarah.onItemSelectedListener =
+                        object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                parent: AdapterView<*>,
+                                view: View?,
+                                position: Int,
+                                id: Long
+                            ) {
+                                val selectedItem = parent.getItemAtPosition(position).toString()
+                                Log.d("EditProfileFragment", "Selected blood type: $selectedItem")
+                                // Set the selected value to the text of edtProfile
+                                edtProfile.setText(selectedItem)
+
+                                // Set the keyListener back to normal
+                                edtProfile.keyListener =
+                                    DigitsKeyListener.getInstance("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>) {
+                                // Do nothing
+                            }
+                        }
+                }
+                "Status Kawin" -> {
+                    edtProfile.keyListener = null
+                    edtProfile.visibility = View.INVISIBLE
+                    spinnerGolonganDarah.visibility = View.VISIBLE
+                    val bloodTypes = resources.getStringArray(R.array.status_kawin)
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        bloodTypes
+                    )
+                    spinnerGolonganDarah.adapter = adapter
+                    if (value.isNotEmpty()) {
+                        val position = bloodTypes.indexOf(value)
+                        if (position >= 0) {
+                            val getSpinner = spinnerGolonganDarah.setSelection(position)
+                            val getSpinners = spinnerGolonganDarah.selectedItem.toString()
+//                            Log.d("spinner", getSpinner.toString())
+                            Log.d("spinners", getSpinners)
+                        }
+                    }
+
+                    spinnerGolonganDarah.onItemSelectedListener =
+                        object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                parent: AdapterView<*>,
+                                view: View?,
+                                position: Int,
+                                id: Long
+                            ) {
+                                val selectedItem = parent.getItemAtPosition(position).toString()
+                                Log.d("status kawin", selectedItem)
+                                // Set the selected value to the text of edtProfile
+                                edtProfile.setText(selectedItem)
+
+                                // Set the keyListener back to normal
+                                edtProfile.keyListener =
+                                    DigitsKeyListener.getInstance("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>) {
+                                // Do nothing
+                            }
+                        }
+                }
+                "Agama" -> {
+                    edtProfile.keyListener = null
+                    edtProfile.visibility = View.INVISIBLE
+                    spinnerGolonganDarah.visibility = View.VISIBLE
+                    val bloodTypes = resources.getStringArray(R.array.jenis_agama)
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        bloodTypes
+                    )
+                    spinnerGolonganDarah.adapter = adapter
+//                    Log.d("data", value)
+                    if (value.isNotEmpty()) {
+                        val position = bloodTypes.indexOf(value)
+                        if (position >= 0) {
+                            val getSpinner = spinnerGolonganDarah.setSelection(position)
+                            val getSpinners = spinnerGolonganDarah.selectedItem.toString()
+//                            Log.d("spinner", getSpinner.toString())
+
+                        }
+                    }
+
+                    spinnerGolonganDarah.onItemSelectedListener =
+                        object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                parent: AdapterView<*>,
+                                view: View?,
+                                position: Int,
+                                id: Long
+                            ) {
+                                val selectedItem = parent.getItemAtPosition(position).toString()
+//                                Log.d("agama", selectedItem)
+                                // Set the selected value to the text of edtProfile
+                                edtProfile.setText(selectedItem)
+
+                                // Set the keyListener back to normal
+                                edtProfile.keyListener =
+                                    DigitsKeyListener.getInstance("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>) {
+                                // Do nothing
+                            }
+                        }
+                }
+
+                "Jenis Kelamin" -> {
+                    edtProfile.keyListener = null
+                    edtProfile.visibility = View.INVISIBLE
+                    spinnerGolonganDarah.visibility = View.VISIBLE
+                    val bloodTypes = resources.getStringArray(R.array.jenis_kelamin)
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        bloodTypes
+                    )
+                    spinnerGolonganDarah.adapter = adapter
+                    if (value.isNotEmpty()) {
+                        val defaultValue = toPascalCase(value)
+                        Log.d("kelamin", defaultValue)
+                        val position = bloodTypes.indexOf(defaultValue)
+                        if (position >= 0) {
+                            val getSpinner = spinnerGolonganDarah.setSelection(position)
+                            val getSpinners = spinnerGolonganDarah.selectedItem.toString()
+//                            Log.d("spinner", getSpinner.toString())
+                            Log.d("spinners", getSpinners)
+                        }
+                    }
+
+                    spinnerGolonganDarah.onItemSelectedListener =
+                        object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                parent: AdapterView<*>,
+                                view: View?,
+                                position: Int,
+                                id: Long
+                            ) {
+                                val selectedItem = parent.getItemAtPosition(position).toString()
+//                                Log.d("Jenis Kelamin", selectedItem)
+                                // Set the selected value to the text of edtProfile
+                                edtProfile.setText(selectedItem)
+
+                                // Set the keyListener back to normal
+                                edtProfile.keyListener =
+                                    DigitsKeyListener.getInstance("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>) {
+                                // Do nothing
+                            }
+                        }
+                }
+                else -> {
+                    edtProfile.isEnabled = true
+                    btnUbahTanggal.visibility = View.GONE
+                }
             }
         }
 
@@ -77,16 +267,22 @@ class EditProfileFragment :
             toolbar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.save -> {
-                        AlertDialog.Builder(requireContext())
-                            .setMessage("Anda yakin ingin mengubah data")
-                            //    .setIcon(R.drawable.ic_warning)
-                            .setPositiveButton("Ya") { _, _ ->
-                                savedEdit()
-                            }
-                            .setNegativeButton("Kembali") { dialog, _ ->
-                                dialog.dismiss()
-                            }
-                            .create().show()
+                        if (binding.edtProfile.text.toString().isEmpty()) {
+                            binding.edtProfile.error = "harap isi bidang"
+                            binding.edtProfile.requestFocus()
+                        } else {
+                            AlertDialog.Builder(requireContext())
+                                .setMessage("Anda yakin ingin mengubah data")
+                                //    .setIcon(R.drawable.ic_warning)
+                                .setPositiveButton("Ya") { _, _ ->
+                                    savedEdit()
+                                }
+                                .setNegativeButton("Kembali") { dialog, _ ->
+                                    dialog.dismiss()
+                                }
+                                .create().show()
+                        }
+
                         true
                     }
 
@@ -95,6 +291,17 @@ class EditProfileFragment :
             }
         }
 
+    }
+
+    private fun toPascalCase(input: String): String {
+        var result = ""
+        when (input) {
+            "laki-laki" -> result = "Laki-Laki"
+            "Laki-laki" -> result = "Laki-Laki"
+            "perempuan" -> result = "Perempuan"
+        }
+
+        return result
     }
 
     private fun savedEdit() {

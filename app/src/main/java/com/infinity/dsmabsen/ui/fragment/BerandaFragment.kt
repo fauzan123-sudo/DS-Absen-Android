@@ -18,6 +18,7 @@ import com.infinity.dsmabsen.helper.*
 import com.infinity.dsmabsen.helper.Constans.IMAGE_URL
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.repository.NetworkResult
+import com.infinity.dsmabsen.ui.activity.MainActivity
 import com.infinity.dsmabsen.ui.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
@@ -43,6 +44,9 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
         super.onViewCreated(view, savedInstanceState)
 
         hideToolbar()
+
+        val myActivities = activity as MainActivity
+        myActivities.showMyBottomNav()
 
         with(binding) {
 

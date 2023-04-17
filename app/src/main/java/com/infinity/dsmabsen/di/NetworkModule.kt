@@ -127,4 +127,13 @@ object NetworkModule {
         return retrofitBuilder.client(okHttpClient).build().create(PasswordApi::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun providesAktivitas(
+        retrofitBuilder: Retrofit.Builder,
+        okHttpClient: OkHttpClient
+    ): AktivitasApi {
+        return retrofitBuilder.client(okHttpClient).build().create(AktivitasApi::class.java)
+    }
+
 }

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.ItemPengumumanBinding
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -30,12 +31,14 @@ class PengumumanAdapter(
                         Glide.with(context)
                             .load(file)
                             .placeholder(R.drawable.progress_animation)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(ivPengumuman)
                     } else {
                         Glide.with(context)
                             .load(file)
                             .placeholder(R.drawable.progress_animation)
                             .error(R.drawable.image_not_found)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(ivPengumuman)
                     }
                 }

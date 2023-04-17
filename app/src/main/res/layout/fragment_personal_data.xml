@@ -65,7 +65,7 @@
                         android:layout_toStartOf="@+id/arrow1"
                         android:fontFamily="@font/poppins"
                         android:text="-"
-                        android:textColor="@color/black_text"
+                        android:textColor="@color/_grey"
                         android:textSize="@dimen/_11ssp" />
 
                     <ImageView

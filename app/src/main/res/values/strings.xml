@@ -10,4 +10,34 @@
     <string name="simpan">Simpan</string>
     <string name="add">ADD</string>
     <string name="attention">"Perhatian: Aplikasi Ini Memerlukan Akses Lokasi, IMEI, dan Kamera"</string>
+
+    <string-array name="blood_types">
+        <item>A</item>
+        <item>B</item>
+        <item>AB</item>
+        <item>O</item>
+    </string-array>
+
+    <string-array name="jenis_agama">
+        <item>Katolik</item>
+        <item>Islam</item>
+        <item>Kristen Protestan</item>
+        <item>Kong Hu Cu</item>
+        <item>Hindu</item>
+        <item>Buddha</item>
+        <item>Lainya</item>
+    </string-array>
+
+    <string-array name="status_kawin">
+        <item>Kawin</item>
+        <item>Belum Kawin</item>
+        <item>Cerai Hidup</item>
+        <item>Cerai Mati</item>
+    </string-array>
+
+    <string-array name="jenis_kelamin">
+        <item>Laki-Laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
 </resources>

@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/gradiend_background"
-    >
+    tools:context=".ui.fragment.AllMenuFragment">
 
     <include
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout"/>
+        layout="@layout/toolbar_layout"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.flexbox.FlexboxLayout
-        android:paddingVertical="@dimen/_10sdp"
-        android:paddingHorizontal="@dimen/_20sdp"
         android:id="@+id/fb_1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_110sdp"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="?attr/actionBarSize"
-        app:flexWrap="nowrap"
-        app:showDivider="middle"
         android:clipToPadding="false"
-        app:dividerDrawable="@drawable/divider">
+        android:paddingHorizontal="@dimen/_20sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        app:dividerDrawable="@drawable/divider"
+        app:flexWrap="nowrap"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showDivider="middle">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_perizinan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/shadow_bg"
-            >
+            android:background="@drawable/shadow_bg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -42,30 +41,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_izin"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/tv_perizinan_menu"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_perizinan_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PERIZINAN"
                     android:fontFamily="@font/poppins"
+                    android:text="PERIZINAN"
                     android:textSize="@dimen/_6ssp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btn_lembur"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/btn_lembur"
             android:background="@drawable/shadow_bg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,10 +78,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_lembur"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/tv_lembur"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_lembur"
@@ -100,9 +99,9 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btn_shift"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/btn_shift"
             android:background="@drawable/shadow_bg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -115,21 +114,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_shift"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/tv_shift"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_shift"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SHIFT"
                     android:fontFamily="@font/poppins"
+                    android:text="SHIFT"
                     android:textSize="@dimen/_6ssp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -141,20 +140,19 @@
         android:id="@+id/fb_2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_110sdp"
-        android:paddingVertical="@dimen/_10sdp"
-        android:paddingHorizontal="@dimen/_20sdp"
-        app:layout_constraintTop_toBottomOf="@+id/fb_1"
-        app:flexWrap="nowrap"
-        app:showDivider="middle"
         android:layout_marginTop="-12dp"
         android:clipToPadding="false"
-
-        app:dividerDrawable="@drawable/divider">
+        android:paddingHorizontal="@dimen/_20sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        app:dividerDrawable="@drawable/divider"
+        app:flexWrap="nowrap"
+        app:layout_constraintTop_toBottomOf="@+id/fb_1"
+        app:showDivider="middle">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btn_salary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/btn_salary"
             android:background="@drawable/shadow_bg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -167,31 +165,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_gaji"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/tv_gaji_menu"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_gaji_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="GAJI"
                     android:fontFamily="@font/poppins"
+                    android:text="GAJI"
                     android:textSize="@dimen/_6ssp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_reimbursement"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:background="@drawable/shadow_bg">
+            android:background="@drawable/shadow_bg"
+            android:clipToPadding="false">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -203,29 +202,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_reimbursement_menu"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/tv_reimbursement_menu"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_reimbursement_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="REIMBURSEMENT"
                     android:fontFamily="@font/poppins"
+                    android:text="REIMBURSEMENT"
                     android:textSize="@dimen/_6ssp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
+            android:id="@+id/btn_berita"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/btn_berita"
             android:background="@drawable/shadow_bg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -238,21 +238,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_berita"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/tv_berita"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_berita"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BERITA"
                     android:fontFamily="@font/poppins"
+                    android:text="BERITA"
                     android:textSize="@dimen/_6ssp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -262,19 +262,52 @@
 
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/fb_3"
-        android:layout_marginTop="-12dp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_110sdp"
-        android:paddingVertical="@dimen/_10sdp"
-        android:paddingHorizontal="@dimen/_20sdp"
-
-        app:layout_constraintTop_toBottomOf="@+id/fb_2"
-        app:flexWrap="nowrap"
-        app:showDivider="middle"
+        android:layout_marginTop="-12dp"
         android:clipToPadding="false"
-        app:dividerDrawable="@drawable/divider">
+        android:paddingHorizontal="@dimen/_20sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        app:dividerDrawable="@drawable/divider"
+        app:flexWrap="nowrap"
+        app:layout_constraintTop_toBottomOf="@+id/fb_2"
+        app:showDivider="middle">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_aktivitas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shadow_bg">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_15sdp">
+
+                <ImageView
+                    android:id="@+id/icon_aktivitas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_activity"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_aktivitas_menu"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_aktivitas_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="AKTIVITAS"
+                    android:textSize="@dimen/_6ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -289,9 +322,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.flexbox.FlexboxLayout>
+
     <include
-        android:visibility="gone"
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
-        />
+        android:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

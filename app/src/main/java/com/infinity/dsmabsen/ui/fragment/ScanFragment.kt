@@ -2,10 +2,8 @@ package com.infinity.dsmabsen.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.budiyev.android.codescanner.CodeScanner
@@ -14,20 +12,18 @@ import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.FragmentScanBinding
 import com.infinity.dsmabsen.model.Code
 
-class ScanFragment : Fragment() {
+class ScanFragment : BaseFragment<FragmentScanBinding>(FragmentScanBinding::inflate){
     private lateinit var codeScanner: CodeScanner
-    private var _binding: FragmentScanBinding? = null
-    private val binding get() = _binding!!
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentScanBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolbar("Scan Barcode")
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                else -> false
+            }
+        }
+        setHasOptionsMenu(true)
         val scannerView = binding.scannerView
         val activity = requireActivity()
         codeScanner = CodeScanner(activity, scannerView)
@@ -63,6 +59,19 @@ class ScanFragment : Fragment() {
     override fun onPause() {
         codeScanner.releaseResources()
         super.onPause()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+        val menuSave = menu.findItem(R.id.save)
+        val menuPlus = menu.findItem(R.id.add)
+        val menuLogout = menu.findItem(R.id.logout)
+        val menuScan = menu.findItem(R.id.scan)
+
+        menuScan.isVisible = false
+        menuLogout.isVisible = false
+        menuSave?.isVisible = false
+        menuPlus?.isVisible = false
     }
 
 //    override fun onDestroyView() {

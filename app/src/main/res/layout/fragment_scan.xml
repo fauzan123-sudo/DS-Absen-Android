@@ -7,10 +7,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.ScanFragment">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        />
+
     <com.budiyev.android.codescanner.CodeScannerView
         android:id="@+id/scanner_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:autoFocusButtonColor="@android:color/white"
         app:autoFocusButtonVisible="false"
         app:flashButtonColor="@android:color/white"
@@ -22,6 +27,7 @@
         app:frameCornersSize="50dp"
         app:frameSize="0.79"
         app:frameThickness="0dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

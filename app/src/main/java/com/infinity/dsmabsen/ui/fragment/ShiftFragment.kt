@@ -163,7 +163,7 @@ class ShiftFragment : BaseFragment<FragmentShiftBinding>(FragmentShiftBinding::i
 
     override fun onDestroyView() {
         Log.d("TAG", "onDestroyView: ")
-        showBottomNavigation()
+//        showBottomNavigation()
         super.onDestroyView()
     }
 

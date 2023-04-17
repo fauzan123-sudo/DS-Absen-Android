@@ -57,6 +57,32 @@ class MainActivity : AppCompatActivity() {
         with(binding) {
             bottomNavigationView.setupWithNavController(navController)
             navController.addOnDestinationChangedListener { _, destination, _ ->
+//                Log.d("Destination", "bottom nav show")
+                when (destination.id) {
+                    R.id.homeFragment -> {
+                        binding.bottomNavigationView.visibility = View.VISIBLE
+                        Log.d("in beranda", "")
+                                         }
+                    R.id.visitFragment2 ->{
+                        binding.bottomNavigationView.visibility = View.VISIBLE
+                        Log.d("in in visit", "")
+                    }
+                    R.id.attendanceFragment->{
+                        binding.bottomNavigationView.visibility = View.VISIBLE
+                        Log.d("in attendance", "")
+                    }
+                    R.id.dataAbsenFragment ->{
+                        binding.bottomNavigationView.visibility = View.VISIBLE
+                        Log.d("in data absen", "")
+                    }
+                    R.id.profileFragment -> {
+                        binding.bottomNavigationView.visibility = View.VISIBLE
+                        Log.d("in profile", "")
+                    }
+                    else -> {
+                        binding.bottomNavigationView.visibility = View.GONE
+                    }
+                }
             }
 
             val callback = object : OnBackPressedCallback(true) {
@@ -81,94 +107,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             onBackPressedDispatcher.addCallback(this@MainActivity, callback)
-        }
-
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-
-            val arrayShowNavbar = arrayOf(
-                R.id.berandaFragment,
-                R.id.visitFragment2,
-                R.id.attendanceFragment,
-                R.id.dataAbsenFragment,
-                R.id.profileFragment,
-            )
-            val arrayFragmentBgWhite = arrayOf(
-                R.id.allProfileFragment,
-                R.id.personalDataFragment,
-                R.id.penguasaanBahasaFragment,
-                R.id.jabatanDanPosisiFragment,
-                R.id.lokasiKerjaFragment,
-                R.id.pendidikanFragment,
-                R.id.pengalamanKerjaFragment,
-                R.id.penganjuanVisitFragment
-            )
-
-            if (arrayShowNavbar.contains(destination.id)) {
-                binding.bottomNavigationView.visibility = View.VISIBLE
-            } else {
-                binding.bottomNavigationView.visibility = View.GONE
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-
-//            val arrayHideNavbar = arrayOf(
-//                R.id.berandaFragment,
-//                R.id.visitFragment2,
-//                R.id.attendanceFragment,
-//                R.id.dataAbsenFragment,
-//                R.id.profileFragment,
-//            )
-//            if (arrayHideNavbar.contains(destination.id)) {
-//                binding.bottomNavigationView.visibility = View.VISIBLE
-//            } else {
-//                binding.bottomNavigationView.visibility = View.GONE
-//            }
-
-        }
-    }
-
-    override fun onResumeFragments() {
-        super.onResumeFragments()
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-
-//            val arrayHideNavbar = arrayOf(
-//                R.id.berandaFragment,
-//                R.id.visitFragment2,
-//                R.id.attendanceFragment,
-//                R.id.dataAbsenFragment,
-//                R.id.profileFragment,
-//            )
-//            if (arrayHideNavbar.contains(destination.id)) {
-//                binding.bottomNavigationView.visibility = View.VISIBLE
-//            } else {
-//                binding.bottomNavigationView.visibility = View.GONE
-//            }
-
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-
-//            val arrayHideNavbar = arrayOf(
-//                R.id.berandaFragment,
-//                R.id.visitFragment2,
-//                R.id.attendanceFragment,
-//                R.id.dataAbsenFragment,
-//                R.id.profileFragment,
-//            )
-//            if (arrayHideNavbar.contains(destination.id)) {
-//                binding.bottomNavigationView.visibility = View.VISIBLE
-//            } else {
-//                binding.bottomNavigationView.visibility = View.GONE
-//            }
-
         }
     }
 
@@ -251,42 +189,35 @@ class MainActivity : AppCompatActivity() {
         cld = ConnectionLiveData(application)
 
         cld.observe(this) { isConnected ->
-            navController.addOnDestinationChangedListener { _, destination, _ ->
-
-                val arrayShowNavbar = arrayOf(
-                    R.id.berandaFragment,
-                    R.id.visitFragment2,
-                    R.id.attendanceFragment,
-                    R.id.dataAbsenFragment,
-                    R.id.profileFragment,
-                )
-                val arrayFragmentBgWhite = arrayOf(
-                    R.id.allProfileFragment,
-                    R.id.personalDataFragment,
-                    R.id.penguasaanBahasaFragment,
-                    R.id.jabatanDanPosisiFragment,
-                    R.id.lokasiKerjaFragment,
-                    R.id.pendidikanFragment,
-                    R.id.pengalamanKerjaFragment,
-                    R.id.penganjuanVisitFragment
-                )
+//            navController.addOnDestinationChangedListener { _, destination, _ ->
 
                 if (isConnected) {
+                    Log.d("is connect", "bottom nav show")
                     binding.fragmentContainerView2.visibility = View.VISIBLE
-                    if (arrayShowNavbar.contains(destination.id)) {
-                        Log.d("BN","SHOW IN CONNECT")
-                        binding.bottomNavigationView.visibility = View.VISIBLE
-                    } else {
-                        Log.d("BN","HIDE IN CONNECT")
-                        binding.bottomNavigationView.visibility = View.GONE
-                    }
                     binding.noInternetConnection.ivNoConnection.visibility = View.GONE
+//                    binding.bottomNavigationView.visibility = View.VISIBLE
+//                        if (destination.id == R.id.berandaFragment) {
+//                            binding.bottomNavigationView.visibility = View.VISIBLE
+//                            Log.d("fragment", "sekarang diberanda")
+//                        }
+
+//                        if (destination.id == R.id.homeFragment ||
+//                            destination.id == R.id.visitFragment2 ||
+//                            destination.id == R.id.attendanceFragment ||
+//                            destination.id == R.id.dataAbsenFragment ||
+//                            destination.id == R.id.profileFragment
+//                        ) {
+//                            binding.bottomNavigationView.visibility = View.VISIBLE
+//                        } else {
+//                            binding.bottomNavigationView.visibility = View.VISIBLE
+//                        }
                 } else {
+                    Log.d("no connect ", "bottom nav hide")
                     binding.fragmentContainerView2.visibility = View.GONE
                     binding.bottomNavigationView.visibility = View.GONE
                     binding.noInternetConnection.ivNoConnection.visibility = View.VISIBLE
                 }
-            }
+//            }
         }
     }
 
@@ -295,11 +226,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun hideMyBottomNav() {
-        Log.d("BN","HIDE IN MAIN")
+        Log.d("BN", "HIDE IN MAIN")
         binding.bottomNavigationView.visibility = View.GONE
     }
 
     fun showMyBottomNav() {
+        Log.d("BN", "SHOW IN MAIN")
         binding.bottomNavigationView.visibility = View.VISIBLE
     }
 
