@@ -7,9 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.Manifest
 import android.content.Context
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
@@ -23,7 +20,10 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.provider.MediaStore
+import android.view.*
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -51,7 +51,7 @@ import java.util.*
 @AndroidEntryPoint
 class FormPerizinanFragment :
     BaseFragment<FragmentFormPerizinanBinding>(FragmentFormPerizinanBinding::inflate) {
-
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private val CAMERA_PERMISSION_CODE = 100
     private val GALLERY_PERMISSION_CODE = 101
 
@@ -62,9 +62,11 @@ class FormPerizinanFragment :
     private val viewModel: PerizinanViewModel by viewModels()
     val savedUser = Paper.book().read<DataX>("user")
     private var kode_perizinan: String? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+        registerResult()
         hideBottomNavigation()
         val myActivities = activity as MainActivity
         myActivities.hideMyBottomNav()
@@ -193,6 +195,21 @@ class FormPerizinanFragment :
         }
     }
 
+    private fun registerResult() {
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                try {
+                    val imageUri = result.data?.data
+//                    val imageUri: Uri = data.data!!
+                    binding.uploadFile.setImageURI(imageUri)
+                    binding.uploadFile.visibility = View.VISIBLE
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
 
     private fun uploadFiles() {
         val pictureDialog = AlertDialog.Builder(requireContext())
@@ -241,8 +258,10 @@ class FormPerizinanFragment :
     }
 
     private fun choosePictureFromGallery() {
+//        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+//        startActivityForResult(intent, GALLERY_REQUEST_CODE)
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, GALLERY_REQUEST_CODE)
+        resultLauncher.launch(intent)
     }
 
     @Deprecated("Deprecated in Java")
@@ -263,36 +282,36 @@ class FormPerizinanFragment :
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == CAMERA_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                takePictureFromCamera()
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Camera permission denied",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-        if (requestCode == GALLERY_PERMISSION_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                choosePictureFromGallery()
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Gallery permission denied",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
+//    @Deprecated("Deprecated in Java")
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        if (requestCode == CAMERA_REQUEST_CODE) {
+//            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                takePictureFromCamera()
+//            } else {
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Camera permission denied",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        }
+//        if (requestCode == GALLERY_PERMISSION_CODE) {
+//            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                choosePictureFromGallery()
+//            } else {
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Gallery permission denied",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        }
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
