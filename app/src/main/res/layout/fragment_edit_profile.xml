@@ -43,6 +43,8 @@
           android:layout_marginVertical="@dimen/_10sdp"
           android:textAlignment="textEnd"
           android:gravity="end"
+          android:textColor="@color/_dark"
+          android:textColorHint="@color/_grey"
           android:layout_centerVertical="true"
           android:hint="NIP"
           tools:ignore="RtlSymmetry" />

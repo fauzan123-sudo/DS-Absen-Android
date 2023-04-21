@@ -1,23 +1,16 @@
 package com.infinity.dsmabsen.ui.activity
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.telephony.SubscriptionManager
 import android.telephony.TelephonyManager
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import com.infinity.dsmabsen.databinding.ActivityLoginBinding
@@ -25,7 +18,6 @@ import com.infinity.dsmabsen.helper.AlertDialogHelper
 import com.infinity.dsmabsen.helper.ConnectionLiveData
 import com.infinity.dsmabsen.helper.Constans.TAG
 import com.infinity.dsmabsen.helper.TokenManager
-import com.infinity.dsmabsen.helper.handleApiErrorActivity
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.viewModel.AuthViewModel
@@ -58,16 +50,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
-//        var imeinya = getIMEI(this)
-//
-//        if (imeinya.isEmpty()) {
-//            imeinya = "Nomor IMEI tidak ditemukan"
-//        } else {
-//            Log.d("imei", imeinya)
-//
-//        }
-
-//        Toast.makeText(this, imeinya, Toast.LENGTH_SHORT).show()
         telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
         val mId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -207,18 +189,14 @@ class LoginActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             Log.d(TAG, "permission is Granted: $isGranted")
             if (isGranted) {
-                Toast.makeText(this, "Permission is granted", Toast.LENGTH_SHORT).show()
                 val imei = telephonyManager.imei
                 if (imei != null) {
                     Log.d(TAG, imei)
-                    Toast.makeText(this, imei, Toast.LENGTH_SHORT).show()
                 } else {
                     Log.d(TAG, "Nomor IMEI tidak ditemukan")
-                    Toast.makeText(this, "Nomor IMEI tidak ditemukan", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Log.d(TAG, "Permission Single : Permission Denied ")
-                Toast.makeText(this, "Permission Denied ", Toast.LENGTH_SHORT).show()
             }
         }
 

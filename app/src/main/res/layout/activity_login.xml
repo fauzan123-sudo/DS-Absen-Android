@@ -73,7 +73,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/poppins_light"
             android:includeFontPadding="false"
-            android:text="Silahkan masuk Ke Akun anda yag sudah terdaftar"
+            android:text="Silahkan masuk Ke Akun anda yang sudah terdaftar"
             android:textColor="@color/crown"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,20 +111,26 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username"
         android:background="@color/white"
-        app:startIconDrawable="@drawable/user"
+        app:boxStrokeColor="@color/text_input_outline"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintTop_toBottomOf="@+id/errorNipOrPassword"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxStrokeColor="@android:color/transparent"
+        app:hintTextColor="#DBBA6B"
+        android:textColorHint="@color/_grey"
+        app:startIconTint="@color/black"
         android:hint="Nomor Induk Pegawai">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nip"
+            android:textColorHint="@color/_grey"
+            android:drawableStart="@drawable/ic_persons"
             android:imeOptions="actionGo"
             android:inputType="text"
             android:singleLine="true"
             android:letterSpacing="0.1"
+            android:textColor="@color/black_text"
             android:fontFamily="@font/poppins_light"
             android:backgroundTint="@color/white"
             android:layout_width="match_parent"
@@ -135,18 +141,22 @@
     <com.google.android.material.textfield.TextInputLayout
         app:passwordToggleEnabled="true"
         app:startIconDrawable="@drawable/lock"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconTint="@color/black"
         android:id="@+id/textInputLayout"
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20sdp"
+        android:hint="Password"
+        android:textColorHint="@color/_grey"
+        app:hintTextColor="@color/_grey"
         app:layout_constraintTop_toBottomOf="@+id/username"
         tools:layout_editor_absoluteX="26dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:hint="Password"
             android:imeOptions="actionGo"
             android:id="@+id/password"
+            android:textColor="@color/black_text"
             android:singleLine="true"
             android:inputType="textPassword"
             app:boxStrokeColor="@android:color/transparent"
@@ -157,11 +167,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
+        android:elevation="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:backgroundTint="@color/blue"
         android:background="@color/blue"
         android:fontFamily="@font/poppins_bold"
         android:text="Login"
+
         app:cornerRadius="30dp"
         android:textAllCaps="false"
         android:textColor="@color/white"

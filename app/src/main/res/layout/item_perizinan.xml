@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="@dimen/_15sdp"
     android:background="@drawable/shadow_bg">
 
@@ -14,62 +14,62 @@
             android:id="@+id/rv_nip"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_82sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
             android:background="@drawable/shadow_bg"
             android:padding="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_15sdp"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tanggal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Senin, 22 Maret 2023"
                 android:fontFamily="@font/poppins_medium"
-                android:textSize="@dimen/_8ssp"
-                android:textColor="@color/grey"/>
+                android:text="Senin, 22 Maret 2023"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_8ssp" />
 
             <TextView
                 android:id="@+id/tv_approve"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Approve"
+                android:layout_alignParentEnd="true"
                 android:fontFamily="@font/poppins"
+                android:text="Approve"
                 android:textColor="@color/_success"
                 android:textSize="@dimen/_8ssp"
-                android:layout_alignParentEnd="true"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <View
                 android:id="@+id/vi_1"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/secondary"
                 android:layout_below="@+id/tanggal"
-                android:layout_marginTop="5.5dp"/>
+                android:layout_marginTop="5.5dp"
+                android:background="@color/secondary" />
 
             <TextView
                 android:id="@+id/keteranganUser"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:text="Acara Ketemu Keluarga Jauh"
-                android:fontFamily="@font/poppins"
                 android:layout_above="@+id/label_durasi"
-                android:textSize="@dimen/_10ssp"
-                android:textColor="@color/black_text"
-                android:textStyle="bold"
+                android:layout_below="@+id/vi_1"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_below="@+id/vi_1"/>
+                android:fontFamily="@font/poppins"
+                android:text="Acara Ketemu Keluarga Jauh"
+                android:textColor="@color/black_text"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/label_durasi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Durasi izin :"
-                android:fontFamily="@font/poppins_regular"
                 android:layout_alignParentBottom="true"
-                android:textSize="@dimen/_8ssp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Durasi izin :"
                 android:textColor="@color/_primary"
-                android:textStyle="bold"/>
+                android:textSize="@dimen/_8ssp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/durasi"
@@ -80,11 +80,11 @@
                 android:fontFamily="@font/poppins_light"
                 android:text="10 Maret 2023 - 11 Maret 2023"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/_8ssp"/>
+                android:textSize="@dimen/_8ssp" />
 
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

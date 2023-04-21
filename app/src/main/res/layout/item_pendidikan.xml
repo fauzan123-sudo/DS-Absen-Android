@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:background="@color/white"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rv_nip"
@@ -7,6 +8,8 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,6 +19,7 @@
             android:padding="@dimen/_15sdp">
 
             <TextView
+                android:textColor="@color/_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pendidikan"
@@ -29,7 +33,7 @@
                 android:layout_toStartOf="@+id/arrow1"
                 android:fontFamily="@font/poppins"
                 android:text="-"
-                android:textColor="@color/black_text"
+                android:textColor="@color/_dark"
                 android:textSize="@dimen/_11ssp" />
 
             <ImageView
@@ -43,6 +47,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -52,6 +57,7 @@
             android:padding="@dimen/_15sdp">
 
             <TextView
+                android:textColor="@color/_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jurusan"
@@ -65,7 +71,7 @@
                 android:layout_toStartOf="@+id/arrow2"
                 android:fontFamily="@font/poppins"
                 android:text="-"
-                android:textColor="@color/black_text"
+                android:textColor="@color/_dark"
                 android:textSize="@dimen/_11ssp" />
 
             <ImageView
@@ -79,6 +85,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -88,6 +95,7 @@
             android:padding="@dimen/_15sdp">
 
             <TextView
+                android:textColor="@color/_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="nomor_ijazah"
@@ -101,7 +109,7 @@
                 android:layout_toStartOf="@+id/arrow3"
                 android:fontFamily="@font/poppins"
                 android:text="-"
-                android:textColor="@color/black_text"
+                android:textColor="@color/_dark"
                 android:textSize="@dimen/_11ssp" />
 
             <ImageView
@@ -114,6 +122,7 @@
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
+        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -123,6 +132,7 @@
             android:padding="@dimen/_15sdp">
 
             <TextView
+                android:textColor="@color/_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tanggal Lulus"
@@ -150,6 +160,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -159,6 +170,7 @@
             android:padding="@dimen/_15sdp">
 
             <TextView
+                android:textColor="@color/_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nama Sekolah"
@@ -172,7 +184,7 @@
                 android:layout_toStartOf="@+id/arrow5"
                 android:fontFamily="@font/poppins"
                 android:text="-"
-                android:textColor="@color/black_text"
+                android:textColor="@color/_dark"
                 android:textSize="@dimen/_11ssp" />
 
             <ImageView

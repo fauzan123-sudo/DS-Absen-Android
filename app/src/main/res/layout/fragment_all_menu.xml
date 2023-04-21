@@ -26,6 +26,7 @@
         app:showDivider="middle">
 
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/white"
             android:id="@+id/btn_perizinan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -47,6 +48,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:textColor="@color/_grey"
                     android:id="@+id/tv_perizinan_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,8 +71,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:background="@color/white"
                 android:layout_height="match_parent"
-                android:background="@drawable/shadow_bg"
                 android:padding="@dimen/_15sdp">
 
                 <ImageView
@@ -84,6 +86,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:textColor="@color/_grey"
                     android:id="@+id/tv_lembur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -100,6 +103,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_shift"
+            android:backgroundTint="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/shadow_bg">
@@ -120,6 +124,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:textColor="@color/_grey"
                     android:id="@+id/tv_shift"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -150,6 +155,7 @@
         app:showDivider="middle">
 
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/white"
             android:id="@+id/btn_salary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -171,6 +177,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:textColor="@color/_grey"
                     android:id="@+id/tv_gaji_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -186,6 +193,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/white"
             android:id="@+id/btn_reimbursement"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -208,6 +216,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:textColor="@color/_grey"
                     android:id="@+id/tv_reimbursement_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -223,6 +232,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/white"
             android:id="@+id/btn_berita"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -244,6 +254,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:textColor="@color/_grey"
                     android:id="@+id/tv_berita"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -274,6 +285,7 @@
         app:showDivider="middle">
 
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/white"
             android:id="@+id/btn_aktivitas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -295,6 +307,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:textColor="@color/_grey"
                     android:id="@+id/tv_aktivitas_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

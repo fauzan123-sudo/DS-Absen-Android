@@ -11,6 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:titleTextColor">@color/_dark</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button">
@@ -18,7 +19,10 @@
         <item name="strokeColor">#AEAEAE</item>
         <item name="boxStrokeWidth">2dp</item>
     </style>
-
+    <style name="MyThemeOverlay_Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <!-- color used by navigation icon and overflow icon -->
+        <item name="colorOnPrimary">@color/_dark</item>
+    </style>
 
     <style name="MyBottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="itemTextAppearanceActive">@style/MyBottomNavigationView.TextAppearance</item>
@@ -30,8 +34,12 @@
 <!--        <item name="fontFamily">@font/roboto_medium</item>-->
     </style>
 
-    <style name="toolbar_menu" parent="@style/Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/_primary</item> <!-- ganti dengan warna yang diinginkan -->
+    <style name="toolbar_menu" parent="ThemeOverlay.MaterialComponents.Toolbar.Surface">
+        <item name="titleTextColor">@color/_dark</item>
+        <item name="android:tint">@color/_dark</item>
+        <item name="iconTint">@color/_dark</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
     </style>
 
 </resources>

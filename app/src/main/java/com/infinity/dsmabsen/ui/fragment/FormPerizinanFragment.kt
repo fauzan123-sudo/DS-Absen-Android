@@ -69,19 +69,19 @@ class FormPerizinanFragment :
         val myActivities = activity as MainActivity
         myActivities.hideMyBottomNav()
         setupToolbar("Ajukan Perizinan")
-        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
-            toolbar.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.save -> {
-                        savePerizinan(savedUser)
 
-                        true
-                    }
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.save -> {
+                    savePerizinan(savedUser)
 
-                    else -> false
+                    true
                 }
+
+                else -> false
             }
         }
+
         with(binding) {
 
             pickImage.setOnClickListener {

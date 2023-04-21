@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    android:backgroundTint="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="@dimen/_15sdp"
     android:background="@drawable/shadow_bg">
 
@@ -11,37 +13,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/retangle_stroke"
-        android:padding="@dimen/_15sdp"
         android:elevation="@dimen/_15sdp"
+        android:padding="@dimen/_15sdp"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_tanggal_lembur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Senin, 22 Maret 2023"
             android:fontFamily="@font/poppins"
-            android:textSize="@dimen/_8ssp"
-            android:textColor="@color/grey"/>
+            android:text="Senin, 22 Maret 2023"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_8ssp" />
 
         <TextView
             android:id="@+id/tv_approve"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Diterima"
+            android:layout_alignParentEnd="true"
             android:fontFamily="@font/poppins"
+            android:text="Diterima"
             android:textColor="@color/_success"
             android:textSize="@dimen/_8ssp"
-            android:layout_alignParentEnd="true"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <View
             android:id="@+id/vi_1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/secondary"
             android:layout_below="@+id/tv_tanggal_lembur"
-            android:layout_marginTop="5.5dp"/>
+            android:layout_marginTop="5.5dp"
+            android:background="@color/secondary" />
 
         <TextView
             android:id="@+id/tv_keterangan_lembur"
@@ -112,5 +114,4 @@
     </RelativeLayout>
 
 
-
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

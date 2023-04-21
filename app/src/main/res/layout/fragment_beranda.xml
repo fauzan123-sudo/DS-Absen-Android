@@ -59,6 +59,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
                     android:text="UI Designer"
+                    android:textColor="#7F838B"
                     android:textSize="@dimen/_10ssp"
                     app:layout_constraintStart_toStartOf="@+id/textView6"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -208,6 +209,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
                         <TextView
+                            android:textColor="@color/_grey"
                             android:id="@+id/textView11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -222,6 +224,8 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardCheckin"
+                    android:backgroundTint="@color/white"
+
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
@@ -250,6 +254,7 @@
                             android:id="@+id/title_cardCheckin"
                             android:layout_width="0dp"
                             android:maxLines="1"
+                            android:textColor="@color/_grey"
                             android:layout_height="wrap_content"
                             android:paddingStart="@dimen/_10sdp"
                             android:text="Datang"
@@ -299,6 +304,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardBreak"
                     android:layout_width="0dp"
+                    android:backgroundTint="@color/white"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_20sdp"
@@ -328,6 +334,7 @@
                             android:id="@+id/title_cardCheckout"
                             android:layout_width="0dp"
                             android:maxLines="1"
+                            android:textColor="@color/_grey"
                             android:layout_height="wrap_content"
                             android:paddingStart="@dimen/_10sdp"
                             android:text="Istirahat"
@@ -377,6 +384,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardCheackOut"
                     android:layout_width="0dp"
+                    android:backgroundTint="@color/white"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
@@ -404,6 +412,7 @@
                             android:id="@+id/title_cardCheackOut"
                             android:layout_width="0dp"
                             android:maxLines="1"
+                            android:textColor="@color/_grey"
                             android:layout_height="wrap_content"
                             android:paddingStart="@dimen/_10sdp"
                             android:text="Pulang"
@@ -452,6 +461,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardVisitCheck"
+                    android:backgroundTint="@color/white"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
@@ -482,6 +492,7 @@
                             android:id="@+id/title_cardVisitCheck"
                             android:layout_width="0dp"
                             android:maxLines="1"
+                            android:textColor="@color/_grey"
                             android:layout_height="wrap_content"
                             android:paddingStart="@dimen/_10sdp"
                             android:text="Visit"
@@ -627,6 +638,7 @@
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/materialCardView5"
+                            android:backgroundTint="@color/white"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:elevation="0dp"
@@ -665,6 +677,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="PERIZINAN"
                                     android:textSize="@dimen/_8ssp"
+                                    android:textColor="@color/_grey"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -675,6 +688,7 @@
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/materialCardView6"
                             android:layout_width="0dp"
+                            android:backgroundTint="@color/white"
                             android:layout_height="0dp"
                             android:layout_marginHorizontal="@dimen/_10sdp"
                             android:elevation="0dp"
@@ -707,6 +721,7 @@
                                     app:srcCompat="@drawable/lembur" />
 
                                 <TextView
+                                    android:textColor="@color/_grey"
                                     android:id="@+id/textView22"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -723,6 +738,7 @@
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/materialCardView7"
                             android:layout_width="0dp"
+                            android:backgroundTint="@color/white"
                             android:layout_height="0dp"
                             android:elevation="0dp"
                             app:cardElevation="0dp"
@@ -758,6 +774,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="SHIFT"
+                                    android:textColor="@color/_grey"
                                     android:textSize="@dimen/_8ssp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"

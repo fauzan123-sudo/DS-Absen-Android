@@ -48,6 +48,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:textColor="#7F838B"
                     android:id="@+id/jabatan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.card.MaterialCardView
+                android:backgroundTint="@color/white"
                 android:id="@+id/materialCardView19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -159,6 +161,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:backgroundTint="@color/white"
                 android:id="@+id/materialCardView20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
