@@ -24,6 +24,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -51,14 +52,6 @@ import java.util.*
 @AndroidEntryPoint
 class FormPerizinanFragment :
     BaseFragment<FragmentFormPerizinanBinding>(FragmentFormPerizinanBinding::inflate) {
-    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private val CAMERA_PERMISSION_CODE = 100
-    private val GALLERY_PERMISSION_CODE = 101
-
-    // Konstanta untuk kode permintaan gambar
-    private val CAMERA_REQUEST_CODE = 200
-    private val GALLERY_REQUEST_CODE = 201
-
     private val viewModel: PerizinanViewModel by viewModels()
     val savedUser = Paper.book().read<DataX>("user")
     private var kode_perizinan: String? = null
@@ -66,7 +59,7 @@ class FormPerizinanFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        registerResult()
+//        registerResult()
         hideBottomNavigation()
         val myActivities = activity as MainActivity
         myActivities.hideMyBottomNav()
@@ -195,58 +188,14 @@ class FormPerizinanFragment :
         }
     }
 
-    private fun registerResult() {
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                try {
-                    val imageUri = result.data?.data
-//                    val imageUri: Uri = data.data!!
-                    binding.uploadFile.setImageURI(imageUri)
-                    binding.uploadFile.visibility = View.VISIBLE
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
-
     private fun uploadFiles() {
         val pictureDialog = AlertDialog.Builder(requireContext())
         pictureDialog.setTitle("Select Action")
         val pictureDialogItems = arrayOf("Take Photo With Camera", "Select Photo From Gallery")
         pictureDialog.setItems(pictureDialogItems) { _, which ->
             when (which) {
-                0 -> {
-                    if (ContextCompat.checkSelfPermission(
-                            requireContext(),
-                            Manifest.permission.CAMERA
-                        ) == PackageManager.PERMISSION_GRANTED
-                    ) {
-                        takePictureFromCamera()
-                    } else {
-                        ActivityCompat.requestPermissions(
-                            requireActivity(),
-                            arrayOf(Manifest.permission.CAMERA),
-                            CAMERA_REQUEST_CODE
-                        )
-                    }
-                }
-                1 -> {
-                    if (ContextCompat.checkSelfPermission(
-                            requireContext(),
-                            Manifest.permission.READ_EXTERNAL_STORAGE
-                        ) == PackageManager.PERMISSION_GRANTED
-                    ) {
-                        choosePictureFromGallery()
-                    } else {
-                        ActivityCompat.requestPermissions(
-                            requireActivity(),
-                            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                            GALLERY_PERMISSION_CODE
-                        )
-                    }
-                }
+                0 -> takePictureFromCamera()
+                1 -> choosePictureFromGallery()
             }
         }
         pictureDialog.show()
@@ -254,64 +203,41 @@ class FormPerizinanFragment :
 
     private fun takePictureFromCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, CAMERA_REQUEST_CODE)
+        putPhoto.launch(intent)
     }
+
+    private val putPhoto =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == AppCompatActivity.RESULT_OK) {
+                val bitmap = it?.data?.extras?.get("data") as Bitmap
+                binding.uploadFile.setImageBitmap(bitmap)
+                binding.uploadFile.visibility = View.VISIBLE
+            } else if (it == null) {
+                binding.uploadFile.visibility = View.GONE
+            } else {
+                Log.d("TAG", "Task Cancelled")
+//                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     private fun choosePictureFromGallery() {
-//        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-//        startActivityForResult(intent, GALLERY_REQUEST_CODE)
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        resultLauncher.launch(intent)
+        putImage.launch(intent)
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            binding.uploadFile.setImageBitmap(imageBitmap)
-            binding.uploadFile.visibility = View.VISIBLE
-
+    private val putImage =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                try {
+                    val imageUri = it?.data?.data
+                    binding.uploadFile.setImageURI(imageUri)
+                    binding.uploadFile.visibility = View.VISIBLE
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
         }
-
-        if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
-            val imageUri: Uri = data.data!!
-            binding.uploadFile.setImageURI(imageUri)
-            binding.uploadFile.visibility = View.VISIBLE
-        }
-    }
-
-//    @Deprecated("Deprecated in Java")
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<out String>,
-//        grantResults: IntArray
-//    ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//        if (requestCode == CAMERA_REQUEST_CODE) {
-//            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                takePictureFromCamera()
-//            } else {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Camera permission denied",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
-//        if (requestCode == GALLERY_PERMISSION_CODE) {
-//            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                choosePictureFromGallery()
-//            } else {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Gallery permission denied",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
@@ -422,11 +348,13 @@ class FormPerizinanFragment :
                             if (status) {
                                 val alertDialogHelper = AlertDialogHelper(requireContext())
                                 alertDialogHelper.showAlertDialog("", messages)
-                                findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
+                                findNavController().popBackStack()
+//                                findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
                             }
                             val alertDialogHelper = AlertDialogHelper(requireContext())
                             alertDialogHelper.showAlertDialog("", messages)
-                            findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
+                            findNavController().popBackStack()
+//                            findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
 
 
 //                            Log.d("pesan", messages)

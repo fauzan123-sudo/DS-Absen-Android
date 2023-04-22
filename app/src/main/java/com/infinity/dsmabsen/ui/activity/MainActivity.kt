@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         checkPassword(savedUser)
         showBottomNav(savedUser)
 
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
         navController = navHostFragment.findNavController()

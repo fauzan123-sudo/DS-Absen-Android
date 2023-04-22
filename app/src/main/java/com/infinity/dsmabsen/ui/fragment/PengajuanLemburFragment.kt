@@ -17,7 +17,9 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -43,11 +45,6 @@ import java.util.*
 @AndroidEntryPoint
 class PengajuanLemburFragment :
     BaseFragment<FragmentPengajuanLemburBinding>(FragmentPengajuanLemburBinding::inflate) {
-    private val GALLERY_PERMISSION_CODE = 101
-
-    // Konstanta untuk kode permintaan gambar
-    private val CAMERA_REQUEST_CODE = 200
-    private val GALLERY_REQUEST_CODE = 201
     private val viewModel: AttendanceViewModel by viewModels()
     val savedUser = Paper.book().read<DataX>("user")
 
@@ -132,99 +129,54 @@ class PengajuanLemburFragment :
         val pictureDialogItems = arrayOf("Take Photo With Camera", "Select Photo From Gallery")
         pictureDialog.setItems(pictureDialogItems) { _, which ->
             when (which) {
-                0 -> {
-                    if (ContextCompat.checkSelfPermission(
-                            requireContext(),
-                            Manifest.permission.CAMERA
-                        ) == PackageManager.PERMISSION_GRANTED
-                    ) {
-                        takePictureFromCamera()
-                    } else {
-                        ActivityCompat.requestPermissions(
-                            requireActivity(),
-                            arrayOf(Manifest.permission.CAMERA),
-                            CAMERA_REQUEST_CODE
-                        )
-                    }
-                }
-                1 -> {
-                    if (ContextCompat.checkSelfPermission(
-                            requireContext(),
-                            Manifest.permission.READ_EXTERNAL_STORAGE
-                        ) == PackageManager.PERMISSION_GRANTED
-                    ) {
-                        choosePictureFromGallery()
-                    } else {
-                        ActivityCompat.requestPermissions(
-                            requireActivity(),
-                            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                            GALLERY_PERMISSION_CODE
-                        )
-                    }
-                }
+                0 -> takePictureFromCamera()
+                1 -> choosePictureFromGallery()
             }
         }
         pictureDialog.show()
     }
 
     private fun takePictureFromCamera() {
+//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        startActivityForResult(intent, CAMERA_REQUEST_CODE)
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, CAMERA_REQUEST_CODE)
+        putPhoto.launch(intent)
     }
 
     private fun choosePictureFromGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, GALLERY_REQUEST_CODE)
+        putImage.launch(intent)
+//        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+//        startActivityForResult(intent, GALLERY_REQUEST_CODE)
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            binding.imgUpload.setImageBitmap(imageBitmap)
-            binding.imgUpload.visibility = View.VISIBLE
-        }
-
-        if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
-            val imageUri: Uri = data.data!!
-            binding.imgUpload.setImageURI(imageUri)
-            binding.imgUpload.visibility = View.VISIBLE
-        }
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == CAMERA_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                takePictureFromCamera()
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Camera permission denied",
-                    Toast.LENGTH_SHORT
-                ).show()
+    private val putImage =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                try {
+                    val imageUri = it?.data?.data
+                    binding.imgUpload.setImageURI(imageUri)
+                    binding.imgUpload.visibility = View.VISIBLE
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT).show()
+                }
             }
         }
-        if (requestCode == GALLERY_PERMISSION_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                choosePictureFromGallery()
+
+    private val putPhoto =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == AppCompatActivity.RESULT_OK) {
+                val bitmap = it?.data?.extras?.get("data") as Bitmap
+                binding.imgUpload.setImageBitmap(bitmap)
+                binding.imgUpload.visibility = View.VISIBLE
+            } else if (it == null) {
+//                binding.imgUpload.setImageResource(R.drawable.ic_launcher_background)
+                binding.imgUpload.visibility = View.GONE
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Gallery permission denied",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Log.d("TAG", "Task Cancelled")
+//                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
 
     private fun saveLembur() {
         val bitmap: Bitmap = (binding.imgUpload.drawable as BitmapDrawable).bitmap
