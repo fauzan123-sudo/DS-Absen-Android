@@ -1,19 +1,15 @@
 package com.infinity.dsmabsen.ui.fragment
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.location.Criteria
 //import org.osmdroid.views.util.constants.MapViewConstants
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.view.Menu
@@ -27,10 +23,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.preference.PreferenceManager
-import com.google.android.gms.location.*
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.FragmentPenganjuanVisitBinding
-import com.infinity.dsmabsen.helper.AlertDialogHelper
 import com.infinity.dsmabsen.helper.Helper
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
@@ -39,19 +33,14 @@ import com.infinity.dsmabsen.ui.activity.MainActivity
 import com.infinity.dsmabsen.ui.viewModel.VisitViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import org.osmdroid.api.IMapController
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
-import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
-import java.io.ByteArrayOutputStream
 
 
 @AndroidEntryPoint
@@ -82,7 +71,7 @@ class PenganjuanVisitFragment :
         with(binding) {
 
 //            getCurrentLocation()
-            getFirstlocation()
+            getFirstLocation()
             bottomNavigationView.visibility = View.GONE
             Log.d("args", argss.barcodes)
             tvTanggal.text = Helper().getThisDay()
@@ -202,7 +191,7 @@ class PenganjuanVisitFragment :
         }
     }
 
-    private fun getFirstlocation() {
+    private fun getFirstLocation() {
         val map = binding.mapView
         map.setTileSource(TileSourceFactory.MAPNIK)
         map.zoomController.setVisibility(CustomZoomButtonsController.Visibility.ALWAYS)

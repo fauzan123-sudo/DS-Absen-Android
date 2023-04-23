@@ -15,6 +15,7 @@ fun Fragment.handleApiError(
             requireView().snackbar(error)
         }
         getString(R.string.bad_connection) -> requireView().snackbar(error)
+        "  {\"message\":\"Unauthenticated.\"}" -> Toast.makeText(requireContext(), "auth tidak diterima", Toast.LENGTH_SHORT).show()
         getString(R.string.tidak_berada_diwaktu_presensi) -> requireView().snackbar(error)
 
         else -> requireView().snackbar(error!!)
@@ -46,6 +47,6 @@ fun Activity.handleApiErrorActivity(
             Toast.LENGTH_LONG
         )
             .show()
-        else -> Toast.makeText(this, "$error", Toast.LENGTH_LONG).show()
+        else -> Toast.makeText(this, "activity $error", Toast.LENGTH_LONG).show()
     }
 }

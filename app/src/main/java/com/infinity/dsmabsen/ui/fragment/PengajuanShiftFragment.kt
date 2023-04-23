@@ -150,7 +150,8 @@ class PengajuanShiftFragment :
                         val alert = builder.create()
                         alert.show()
                     }
-                    requireActivity().onBackPressed()
+                    findNavController().popBackStack()
+//                    requireActivity().onBackPressed()
                 }
                 is NetworkResult.Loading -> {
                     binding.apply {
