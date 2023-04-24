@@ -13,6 +13,7 @@
         <item name="android:statusBarColor">@color/primary</item>
         <item name="android:titleTextColor">@color/_dark</item>
         <!-- Customize your theme here. -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
     <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:background">@drawable/bg_rounded_take_image</item>

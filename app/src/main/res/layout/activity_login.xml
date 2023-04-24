@@ -13,188 +13,217 @@
         android:id="@+id/loadingInclude"
         layout="@layout/loading" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constrain"
+    <ScrollView
+        android:id="@+id/rcycleview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:src="@drawable/logo"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/globe"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_light"
-        android:text="PT. Deta Sukses Makmur"
-        android:textColor="@color/blue"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:fontFamily="@font/poppins_bold"
-        android:includeFontPadding="false"
-        android:text="MASUK"
-        android:textColor="@color/blue"
-        android:textSize="@dimen/_31ssp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_45sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/textView3"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/poppins_light"
-            android:includeFontPadding="false"
-            android:text="Silahkan masuk Ke Akun anda yang sudah terdaftar"
-            android:textColor="@color/crown"
-            android:textSize="@dimen/_13ssp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintDimensionRatio="0.10" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/logo"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintDimensionRatio="0.90" />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/globe"
+                app:layout_constraintBottom_toBottomOf="@+id/textView"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
 
-        <TextView
-            android:id="@+id/errorNipOrPassword"
-            android:visibility="gone"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:background="@color/_danger"
-            android:textColor="@color/white"
-            android:layout_width="0dp"
-            android:padding="@dimen/_10sdp"
-            android:textAlignment="center"
-            android:layout_height="wrap_content"
-            android:text="Nomor pegawai atau password tidak benar."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="PT. Deta Sukses Makmur"
+                android:textColor="@color/blue"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username"
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:includeFontPadding="false"
+                android:text="MASUK"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/_31ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintVertical_bias="0.0" />
 
-        app:boxStrokeColor="@color/text_input_outline"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintTop_toBottomOf="@+id/errorNipOrPassword"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:hintTextColor="#DBBA6B"
-        android:textColorHint="@color/_grey"
-        app:startIconTint="@color/black"
-        android:hint="Nomor Induk Pegawai">
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_light"
+                android:includeFontPadding="false"
+                android:text="Silahkan masuk Ke Akun anda yang sudah terdaftar"
+                android:textColor="@color/crown"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nip"
-            android:background="@color/white"
-            android:textColorHint="@color/_grey"
-            android:drawableStart="@drawable/ic_persons"
-            android:imeOptions="actionGo"
-            android:inputType="text"
-            android:singleLine="true"
-            android:letterSpacing="0.1"
-            android:textColor="@color/black_text"
-            android:fontFamily="@font/poppins_light"
-            android:backgroundTint="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="0.10" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        app:passwordToggleEnabled="true"
-        app:startIconDrawable="@drawable/lock"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:startIconTint="@color/black"
-        android:id="@+id/textInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:hint="Password"
-        android:textColorHint="@color/_grey"
-        app:hintTextColor="@color/_grey"
-        app:layout_constraintTop_toBottomOf="@+id/username"
-        tools:layout_editor_absoluteX="26dp">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="0.90" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:imeOptions="actionGo"
-            android:id="@+id/password"
-            android:textColor="@color/black_text"
-            android:singleLine="true"
-            android:inputType="textPassword"
-            app:boxStrokeColor="@android:color/transparent"
-            android:background="@drawable/shadow_bg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/errorNipOrPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@color/_danger"
+                android:padding="@dimen/_10sdp"
+                android:text="Nomor pegawai atau password tidak benar."
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogin"
-        android:elevation="0dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backgroundTint="@color/blue"
-        android:background="@color/blue"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Login"
+            <View
+                android:id="@+id/view_line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/_muted"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView3" />
 
-        app:cornerRadius="30dp"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_14ssp"
-        android:layout_marginTop="@dimen/_20sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="26dp" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:background="@color/_muted"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_line" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:src="@drawable/image_login"
-        app:layout_constraintDimensionRatio="2:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="Nomor Induk Pegawai"
+                android:textColorHint="@color/_grey"
+                app:boxStrokeColor="@color/text_input_outline"
+                app:hintTextColor="#DBBA6B"
+                app:layout_constraintTop_toBottomOf="@+id/view_line"
+                app:startIconTint="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:drawableStart="@drawable/ic_user"
+                    android:fontFamily="@font/poppins_light"
+                    android:imeOptions="actionGo"
+                    android:inputType="text"
+                    android:letterSpacing="0.1"
+                    android:singleLine="true"
+                    android:textColor="@color/black_text"
+                    android:textColorHint="#757575" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:hint="Password"
+                android:textColorHint="@color/_grey"
+                app:hintTextColor="#DBBA6B"
+                app:layout_constraintTop_toBottomOf="@+id/username"
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/lock"
+                app:startIconTint="@color/black"
+                tools:layout_editor_absoluteX="26dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shadow_bg"
+                    android:imeOptions="actionGo"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textColor="@color/black_text"
+                    app:boxStrokeColor="@android:color/transparent" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@color/blue"
+                android:elevation="0dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                app:backgroundTint="@color/blue"
+                app:cornerRadius="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_editor_absoluteX="26dp" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/image_login"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
