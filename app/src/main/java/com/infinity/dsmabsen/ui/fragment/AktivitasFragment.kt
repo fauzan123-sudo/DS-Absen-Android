@@ -34,8 +34,8 @@ class AktivitasFragment :
         setupToolbar("Aktivitas")
         toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.scan -> {
-                    findNavController().navigate(R.id.action_visitFragment2_to_scanFragment)
+                R.id.add -> {
+                    findNavController().navigate(R.id.action_aktivitasFragment_to_pengajuanAktivitasFragment)
                     true
                 }
 
@@ -91,7 +91,7 @@ class AktivitasFragment :
         menuScan.isVisible = false
         menuLogout.isVisible = false
         menuSave?.isVisible = false
-        menuPlus?.isVisible = false
+        menuPlus?.isVisible = true
     }
 
 }

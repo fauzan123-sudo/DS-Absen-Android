@@ -209,12 +209,12 @@ class PengajuanLemburFragment :
                     if (messages != null) {
                         val builder = AlertDialog.Builder(requireContext())
                         builder.setMessage(messages)
-                            .setPositiveButton("Ya") { dialog, _ ->
+                            .setPositiveButton("Ok") { dialog, _ ->
                                 dialog.cancel()
                             }
-                            .setNegativeButton("Tidak") { dialog, _ ->
-                                dialog.dismiss()
-                            }
+//                            .setNegativeButton("Tidak") { dialog, _ ->
+//                                dialog.dismiss()
+//                            }
                         val alert = builder.create()
                         alert.show()
                     }

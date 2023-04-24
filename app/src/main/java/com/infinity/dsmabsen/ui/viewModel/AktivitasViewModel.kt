@@ -22,7 +22,11 @@ class AktivitasViewModel @Inject constructor(private val repository: AktivitasRe
 
     private val _aktivitas = MutableLiveData<NetworkResult<AktivitasResponse>>()
     val aktivitasLiveData: LiveData<NetworkResult<AktivitasResponse>>
-    get() = _aktivitas
+        get() = _aktivitas
+
+    private val _sendAktivitas = MutableLiveData<NetworkResult<SendAktivitasResponse>>()
+    val sendAktivitasLiveData: LiveData<NetworkResult<SendAktivitasResponse>>
+        get() = _sendAktivitas
 
 
     fun aktivitasRequest(
@@ -36,6 +40,25 @@ class AktivitasViewModel @Inject constructor(private val repository: AktivitasRe
                     _aktivitas.value = repository.listAktivitas(nip)
                 } else {
                     _aktivitas.value = NetworkResult.Error("Tidak ada koneksi internet")
+                }
+            }
+        }
+    }
+
+    fun sendAktivitasRequest(
+        nip: RequestBody,
+        nama: RequestBody,
+        koordinat: RequestBody,
+        file: MultipartBody.Part
+    ) {
+        viewModelScope.launch {
+            if (!_isDataLoaded) {
+                val connected = CheckInternet().check()
+                if (connected) {
+                    _sendAktivitas.value = NetworkResult.Loading()
+                    _sendAktivitas.value = repository.sendAktivitas(nip,nama,koordinat, file)
+                } else {
+                    _sendAktivitas.value = NetworkResult.Error("Tidak ada koneksi internet")
                 }
             }
         }

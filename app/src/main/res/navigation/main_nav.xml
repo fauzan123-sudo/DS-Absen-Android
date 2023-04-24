@@ -334,6 +334,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            android:id="@+id/action_reimbursementFragment_to_detailReimbursementFragment"
+            app:destination="@id/detailReimbursementFragment" />
         <!--        <argument-->
         <!--            android:name="BarcodeCode"-->
         <!--            app:argType="string" />-->
@@ -519,6 +526,9 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_aktivitasFragment_to_pengajuanAktivitasFragment"
+            app:destination="@id/pengajuanAktivitasFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailAktivitasFragment"
@@ -528,4 +538,13 @@
             android:name="detailAktivitas"
             app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
     </fragment>
+    <fragment
+        android:id="@+id/pengajuanAktivitasFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.PengajuanAktivitasFragment"
+        android:label="fragment_pengajuan_aktivitas"
+        tools:layout="@layout/fragment_pengajuan_aktivitas" />
+    <fragment
+        android:id="@+id/detailReimbursementFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.DetailReimbursementFragment"
+        tools:layout="@layout/fragment_detail_reimbursement" />
 </navigation>

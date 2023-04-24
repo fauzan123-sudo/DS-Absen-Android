@@ -12,14 +12,6 @@
         layout="@layout/toolbar_layout"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/loadingInclude"
-        layout="@layout/loading"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -100,6 +92,7 @@
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:fontFamily="@font/poppins"
                         android:text="Rp."
+                        android:textColor="@color/_dark"
                         android:textSize="@dimen/_11ssp" />
 
                     <EditText
@@ -221,6 +214,14 @@
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <include
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/noInternetConnection"

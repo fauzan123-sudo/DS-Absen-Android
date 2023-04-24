@@ -378,7 +378,7 @@ class FormPerizinanFragment :
                     }
 
                 }
-                Log.d("Uri", "null uri ${bitmap.toString()}")
+                Log.d("Uri", "null uri $bitmap")
             }
 
             .setNegativeButton("tidak")

@@ -274,6 +274,7 @@ class PengajuanReimbursementFragment :
                             val response = it.data!!
                             val messages = response.data.messages
                             val builders = AlertDialog.Builder(requireContext())
+                            Log.d("pesan", messages)
                             builders.setMessage(messages)
                                 .setNegativeButton("Ya") { dialog, _ ->
                                     dialog.cancel()

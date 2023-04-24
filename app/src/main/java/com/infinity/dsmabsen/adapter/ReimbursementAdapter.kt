@@ -15,6 +15,8 @@ import com.infinity.dsmabsen.model.DataXXXXXXX
 class ReimbursementAdapter(private val context: Context, private val listData:List<DataXXXXXXX>) :
     RecyclerView.Adapter<ReimbursementAdapter.ViewHolder>() {
 
+    var listener: RecyclerViewHandler? = null
+
     inner class ViewHolder(private val binding: ItemReimbursementBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun setData(item: DataXXXXXXX) {
@@ -23,6 +25,8 @@ class ReimbursementAdapter(private val context: Context, private val listData:Li
                     tanggalRembursement.text = created_at
                     akomodasi.text = reimbursement
                     sallary.text = nilai
+
+
 
                     when (status) {
                         "Diajukan" -> {

@@ -12,5 +12,13 @@ class AktivitasRepository @Inject constructor(private val api: AktivitasApi) :
     suspend fun listAktivitas(nip: String) =
         safeApiCall { api.listAktivitas(nip) }
 
+    suspend fun sendAktivitas(
+        nip: RequestBody,
+        nama: RequestBody,
+        koordinat: RequestBody,
+        file: MultipartBody.Part
+    ) =
+        safeApiCall { api.addAktifitas(nip, nama, koordinat, file) }
+
 
 }
