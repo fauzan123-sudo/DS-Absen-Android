@@ -280,7 +280,8 @@ class PengajuanReimbursementFragment :
                                 }
                             val alert = builders.create()
                             alert.show()
-                            requireActivity().onBackPressed()
+                            findNavController().popBackStack()
+//                            requireActivity().onBackPressed()
                         }
 
                         is NetworkResult.Loading -> {

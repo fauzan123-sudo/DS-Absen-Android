@@ -10,6 +10,7 @@
     <string name="simpan">Simpan</string>
     <string name="add">ADD</string>
     <string name="attention">"Perhatian: Aplikasi Ini Memerlukan Akses Lokasi, IMEI, dan Kamera"</string>
+    <string name="unauthenticated">  {"message":"Unauthenticated."}</string>
 
     <string-array name="blood_types">
         <item>A</item>

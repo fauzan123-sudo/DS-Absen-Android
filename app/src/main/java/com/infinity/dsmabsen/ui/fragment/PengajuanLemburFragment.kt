@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.FragmentPengajuanLemburBinding
 import com.infinity.dsmabsen.helper.handleApiError
@@ -217,7 +218,8 @@ class PengajuanLemburFragment :
                         val alert = builder.create()
                         alert.show()
                     }
-                    requireActivity().onBackPressed()
+                    findNavController().popBackStack()
+//                    requireActivity().onBackPressed()
 
                 }
 
