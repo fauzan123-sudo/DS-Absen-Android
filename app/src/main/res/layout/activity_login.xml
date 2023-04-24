@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:padding="@dimen/_20sdp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#E2EBF0"
     android:layout_height="match_parent"
+    android:background="#E2EBF0"
+    android:padding="@dimen/_20sdp"
     tools:context=".ui.activity.LoginActivity">
 
-    <include
-        android:id="@+id/loadingInclude"
-        layout="@layout/loading" />
 
     <ScrollView
         android:id="@+id/rcycleview"
@@ -129,13 +125,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView3" />
 
-<!--            <View-->
-<!--                android:layout_width="1dp"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:layout_marginStart="@dimen/_30sdp"-->
-<!--                android:background="@color/_muted"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/view_line" />-->
+            <!--            <View-->
+            <!--                android:layout_width="1dp"-->
+            <!--                android:layout_height="50dp"-->
+            <!--                android:layout_marginStart="@dimen/_30sdp"-->
+            <!--                android:background="@color/_muted"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/view_line" />-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/username"
@@ -224,6 +220,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
+
+    <include
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading" />
 </androidx.constraintlayout.widget.ConstraintLayout>
