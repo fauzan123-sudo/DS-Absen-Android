@@ -1,0 +1,1672 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_22_03_2023_20_24_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_22_03_2023_20_24_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_22_03_2023_20_24_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_22_03_2023_20_24_[Changes]/shelved.patch	
++++ /dev/null	
+@@ -1,1648 +0,0 @@
+-Index: .idea/shelf/Uncommitted_changes_before_Update_at_14_03_2023_7_50_[Changes]/shelved.patch
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2023_7_50_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2023_7_50_[Changes]/shelved.patch
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2023_7_50_[Changes]/shelved.patch	(revision 665a28e49b7fc6a9b949e8d290fe67e8f31c8bbc)
+-+++ /dev/null	(revision 665a28e49b7fc6a9b949e8d290fe67e8f31c8bbc)
+-@@ -1,1624 +0,0 @@
+--Index: app/src/main/res/layout/fragment_data_absen.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"@drawable/gradiend_background\"\r\n    tools:context=\".ui.fragment.DataAbsenFragment\">\r\n\r\n    <include\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:id=\"@+id/toolbar\"\r\n        layout=\"@layout/toolbar_layout\"/>\r\n\r\n    <com.airbnb.lottie.LottieAnimationView\r\n        android:id=\"@+id/loading\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:background=\"@color/white\"\r\n        android:visibility=\"gone\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:lottie_autoPlay=\"true\"\r\n        app:lottie_loop=\"true\"\r\n        app:lottie_rawRes=\"@raw/bounce_loading\" />\r\n\r\n    <ScrollView\r\n        android:id=\"@+id/scrollView\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_marginBottom=\"@dimen/_45sdp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/toolbar\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n        android:padding=\"@dimen/_20sdp\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n\r\n        <androidx.constraintlayout.widget.ConstraintLayout\r\n            android:id=\"@+id/infoUser\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:visibility=\"visible\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            tools:layout_editor_absoluteX=\"0dp\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/namaUser\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Fauzan Almaterzz\"\r\n                android:textColor=\"@color/black\"\r\n                android:textSize=\"@dimen/_10ssp\"\r\n                android:textStyle=\"bold\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/jabatan\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:fontFamily=\"@font/poppins\"\r\n                android:text=\"UI Designer\"\r\n                android:textSize=\"@dimen/_10ssp\"\r\n                app:layout_constraintStart_toStartOf=\"@+id/namaUser\"\r\n                app:layout_constraintTop_toBottomOf=\"@+id/namaUser\" />\r\n\r\n            <de.hdodenhof.circleimageview.CircleImageView\r\n                android:id=\"@+id/imageUser\"\r\n                android:layout_width=\"@dimen/_38sdp\"\r\n                android:layout_height=\"@dimen/_36sdp\"\r\n                app:civ_border_color=\"@color/white\"\r\n                app:civ_border_width=\"4dp\"\r\n                app:layout_constraintBottom_toBottomOf=\"@+id/jabatan\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintTop_toTopOf=\"@+id/namaUser\"\r\n                tools:src=\"@drawable/man\" />\r\n\r\n        </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n        <com.google.android.material.card.MaterialCardView\r\n            android:id=\"@+id/materialCardView12\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginVertical=\"@dimen/_20sdp\"\r\n            android:background=\"@color/white\"\r\n            app:layout_constraintBottom_toTopOf=\"@+id/materialCardView13\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/infoUser\">\r\n\r\n            <androidx.constraintlayout.widget.ConstraintLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:background=\"@color/white\"\r\n                android:padding=\"@dimen/_20sdp\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView27\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:fontFamily=\"@font/poppins_semibold\"\r\n                    android:text=\"Total Absensi Bulan Ini\"\r\n                    android:textColor=\"@color/black_text\"\r\n                    android:textSize=\"@dimen/_10ssp\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n                <View\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"0.5dp\"\r\n                    android:layout_marginStart=\"@dimen/_10sdp\"\r\n                    android:background=\"@color/secondary\"\r\n                    app:layout_constraintBottom_toBottomOf=\"@+id/textView27\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintStart_toEndOf=\"@+id/textView27\"\r\n                    app:layout_constraintTop_toTopOf=\"@+id/textView27\" />\r\n\r\n                <com.github.mikephil.charting.charts.PieChart\r\n                    android:id=\"@+id/pie_chart\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"200dp\"\r\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                    app:layout_constraintTop_toBottomOf=\"@+id/textView27\"\r\n                    tools:layout_editor_absoluteX=\"26dp\" />\r\n\r\n            </androidx.constraintlayout.widget.ConstraintLayout>\r\n        </com.google.android.material.card.MaterialCardView>\r\n\r\n        <com.google.android.material.card.MaterialCardView\r\n            android:id=\"@+id/materialCardView13\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:background=\"@color/white\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/materialCardView12\">\r\n\r\n            <androidx.constraintlayout.widget.ConstraintLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:background=\"@color/white\"\r\n                android:padding=\"@dimen/_20sdp\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView28\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:fontFamily=\"@font/poppins_semibold\"\r\n                    android:text=\"Rekap Absensi Bulan Ini\"\r\n                    android:textColor=\"@color/black_text\"\r\n                    android:textSize=\"@dimen/_10ssp\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n                <View\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"0.5dp\"\r\n                    android:layout_marginStart=\"@dimen/_10sdp\"\r\n                    android:background=\"@color/secondary\"\r\n                    app:layout_constraintBottom_toBottomOf=\"@+id/textView28\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintStart_toEndOf=\"@+id/textView28\"\r\n                    app:layout_constraintTop_toTopOf=\"@+id/textView28\" />\r\n\r\n                <androidx.recyclerview.widget.RecyclerView\r\n                    android:id=\"@+id/recAttendance\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"300dp\"\r\n                    android:layout_marginTop=\"@dimen/_20sdp\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toBottomOf=\"@+id/textView28\"\r\n                    tools:listitem=\"@layout/item_rekap_absensi\" />\r\n\r\n                <ImageView\r\n                    android:visibility=\"gone\"\r\n                    android:id=\"@+id/img_no_data\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:padding=\"@dimen/_20sdp\"\r\n                    android:src=\"@drawable/no_data_found\"\r\n                    app:layout_constraintTop_toBottomOf=\"@id/recAttendance\"\r\n                    />\r\n            </androidx.constraintlayout.widget.ConstraintLayout>\r\n        </com.google.android.material.card.MaterialCardView>\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n    </ScrollView>\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/layout/fragment_data_absen.xml b/app/src/main/res/layout/fragment_data_absen.xml
+----- a/app/src/main/res/layout/fragment_data_absen.xml	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/res/layout/fragment_data_absen.xml	(date 1678754101972)
+--@@ -1,6 +1,5 @@
+-- <?xml version="1.0" encoding="utf-8"?>
+---<androidx.constraintlayout.widget.ConstraintLayout
+---    xmlns:android="http://schemas.android.com/apk/res/android"
+--+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+--     xmlns:app="http://schemas.android.com/apk/res-auto"
+--     xmlns:tools="http://schemas.android.com/tools"
+--     android:layout_width="match_parent"
+--@@ -9,9 +8,9 @@
+--     tools:context=".ui.fragment.DataAbsenFragment">
+-- 
+--     <include
+---        app:layout_constraintTop_toTopOf="parent"
+--         android:id="@+id/toolbar"
+---        layout="@layout/toolbar_layout"/>
+--+        layout="@layout/toolbar_layout"
+--+        app:layout_constraintTop_toTopOf="parent" />
+-- 
+--     <com.airbnb.lottie.LottieAnimationView
+--         android:id="@+id/loading"
+--@@ -38,161 +37,160 @@
+--         app:layout_constraintTop_toBottomOf="@id/toolbar"
+--         app:layout_constraintTop_toTopOf="parent">
+-- 
+---    <androidx.constraintlayout.widget.ConstraintLayout
+---        android:padding="@dimen/_20sdp"
+---        android:layout_width="match_parent"
+---        android:layout_height="wrap_content">
+--+        <androidx.constraintlayout.widget.ConstraintLayout
+--+            android:layout_width="match_parent"
+--+            android:layout_height="wrap_content"
+--+            android:padding="@dimen/_20sdp">
+-- 
+---        <androidx.constraintlayout.widget.ConstraintLayout
+---            android:id="@+id/infoUser"
+---            android:layout_width="match_parent"
+---            android:layout_height="wrap_content"
+---            android:visibility="visible"
+---            app:layout_constraintTop_toTopOf="parent"
+---            tools:layout_editor_absoluteX="0dp">
+--+            <androidx.constraintlayout.widget.ConstraintLayout
+--+                android:id="@+id/infoUser"
+--+                android:layout_width="match_parent"
+--+                android:layout_height="wrap_content"
+--+                android:visibility="visible"
+--+                app:layout_constraintTop_toTopOf="parent"
+--+                tools:layout_editor_absoluteX="0dp">
+-- 
+---            <TextView
+---                android:id="@+id/namaUser"
+---                android:layout_width="wrap_content"
+---                android:layout_height="wrap_content"
+---                android:text="Fauzan Almaterzz"
+---                android:textColor="@color/black"
+---                android:textSize="@dimen/_10ssp"
+---                android:textStyle="bold"
+---                app:layout_constraintStart_toStartOf="parent"
+---                app:layout_constraintTop_toTopOf="parent" />
+--+                <TextView
+--+                    android:id="@+id/namaUser"
+--+                    android:layout_width="wrap_content"
+--+                    android:layout_height="wrap_content"
+--+                    android:text="Fauzan Almaterzz"
+--+                    android:textColor="@color/black"
+--+                    android:textSize="@dimen/_10ssp"
+--+                    android:textStyle="bold"
+--+                    app:layout_constraintStart_toStartOf="parent"
+--+                    app:layout_constraintTop_toTopOf="parent" />
+-- 
+---            <TextView
+---                android:id="@+id/jabatan"
+---                android:layout_width="wrap_content"
+---                android:layout_height="wrap_content"
+---                android:fontFamily="@font/poppins"
+---                android:text="UI Designer"
+---                android:textSize="@dimen/_10ssp"
+---                app:layout_constraintStart_toStartOf="@+id/namaUser"
+---                app:layout_constraintTop_toBottomOf="@+id/namaUser" />
+--+                <TextView
+--+                    android:id="@+id/jabatan"
+--+                    android:layout_width="wrap_content"
+--+                    android:layout_height="wrap_content"
+--+                    android:fontFamily="@font/poppins"
+--+                    android:text="UI Designer"
+--+                    android:textSize="@dimen/_10ssp"
+--+                    app:layout_constraintStart_toStartOf="@+id/namaUser"
+--+                    app:layout_constraintTop_toBottomOf="@+id/namaUser" />
+-- 
+---            <de.hdodenhof.circleimageview.CircleImageView
+---                android:id="@+id/imageUser"
+---                android:layout_width="@dimen/_38sdp"
+---                android:layout_height="@dimen/_36sdp"
+---                app:civ_border_color="@color/white"
+---                app:civ_border_width="4dp"
+---                app:layout_constraintBottom_toBottomOf="@+id/jabatan"
+---                app:layout_constraintEnd_toEndOf="parent"
+---                app:layout_constraintTop_toTopOf="@+id/namaUser"
+---                tools:src="@drawable/man" />
+--+                <de.hdodenhof.circleimageview.CircleImageView
+--+                    android:id="@+id/imageUser"
+--+                    android:layout_width="@dimen/_38sdp"
+--+                    android:layout_height="@dimen/_36sdp"
+--+                    app:civ_border_color="@color/white"
+--+                    app:civ_border_width="4dp"
+--+                    app:layout_constraintBottom_toBottomOf="@+id/jabatan"
+--+                    app:layout_constraintEnd_toEndOf="parent"
+--+                    app:layout_constraintTop_toTopOf="@+id/namaUser"
+--+                    tools:src="@drawable/man" />
+-- 
+---        </androidx.constraintlayout.widget.ConstraintLayout>
+--+            </androidx.constraintlayout.widget.ConstraintLayout>
+-- 
+---        <com.google.android.material.card.MaterialCardView
+---            android:id="@+id/materialCardView12"
+---            android:layout_width="match_parent"
+---            android:layout_height="wrap_content"
+---            android:layout_marginVertical="@dimen/_20sdp"
+---            android:background="@color/white"
+---            app:layout_constraintBottom_toTopOf="@+id/materialCardView13"
+---            app:layout_constraintEnd_toEndOf="parent"
+---            app:layout_constraintStart_toStartOf="parent"
+---            app:layout_constraintTop_toBottomOf="@+id/infoUser">
+--+            <com.google.android.material.card.MaterialCardView
+--+                android:id="@+id/materialCardView12"
+--+                android:layout_width="match_parent"
+--+                android:layout_height="wrap_content"
+--+                android:layout_marginVertical="@dimen/_20sdp"
+--+                android:background="@color/white"
+--+                app:layout_constraintBottom_toTopOf="@+id/materialCardView13"
+--+                app:layout_constraintEnd_toEndOf="parent"
+--+                app:layout_constraintStart_toStartOf="parent"
+--+                app:layout_constraintTop_toBottomOf="@+id/infoUser">
+-- 
+---            <androidx.constraintlayout.widget.ConstraintLayout
+---                android:layout_width="match_parent"
+---                android:layout_height="match_parent"
+---                android:background="@color/white"
+---                android:padding="@dimen/_20sdp">
+--+                <androidx.constraintlayout.widget.ConstraintLayout
+--+                    android:layout_width="match_parent"
+--+                    android:layout_height="match_parent"
+--+                    android:background="@color/white"
+--+                    android:padding="@dimen/_20sdp">
+-- 
+---                <TextView
+---                    android:id="@+id/textView27"
+---                    android:layout_width="wrap_content"
+---                    android:layout_height="wrap_content"
+---                    android:fontFamily="@font/poppins_semibold"
+---                    android:text="Total Absensi Bulan Ini"
+---                    android:textColor="@color/black_text"
+---                    android:textSize="@dimen/_10ssp"
+---                    app:layout_constraintStart_toStartOf="parent"
+---                    app:layout_constraintTop_toTopOf="parent" />
+--+                    <TextView
+--+                        android:id="@+id/textView27"
+--+                        android:layout_width="wrap_content"
+--+                        android:layout_height="wrap_content"
+--+                        android:fontFamily="@font/poppins_semibold"
+--+                        android:text="Total Absensi Bulan Ini"
+--+                        android:textColor="@color/black_text"
+--+                        android:textSize="@dimen/_10ssp"
+--+                        app:layout_constraintStart_toStartOf="parent"
+--+                        app:layout_constraintTop_toTopOf="parent" />
+-- 
+---                <View
+---                    android:layout_width="0dp"
+---                    android:layout_height="0.5dp"
+---                    android:layout_marginStart="@dimen/_10sdp"
+---                    android:background="@color/secondary"
+---                    app:layout_constraintBottom_toBottomOf="@+id/textView27"
+---                    app:layout_constraintEnd_toEndOf="parent"
+---                    app:layout_constraintStart_toEndOf="@+id/textView27"
+---                    app:layout_constraintTop_toTopOf="@+id/textView27" />
+--+                    <View
+--+                        android:layout_width="0dp"
+--+                        android:layout_height="0.5dp"
+--+                        android:layout_marginStart="@dimen/_10sdp"
+--+                        android:background="@color/secondary"
+--+                        app:layout_constraintBottom_toBottomOf="@+id/textView27"
+--+                        app:layout_constraintEnd_toEndOf="parent"
+--+                        app:layout_constraintStart_toEndOf="@+id/textView27"
+--+                        app:layout_constraintTop_toTopOf="@+id/textView27" />
+-- 
+---                <com.github.mikephil.charting.charts.PieChart
+---                    android:id="@+id/pie_chart"
+---                    android:layout_width="match_parent"
+---                    android:layout_height="200dp"
+---                    app:layout_constraintBottom_toBottomOf="parent"
+---                    app:layout_constraintTop_toBottomOf="@+id/textView27"
+---                    tools:layout_editor_absoluteX="26dp" />
+--+                    <com.github.mikephil.charting.charts.PieChart
+--+                        android:id="@+id/pie_chart"
+--+                        android:layout_width="match_parent"
+--+                        android:layout_height="200dp"
+--+                        app:layout_constraintBottom_toBottomOf="parent"
+--+                        app:layout_constraintTop_toBottomOf="@+id/textView27"
+--+                        tools:layout_editor_absoluteX="26dp" />
+-- 
+---            </androidx.constraintlayout.widget.ConstraintLayout>
+---        </com.google.android.material.card.MaterialCardView>
+--+                </androidx.constraintlayout.widget.ConstraintLayout>
+--+            </com.google.android.material.card.MaterialCardView>
+-- 
+---        <com.google.android.material.card.MaterialCardView
+---            android:id="@+id/materialCardView13"
+---            android:layout_width="match_parent"
+---            android:layout_height="wrap_content"
+---            android:background="@color/white"
+---            app:layout_constraintBottom_toBottomOf="parent"
+---            app:layout_constraintEnd_toEndOf="parent"
+---            app:layout_constraintStart_toStartOf="parent"
+---            app:layout_constraintTop_toBottomOf="@+id/materialCardView12">
+--+            <com.google.android.material.card.MaterialCardView
+--+                android:id="@+id/materialCardView13"
+--+                android:layout_width="match_parent"
+--+                android:layout_height="wrap_content"
+--+                android:background="@color/white"
+--+                app:layout_constraintBottom_toBottomOf="parent"
+--+                app:layout_constraintEnd_toEndOf="parent"
+--+                app:layout_constraintStart_toStartOf="parent"
+--+                app:layout_constraintTop_toBottomOf="@+id/materialCardView12">
+-- 
+---            <androidx.constraintlayout.widget.ConstraintLayout
+---                android:layout_width="match_parent"
+---                android:layout_height="match_parent"
+---                android:background="@color/white"
+---                android:padding="@dimen/_20sdp">
+--+                <androidx.constraintlayout.widget.ConstraintLayout
+--+                    android:layout_width="match_parent"
+--+                    android:layout_height="match_parent"
+--+                    android:background="@color/white"
+--+                    android:padding="@dimen/_20sdp">
+-- 
+---                <TextView
+---                    android:id="@+id/textView28"
+---                    android:layout_width="wrap_content"
+---                    android:layout_height="wrap_content"
+---                    android:fontFamily="@font/poppins_semibold"
+---                    android:text="Rekap Absensi Bulan Ini"
+---                    android:textColor="@color/black_text"
+---                    android:textSize="@dimen/_10ssp"
+---                    app:layout_constraintStart_toStartOf="parent"
+---                    app:layout_constraintTop_toTopOf="parent" />
+--+                    <TextView
+--+                        android:id="@+id/textView28"
+--+                        android:layout_width="wrap_content"
+--+                        android:layout_height="wrap_content"
+--+                        android:fontFamily="@font/poppins_semibold"
+--+                        android:text="Rekap Absensi Bulan Ini"
+--+                        android:textColor="@color/black_text"
+--+                        android:textSize="@dimen/_10ssp"
+--+                        app:layout_constraintStart_toStartOf="parent"
+--+                        app:layout_constraintTop_toTopOf="parent" />
+-- 
+---                <View
+---                    android:layout_width="0dp"
+---                    android:layout_height="0.5dp"
+---                    android:layout_marginStart="@dimen/_10sdp"
+---                    android:background="@color/secondary"
+---                    app:layout_constraintBottom_toBottomOf="@+id/textView28"
+---                    app:layout_constraintEnd_toEndOf="parent"
+---                    app:layout_constraintStart_toEndOf="@+id/textView28"
+---                    app:layout_constraintTop_toTopOf="@+id/textView28" />
+--+                    <View
+--+                        android:layout_width="0dp"
+--+                        android:layout_height="0.5dp"
+--+                        android:layout_marginStart="@dimen/_10sdp"
+--+                        android:background="@color/secondary"
+--+                        app:layout_constraintBottom_toBottomOf="@+id/textView28"
+--+                        app:layout_constraintEnd_toEndOf="parent"
+--+                        app:layout_constraintStart_toEndOf="@+id/textView28"
+--+                        app:layout_constraintTop_toTopOf="@+id/textView28" />
+-- 
+---                <androidx.recyclerview.widget.RecyclerView
+---                    android:id="@+id/recAttendance"
+---                    android:layout_width="match_parent"
+---                    android:layout_height="300dp"
+---                    android:layout_marginTop="@dimen/_20sdp"
+---                    app:layout_constraintEnd_toEndOf="parent"
+---                    app:layout_constraintStart_toStartOf="parent"
+---                    app:layout_constraintTop_toBottomOf="@+id/textView28"
+---                    tools:listitem="@layout/item_rekap_absensi" />
+--+                    <androidx.recyclerview.widget.RecyclerView
+--+                        android:id="@+id/recAttendance"
+--+                        android:layout_width="match_parent"
+--+                        android:layout_height="300dp"
+--+                        android:layout_marginTop="@dimen/_20sdp"
+--+                        app:layout_constraintEnd_toEndOf="parent"
+--+                        app:layout_constraintStart_toStartOf="parent"
+--+                        app:layout_constraintTop_toBottomOf="@+id/textView28"
+--+                        tools:listitem="@layout/item_rekap_absensi" />
+-- 
+---                <ImageView
+---                    android:visibility="gone"
+---                    android:id="@+id/img_no_data"
+---                    android:layout_width="match_parent"
+---                    android:layout_height="wrap_content"
+---                    android:padding="@dimen/_20sdp"
+---                    android:src="@drawable/no_data_found"
+---                    app:layout_constraintTop_toBottomOf="@id/recAttendance"
+---                    />
+---            </androidx.constraintlayout.widget.ConstraintLayout>
+---        </com.google.android.material.card.MaterialCardView>
+---    </androidx.constraintlayout.widget.ConstraintLayout>
+---
+--+                    <ImageView
+--+                        android:id="@+id/img_no_data"
+--+                        android:layout_width="match_parent"
+--+                        android:layout_height="wrap_content"
+--+                        android:padding="@dimen/_20sdp"
+--+                        android:src="@drawable/no_data_found"
+--+                        android:visibility="gone"
+--+                        app:layout_constraintTop_toBottomOf="@id/recAttendance" />
+--+
+--+                </androidx.constraintlayout.widget.ConstraintLayout>
+--+            </com.google.android.material.card.MaterialCardView>
+--+        </androidx.constraintlayout.widget.ConstraintLayout>
+--     </ScrollView>
+-- </androidx.constraintlayout.widget.ConstraintLayout>
+--\ No newline at end of file
+--Index: app/src/main/java/com/example/dsmabsen/ui/fragment/AttendanceFragment.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.Manifest.permission.*\r\nimport android.app.Activity\r\nimport android.util.Base64\r\nimport android.Manifest\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport android.content.pm.PackageManager\r\nimport android.graphics.Bitmap\r\nimport android.location.Geocoder\r\nimport android.location.Location\r\nimport android.location.LocationListener\r\nimport android.location.LocationManager\r\nimport android.net.Uri\r\nimport android.os.Build\r\n\r\nimport android.os.Bundle\r\nimport android.os.Handler\r\nimport android.provider.MediaStore\r\nimport android.provider.Settings\r\nimport android.util.Log\r\nimport android.view.Menu\r\nimport android.view.MenuInflater\r\nimport android.view.View\r\nimport android.widget.TextView\r\nimport android.widget.Toast\r\nimport androidx.activity.OnBackPressedCallback\r\nimport androidx.activity.result.ActivityResultLauncher\r\nimport androidx.activity.result.contract.ActivityResultContracts\r\nimport androidx.annotation.RequiresApi\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.appcompat.widget.Toolbar\r\nimport androidx.constraintlayout.motion.widget.Debug.getLocation\r\nimport androidx.core.app.ActivityCompat\r\nimport androidx.core.content.ContextCompat\r\nimport androidx.core.content.getSystemService\r\nimport androidx.core.view.isVisible\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.navigation.fragment.findNavController\r\nimport com.bumptech.glide.Glide\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.databinding.FragmentAttendanceBinding\r\nimport com.example.dsmabsen.helper.*\r\nimport com.example.dsmabsen.model.DataX\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport com.example.dsmabsen.ui.viewModel.AttendanceViewModel\r\nimport com.google.android.gms.location.FusedLocationProviderClient\r\nimport com.google.android.gms.location.LocationServices\r\nimport com.google.android.material.snackbar.Snackbar\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\nimport okhttp3.MediaType.Companion.toMediaTypeOrNull\r\nimport okhttp3.MultipartBody\r\nimport okhttp3.RequestBody.Companion.toRequestBody\r\nimport java.io.ByteArrayOutputStream\r\nimport java.time.LocalDate\r\nimport java.time.format.DateTimeFormatter\r\nimport java.util.*\r\nimport javax.inject.Inject\r\nimport java.text.SimpleDateFormat\r\nimport java.time.format.TextStyle\r\n\r\n@AndroidEntryPoint\r\nclass AttendanceFragment :\r\n    BaseFragment<FragmentAttendanceBinding>(FragmentAttendanceBinding::inflate) {\r\n    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient\r\n    private lateinit var locationManager: LocationManager\r\n    private val LOCATION_PERMISSION_CODE = 123 // kode permintaan izin\r\n    private val viewModel: AttendanceViewModel by viewModels()\r\n    private val handler = Handler()\r\n    private lateinit var runnable: Runnable\r\n\r\n    @Inject\r\n    lateinit var tokenManager: TokenManager\r\n    private val savedUser = Paper.book().read<DataX>(\"user\")\r\n\r\n\r\n    @RequiresApi(Build.VERSION_CODES.O)\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n\r\n        super.onViewCreated(view, savedInstanceState)\r\n        hideToolbar()\r\n        timeRun()\r\n\r\n        binding.apply {\r\n\r\n            val permission =\r\n                arrayOf(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, ACCESS_BACKGROUND_LOCATION)\r\n//            permissionMultiRequest.launch(permission)\r\n            requestLocationPermission()\r\n            locationManager =\r\n                requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager\r\n//            Toast.makeText(context, \"$locationManager\", Toast.LENGTH_SHORT).show()\r\n\r\n            cekGPS()\r\n\r\n            btnAbsen.setOnClickListener {\r\n                camera()\r\n            }\r\n            namaUser.text = savedUser!!.name\r\n            jabatan.text = savedUser!!.nama_jabatan\r\n            Glide.with(requireContext())\r\n                .load(Constans.IMAGE_URL + savedUser!!.image)\r\n                .into(imageUser)\r\n\r\n\r\n            imageUser.setOnClickListener {\r\n                findNavController().navigate(R.id.action_attendanceFragment_to_profileFragment)\r\n            }\r\n            btnRefresh.setOnClickListener {\r\n                cekGPS()\r\n            }\r\n        }\r\n\r\n\r\n    }\r\n\r\n    override fun onStart() {\r\n        super.onStart()\r\n\r\n        getLocation()\r\n    }\r\n\r\n    private val permissionMultiRequest =\r\n        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->\r\n            var areAllGranted = true\r\n            for (isGranted in result.values) {\r\n//                Toast.makeText(requireContext(), \"Granted is $isGranted\", Toast.LENGTH_SHORT).show()\r\n                areAllGranted = areAllGranted && isGranted\r\n            }\r\n\r\n            if (areAllGranted) {\r\n//                Toast.makeText(\r\n//                    requireContext(),\r\n//                    \"Permintaan Izin di aktifkan\",\r\n//                    Toast.LENGTH_SHORT\r\n//                ).show()\r\n                val locationListener = object : LocationListener {\r\n                    override fun onLocationChanged(location: Location) {\r\n                        // Do something with the new location\r\n                    }\r\n\r\n                    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}\r\n\r\n                    override fun onProviderEnabled(provider: String) {\r\n                        if (provider == LocationManager.GPS_PROVIDER) {\r\n//                            Toast.makeText(\r\n//                                requireContext(),\r\n//                                \"Provider $provider enabled\",\r\n//                                Toast.LENGTH_SHORT\r\n//                            ).show()\r\n                        }\r\n                    }\r\n\r\n                    override fun onProviderDisabled(provider: String) {\r\n//                        Toast.makeText(\r\n//                            requireContext(),\r\n//                            \"Provider $provider disabled\",\r\n//                            Toast.LENGTH_SHORT\r\n//                        ).show()\r\n                    }\r\n                }\r\n                requestLocationPermission()\r\n                locationManager.requestLocationUpdates(\r\n                    LocationManager.GPS_PROVIDER,\r\n                    0,\r\n                    0f,\r\n                    locationListener\r\n                )\r\n\r\n                getLocation()\r\n            } else {\r\n//                Toast.makeText(\r\n//                    requireContext(),\r\n//                    \"Permintaan Izin di nonaktifkan\",\r\n//                    Toast.LENGTH_SHORT\r\n//                ).show()\r\n            }\r\n        }\r\n\r\n\r\n    private fun getLocationUser() {\r\n        locationManager =\r\n            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager\r\n        fusedLocationProviderClient =\r\n            LocationServices.getFusedLocationProviderClient(requireContext())\r\n        val task = fusedLocationProviderClient.lastLocation\r\n        task.addOnSuccessListener {\r\n            if (it != null) {\r\n                with(binding) {\r\n                    lattitudeUser.text = it.latitude.toString()\r\n                    longitudeUser.text = it.longitude.toString()\r\n\r\n                }\r\n                getAddressAboveSDK29()\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun getLocation() {\r\n        val locationManager =\r\n            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager\r\n        locationManager.requestLocationUpdates(\r\n            LocationManager.NETWORK_PROVIDER,\r\n            0L,\r\n            0f,\r\n            locationListener\r\n        )\r\n        getLocationUser()\r\n    }\r\n\r\n    private val locationListener: LocationListener = object : LocationListener {\r\n        override fun onLocationChanged(location: Location) {\r\n            // Mendapatkan latitude dan longitude\r\n            val latitude = location.latitude\r\n            val longitude = location.longitude\r\n\r\n            binding.lattitudeUser.text = latitude.toString()\r\n            binding.longitudeUser.text = longitude.toString()\r\n\r\n        }\r\n\r\n        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}\r\n        override fun onProviderEnabled(provider: String) {\r\n            getLocationUser()\r\n            enableAbsen()\r\n        }\r\n\r\n        override fun onProviderDisabled(provider: String) {\r\n            cekGPS()\r\n        }\r\n    }\r\n\r\n    override fun onStop() {\r\n        super.onStop()\r\n        locationManager\r\n    }\r\n\r\n    @RequiresApi(Build.VERSION_CODES.O)\r\n    private fun camera() {\r\n//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {\r\n//            checkCameraPermission()\r\n//        }else {\r\n        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)\r\n        intent.putExtra(\"android.intent.extras.LENS_FACING_FRONT\", 1)\r\n        putPhoto.launch(intent)\r\n//        }\r\n    }\r\n\r\n    private fun checkCameraPermission() {\r\n        if (ContextCompat.checkSelfPermission(requireContext(), CAMERA)\r\n            != PackageManager.PERMISSION_GRANTED\r\n        ) {\r\n            val permission = CAMERA\r\n            singlePermissionLaunch.launch(permission)\r\n        }\r\n    }\r\n\r\n    @RequiresApi(Build.VERSION_CODES.O)\r\n    private val putPhoto =\r\n        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {\r\n            if (it.resultCode == Activity.RESULT_OK) {\r\n\r\n                val selectedImageUris = it?.data?.extras?.get(\"data\") as Bitmap\r\n                val uri = it?.data?.data\r\n                absen(selectedImageUris!!)\r\n\r\n//                binding.photo.setImageBitmap(selectedImageUris)            /* imgPhoto.load(bitmap) */\r\n//                binding.photo.isVisible = true\r\n            } else if (it == null) {\r\n                Toast.makeText(requireContext(), \"Gambar tida dapat di set\", Toast.LENGTH_SHORT)\r\n                    .show()\r\n            } else {\r\n                Toast.makeText(requireContext(), \"Task Cancelled\", Toast.LENGTH_SHORT).show()\r\n            }\r\n\r\n        }\r\n\r\n    @RequiresApi(Build.VERSION_CODES.O)\r\n    private fun absen(uri: Bitmap) {\r\n\r\n        val photo = uriToMultipartBody(uri)\r\n\r\n\r\n        Log.d(\"gambar\", photo.toString())\r\n\r\n        val timeNow = getTime()\r\n\r\n        val nipRequestBody = MultipartBody.Part.createFormData(\"nip\", savedUser!!.nip)\r\n        val dateRequestBody = MultipartBody.Part.createFormData(\"date\", timeNow)\r\n        val timezoneRequestBody = MultipartBody.Part.createFormData(\"timezone\", \"\")\r\n        val kordinatRequestBody = MultipartBody.Part.createFormData(\"kordinat\", \"123, 456\")\r\n        val kodeShiftRequestBody = MultipartBody.Part.createFormData(\"kode_shift\", \"12\")\r\n        val kodeTingkatRequestBody = MultipartBody.Part.createFormData(\"kode_tingkat\", \"0\")\r\n\r\n        viewModel.attendanceToday2(\r\n            photo,\r\n            nipRequestBody.body,\r\n            dateRequestBody.body,\r\n            timezoneRequestBody.body,\r\n            kordinatRequestBody.body,\r\n            kodeShiftRequestBody.body,\r\n            kodeTingkatRequestBody.body\r\n        )\r\n        viewModel.presensiLiveData.observe(viewLifecycleOwner) {\r\n            when (it) {\r\n                is NetworkResult.Success -> {\r\n                    binding.loadingInclude.loading.isVisible = false\r\n\r\n                    val response = it.data!!\r\n                    val statusServer = response.status\r\n                    val statusPresensi = response.data.status\r\n                    val message = response.data.messages\r\n                    if (statusPresensi == \"Error\"){\r\n                        binding.apply {\r\n                            materialCardView21.isVisible = true\r\n                            notificationUser.isVisible = true\r\n                            informationLayout.isVisible = true\r\n                            notificationUser.text = message\r\n                            informationLayout.setBackgroundColor(\r\n                                ContextCompat.getColor(\r\n                                    requireContext(),\r\n                                    R.color._danger\r\n                                )\r\n                            )\r\n                        }\r\n                    }else{\r\n                        binding.apply {\r\n                            binding.materialCardView21.isVisible = true\r\n                            binding.notificationUser.isVisible = true\r\n                            binding.informationLayout.isVisible = true\r\n                            binding.notificationUser.text = message\r\n                            binding.informationLayout.setBackgroundColor(\r\n                                ContextCompat.getColor(\r\n                                    requireContext(),\r\n                                    R.color._success\r\n                                )\r\n                            )\r\n                        }\r\n                    }\r\n\r\n//                    Toast.makeText(requireContext(),message , Toast.LENGTH_SHORT).show()\r\n\r\n\r\n\r\n                }\r\n                is NetworkResult.Loading -> {\r\n                    binding.loadingInclude.loading.isVisible = true\r\n                    Toast.makeText(requireContext(), \"Loading\", Toast.LENGTH_SHORT).show()\r\n                }\r\n\r\n                is NetworkResult.Error -> {\r\n                    handleApiError(it.message)\r\n                }\r\n            }\r\n        }\r\n\r\n\r\n    }\r\n\r\n    private fun getTime(): String {\r\n        val dateFormat = SimpleDateFormat(\"yyyy-MM-dd HH:mm:ss\", Locale.getDefault())\r\n        val date = Date()\r\n        return dateFormat.format(date)\r\n    }\r\n\r\n    private fun uriToMultipartBody(bitmap: Bitmap): MultipartBody.Part {\r\n        val byteArrayOutputStream = ByteArrayOutputStream()\r\n        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)\r\n        val byteArray = byteArrayOutputStream.toByteArray()\r\n        val requestFile = byteArray.toRequestBody(\"image/png\".toMediaTypeOrNull())\r\n        return MultipartBody.Part.createFormData(\"image\", \"image.png\", requestFile)\r\n    }\r\n\r\n    private val singlePermissionLaunch =\r\n        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->\r\n            Log.d(Constans.TAG, \"permission is Granted: $isGranted\")\r\n            if (isGranted) {\r\n                Log.d(\"TAG\", \"permission granted\")\r\n//                Toast.makeText(requireContext(), \"Permission camera is granted\", Toast.LENGTH_SHORT)\r\n//                    .show()\r\n\r\n            } else {\r\n                Log.d(Constans.TAG, \"Permission camera  : Permission Denied \")\r\n//                Toast.makeText(requireContext(), \"Permission camera Denied \", Toast.LENGTH_SHORT)\r\n//                    .show()\r\n            }\r\n        }\r\n\r\n    private fun getAddressAboveSDK29() {\r\n        if (ActivityCompat.checkSelfPermission(\r\n                requireContext(),\r\n                ACCESS_FINE_LOCATION\r\n            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(\r\n                requireContext(),\r\n                ACCESS_COARSE_LOCATION\r\n            ) != PackageManager.PERMISSION_GRANTED\r\n        )\r\n\r\n        fusedLocationProviderClient.lastLocation\r\n            .addOnSuccessListener { location: Location? ->\r\n                // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh\r\n                val geocoder = Geocoder(requireContext(), Locale.getDefault())\r\n                geocoder.getFromLocation(\r\n                    location?.latitude ?: 0.0,\r\n                    location?.longitude ?: 0.0,\r\n                    1\r\n                ).also { addresses ->\r\n                    // Mengambil alamat dari objek Address dan menampilkannya pada TextView\r\n                    val address: String? = addresses!![0].getAddressLine(0)\r\n//                    Toast.makeText(requireContext(), \"alamat golekai $address\", Toast.LENGTH_SHORT).show()\r\n\r\n                    val city: String? = addresses[0].locality\r\n                    val state: String? = addresses[0].adminArea\r\n                    val country: String? = addresses[0].countryName\r\n                    val postalCode: String? = addresses[0].postalCode\r\n                    val knownName: String? = addresses[0].featureName\r\n\r\n                    binding.currentLocation.text =\r\n                        \"$address\"\r\n//                    Toast.makeText(context, \"$address\", Toast.LENGTH_SHORT).show()\r\n                }\r\n            }\r\n    }\r\n\r\n    private fun getAddressBelowSDK29() {\r\n        fusedLocationProviderClient.lastLocation\r\n            .addOnSuccessListener { location: Location? ->\r\n                // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh\r\n                val geocoder = Geocoder(requireContext(), Locale.getDefault())\r\n\r\n                val addresses = geocoder.getFromLocation(\r\n                    location?.latitude ?: 0.0,\r\n                    location?.longitude ?: 0.0,\r\n                    1\r\n                )\r\n                // Mengambil alamat dari objek Address dan menampilkannya pada TextView\r\n                val address: String? = addresses!![0].getAddressLine(0)\r\n                val city: String? = addresses[0].locality\r\n                val state: String? = addresses[0].adminArea\r\n                val country: String? = addresses[0].countryName\r\n                val postalCode: String? = addresses[0].postalCode\r\n                val knownName: String? = addresses[0].featureName\r\n\r\n                binding.currentLocation.text =\r\n                    \"$address\"\r\n            }\r\n    }\r\n\r\n    private fun isLocationPermissionGranted(): Boolean {\r\n        return ContextCompat.checkSelfPermission(\r\n            requireActivity(),\r\n            ACCESS_FINE_LOCATION\r\n        ) == PackageManager.PERMISSION_GRANTED\r\n    }\r\n\r\n    private fun requestLocationPermission() {\r\n        if (isLocationPermissionGranted()) {\r\n\r\n//            Toast.makeText(\r\n//                requireContext(),\r\n//                \"Anda telah memberikan izin lokasi\",\r\n//                Toast.LENGTH_SHORT\r\n//            )\r\n//                .show()\r\n        }\r\n        if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {\r\n//            Toast.makeText(\r\n//                requireContext(),\r\n//                \"Izin lokasi dibutuhkan untuk melakukan absensi\",\r\n//                Toast.LENGTH_SHORT\r\n//            ).show()\r\n        } else {\r\n            requestPermissionLauncher.launch(ACCESS_FINE_LOCATION)\r\n        }\r\n    }\r\n\r\n    private val requestPermissionLauncher =\r\n        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->\r\n            if (isGranted) {\r\n                Log.d(\"TAG\", \"Izin lokasi telah diberikan\")\r\n//                Toast.makeText(requireContext(), \"Izin lokasi telah diberikan\", Toast.LENGTH_SHORT)\r\n//                    .show()\r\n            } else {\r\n                Log.d(\"TAG\", \"Izin lokasi ditolak\")\r\n//                Toast.makeText(requireContext(), \"Izin lokasi ditolak\", Toast.LENGTH_SHORT).show()\r\n            }\r\n        }\r\n\r\n\r\n    @RequiresApi(Build.VERSION_CODES.O)\r\n    fun timeRun() {\r\n\r\n        runnable = object : Runnable {\r\n            override fun run() {\r\n                val timestamp = System.currentTimeMillis()\r\n\r\n                // Create a SimpleDateFormat object with the system timezone\r\n                val sdfHari = SimpleDateFormat(\"dd\", Locale.getDefault())\r\n                val sdfBulan = SimpleDateFormat(\"MM\", Locale.getDefault())\r\n                val sdfTahun = SimpleDateFormat(\"yyyy\", Locale.getDefault())\r\n\r\n                val sdfJam = SimpleDateFormat(\"HH\", Locale.getDefault())\r\n                val sdfMenit = SimpleDateFormat(\"mm\", Locale.getDefault())\r\n                val sdfDetik = SimpleDateFormat(\"ss\", Locale.getDefault())\r\n\r\n                sdfHari.timeZone = TimeZone.getDefault()\r\n                sdfBulan.timeZone = TimeZone.getDefault()\r\n                sdfTahun.timeZone = TimeZone.getDefault()\r\n                sdfJam.timeZone = TimeZone.getDefault()\r\n                sdfMenit.timeZone = TimeZone.getDefault()\r\n                sdfDetik.timeZone = TimeZone.getDefault()\r\n\r\n                // Format the timestamp with the SimpleDateFormat object\r\n                val formattedDateJam = sdfJam.format(Date(timestamp))\r\n                val formattedDateMenit = sdfMenit.format(Date(timestamp))\r\n                val formattedDateDetik = sdfDetik.format(Date(timestamp))\r\n//                Log.d(\"run jam\", \"Formatted date with system timezone: $formattedDate\")\r\n\r\n//                val currentTime = System.currentTimeMillis()\r\n//                val seconds = (currentTime / 1000) % 60\r\n//                val minutes = (currentTime / (1000 * 60)) % 60\r\n//                val hours = (currentTime / (1000 * 60 * 60)) % 24\r\n                binding.tvTime.text =\r\n                    \"$formattedDateJam : $formattedDateMenit : $formattedDateDetik\"\r\n\r\n\r\n//                binding.textView3.text = formattedDate\r\n//                textViewa.text = String.format(\"%02d:%02d:%02d\", hours, minutes, seconds)\r\n                binding.tvHari.text = sdfHari.format(Date(timestamp))\r\n                binding.tvBulan.text = sdfBulan.format(Date(timestamp))\r\n                binding.tvTahun.text = sdfTahun.format(Date(timestamp))\r\n                handler.postDelayed(this, 1000)\r\n            }\r\n        }\r\n    }\r\n\r\n    fun cekGPS() {\r\n        // Cek apakah GPS sedang aktif\r\n        val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)\r\n        if (isGpsEnabled) {\r\n\r\n            getLocation()\r\n        } else {\r\n            // GPS tidak aktif, tampilkan dialog untuk meminta pengguna mengaktifkannya\r\n            val builder = AlertDialog.Builder(requireContext())\r\n            builder.setMessage(\"GPS tidak aktif, aktifkan GPS?\")\r\n                .setCancelable(false)\r\n                .setPositiveButton(\"Ya\") { _, _ ->\r\n                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))\r\n                    enableAbsen()\r\n                }\r\n                .setNegativeButton(\"Tidak\") { dialog, _ ->\r\n                    disableAbsen()\r\n                    dialog.cancel()\r\n                }\r\n            val alert = builder.create()\r\n            alert.show()\r\n        }\r\n    }\r\n\r\n\r\n    fun mematikanGPS() {\r\n        val locationManager =\r\n            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager\r\n        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)?.let { isGPSOn ->\r\n            if (isGPSOn) {\r\n                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)\r\n                startActivity(intent)\r\n            }\r\n        }\r\n    }\r\n\r\n    fun menyalakanGPS() {\r\n        val locationManager =\r\n            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager\r\n        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)?.let { isGPSOn ->\r\n            if (!isGPSOn) {\r\n                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)\r\n                startActivity(intent)\r\n            }\r\n        }\r\n    }\r\n\r\n    fun enableAbsen() {\r\n        binding.imgFinger.background = resources.getDrawable(R.color._danger)\r\n        binding.btnAbsen.isClickable = true\r\n    }\r\n\r\n    private fun disableAbsen() {\r\n        binding.imgFinger.background = resources.getDrawable(R.color._grey)\r\n        binding.btnAbsen.isClickable = false\r\n    }\r\n\r\n    override fun onResume() {\r\n        super.onResume()\r\n        handler.postDelayed(runnable, 0)\r\n    }\r\n\r\n    override fun onPause() {\r\n        super.onPause()\r\n        handler.removeCallbacks(runnable)\r\n    }\r\n}\r\n
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/AttendanceFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/AttendanceFragment.kt
+----- a/app/src/main/java/com/example/dsmabsen/ui/fragment/AttendanceFragment.kt	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/AttendanceFragment.kt	(date 1678753540644)
+--@@ -1,43 +1,30 @@
+-- package com.example.dsmabsen.ui.fragment
+-- 
+-- import android.Manifest.permission.*
+--+import android.animation.Animator
+-- import android.app.Activity
+---import android.util.Base64
+---import android.Manifest
+-- import android.content.Context
+-- import android.content.Intent
+-- import android.content.pm.PackageManager
+-- import android.graphics.Bitmap
+---import android.location.Geocoder
+---import android.location.Location
+---import android.location.LocationListener
+---import android.location.LocationManager
+---import android.net.Uri
+--+import android.location.*
+-- import android.os.Build
+---
+-- import android.os.Bundle
+-- import android.os.Handler
+-- import android.provider.MediaStore
+-- import android.provider.Settings
+-- import android.util.Log
+---import android.view.Menu
+---import android.view.MenuInflater
+-- import android.view.View
+---import android.widget.TextView
+-- import android.widget.Toast
+---import androidx.activity.OnBackPressedCallback
+---import androidx.activity.result.ActivityResultLauncher
+-- import androidx.activity.result.contract.ActivityResultContracts
+-- import androidx.annotation.RequiresApi
+-- import androidx.appcompat.app.AlertDialog
+---import androidx.appcompat.widget.Toolbar
+---import androidx.constraintlayout.motion.widget.Debug.getLocation
+-- import androidx.core.app.ActivityCompat
+-- import androidx.core.content.ContextCompat
+---import androidx.core.content.getSystemService
+-- import androidx.core.view.isVisible
+-- import androidx.fragment.app.viewModels
+-- import androidx.navigation.fragment.findNavController
+--+import com.airbnb.lottie.LottieDrawable
+-- import com.bumptech.glide.Glide
+-- import com.example.dsmabsen.R
+-- import com.example.dsmabsen.databinding.FragmentAttendanceBinding
+--@@ -47,19 +34,20 @@
+-- import com.example.dsmabsen.ui.viewModel.AttendanceViewModel
+-- import com.google.android.gms.location.FusedLocationProviderClient
+-- import com.google.android.gms.location.LocationServices
+---import com.google.android.material.snackbar.Snackbar
+-- import dagger.hilt.android.AndroidEntryPoint
+-- import io.paperdb.Paper
+--+import kotlinx.coroutines.delay
+--+import kotlinx.coroutines.runBlocking
+--+import kotlinx.coroutines.withTimeout
+-- import okhttp3.MediaType.Companion.toMediaTypeOrNull
+-- import okhttp3.MultipartBody
+-- import okhttp3.RequestBody.Companion.toRequestBody
+-- import java.io.ByteArrayOutputStream
+---import java.time.LocalDate
+---import java.time.format.DateTimeFormatter
+--+import java.io.IOException
+--+import java.text.SimpleDateFormat
+-- import java.util.*
+-- import javax.inject.Inject
+---import java.text.SimpleDateFormat
+---import java.time.format.TextStyle
+--+
+-- 
+-- @AndroidEntryPoint
+-- class AttendanceFragment :
+--@@ -110,6 +98,8 @@
+--             }
+--             btnRefresh.setOnClickListener {
+--                 cekGPS()
+--+                getLocation()
+--+                enableAbsen()
+--             }
+--         }
+-- 
+--@@ -185,16 +175,24 @@
+--             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+--         fusedLocationProviderClient =
+--             LocationServices.getFusedLocationProviderClient(requireContext())
+--+        Log.d("ambil_lokasi","On2 Proses")
+--         val task = fusedLocationProviderClient.lastLocation
+--         task.addOnSuccessListener {
+--             if (it != null) {
+--                 with(binding) {
+--                     lattitudeUser.text = it.latitude.toString()
+--                     longitudeUser.text = it.longitude.toString()
+---
+--+                }
+--+                enableAbsen()
+--+            }else{
+--+                with(binding) {
+--+                    lattitudeUser.text = "-"
+--+                    longitudeUser.text ="-"
+--                 }
+---                getAddressAboveSDK29()
+---            }
+--+                disableAbsen()
+--+            }
+--+            Log.d("ambil_lokasi","On3 Proses")
+--+            getAddressAboveSDK29()
+--         }
+--     }
+-- 
+--@@ -207,6 +205,7 @@
+--             0f,
+--             locationListener
+--         )
+--+        Log.d("ambil_lokasi","On Proses")
+--         getLocationUser()
+--     }
+-- 
+--@@ -347,7 +346,6 @@
+--                 }
+--                 is NetworkResult.Loading -> {
+--                     binding.loadingInclude.loading.isVisible = true
+---                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+--                 }
+-- 
+--                 is NetworkResult.Error -> {
+--@@ -396,31 +394,59 @@
+--                 requireContext(),
+--                 ACCESS_COARSE_LOCATION
+--             ) != PackageManager.PERMISSION_GRANTED
+---        )
+--+        ) Log.d("ambil_lokasi","On4 Proses")
+--+        runLoading()
+-- 
+--         fusedLocationProviderClient.lastLocation
+--             .addOnSuccessListener { location: Location? ->
+---                // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh
+---                val geocoder = Geocoder(requireContext(), Locale.getDefault())
+---                geocoder.getFromLocation(
+---                    location?.latitude ?: 0.0,
+---                    location?.longitude ?: 0.0,
+---                    1
+---                ).also { addresses ->
+---                    // Mengambil alamat dari objek Address dan menampilkannya pada TextView
+---                    val address: String? = addresses!![0].getAddressLine(0)
+---//                    Toast.makeText(requireContext(), "alamat golekai $address", Toast.LENGTH_SHORT).show()
+--+                try {
+--+                    val provider = LocationManager.NETWORK_PROVIDER
+--+                    val location = locationManager.getLastKnownLocation(provider)
+--+                    if (location != null) {
+--+                        val latitude = location.latitude
+--+                        val longitude = location.longitude
+--+                        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+--+                        val alertDialogHelper = AlertDialogHelper(requireContext())
+--+                        try {
+--+                            val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+--+                            if (addresses != null && addresses.isNotEmpty()) {
+--+                                val address = addresses[0].getAddressLine(0)
+--+                                binding.currentLocation.text = address
+--+//                                enableAbsen()
+--+                            } else {
+--+                                binding.currentLocation.text = "-"
+--+//                                disableAbsen()
+--+                                alertDialogHelper.showAlertDialog("Absen", "Lokasi tidak di temukan")
+--+                            }
+--+                        } catch (e: IOException) {
+--+                            binding.currentLocation.text = "-"
+--+//                            disableAbsen()
+--+                            alertDialogHelper.showAlertDialog("Absen", "Lokasi tidak di temukan, periksa kembali koneksi anda")
+--+                            e.printStackTrace()
+--+                        }
+--+                        stopLoading()
+--+                    } else {
+--+                        // Tidak dapat menemukan lokasi terkini
+--+                    }
+-- 
+---                    val city: String? = addresses[0].locality
+---                    val state: String? = addresses[0].adminArea
+---                    val country: String? = addresses[0].countryName
+---                    val postalCode: String? = addresses[0].postalCode
+---                    val knownName: String? = addresses[0].featureName
+-- 
+---                    binding.currentLocation.text =
+---                        "$address"
+---//                    Toast.makeText(context, "$address", Toast.LENGTH_SHORT).show()
+--+
+--+//                    geocoder.getFromLocation(
+--+//                        location?.latitude ?: 0.0,
+--+//                        location?.longitude ?: 0.0,
+--+//                        1
+--+//                    ).also { addresses ->
+--+//
+--+//                        val address: String? = addresses!![0].getAddressLine(0)
+--+//                        Log.d("ambil_lokasi","Selesai : $address")
+--+//
+--+//                        binding.currentLocation.text =
+--+//                            "$address"
+--+//                    }
+--+                }catch (e:Exception){
+--+                    Log.d("ambil_lokasi","Error : ${e.message}")
+--                 }
+--+
+--             }
+--     }
+-- 
+--@@ -539,10 +565,7 @@
+--     fun cekGPS() {
+--         // Cek apakah GPS sedang aktif
+--         val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+---        if (isGpsEnabled) {
+---
+---            getLocation()
+---        } else {
+--+        if (!isGpsEnabled) {
+--             // GPS tidak aktif, tampilkan dialog untuk meminta pengguna mengaktifkannya
+--             val builder = AlertDialog.Builder(requireContext())
+--             builder.setMessage("GPS tidak aktif, aktifkan GPS?")
+--@@ -602,4 +625,13 @@
+--         super.onPause()
+--         handler.removeCallbacks(runnable)
+--     }
+--+
+--+    fun runLoading(){
+--+        binding.searchLocationLoading.visibility = View.VISIBLE
+--+    }
+--+    fun stopLoading(){
+--+        binding.searchLocationLoading.visibility = View.GONE
+--+        binding.searchLocationLoading.cancelAnimation()
+--+
+--+    }
+-- }
+--Index: app/src/main/res/layout/fragment_attendance.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"@drawable/gradiend_background\"\r\n    tools:context=\".ui.fragment.AttendanceFragment\">\r\n\r\n    <include\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:id=\"@+id/toolbar\"\r\n        layout=\"@layout/toolbar_layout\" />\r\n\r\n    <include\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        android:id=\"@+id/loadingInclude\"\r\n        layout=\"@layout/loading\" />\r\n\r\n    <ScrollView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_marginBottom=\"@dimen/_45sdp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/toolbar\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n        <androidx.constraintlayout.widget.ConstraintLayout\r\n            android:padding=\"@dimen/_20sdp\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\">\r\n\r\n            <androidx.constraintlayout.widget.ConstraintLayout\r\n                android:id=\"@+id/userInfo\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:paddingBottom=\"@dimen/_15sdp\"\r\n                app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/namaUser\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:text=\"Fauzan Almaterzz\"\r\n                    android:textColor=\"@color/black\"\r\n                    android:textSize=\"@dimen/_10ssp\"\r\n                    android:textStyle=\"bold\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/jabatan\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:fontFamily=\"@font/poppins\"\r\n                    android:text=\"UI Designer\"\r\n                    android:textSize=\"@dimen/_10ssp\"\r\n                    app:layout_constraintStart_toStartOf=\"@+id/namaUser\"\r\n                    app:layout_constraintTop_toBottomOf=\"@+id/namaUser\" />\r\n\r\n                <de.hdodenhof.circleimageview.CircleImageView\r\n                    android:id=\"@+id/imageUser\"\r\n                    android:layout_width=\"@dimen/_38sdp\"\r\n                    android:layout_height=\"@dimen/_36sdp\"\r\n                    app:civ_border_color=\"@color/white\"\r\n                    app:civ_border_width=\"4dp\"\r\n                    app:layout_constraintBottom_toBottomOf=\"@+id/jabatan\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"@+id/namaUser\"\r\n                    tools:src=\"@drawable/man\" />\r\n\r\n            </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n            <com.google.android.material.card.MaterialCardView\r\n                android:id=\"@+id/materialCardView19\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:padding=\"@dimen/_20sdp\"\r\n                android:visibility=\"visible\"\r\n                app:layout_constraintTop_toBottomOf=\"@+id/userInfo\"\r\n                tools:layout_editor_absoluteX=\"0dp\">\r\n\r\n                <androidx.constraintlayout.widget.ConstraintLayout\r\n\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:padding=\"@dimen/_15sdp\">\r\n\r\n                    <ImageView\r\n                        android:id=\"@+id/imageView22\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:src=\"@drawable/ic_circle_location\"\r\n                        app:layout_constraintTop_toTopOf=\"parent\"\r\n                        tools:layout_editor_absoluteX=\"19dp\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/lattitudeUser\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_marginTop=\"@dimen/_10sdp\"\r\n                        android:background=\"@drawable/bg_blue_text_rounded\"\r\n                        android:fontFamily=\"@font/poppins_medium\"\r\n                        android:paddingHorizontal=\"@dimen/_19sdp\"\r\n                        android:paddingVertical=\"@dimen/_3sdp\"\r\n                        android:text=\"Lat : -\"\r\n                        android:textAlignment=\"center\"\r\n                        android:textColor=\"@color/black\"\r\n                        android:textSize=\"@dimen/_9ssp\"\r\n                        app:layout_constraintEnd_toStartOf=\"@+id/longitudeUser\"\r\n                        app:layout_constraintHorizontal_bias=\"0.5\"\r\n                        app:layout_constraintStart_toStartOf=\"parent\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/imageView22\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/longitudeUser\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_marginTop=\"@dimen/_10sdp\"\r\n                        android:background=\"@drawable/bg_pink_text_rounded\"\r\n                        android:fontFamily=\"@font/poppins_medium\"\r\n                        android:paddingHorizontal=\"@dimen/_19sdp\"\r\n                        android:paddingVertical=\"@dimen/_3sdp\"\r\n                        android:text=\"Lat : -\"\r\n                        android:textAlignment=\"center\"\r\n                        android:textColor=\"@color/black\"\r\n                        android:textSize=\"@dimen/_9ssp\"\r\n                        app:layout_constraintEnd_toEndOf=\"parent\"\r\n                        app:layout_constraintHorizontal_bias=\"0.5\"\r\n                        app:layout_constraintStart_toEndOf=\"@+id/lattitudeUser\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/imageView22\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/currentLocation\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_marginTop=\"@dimen/_10sdp\"\r\n                        android:fontFamily=\"@font/poppins_light\"\r\n                        android:text=\"Lokasi \"\r\n                        android:textAlignment=\"center\"\r\n                        android:textColor=\"@color/black\"\r\n                        android:textSize=\"@dimen/_10ssp\"\r\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/lattitudeUser\"\r\n                        tools:layout_editor_absoluteX=\"144dp\" />\r\n                </androidx.constraintlayout.widget.ConstraintLayout>\r\n            </com.google.android.material.card.MaterialCardView>\r\n\r\n            <com.google.android.material.card.MaterialCardView\r\n                android:id=\"@+id/materialCardView20\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"@dimen/_15sdp\"\r\n                app:layout_constraintTop_toBottomOf=\"@+id/materialCardView19\"\r\n                tools:layout_editor_absoluteX=\"26dp\">\r\n\r\n                <androidx.constraintlayout.widget.ConstraintLayout\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:padding=\"@dimen/_10sdp\">\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/tv_time\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:fontFamily=\"@font/poppins_bold\"\r\n                        android:text=\"-:-:-\"\r\n                        android:textAlignment=\"center\"\r\n                        android:textColor=\"@color/black\"\r\n                        android:textSize=\"@dimen/_40ssp\"\r\n                        app:layout_constraintTop_toTopOf=\"parent\"\r\n                        tools:layout_editor_absoluteX=\"13dp\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/tv_hari\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:background=\"@drawable/gradiend_background\"\r\n                        android:paddingHorizontal=\"@dimen/_12sdp\"\r\n                        android:text=\"-\"\r\n                        android:fontFamily=\"@font/poppins_bold\"\r\n                        android:textColor=\"@color/_dark\"\r\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                        app:layout_constraintEnd_toStartOf=\"@+id/tv_bulan\"\r\n                        app:layout_constraintHorizontal_bias=\"0.5\"\r\n                        app:layout_constraintHorizontal_chainStyle=\"packed\"\r\n                        app:layout_constraintStart_toStartOf=\"parent\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/tv_time\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/tv_bulan\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_marginHorizontal=\"@dimen/_3sdp\"\r\n                        android:background=\"@drawable/gradiend_background\"\r\n                        android:paddingHorizontal=\"@dimen/_12sdp\"\r\n                        android:text=\"-\"\r\n                        android:fontFamily=\"@font/poppins_bold\"\r\n                        android:textColor=\"@color/_dark\"\r\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                        app:layout_constraintEnd_toStartOf=\"@+id/tv_tahun\"\r\n                        app:layout_constraintHorizontal_bias=\"0.5\"\r\n                        app:layout_constraintStart_toEndOf=\"@+id/tv_hari\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/tv_time\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/tv_tahun\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:background=\"@drawable/gradiend_background\"\r\n                        android:paddingHorizontal=\"@dimen/_12sdp\"\r\n                        android:text=\"-\"\r\n                        android:fontFamily=\"@font/poppins_bold\"\r\n                        android:textColor=\"@color/_dark\"\r\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                        app:layout_constraintEnd_toEndOf=\"parent\"\r\n                        app:layout_constraintHorizontal_bias=\"0.5\"\r\n                        app:layout_constraintStart_toEndOf=\"@+id/tv_bulan\"\r\n                        app:layout_constraintTop_toBottomOf=\"@+id/tv_time\" />\r\n\r\n\r\n                </androidx.constraintlayout.widget.ConstraintLayout>\r\n            </com.google.android.material.card.MaterialCardView>\r\n\r\n            <com.google.android.material.card.MaterialCardView\r\n                android:id=\"@+id/materialCardView21\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"@dimen/_15sdp\"\r\n                android:visibility=\"gone\"\r\n                app:layout_constraintTop_toBottomOf=\"@+id/materialCardView20\"\r\n                tools:layout_editor_absoluteX=\"26dp\">\r\n\r\n                <androidx.constraintlayout.widget.ConstraintLayout\r\n                    android:id=\"@+id/informationLayout\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:background=\"@color/_danger\"\r\n                    android:paddingHorizontal=\"@dimen/_40sdp\"\r\n                    android:paddingVertical=\"@dimen/_7sdp\"\r\n                    android:visibility=\"invisible\">\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/notificationUser\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:fontFamily=\"@font/poppins_light\"\r\n                        android:text=\"Gagal Absen, lokasi anda tidak di temukan,\r\nSilahkan Hubungi Admin\"\r\n                        android:textAlignment=\"center\"\r\n                        android:textColor=\"@color/white\"\r\n                        android:textSize=\"@dimen/_10ssp\"\r\n                        android:visibility=\"gone\"\r\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                        app:layout_constraintTop_toTopOf=\"parent\"\r\n                        tools:layout_editor_absoluteX=\"52dp\" />\r\n                </androidx.constraintlayout.widget.ConstraintLayout>\r\n            </com.google.android.material.card.MaterialCardView>\r\n\r\n            <androidx.constraintlayout.widget.ConstraintLayout\r\n                android:layout_marginTop=\"@dimen/_10sdp\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                app:layout_constraintTop_toBottomOf=\"@id/materialCardView21\"\r\n                tools:layout_editor_absoluteX=\"26dp\">\r\n\r\n                <com.google.android.material.card.MaterialCardView\r\n                    android:id=\"@+id/btn_refresh\"\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    app:layout_constraintEnd_toStartOf=\"@+id/btn_absen\"\r\n                    app:layout_constraintHorizontal_bias=\"0.5\"\r\n                    android:layout_marginEnd=\"@dimen/_5sdp\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n                    <ImageView\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:background=\"@color/_info\"\r\n                        android:paddingVertical=\"@dimen/_10sdp\"\r\n                        android:src=\"@drawable/refresh_locate\" />\r\n\r\n                </com.google.android.material.card.MaterialCardView>\r\n\r\n                <com.google.android.material.card.MaterialCardView\r\n                    android:id=\"@+id/btn_absen\"\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginStart=\"@dimen/_5sdp\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintHorizontal_bias=\"0.5\"\r\n                    app:layout_constraintStart_toEndOf=\"@+id/btn_refresh\"\r\n                    android:orientation=\"vertical\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n                    <ImageView\r\n                        android:id=\"@+id/img_finger\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:background=\"@color/_danger\"\r\n                        android:paddingVertical=\"@dimen/_10sdp\"\r\n                        android:src=\"@drawable/finger_absen\" />\r\n\r\n                </com.google.android.material.card.MaterialCardView>\r\n            </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n\r\n\r\n        </androidx.constraintlayout.widget.ConstraintLayout>\r\n    </ScrollView>\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/layout/fragment_attendance.xml b/app/src/main/res/layout/fragment_attendance.xml
+----- a/app/src/main/res/layout/fragment_attendance.xml	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/res/layout/fragment_attendance.xml	(date 1678752296335)
+--@@ -92,6 +92,8 @@
+--                     android:layout_height="wrap_content"
+--                     android:padding="@dimen/_15sdp">
+-- 
+--+
+--+
+--                     <ImageView
+--                         android:id="@+id/imageView22"
+--                         android:layout_width="match_parent"
+--@@ -149,6 +151,20 @@
+--                         app:layout_constraintBottom_toBottomOf="parent"
+--                         app:layout_constraintTop_toBottomOf="@+id/lattitudeUser"
+--                         tools:layout_editor_absoluteX="144dp" />
+--+
+--+                    <com.airbnb.lottie.LottieAnimationView
+--+
+--+                        app:layout_constraintTop_toTopOf="parent"
+--+                        app:layout_constraintStart_toStartOf="parent"
+--+                        app:layout_constraintEnd_toEndOf="parent"
+--+                        android:id="@+id/search_location_loading"
+--+                        app:lottie_loop="true"
+--+                        app:lottie_autoPlay="true"
+--+                        android:background="@color/white"
+--+                        android:layout_width="wrap_content"
+--+                        android:layout_height="@dimen/_200sdp"
+--+                        app:lottie_rawRes="@raw/search_location_animate" />
+--+
+--                 </androidx.constraintlayout.widget.ConstraintLayout>
+--             </com.google.android.material.card.MaterialCardView>
+-- 
+--Index: app/src/main/java/com/example/dsmabsen/repository/BaseRepository.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+>package com.example.dsmabsen.repository\r\n\r\nimport kotlinx.coroutines.Dispatchers\r\nimport kotlinx.coroutines.withContext\r\nimport org.json.JSONObject\r\nimport retrofit2.HttpException\r\nimport retrofit2.Response\r\nimport java.io.IOException\r\nimport java.net.SocketTimeoutException\r\n\r\nabstract class BaseRepository {\r\n    suspend fun <T> safeApiCall(apiToBeCalled: suspend () -> Response<T>): NetworkResult<T> {\r\n        return withContext(Dispatchers.IO) {\r\n            try {\r\n                val response: Response<T> = apiToBeCalled()\r\n                if (response.isSuccessful) {\r\n                    NetworkResult.Success(data = response.body()!!)\r\n                } else {\r\n                    val errorResponse =\r\n                        JSONObject(response.errorBody()!!.charStream().readText())\r\n                    NetworkResult.Error(errorResponse.toString() + \"Wrong Email or Password\")\r\n                }\r\n            } catch (e: HttpException) {\r\n                NetworkResult.Error(e.message ?: \"Something went wrong 1\")\r\n            } catch (e: IOException) {\r\n//                No Connection or URL error or bad connection\r\n                NetworkResult.Error(e.toString())\r\n//                NetworkResult.Error(\"Request Time Out\")\r\n            } catch (e: Exception) {\r\n//                NetworkResult.Error(e.toString() + \"Url not found error code 404\" )\r\n                NetworkResult.Error(\"Url not found error code 404\")\r\n            } catch (e: Throwable) {\r\n                NetworkResult.Error(e.toString() + \"Something went wrong 3\")\r\n            } catch (e: SocketTimeoutException) {\r\n                NetworkResult.Error(e.message + \"Socket time out exception\")\r\n            }\r\n        }\r\n    }\r\n}
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/repository/BaseRepository.kt b/app/src/main/java/com/example/dsmabsen/repository/BaseRepository.kt
+----- a/app/src/main/java/com/example/dsmabsen/repository/BaseRepository.kt	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/java/com/example/dsmabsen/repository/BaseRepository.kt	(date 1678723933830)
+--@@ -18,16 +18,13 @@
+--                 } else {
+--                     val errorResponse =
+--                         JSONObject(response.errorBody()!!.charStream().readText())
+---                    NetworkResult.Error(errorResponse.toString() + "Wrong Email or Password")
+--+                    NetworkResult.Error(errorResponse.toString() + "error response")
+--                 }
+--             } catch (e: HttpException) {
+--                 NetworkResult.Error(e.message ?: "Something went wrong 1")
+--             } catch (e: IOException) {
+---//                No Connection or URL error or bad connection
+---                NetworkResult.Error(e.toString())
+---//                NetworkResult.Error("Request Time Out")
+--+                NetworkResult.Error(e.toString() + "IOException")
+--             } catch (e: Exception) {
+---//                NetworkResult.Error(e.toString() + "Url not found error code 404" )
+--                 NetworkResult.Error("Url not found error code 404")
+--             } catch (e: Throwable) {
+--                 NetworkResult.Error(e.toString() + "Something went wrong 3")
+--Index: app/src/main/java/com/example/dsmabsen/ui/fragment/ReimbursementFragment.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.os.Bundle\r\nimport android.view.Menu\r\nimport android.view.MenuInflater\r\nimport android.view.MenuItem\r\nimport android.view.View\r\nimport android.widget.TextView\r\nimport android.widget.Toast\r\nimport androidx.appcompat.widget.Toolbar\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.navigation.fragment.findNavController\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.adapter.ReimbursementAdapter\r\nimport com.example.dsmabsen.adapter.SallaryAdapter\r\nimport com.example.dsmabsen.databinding.FragmentReimbursementBinding\r\nimport com.example.dsmabsen.helper.handleApiError\r\nimport com.example.dsmabsen.model.DataX\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport com.example.dsmabsen.ui.viewModel.ReimbursementViewModel\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\n\r\n@AndroidEntryPoint\r\nclass ReimbursementFragment :\r\n    BaseFragment<FragmentReimbursementBinding>(FragmentReimbursementBinding::inflate) {\r\n\r\n    val viewModel: ReimbursementViewModel by viewModels()\r\n    private lateinit var adapter: ReimbursementAdapter\r\n    private lateinit var recyclerView: RecyclerView\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        setHasOptionsMenu(true)\r\n        setupToolbar(\"Reimbursement\")\r\n        val savedUser = Paper.book().read<DataX>(\"user\")\r\n        with(binding) {\r\n            adapter = ReimbursementAdapter(requireContext())\r\n            recyclerView = recReimbursement\r\n            recyclerView.adapter = adapter\r\n            recyclerView.layoutManager = LinearLayoutManager(requireContext())\r\n            recyclerView.setHasFixedSize(true)\r\n\r\n            viewModel.requestReimbursement(savedUser!!.nip)\r\n            viewModel.getReimbursementLiveData.observe(viewLifecycleOwner) {\r\n                when (it) {\r\n                    is NetworkResult.Success -> {\r\n                        val response = it.data!!\r\n                        val status = response.status\r\n                        if (status) {\r\n                            adapter.differ.submitList(response.data.data)\r\n                        }\r\n                    }\r\n\r\n                    is NetworkResult.Loading -> {\r\n                        Toast.makeText(requireContext(), \"Loading\", Toast.LENGTH_SHORT).show()\r\n                    }\r\n\r\n                    is NetworkResult.Error -> {\r\n                        handleApiError(it.message)\r\n                    }\r\n                }\r\n\r\n            }\r\n        }\r\n\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->\r\n            toolbar.setOnMenuItemClickListener { menuItem ->\r\n                when (menuItem.itemId) {\r\n                    R.id.add -> {\r\n                        // Handle add menu item click\r\n                        findNavController().navigate(R.id.action_reimbursementFragment_to_pengajuanReimbursementFragment)\r\n                        true\r\n                    }\r\n\r\n                    else -> false\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {\r\n        inflater.inflate(R.menu.toolbar_menu, menu)\r\n        val menuSave = menu.findItem(R.id.save)\r\n        val menuPlus = menu.findItem(R.id.add)\r\n\r\n        menuSave?.isVisible = false // menyembunyikan menu tertentu\r\n        menuPlus?.isVisible = true // menyembunyikan menu tertentu\r\n\r\n        val item = menu.findItem(R.id.save)\r\n        item.setActionView(R.layout.item_menu_toolbar)\r\n\r\n        val actionView = item.actionView\r\n        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)\r\n        btnSimpan?.setOnClickListener {\r\n            // your code here\r\n            Toast.makeText(context, \"Save di Click\", Toast.LENGTH_SHORT).show()\r\n        }\r\n\r\n    }\r\n\r\n    override fun onOptionsItemSelected(item: MenuItem): Boolean {\r\n        when (item.itemId) {\r\n            R.id.add -> {\r\n                // Handle add menu item click\r\n                Toast.makeText(context, \"Add di Click\", Toast.LENGTH_SHORT).show()\r\n                return true\r\n            }\r\n            R.id.save -> {\r\n                // Handle navigation button click\r\n                Toast.makeText(context, \"Save di Click\", Toast.LENGTH_SHORT).show()\r\n                return true\r\n            }\r\n        }\r\n        return super.onOptionsItemSelected(item)\r\n    }\r\n\r\n\r\n}
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/ReimbursementFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/ReimbursementFragment.kt
+----- a/app/src/main/java/com/example/dsmabsen/ui/fragment/ReimbursementFragment.kt	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/ReimbursementFragment.kt	(date 1678707238408)
+--@@ -46,6 +46,10 @@
+--             viewModel.getReimbursementLiveData.observe(viewLifecycleOwner) {
+--                 when (it) {
+--                     is NetworkResult.Success -> {
+--+                        binding.apply {
+--+                            loadingInclude.loading.visibility = View.GONE
+--+                            recReimbursement.visibility = View.VISIBLE
+--+                        }
+--                         val response = it.data!!
+--                         val status = response.status
+--                         if (status) {
+--@@ -54,10 +58,17 @@
+--                     }
+-- 
+--                     is NetworkResult.Loading -> {
+---                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+--+                        binding.apply {
+--+                            loadingInclude.loading.visibility = View.VISIBLE
+--+                            recReimbursement.visibility = View.GONE
+--+                        }
+--                     }
+-- 
+--                     is NetworkResult.Error -> {
+--+                        binding.apply {
+--+                            loadingInclude.loading.visibility = View.GONE
+--+                            recReimbursement.visibility = View.VISIBLE
+--+                        }
+--                         handleApiError(it.message)
+--                     }
+--                 }
+--@@ -71,7 +82,6 @@
+--             toolbar.setOnMenuItemClickListener { menuItem ->
+--                 when (menuItem.itemId) {
+--                     R.id.add -> {
+---                        // Handle add menu item click
+--                         findNavController().navigate(R.id.action_reimbursementFragment_to_pengajuanReimbursementFragment)
+--                         true
+--                     }
+--@@ -87,8 +97,8 @@
+--         val menuSave = menu.findItem(R.id.save)
+--         val menuPlus = menu.findItem(R.id.add)
+-- 
+---        menuSave?.isVisible = false // menyembunyikan menu tertentu
+---        menuPlus?.isVisible = true // menyembunyikan menu tertentu
+--+        menuSave?.isVisible = false
+--+        menuPlus?.isVisible = true
+-- 
+--         val item = menu.findItem(R.id.save)
+--         item.setActionView(R.layout.item_menu_toolbar)
+--Index: app/src/main/java/com/example/dsmabsen/adapter/PengumumanAdapter.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/adapter/PengumumanAdapter.kt b/app/src/main/java/com/example/dsmabsen/adapter/PengumumanAdapter.kt
+--new file mode 100644
+----- /dev/null	(date 1678723833508)
+--+++ b/app/src/main/java/com/example/dsmabsen/adapter/PengumumanAdapter.kt	(date 1678723833508)
+--@@ -0,0 +1,81 @@
+--+package com.example.dsmabsen.adapter
+--+
+--+import android.content.Context
+--+import android.view.LayoutInflater
+--+import android.view.ViewGroup
+--+import androidx.core.content.ContextCompat
+--+import androidx.recyclerview.widget.AsyncListDiffer
+--+import androidx.recyclerview.widget.DiffUtil
+--+import androidx.recyclerview.widget.RecyclerView
+--+import com.bumptech.glide.Glide
+--+import com.example.dsmabsen.R
+--+import com.example.dsmabsen.databinding.ItemPengumumanBinding
+--+import com.example.dsmabsen.databinding.ItemRekapAbsensiBinding
+--+import com.example.dsmabsen.helper.Constans
+--+import com.example.dsmabsen.helper.Helper
+--+import com.example.dsmabsen.model.DataXXXXXXXXXX
+--+import com.example.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXX
+--+import com.example.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+--+
+--+class PengumumanAdapter(private val context: Context) :
+--+    RecyclerView.Adapter<PengumumanAdapter.ViewHolder>() {
+--+
+--+    inner class ViewHolder(private val binding: ItemPengumumanBinding) :
+--+        RecyclerView.ViewHolder(binding.root) {
+--+        fun setData(item: DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX) {
+--+            binding.apply {
+--+                with(item) {
+--+
+--+
+--+                    tvJudul.text = judul
+--+                    tvCreateAt.text = created_at
+--+                    tvKeteranganPengumuman.text = deskripsi
+--+
+--+                    if (file.isEmpty()) {
+--+                        Glide.with(context)
+--+                            .load(file)
+--+                            .placeholder(R.drawable.progress_animation)
+--+                            .into(ivPengumuman)
+--+                    } else {
+--+                        Glide.with(context)
+--+                            .load(file)
+--+                            .placeholder(R.drawable.progress_animation)
+--+                            .error(R.drawable.image_not_found)
+--+                            .into(ivPengumuman)
+--+                    }
+--+                }
+--+            }
+--+        }
+--+    }
+--+
+--+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
+--+        ItemPengumumanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+--+    )
+--+
+--+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+--+        holder.setData(differ.currentList[position])
+--+        holder.setIsRecyclable(false)
+--+    }
+--+
+--+    override fun getItemCount() = differ.currentList.size
+--+
+--+    private val differCallback =
+--+        object : DiffUtil.ItemCallback<DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX>() {
+--+            override fun areItemsTheSame(
+--+                oldItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX,
+--+                newItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+--+            ): Boolean {
+--+                return oldItem.id == newItem.id
+--+            }
+--+
+--+            override fun areContentsTheSame(
+--+                oldItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX,
+--+                newItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+--+            ): Boolean {
+--+                return oldItem.id == newItem.id
+--+            }
+--+        }
+--+
+--+    val differ = AsyncListDiffer(this, differCallback)
+--+
+--+}
+--\ No newline at end of file
+--Index: app/src/main/res/navigation/main_nav.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main_nav\"\r\n    app:startDestination=\"@id/berandaFragment\">\r\n\r\n    <fragment\r\n        android:id=\"@+id/berandaFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.BerandaFragment\"\r\n        android:label=\"fragment_beranda\"\r\n        tools:layout=\"@layout/fragment_beranda\">\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_scanFragment\"\r\n            app:destination=\"@id/scanFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_dataAbsenFragment\"\r\n            app:destination=\"@id/dataAbsenFragment\"\r\n            app:enterAnim=\"@anim/slide_in_right\"\r\n            app:exitAnim=\"@anim/slide_out_left\"\r\n            app:popEnterAnim=\"@anim/slide_in_left\"\r\n            app:popExitAnim=\"@anim/slide_out_right\"\r\n            app:popUpToInclusive=\"false\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_profileFragment\"\r\n            app:destination=\"@id/profileFragment\"\r\n            app:enterAnim=\"@anim/slide_in_right\"\r\n            app:exitAnim=\"@anim/slide_out_left\"\r\n            app:popEnterAnim=\"@anim/slide_in_left\"\r\n            app:popExitAnim=\"@anim/slide_out_right\"\r\n            app:popUpTo=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_attendanceFragment\"\r\n            app:destination=\"@id/attendanceFragment\"\r\n            app:popUpToInclusive=\"false\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_allMenuFragment\"\r\n            app:destination=\"@id/allMenuFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_sallaryFragment\"\r\n            app:destination=\"@id/sallaryFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_reimbursementFragment\"\r\n            app:destination=\"@id/reimbursementFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_menuPerizinanFragment\"\r\n            app:destination=\"@id/menuPerizinanFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_lemburFragment\"\r\n            app:destination=\"@id/lemburFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_berandaFragment_to_shiftFragment\"\r\n            app:destination=\"@id/shiftFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/scanFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.ScanFragment\"\r\n        android:label=\"fragment_scan\"\r\n        tools:layout=\"@layout/fragment_scan\">\r\n        <action\r\n            android:id=\"@+id/action_scanFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_scanFragment_to_berandaFragment2\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/dataAbsenFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.DataAbsenFragment\"\r\n        android:label=\"fragment_data_absen\"\r\n        tools:layout=\"@layout/fragment_data_absen\">\r\n        <action\r\n            android:id=\"@+id/action_dataAbsenFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_dataAbsenFragment_to_profileFragment\"\r\n            app:destination=\"@id/profileFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/profileFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.ProfileFragment\"\r\n        android:label=\"fragment_profile\"\r\n        tools:layout=\"@layout/fragment_profile\" >\r\n        <action\r\n            android:id=\"@+id/action_profileFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_profileFragment_to_dataAbsenFragment\"\r\n            app:destination=\"@id/dataAbsenFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_profileFragment_to_allProfileFragment\"\r\n            app:destination=\"@id/allProfileFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/noInternetConnection\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.NoInternetConnection\"\r\n        android:label=\"fragment_no_internet_connection\"\r\n        tools:layout=\"@layout/fragment_no_internet_connection\" />\r\n    <fragment\r\n        android:id=\"@+id/attendanceFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.AttendanceFragment\"\r\n        android:label=\"fragment_attendance\"\r\n        tools:layout=\"@layout/fragment_attendance\" >\r\n        <action\r\n            android:id=\"@+id/action_attendanceFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_attendanceFragment_to_profileFragment\"\r\n            app:destination=\"@id/profileFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/allMenuFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.AllMenuFragment\"\r\n        android:label=\"fragment_all_menu\"\r\n        tools:layout=\"@layout/fragment_all_menu\" >\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_reimbursementFragment\"\r\n            app:destination=\"@id/reimbursementFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_shiftFragment\"\r\n            app:destination=\"@id/shiftFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_lemburFragment\"\r\n            app:destination=\"@id/lemburFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_sallaryFragment\"\r\n            app:destination=\"@id/sallaryFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_allMenuFragment_to_menuPerizinanFragment\"\r\n            app:destination=\"@id/menuPerizinanFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/allProfileFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.AllProfileFragment\"\r\n        android:label=\"fragment_all_profile\"\r\n        tools:layout=\"@layout/fragment_all_profile\" >\r\n        <action\r\n            android:id=\"@+id/action_allProfileFragment_to_personalDataFragment\"\r\n            app:destination=\"@id/personalDataFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/editProfileFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.EditProfileFragment\"\r\n        android:label=\"fragment_edit_profile\"\r\n        tools:layout=\"@layout/fragment_edit_profile\" />\r\n    <fragment\r\n        android:id=\"@+id/personalDataFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.PersonalDataFragment\"\r\n        android:label=\"fragment_personal_data\"\r\n        tools:layout=\"@layout/fragment_personal_data\" >\r\n        <action\r\n            android:id=\"@+id/action_personalDataFragment_to_editProfileFragment\"\r\n            app:destination=\"@id/editProfileFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/sallaryFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.SallaryFragment\"\r\n        android:label=\"fragment_sallary\"\r\n        tools:layout=\"@layout/fragment_sallary\" >\r\n        <action\r\n            app:enterAnim=\"@anim/slide_in_right\"\r\n            app:exitAnim=\"@anim/slide_out_left\"\r\n            app:popEnterAnim=\"@anim/slide_in_left\"\r\n            app:popExitAnim=\"@anim/slide_out_right\"\r\n            android:id=\"@+id/action_sallaryFragment_to_detailGajiFragment\"\r\n            app:destination=\"@id/detailGajiFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/reimbursementFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.ReimbursementFragment\"\r\n        android:label=\"fragment_reimbursement\"\r\n        tools:layout=\"@layout/fragment_reimbursement\" >\r\n        <action\r\n            android:id=\"@+id/action_reimbursementFragment_to_pengajuanReimbursementFragment\"\r\n            app:destination=\"@id/pengajuanReimbursementFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/splashScreenFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.SplashScreenFragment\"\r\n        android:label=\"fragment_splash_screen\"\r\n        tools:layout=\"@layout/fragment_splash_screen\" />\r\n    <fragment\r\n        android:id=\"@+id/formPerizinanFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.FormPerizinanFragment\"\r\n        android:label=\"fragment_form_perizinan\"\r\n        tools:layout=\"@layout/fragment_form_perizinan\" >\r\n        <action\r\n            android:id=\"@+id/action_formPerizinanFragment_to_menuPerizinanFragment\"\r\n            app:destination=\"@id/menuPerizinanFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/menuPerizinanFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.MenuPerizinanFragment\"\r\n        android:label=\"fragment_menu_perizinan\"\r\n        tools:layout=\"@layout/fragment_menu_perizinan\" >\r\n        <action\r\n            android:id=\"@+id/action_menuPerizinanFragment_to_formPerizinanFragment\"\r\n            app:destination=\"@id/formPerizinanFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/lemburFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.LemburFragment\"\r\n        android:label=\"fragment_lembur\"\r\n        tools:layout=\"@layout/fragment_lembur\" >\r\n        <action\r\n            android:id=\"@+id/action_lemburFragment_to_berandaFragment\"\r\n            app:destination=\"@id/berandaFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_lemburFragment_to_pengajuanLemburFragment\"\r\n            app:destination=\"@id/pengajuanLemburFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/pengajuanLemburFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.PengajuanLemburFragment\"\r\n        tools:layout=\"@layout/fragment_pengajuan_lembur\" />\r\n    <fragment\r\n        android:id=\"@+id/shiftFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.ShiftFragment\"\r\n        android:label=\"fragment_shift\"\r\n        tools:layout=\"@layout/fragment_shift\" >\r\n        <action\r\n            android:id=\"@+id/action_shiftFragment_to_pengajuanShiftFragment\"\r\n            app:destination=\"@id/pengajuanShiftFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/pengajuanReimbursementFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.PengajuanReimbursementFragment\"\r\n        android:label=\"fragment_pengajuan_reimbursement\"\r\n        tools:layout=\"@layout/fragment_pengajuan_reimbursement\" />\r\n    <fragment\r\n        android:id=\"@+id/pengajuanShiftFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.PengajuanShiftFragment\"\r\n        tools:layout=\"@layout/fragment_pengajuan_shift\" />\r\n    <fragment\r\n        android:id=\"@+id/detailGajiFragment\"\r\n        android:name=\"com.example.dsmabsen.ui.fragment.DetailGajiFragment\"\r\n        android:label=\"DetailGajiFragment\" >\r\n        <argument\r\n            android:name=\"detailGaji\"\r\n            app:argType=\"com.example.dsmabsen.model.DataXXXXXXXXXXXXXXX\" />\r\n    </fragment>\r\n</navigation>
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/navigation/main_nav.xml b/app/src/main/res/navigation/main_nav.xml
+----- a/app/src/main/res/navigation/main_nav.xml	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/res/navigation/main_nav.xml	(date 1678710172708)
+--@@ -51,6 +51,9 @@
+--         <action
+--             android:id="@+id/action_berandaFragment_to_shiftFragment"
+--             app:destination="@id/shiftFragment" />
+--+        <action
+--+            android:id="@+id/action_berandaFragment_to_pengumumanFragment"
+--+            app:destination="@id/pengumumanFragment" />
+--     </fragment>
+--     <fragment
+--         android:id="@+id/scanFragment"
+--@@ -131,6 +134,9 @@
+--         <action
+--             android:id="@+id/action_allMenuFragment_to_menuPerizinanFragment"
+--             app:destination="@id/menuPerizinanFragment" />
+--+        <action
+--+            android:id="@+id/action_allMenuFragment_to_pengumumanFragment"
+--+            app:destination="@id/pengumumanFragment" />
+--     </fragment>
+--     <fragment
+--         android:id="@+id/allProfileFragment"
+--@@ -242,4 +248,9 @@
+--             android:name="detailGaji"
+--             app:argType="com.example.dsmabsen.model.DataXXXXXXXXXXXXXXX" />
+--     </fragment>
+--+    <fragment
+--+        android:id="@+id/pengumumanFragment"
+--+        android:name="com.example.dsmabsen.ui.fragment.PengumumanFragment"
+--+        android:label="fragment_pengumuman"
+--+        tools:layout="@layout/fragment_pengumuman" />
+-- </navigation>
+--\ No newline at end of file
+--Index: app/src/main/res/layout/fragment_lembur.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n    android:background=\"@drawable/gradiend_background\"\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    tools:context=\".ui.fragment.LemburFragment\">\r\n\r\n    <include\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:id=\"@+id/toolbar\"\r\n        layout=\"@layout/toolbar_layout\"/>\r\n\r\n    <include\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        android:id=\"@+id/loadingInclude\"\r\n        layout=\"@layout/loading\" />\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/reclembur\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:paddingHorizontal=\"@dimen/_20sdp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/toolbar\" />\r\n\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/layout/fragment_lembur.xml b/app/src/main/res/layout/fragment_lembur.xml
+----- a/app/src/main/res/layout/fragment_lembur.xml	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/res/layout/fragment_lembur.xml	(date 1678707238421)
+--@@ -1,25 +1,25 @@
+-- <?xml version="1.0" encoding="utf-8"?>
+-- <androidx.constraintlayout.widget.ConstraintLayout
+---    android:background="@drawable/gradiend_background"
+--     xmlns:android="http://schemas.android.com/apk/res/android"
+--+    xmlns:app="http://schemas.android.com/apk/res-auto"
+--     xmlns:tools="http://schemas.android.com/tools"
+--     android:layout_width="match_parent"
+--     android:layout_height="match_parent"
+---    xmlns:app="http://schemas.android.com/apk/res-auto"
+--+    android:background="@drawable/gradiend_background"
+--     tools:context=".ui.fragment.LemburFragment">
+-- 
+--     <include
+---        app:layout_constraintTop_toTopOf="parent"
+--         android:id="@+id/toolbar"
+---        layout="@layout/toolbar_layout"/>
+--+        layout="@layout/toolbar_layout"
+--+        app:layout_constraintTop_toTopOf="parent" />
+-- 
+--     <include
+---        app:layout_constraintStart_toStartOf="parent"
+---        app:layout_constraintTop_toTopOf="parent"
+--+        android:id="@+id/loadingInclude"
+--+        layout="@layout/loading"
+--         app:layout_constraintBottom_toBottomOf="parent"
+--         app:layout_constraintEnd_toEndOf="parent"
+---        android:id="@+id/loadingInclude"
+---        layout="@layout/loading" />
+--+        app:layout_constraintStart_toStartOf="parent"
+--+        app:layout_constraintTop_toTopOf="parent" />
+-- 
+--     <androidx.recyclerview.widget.RecyclerView
+--         android:id="@+id/reclembur"
+--@@ -30,7 +30,4 @@
+--         app:layout_constraintEnd_toEndOf="parent"
+--         app:layout_constraintStart_toStartOf="parent"
+--         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+---
+---
+---
+-- </androidx.constraintlayout.widget.ConstraintLayout>
+--\ No newline at end of file
+--Index: app/src/main/res/layout/item_pengumuman.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/layout/item_pengumuman.xml b/app/src/main/res/layout/item_pengumuman.xml
+--new file mode 100644
+----- /dev/null	(date 1678718157674)
+--+++ b/app/src/main/res/layout/item_pengumuman.xml	(date 1678718157674)
+--@@ -0,0 +1,78 @@
+--+<?xml version="1.0" encoding="utf-8"?>
+--+<com.google.android.material.card.MaterialCardView
+--+    xmlns:android="http://schemas.android.com/apk/res/android"
+--+    xmlns:app="http://schemas.android.com/apk/res-auto"
+--+    xmlns:tools="http://schemas.android.com/tools"
+--+    android:layout_width="match_parent"
+--+    android:layout_height="wrap_content"
+--+    android:layout_marginBottom="@dimen/_15sdp"
+--+    >
+--+
+--+    <androidx.constraintlayout.widget.ConstraintLayout
+--+        android:layout_width="match_parent"
+--+        android:background="@drawable/shadow_bg"
+--+        android:layout_height="wrap_content">
+--+
+--+        <RelativeLayout
+--+            android:id="@+id/rv_lembur"
+--+            android:layout_width="match_parent"
+--+            android:layout_height="wrap_content"
+--+            android:background="@drawable/retangle_stroke"
+--+            android:padding="@dimen/_15sdp"
+--+            app:layout_constraintTop_toTopOf="parent"
+--+            tools:layout_editor_absoluteX="10dp">
+--+
+--+            <ImageView
+--+                android:id="@+id/iv_pengumuman"
+--+                android:layout_width="match_parent"
+--+                android:layout_height="@dimen/_149sdp"
+--+                android:src="@drawable/pengumuman" />
+--+
+--+            <TextView
+--+                android:id="@+id/tv_create_at"
+--+                android:layout_width="wrap_content"
+--+                android:layout_height="wrap_content"
+--+                android:layout_below="@id/iv_pengumuman"
+--+                android:layout_marginTop="@dimen/_5sdp"
+--+                android:fontFamily="@font/poppins"
+--+                android:text="Senin, 22 Maret 2023"
+--+                android:textColor="@color/grey"
+--+                android:textSize="@dimen/_8ssp" />
+--+
+--+            <View
+--+                android:id="@+id/vi_1"
+--+                android:layout_width="match_parent"
+--+                android:layout_height="1dp"
+--+                android:layout_below="@+id/tv_create_at"
+--+                android:layout_marginTop="5.5dp"
+--+                android:background="@color/secondary" />
+--+
+--+            <TextView
+--+                android:id="@+id/tv_judul"
+--+                android:layout_width="match_parent"
+--+                android:layout_height="wrap_content"
+--+                android:text="Judul "
+--+                android:layout_marginTop="@dimen/_10sdp"
+--+                android:textColor="@color/_dark"
+--+                android:textStyle="bold"
+--+
+--+                android:layout_below="@id/vi_1" />
+--+
+--+            <TextView
+--+                android:id="@+id/tv_keterangan_pengumuman"
+--+                android:layout_width="wrap_content"
+--+                android:layout_height="wrap_content"
+--+                android:layout_below="@+id/tv_judul"
+--+                android:layout_marginTop="@dimen/_5sdp"
+--+                android:layout_marginBottom="@dimen/_5sdp"
+--+                android:fontFamily="@font/poppins"
+--+                android:text="Acara Ketemu Keluarga Jauh"
+--+                android:textColor="@color/_grey"
+--+                android:textSize="@dimen/_10ssp"
+--+                 />
+--+
+--+        </RelativeLayout>
+--+
+--+    </androidx.constraintlayout.widget.ConstraintLayout>
+--+
+--+</com.google.android.material.card.MaterialCardView>
+--\ No newline at end of file
+--Index: app/src/main/res/layout/fragment_reimbursement.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n\r\n    android:orientation=\"vertical\"\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    app:layout_constraintTop_toTopOf=\"parent\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    tools:context=\".ui.fragment.ReimbursementFragment\"\r\n    android:background=\"@drawable/gradiend_background\">\r\n\r\n    <include\r\n        android:id=\"@+id/toolbar\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        layout=\"@layout/toolbar_layout\"/>\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:padding=\"@dimen/_20sdp\"\r\n        android:id=\"@+id/recReimbursement\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"0dp\"\r\n        tools:listitem=\"@layout/item_reimbursement\"\r\n        android:paddingHorizontal=\"@dimen/_10sdp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/toolbar\" />\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/layout/fragment_reimbursement.xml b/app/src/main/res/layout/fragment_reimbursement.xml
+----- a/app/src/main/res/layout/fragment_reimbursement.xml	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/res/layout/fragment_reimbursement.xml	(date 1678707238373)
+--@@ -16,6 +16,14 @@
+--         app:layout_constraintTop_toTopOf="parent"
+--         layout="@layout/toolbar_layout"/>
+-- 
+--+    <include
+--+        app:layout_constraintStart_toStartOf="parent"
+--+        app:layout_constraintTop_toTopOf="parent"
+--+        app:layout_constraintBottom_toBottomOf="parent"
+--+        app:layout_constraintEnd_toEndOf="parent"
+--+        android:id="@+id/loadingInclude"
+--+        layout="@layout/loading" />
+--+
+--     <androidx.recyclerview.widget.RecyclerView
+--         android:padding="@dimen/_20sdp"
+--         android:id="@+id/recReimbursement"
+--@@ -24,7 +32,7 @@
+--         tools:listitem="@layout/item_reimbursement"
+--         android:paddingHorizontal="@dimen/_10sdp"
+--         app:layout_constraintBottom_toBottomOf="parent"
+---        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+--+        app:layout_constraintTop_toBottomOf="@+id/loadingInclude" />
+-- 
+-- 
+-- </androidx.constraintlayout.widget.ConstraintLayout>
+--\ No newline at end of file
+--Index: app/src/main/java/com/example/dsmabsen/ui/fragment/BerandaFragment.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+>package com.example.dsmabsen.ui.fragment\r\n\r\nimport android.os.Build\r\nimport android.os.Bundle\r\nimport android.os.Handler\r\nimport android.util.Log\r\nimport android.view.View\r\nimport android.widget.TextView\r\nimport android.widget.Toast\r\nimport androidx.activity.OnBackPressedCallback\r\nimport androidx.annotation.RequiresApi\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.core.view.isVisible\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.navigation.fragment.findNavController\r\nimport com.bumptech.glide.Glide\r\nimport com.example.dsmabsen.R\r\nimport com.example.dsmabsen.databinding.FragmentBerandaBinding\r\nimport com.example.dsmabsen.helper.*\r\nimport com.example.dsmabsen.helper.Constans.IMAGE_URL\r\nimport com.example.dsmabsen.model.DataX\r\nimport com.example.dsmabsen.repository.NetworkResult\r\nimport com.example.dsmabsen.ui.viewModel.HomeViewModel\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\nimport java.text.SimpleDateFormat\r\nimport java.time.LocalDate\r\nimport java.time.format.DateTimeFormatter\r\nimport java.time.format.TextStyle\r\nimport java.util.*\r\nimport javax.inject.Inject\r\n\r\n@AndroidEntryPoint\r\nclass BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBinding::inflate) {\r\n    private val viewModel: HomeViewModel by viewModels()\r\n    private val cacheManager = CacheManager()\r\n    private lateinit var customAnalogClock: CustomAnalogClock\r\n\r\n    private val handler = Handler()\r\n    private lateinit var runnable: Runnable\r\n\r\n    @Inject\r\n    lateinit var tokenManager: TokenManager\r\n\r\n    @RequiresApi(Build.VERSION_CODES.O)\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        hideToolbar()\r\n\r\n        val data = cacheManager.getPass()\r\n        val savedUser = Paper.book().read<DataX>(\"user\")\r\n//        val token = tokenManager.getToken()\r\n\r\n        with(binding) {\r\n\r\n            materialCardView8.setOnClickListener {\r\n                findNavController().navigate(R.id.action_berandaFragment_to_sallaryFragment)\r\n            }\r\n\r\n            materialCardView5.setOnClickListener {\r\n                findNavController().navigate(R.id.action_berandaFragment_to_menuPerizinanFragment)\r\n            }\r\n\r\n            materialCardView9.setOnClickListener {\r\n                findNavController().navigate(R.id.action_berandaFragment_to_reimbursementFragment)\r\n            }\r\n\r\n            materialCardView6.setOnClickListener {\r\n                findNavController().navigate(R.id.action_berandaFragment_to_lemburFragment)\r\n            }\r\n\r\n            materialCardView7.setOnClickListener {\r\n                findNavController().navigate(R.id.action_berandaFragment_to_shiftFragment)\r\n            }\r\n\r\n            constraint.setOnClickListener {\r\n                findNavController().navigate(R.id.action_berandaFragment_to_allMenuFragment)\r\n            }\r\n\r\n            loadingInclude.loading.isVisible = false\r\n\r\n            val customAnalogClock = binding.customAnalogClock\r\n            // Set waktu pada custom analog clock\r\n            val calendar = Calendar.getInstance()\r\n            customAnalogClock.setTime(\r\n                calendar.get(Calendar.HOUR_OF_DAY),\r\n                calendar.get(Calendar.MINUTE),\r\n                calendar.get(Calendar.SECOND)\r\n            )\r\n\r\n            // Update waktu setiap detik\r\n            val timer = Timer()\r\n            timer.scheduleAtFixedRate(object : TimerTask() {\r\n                override fun run() {\r\n                    activity?.runOnUiThread {\r\n                        val calendar = Calendar.getInstance()\r\n                        customAnalogClock.setTime(\r\n                            calendar.get(Calendar.HOUR_OF_DAY),\r\n                            calendar.get(Calendar.MINUTE),\r\n                            calendar.get(Calendar.SECOND)\r\n                        )\r\n                    }\r\n                }\r\n            }, 0, 1000)\r\n\r\n            runnable = object : Runnable {\r\n                override fun run() {\r\n                    val timestamp = System.currentTimeMillis()\r\n\r\n                    // Create a SimpleDateFormat object with the system timezone\r\n                    val sdfJam = SimpleDateFormat(\"HH\", Locale.getDefault())\r\n                    val sdfMenit = SimpleDateFormat(\"mm\", Locale.getDefault())\r\n                    val sdfDetik = SimpleDateFormat(\"ss\", Locale.getDefault())\r\n                    sdfJam.timeZone = TimeZone.getDefault()\r\n                    sdfMenit.timeZone = TimeZone.getDefault()\r\n                    sdfDetik.timeZone = TimeZone.getDefault()\r\n                    handler.postDelayed(this, 1000)\r\n                }\r\n            }\r\n\r\n            materialCardView9.setOnClickListener {\r\n                findNavController().navigate(R.id.action_berandaFragment_to_reimbursementFragment)\r\n            }\r\n        }\r\n        viewModel.homeRequest(savedUser!!.nip)\r\n        viewModel.homeLiveData.observe(viewLifecycleOwner) {\r\n            binding.loadingInclude.loading.isVisible = true\r\n            when (it) {\r\n                is NetworkResult.Success -> {\r\n                    binding.loadingInclude.loading.isVisible = false\r\n                    binding.infoUser.isVisible = true\r\n                    binding.materialCardView11.isVisible = true\r\n\r\n                    binding.apply {\r\n                        val dataHome = it.data!!.data\r\n                        textView6.text = dataHome.nama\r\n                        textView6.invalidate()\r\n                        textView6.requestLayout()\r\n                        textView7.text = dataHome.jabatan\r\n\r\n                        Glide.with(requireContext())\r\n                        .load(IMAGE_URL + \"/\" +dataHome.foto)\r\n                        .into(imageView3)\r\n\r\n                        textView8.text = dataHome.nama_shift\r\n                        textView9.text = dataHome.jam_shift\r\n                        if (Build.VERSION.SDK_INT < 26) {\r\n                            day.text = HelperApiUnder().getDayApi23()\r\n                            textView10.text = HelperApiUnder().getDate()\r\n                            textView11.text = HelperApiUnder().getMY()\r\n                        } else {\r\n                            day.text = Helper().getDay()\r\n                            textView10.text = Helper().getDate()\r\n                            textView11.text = Helper().getMY()\r\n                        }\r\n\r\n                        imageView3.setOnClickListener {\r\n                            findNavController().navigate(R.id.action_berandaFragment_to_profileFragment)\r\n                        }\r\n\r\n                    }\r\n\r\n\r\n                    val status = it.data!!.status\r\n                    if (status) {\r\n                        Log.d(\"hi\", \"hi\")\r\n                    } else {\r\n                        handleApiError(it.message)\r\n                    }\r\n                }\r\n                is NetworkResult.Error -> {\r\n                    binding.loadingInclude.loading.isVisible = false\r\n                    handleApiError(it.message)\r\n                }\r\n\r\n                is NetworkResult.Loading -> {\r\n                    binding.loadingInclude.loading.isVisible = true\r\n                    binding.infoUser.isVisible = false\r\n                    binding.materialCardView11.isVisible = false\r\n                }\r\n\r\n                else -> Log.d(\"else\", \"else\")\r\n\r\n            }\r\n        }\r\n\r\n        viewModel.getAbsenRequest(savedUser!!.nip)\r\n        viewModel.getAbsenLiveData.observe(viewLifecycleOwner){\r\n            when(it){\r\n                is NetworkResult.Success ->{\r\n                    binding.apply {\r\n                        val response = it.data!!\r\n                        tvCheckin.text = response.data.datang\r\n                        tvCheckout.text = response.data.pulang\r\n                    }\r\n                }\r\n\r\n                is NetworkResult.Loading ->{\r\n                    Log.d(\"TAG\", \"onViewCreated: \")\r\n                }\r\n\r\n                is NetworkResult.Error ->{\r\n                    handleApiError(it.message)\r\n                }\r\n            }\r\n        }\r\n\r\n        val callback = object : OnBackPressedCallback(true) {\r\n            override fun handleOnBackPressed() {\r\n                // Navigasi kembali ke halaman sebelumnya jika tidak berada di halaman awal (DefaultFragment)\r\n                val navController = findNavController()\r\n                if (navController.currentDestination?.id == R.id.berandaFragment) {\r\n//                    activity?.finish()\r\n                    showExitConfirmationDialog()\r\n                } else {\r\n                    navController.navigateUp()\r\n                }\r\n            }\r\n        }\r\n        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)\r\n    }\r\n\r\n    fun showExitConfirmationDialog(){\r\n        val builder = AlertDialog.Builder(requireContext())\r\n        builder.setTitle(\"Konfirmasi\")\r\n        builder.setMessage(\"Apakah Anda yakin ingin keluar dari aplikasi?\")\r\n        builder.setPositiveButton(\"Ya\") { _, _ ->\r\n            activity?.finish()\r\n        }\r\n\r\n        builder.setNegativeButton(\"Tidak\") { dialog, _ ->\r\n            dialog.dismiss()\r\n        }\r\n\r\n        val dialog = builder.create()\r\n        dialog.show()\r\n\r\n    }\r\n\r\n\r\n}
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/BerandaFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/BerandaFragment.kt
+----- a/app/src/main/java/com/example/dsmabsen/ui/fragment/BerandaFragment.kt	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/BerandaFragment.kt	(date 1678710359862)
+--@@ -78,6 +78,12 @@
+--                 findNavController().navigate(R.id.action_berandaFragment_to_allMenuFragment)
+--             }
+-- 
+--+            materialCardView10.setOnClickListener {
+--+                findNavController().navigate(R.id.action_berandaFragment_to_pengumumanFragment)
+--+            }
+--+
+--+
+--+
+--             loadingInclude.loading.isVisible = false
+-- 
+--             val customAnalogClock = binding.customAnalogClock
+--Index: app/src/main/java/com/example/dsmabsen/ui/viewModel/PengumumanViewModel.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/ui/viewModel/PengumumanViewModel.kt b/app/src/main/java/com/example/dsmabsen/ui/viewModel/PengumumanViewModel.kt
+--new file mode 100644
+----- /dev/null	(date 1678711460037)
+--+++ b/app/src/main/java/com/example/dsmabsen/ui/viewModel/PengumumanViewModel.kt	(date 1678711460037)
+--@@ -0,0 +1,31 @@
+--+package com.example.dsmabsen.ui.viewModel
+--+
+--+import androidx.lifecycle.LiveData
+--+import androidx.lifecycle.MutableLiveData
+--+import androidx.lifecycle.ViewModel
+--+import androidx.lifecycle.viewModelScope
+--+import com.example.dsmabsen.model.Pengumuman
+--+import com.example.dsmabsen.model.ProfileDetail
+--+import com.example.dsmabsen.model.ProfileUser
+--+import com.example.dsmabsen.repository.NetworkResult
+--+import com.example.dsmabsen.repository.PengumumanRepository
+--+import com.example.dsmabsen.repository.UserProfileRepository
+--+import dagger.hilt.android.lifecycle.HiltViewModel
+--+import kotlinx.coroutines.launch
+--+import xyz.teamgravity.checkinternet.CheckInternet
+--+import javax.inject.Inject
+--+
+--+@HiltViewModel
+--+class PengumumanViewModel @Inject constructor(private val repository: PengumumanRepository) :
+--+    ViewModel() {
+--+
+--+    private val _pengumuman = MutableLiveData<NetworkResult<Pengumuman>>()
+--+    val pengumumanLivedata: LiveData<NetworkResult<Pengumuman>> = _pengumuman
+--+
+--+    fun pengumumanRequest() {
+--+        viewModelScope.launch {
+--+            _pengumuman.postValue(NetworkResult.Loading())
+--+            _pengumuman.postValue(repository.getPengumuman())
+--+        }
+--+    }
+--+}
+--\ No newline at end of file
+--Index: app/src/main/res/drawable/shadow_bg.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+><shape xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:shape=\"rectangle\">\r\n    <solid android:color=\"#FFFFFF\" />\r\n    <corners android:radius=\"@dimen/_2sdp\" />\r\n    <stroke android:width=\"0.5dp\" android:color=\"#7F838B36\"/>\r\n    <padding android:left=\"@dimen/_8sdp\" android:top=\"@dimen/_8sdp\" android:right=\"@dimen/_8sdp\" android:bottom=\"@dimen/_8sdp\" />\r\n    <shadow android:color=\"#0000001A\" android:radius=\"@dimen/_2sdp\"/>\r\n<!--    android:dx=\"0\" android:dy=\"6\"-->\r\n</shape>
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/drawable/shadow_bg.xml b/app/src/main/res/drawable/shadow_bg.xml
+----- a/app/src/main/res/drawable/shadow_bg.xml	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/res/drawable/shadow_bg.xml	(date 1678717905958)
+--@@ -2,8 +2,16 @@
+--     android:shape="rectangle">
+--     <solid android:color="#FFFFFF" />
+--     <corners android:radius="@dimen/_2sdp" />
+---    <stroke android:width="0.5dp" android:color="#7F838B36"/>
+---    <padding android:left="@dimen/_8sdp" android:top="@dimen/_8sdp" android:right="@dimen/_8sdp" android:bottom="@dimen/_8sdp" />
+---    <shadow android:color="#0000001A" android:radius="@dimen/_2sdp"/>
+---<!--    android:dx="0" android:dy="6"-->
+--+    <stroke
+--+        android:width="0.5dp"
+--+        android:color="#7F838B36" />
+--+    <padding
+--+        android:bottom="@dimen/_8sdp"
+--+        android:left="@dimen/_8sdp"
+--+        android:right="@dimen/_8sdp"
+--+        android:top="@dimen/_8sdp" />
+--+    <shadow
+--+        android:color="#0000001A"
+--+        android:radius="@dimen/_2sdp" />
+--+    <!--    android:dx="0" android:dy="6"-->
+-- </shape>
+--\ No newline at end of file
+--Index: app/src/main/java/com/example/dsmabsen/ui/fragment/PengumumanFragment.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/ui/fragment/PengumumanFragment.kt b/app/src/main/java/com/example/dsmabsen/ui/fragment/PengumumanFragment.kt
+--new file mode 100644
+----- /dev/null	(date 1678718157660)
+--+++ b/app/src/main/java/com/example/dsmabsen/ui/fragment/PengumumanFragment.kt	(date 1678718157660)
+--@@ -0,0 +1,121 @@
+--+package com.example.dsmabsen.ui.fragment
+--+
+--+import android.os.Bundle
+--+import android.view.*
+--+import android.widget.TextView
+--+import androidx.fragment.app.Fragment
+--+import android.widget.Toast
+--+import androidx.appcompat.widget.Toolbar
+--+import androidx.core.view.isVisible
+--+import androidx.fragment.app.viewModels
+--+import androidx.navigation.fragment.findNavController
+--+import androidx.recyclerview.widget.LinearLayoutManager
+--+import androidx.recyclerview.widget.RecyclerView
+--+import com.example.dsmabsen.R
+--+import com.example.dsmabsen.adapter.PengumumanAdapter
+--+import com.example.dsmabsen.databinding.FragmentPengumumanBinding
+--+import com.example.dsmabsen.helper.handleApiError
+--+import com.example.dsmabsen.repository.NetworkResult
+--+import com.example.dsmabsen.ui.viewModel.PengumumanViewModel
+--+import dagger.hilt.android.AndroidEntryPoint
+--+
+--+@AndroidEntryPoint
+--+class PengumumanFragment :
+--+    BaseFragment<FragmentPengumumanBinding>(FragmentPengumumanBinding::inflate) {
+--+
+--+    lateinit var adapter: PengumumanAdapter
+--+    val viewModel: PengumumanViewModel by viewModels()
+--+    lateinit var recyclerView: RecyclerView
+--+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+--+        super.onViewCreated(view, savedInstanceState)
+--+
+--+        adapter = PengumumanAdapter(requireContext())
+--+        with(binding) {
+--+            recyclerView = recPengumuman
+--+            recyclerView.adapter = adapter
+--+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+--+            recyclerView.setHasFixedSize(true)
+--+        }
+--+        viewModel.pengumumanRequest()
+--+        viewModel.pengumumanLivedata.observe(viewLifecycleOwner) {
+--+            when (it) {
+--+                is NetworkResult.Success -> {
+--+                    binding.loadingInclude.loading.visibility = View.GONE
+--+                    val response = it.data!!
+--+                    val data = response.data.data
+--+                    if (data.isEmpty()) {
+--+                        binding.apply {
+--+                            imgNoData.visibility = View.VISIBLE
+--+                            recPengumuman.visibility = View.GONE
+--+                        }
+--+                    } else {
+--+                        binding.apply {
+--+                            imgNoData.visibility = View.GONE
+--+                            recPengumuman.visibility = View.VISIBLE
+--+                            adapter.differ.submitList(data)
+--+                        }
+--+                    }
+--+                }
+--+
+--+                is NetworkResult.Loading -> {
+--+                    binding.loadingInclude.loading.visibility = View.VISIBLE
+--+                }
+--+
+--+                is NetworkResult.Error -> {
+--+                    binding.loadingInclude.loading.visibility = View.GONE
+--+                    handleApiError(it.message)
+--+                }
+--+            }
+--+        }
+--+
+--+        view.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
+--+            toolbar.setOnMenuItemClickListener { menuItem ->
+--+                when (menuItem.itemId) {
+--+                    R.id.add -> {
+--+//                        findNavController().navigate(R.id.action_reimbursementFragment_to_pengajuanReimbursementFragment)
+--+                        true
+--+                    }
+--+
+--+                    else -> false
+--+                }
+--+            }
+--+        }
+--+
+--+    }
+--+
+--+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+--+        inflater.inflate(R.menu.toolbar_menu, menu)
+--+        val menuSave = menu.findItem(R.id.save)
+--+        val menuPlus = menu.findItem(R.id.add)
+--+
+--+        menuSave?.isVisible = false
+--+        menuPlus?.isVisible = true
+--+
+--+        val item = menu.findItem(R.id.save)
+--+        item.setActionView(R.layout.item_menu_toolbar)
+--+
+--+        val actionView = item.actionView
+--+        val btnSimpan = actionView?.findViewById<TextView>(R.id.textSimpan)
+--+        btnSimpan?.setOnClickListener {
+--+            // your code here
+--+            Toast.makeText(context, "Save di Click", Toast.LENGTH_SHORT).show()
+--+        }
+--+
+--+    }
+--+
+--+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+--+        when (item.itemId) {
+--+            R.id.add -> {
+--+                // Handle add menu item click
+--+                Toast.makeText(context, "Add di Click", Toast.LENGTH_SHORT).show()
+--+                return true
+--+            }
+--+            R.id.save -> {
+--+                // Handle navigation button click
+--+                Toast.makeText(context, "Save di Click", Toast.LENGTH_SHORT).show()
+--+                return true
+--+            }
+--+        }
+--+        return super.onOptionsItemSelected(item)
+--+    }
+--+}
+--\ No newline at end of file
+--Index: app/src/main/res/layout/fragment_pengumuman.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/layout/fragment_pengumuman.xml b/app/src/main/res/layout/fragment_pengumuman.xml
+--new file mode 100644
+----- /dev/null	(date 1678716814364)
+--+++ b/app/src/main/res/layout/fragment_pengumuman.xml	(date 1678716814364)
+--@@ -0,0 +1,38 @@
+--+<?xml version="1.0" encoding="utf-8"?>
+--+<androidx.constraintlayout.widget.ConstraintLayout
+--+    xmlns:android="http://schemas.android.com/apk/res/android"
+--+    xmlns:tools="http://schemas.android.com/tools"
+--+    android:layout_width="match_parent"
+--+    android:layout_height="match_parent"
+--+    xmlns:app="http://schemas.android.com/apk/res-auto"
+--+    tools:context=".ui.fragment.PengumumanFragment">
+--+
+--+    <include
+--+        app:layout_constraintTop_toTopOf="parent"
+--+        android:id="@+id/toolbar"
+--+        layout="@layout/toolbar_layout"/>
+--+
+--+    <include
+--+        android:id="@+id/loadingInclude"
+--+        layout="@layout/loading" />
+--+
+--+    <androidx.recyclerview.widget.RecyclerView
+--+        android:id="@+id/recPengumuman"
+--+        android:layout_width="match_parent"
+--+        android:layout_height="match_parent"
+--+        android:clipToPadding="false"
+--+        android:paddingHorizontal="@dimen/_20sdp"
+--+        android:paddingTop="@dimen/_20sdp"
+--+        app:layout_constraintTop_toTopOf="parent"
+--+        tools:listitem="@layout/item_pengumuman" />
+--+
+--+    <ImageView
+--+        android:id="@+id/img_no_data"
+--+        android:layout_width="match_parent"
+--+        android:layout_height="wrap_content"
+--+        android:padding="@dimen/_20sdp"
+--+        android:src="@drawable/no_data_found"
+--+        android:visibility="gone"
+--+        app:layout_constraintTop_toBottomOf="@id/recPengumuman" />
+--+
+--+</androidx.constraintlayout.widget.ConstraintLayout>
+--\ No newline at end of file
+--Index: app/src/main/res/drawable/progress_animation.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/drawable/progress_animation.xml b/app/src/main/res/drawable/progress_animation.xml
+--new file mode 100644
+----- /dev/null	(date 1678718917837)
+--+++ b/app/src/main/res/drawable/progress_animation.xml	(date 1678718917837)
+--@@ -0,0 +1,8 @@
+--+<?xml version="1.0" encoding="utf-8"?>
+--+
+--+<animated-rotate
+--+    xmlns:android=
+--+        "http://schemas.android.com/apk/res/android"
+--+    android:drawable="@drawable/loading_image"
+--+    android:pivotX="50%"
+--+    android:pivotY="50%"/>
+--\ No newline at end of file
+--Index: app/src/main/res/raw/search_location_animate.json
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/raw/search_location_animate.json b/app/src/main/res/raw/search_location_animate.json
+--new file mode 100644
+----- /dev/null	(date 1678750669583)
+--+++ b/app/src/main/res/raw/search_location_animate.json	(date 1678750669583)
+--@@ -0,0 +1,1 @@
+--+{"ip":0,"fr":60,"v":"5.1.20","assets":[{"id":"precomp_1","layers":[{"ty":4,"nm":"icon","ip":0,"st":0,"ind":3,"hix":1,"ks":{"o":{"a":0,"k":100},"or":{"a":0,"k":[0,0,0]},"a":{"a":0,"k":[15,12,0]},"p":{"s":true,"x":{"a":1,"k":[{"t":0,"s":[70.531000601362],"e":[70.531000601362],"i":{"x":[1],"y":[1]},"o":{"x":[0],"y":[0]}},{"t":20}]},"y":{"a":1,"k":[{"t":0,"s":[76.42700048108955],"e":[76.42700048108955],"i":{"x":[1],"y":[1]},"o":{"x":[0],"y":[0]}},{"t":48,"s":[76.42700048108955],"e":[90.427],"i":{"x":[0.505],"y":[1.025]},"o":{"x":[0.305],"y":[-0.005]}},{"t":56,"s":[90.427],"e":[76.42700048108955],"i":{"x":[0.14],"y":[0.99]},"o":{"x":[0.54],"y":[0.01]}},{"t":70}]}},"rx":{"a":0,"k":0},"ry":{"a":0,"k":0},"rz":{"a":0,"k":0},"s":{"a":0,"k":[243.7,243.7]}},"shapes":[{"ty":"gr","nm":"icon shape group","it":[{"ty":"sh","ks":{"a":0,"k":{"c":true,"v":[[17.8442,3.63407],[11.5017,22.6696],[10.7678,23.1988],[8.60073,23.1988],[8.2868,23.0384],[8.23382,22.6899],[14.5772,3.64466],[14.5197,3.26756],[14.1803,3.0934],[1.93364,3.0934],[1.6197,2.93301],[1.56672,2.58448],[2.25116,0.529407],[2.98499,0.000202652],[15.2246,0.000202652],[17.4642,1.14688]],"i":[[0.28030000000000044,-0.8419599999999998],[0,0],[0.33309999999999995,-0.00009999999999976694],[0,0],[0.07272999999999996,0.10089999999999932],[-0.03946999999999967,0.11789999999999878],[0,0],[0.07859999999999978,0.10916999999999977],[0.13449999999999918,0.00019999999999997797],[0,0],[0.07273000000000018,0.10088000000000008],[-0.039469999999999894,0.11793999999999993],[0,0],[-0.33302999999999994,0.000040162],[0,0],[-0.5190000000000019,-0.7198509999999999]],"o":[[0,0],[-0.10519999999999996,0.3158999999999992],[0,0],[-0.12436000000000114,0.0002000000000030866],[-0.07272999999999996,-0.10089999999999932],[0,0],[0.042500000000000426,-0.12765000000000004],[-0.07859999999999978,-0.10917000000000021],[0,0],[-0.12437000000000009,0.00018999999999991246],[-0.07272999999999996,-0.10087000000000002],[0,0],[0.10517999999999983,-0.315978],[0,0],[0.8873999999999977,0.00019750699999999998],[0.5188999999999986,0.7198600000000002]]}}},{"ty":"st","o":{"a":0,"k":0},"w":{"a":0,"k":0},"c":{"a":0,"k":[0,0,0,0]},"lc":3,"lj":1,"ml":1},{"ty":"fl","o":{"a":0,"k":100},"r":1,"c":{"a":0,"k":[1,1,1,1]}},{"ty":"tr","o":{"a":0,"k":100},"a":{"a":0,"k":[0,0]},"s":{"a":0,"k":[100,100]},"p":{"a":0,"k":[0,0]},"r":{"a":0,"k":0}}]},{"ty":"gr","nm":"icon shape group","it":[{"ty":"sh","ks":{"a":0,"k":{"c":true,"v":[[25.3956,0.0609356],[29.9436,4.64044],[30,5.41308],[24.5889,10.826],[17.6148,10.826],[17.3014,10.6652],[17.2479,10.317],[19.4697,3.64995],[19.6981,3.0934]],"i":[[-2.3601000000000028,-0.3563706],[-0.3400999999999996,-2.3624899999999998],[0.00009999999999976694,-0.25856999999999974],[2.9887000000000015,-0.0010000000000012221],[0,0],[0.07269999999999754,0.10079999999999956],[-0.03900000000000148,0.11800000000000033],[0,0],[-0.08709999999999951,0.18081000000000014]],"o":[[2.3599999999999994,0.35637040000000003],[0.03760000000000119,0.25583000000000045],[0,2.9887699999999997],[0,0],[-0.12419999999999831,-0.00020000000000131024],[-0.07260000000000133,-0.10069999999999979],[0,0],[0.06500000000000128,-0.18990000000000018],[1.0225000000000009,-2.156753]]}}},{"ty":"sh","ks":{"a":0,"k":{"c":true,"v":[[23.2359,5.41308],[24.5889,6.76697],[25.9419,5.41308],[25.6984,4.64044],[24.5889,4.06038],[23.4793,4.64044]],"i":[[-0.001100000000000989,-0.27656999999999954],[-0.747399999999999,-0.0004900000000001015],[-0.0004999999999988347,0.7471899999999998],[0.16000000000000014,0.22576000000000018],[0.44250000000000256,0],[0.25260000000000105,-0.36338000000000026]],"o":[[0,0.7473900000000002],[0.7471999999999994,-0.0009799999999993148],[0.0015999999999998238,-0.2766599999999997],[-0.2524999999999977,-0.36338000000000026],[-0.442499999999999,0],[-0.159399999999998,0.22602999999999973]]}}},{"ty":"st","o":{"a":0,"k":0},"w":{"a":0,"k":0},"c":{"a":0,"k":[0,0,0,0]},"lc":3,"lj":1,"ml":1},{"ty":"fl","o":{"a":0,"k":100},"r":2,"c":{"a":0,"k":[1,1,1,1]}},{"ty":"tr","o":{"a":0,"k":100},"a":{"a":0,"k":[0,0]},"s":{"a":0,"k":[100,100]},"p":{"a":0,"k":[0,0]},"r":{"a":0,"k":0}}]},{"ty":"gr","nm":"icon shape group","it":[{"ty":"sh","ks":{"a":0,"k":{"c":true,"v":[[12.5557,4.8239],[6.61092,22.6696],[5.87709,23.1988],[3.71353,23.1988],[3.4001,23.038],[3.34661,22.6898],[8.32025,7.75922],[8.31755,7.7414],[8.30173,7.73276],[0.386594,7.73276],[0.0731411,7.57263],[0.0196785,7.22473],[0.704116,5.16877],[1.43795,4.63956],[12.4234,4.63956],[12.537,4.69766]],"i":[[0.014499999999999957,-0.042620000000000324],[0,0],[0.33302999999999994,-0.00009999999999976694],[0,0],[0.07263999999999982,0.10079999999999956],[-0.039039999999999964,0.11799999999999855],[0,0],[0.0036399999999989774,0.005190000000000694],[0.006330000000000169,0.00025000000000030553],[0,0],[0.07268590000000001,0.1006399999999994],[-0.039114,0.11782000000000004],[0,0],[-0.33294,0.00031999999999943185],[0,0],[-0.026300000000000878,-0.036590000000000344]],"o":[[0,0],[-0.10517999999999983,0.3158999999999992],[0,0],[-0.12422000000000022,-0.00019999999999953388],[-0.07264000000000026,-0.10069999999999979],[0,0],[0.001940000000001163,-0.00602999999999998],[-0.0036300000000011323,-0.005189999999999806],[0,0],[-0.124145,0.00009000000000014552],[-0.072685394,-0.10064000000000028],[0,0],[0.10541800000000001,-0.3158099999999999],[0,0],[0.04499999999999993,-0.00013000000000040757],[0.026199999999999335,0.036590000000000344]]}}},{"ty":"st","o":{"a":0,"k":0},"w":{"a":0,"k":0},"c":{"a":0,"k":[0,0,0,0]},"lc":3,"lj":1,"ml":1},{"ty":"fl","o":{"a":0,"k":100},"r":1,"c":{"a":0,"k":[1,1,1,1]}},{"ty":"tr","o":{"a":0,"k":100},"a":{"a":0,"k":[0,0]},"s":{"a":0,"k":[100,100]},"p":{"a":0,"k":[0,0]},"r":{"a":0,"k":0}}]}],"op":75},{"ty":4,"nm":"pin","ip":0,"st":0,"ind":2,"hix":2,"ks":{"o":{"a":0,"k":100},"or":{"a":0,"k":[0,0,0]},"a":{"a":0,"k":[28,34.5,0]},"p":{"s":true,"x":{"a":0,"k":68.09400112254238},"y":{"a":0,"k":86.17550138313253}},"rx":{"a":0,"k":0},"ry":{"a":0,"k":0},"rz":{"a":0,"k":0},"s":{"a":0,"k":[243.7,243.7]}},"shapes":[{"ty":"gr","nm":"pin shape group","it":[{"ty":"sh","ks":{"a":0,"k":{"c":true,"v":[[50.9856,12.0349],[28.0404,0],[5.0144,12.0349],[1.78268,37.6291],[5.82233,44.2884],[26.2629,68.1977],[27.9596,69],[29.6563,68.1977],[50.1777,44.2884],[54.2173,37.6291]],"i":[[5.2515,7.5417999999999985],[9.4528,0],[5.2515,-7.70234],[-3.23172,-8.424500000000002],[-1.77745,-2.086100000000002],[0,0],[-0.7270999999999965,0],[-0.4847999999999999,0.4814000000000078],[0,0],[-0.8079000000000036,2.3267000000000024]],"o":[[-5.089999999999996,-7.70234],[-9.372000000000003,0],[-5.251546,7.5417999999999985],[0.8887200000000002,2.2464999999999975],[0,0],[0.4847999999999999,0.4814000000000078],[0.7271000000000001,0],[0,0],[1.7774,-2.086100000000002],[3.2316999999999965,-8.424500000000002]]}}},{"ty":"st","o":{"a":0,"k":0},"w":{"a":0,"k":0},"c":{"a":0,"k":[0,0,0,0]},"lc":3,"lj":1,"ml":1},{"ty":"fl","o":{"a":0,"k":100},"r":1,"c":{"a":0,"k":[0.9333333333333333,0.1803921568627451,0.30980392156862746,1]}},{"ty":"tr","o":{"a":0,"k":100},"a":{"a":0,"k":[0,0]},"s":{"a":0,"k":[100,100]},"p":{"a":0,"k":[0,0]},"r":{"a":0,"k":0}}]}],"op":75}]}],"layers":[{"ty":0,"nm":"instance:precomp_1","refId":"precomp_1","ind":4,"ip":0,"st":0,"hix":1,"ks":{"o":{"a":0,"k":100},"or":{"a":0,"k":[0,0,0]},"a":{"a":0,"k":[68.5,86,0]},"p":{"s":true,"x":{"a":1,"k":[{"t":0,"s":[275],"e":[275.5206520718971],"i":{"x":[0.515],"y":[0.955]},"o":{"x":[0.455],"y":[0.03]}},{"t":60,"s":[275.5206520718971],"e":[275.2279601546004],"i":{"x":[0.515],"y":[0.955]},"o":{"x":[0.455],"y":[0.03]}},{"t":70}]},"y":{"a":1,"k":[{"t":0,"s":[270.2702644541206],"e":[131.415],"i":{"x":[0.12],"y":[1]},"o":{"x":[0.44],"y":[0]}},{"t":25,"s":[131.415],"e":[270.2702644541206],"i":{"x":[0.52],"y":[0.99]},"o":{"x":[1],"y":[0.005]}},{"t":50}]}},"rx":{"a":1,"k":[{"t":0,"s":[0],"e":[0],"i":{"x":[0.515],"y":[0.955]},"o":{"x":[0.455],"y":[0.03]}},{"t":25}]},"ry":{"a":1,"k":[{"t":0,"s":[0],"e":[0],"i":{"x":[1],"y":[1]},"o":{"x":[0],"y":[0]}},{"t":10,"s":[0],"e":[343.77467707849394],"i":{"x":[0.515],"y":[0.955]},"o":{"x":[0.455],"y":[0.03]}},{"t":36}]},"rz":{"a":0,"k":0},"s":{"a":1,"k":[{"t":0,"s":[100,100],"e":[100.56606285946694,100],"i":{"x":[0.6133763567028454,1],"y":[0.7360142077889128,1]},"o":{"x":[0.4804928131416838,0],"y":[0.027400735760497275,0]}},{"t":50,"s":[100.56606285946694,100],"e":[100.6,100],"i":{"x":[0.6166849615806805,1],"y":[0.9143989431968289,1]},"o":{"x":[0.28935236004390763,0],"y":[0.5498018494055475,0]}},{"t":60}]}},"w":137,"h":172,"op":75},{"ty":4,"nm":"animate radius","ip":0,"st":0,"ind":2,"hix":2,"ks":{"o":{"a":1,"k":[{"t":0,"s":[0],"e":[0],"i":{"x":[0.515],"y":[0.955]},"o":{"x":[0.455],"y":[0.03]}},{"t":50,"s":[0],"e":[100],"i":{"x":[0.515],"y":[0.955]},"o":{"x":[0.455],"y":[0.03]}},{"t":55,"s":[100],"e":[0],"i":{"x":[0.38],"y":[0.995]},"o":{"x":[0.64],"y":[0.01]}},{"t":75}]},"or":{"a":0,"k":[0,0,0]},"a":{"a":0,"k":[31.5,5.5,0]},"p":{"s":true,"x":{"a":0,"k":275},"y":{"a":0,"k":355.86875023348097}},"rx":{"a":0,"k":0},"ry":{"a":0,"k":0},"rz":{"a":0,"k":0},"s":{"a":1,"k":[{"t":0,"s":[0,0],"e":[0,0],"i":{"x":[1,0.515],"y":[1,0.955]},"o":{"x":[0,0.455],"y":[0,0.03]}},{"t":49,"s":[0,0],"e":[195.70000000000002,195.70000000000002],"i":{"x":[0.515,0.515],"y":[0.955,0.955]},"o":{"x":[0.455,0.455],"y":[0.03,0.03]}},{"t":70}]}},"shapes":[{"ty":"gr","nm":"animate radius shape group","it":[{"ty":"el","p":{"a":0,"k":[31,5]},"s":{"a":0,"k":[63,11]}},{"ty":"st","o":{"a":0,"k":0},"w":{"a":0,"k":0},"c":{"a":0,"k":[0,0,0,0]},"lc":3,"lj":1,"ml":1},{"ty":"fl","o":{"a":0,"k":100},"r":1,"c":{"a":0,"k":[0.7176470588235294,0.7215686274509804,0.7254901960784313,1]}},{"ty":"tr","o":{"a":0,"k":100},"a":{"a":0,"k":[0,0]},"s":{"a":0,"k":[100,100]},"p":{"a":0,"k":[0,0]},"r":{"a":0,"k":0}}]}],"op":75},{"ty":4,"nm":"shadow ","ip":0,"st":0,"ind":1,"hix":3,"ks":{"o":{"a":0,"k":100},"or":{"a":0,"k":[0,0,0]},"a":{"a":0,"k":[31.5,5,0]},"p":{"s":true,"x":{"a":1,"k":[{"t":0,"s":[274.972],"e":[274.972],"i":{"x":[1],"y":[1]},"o":{"x":[0],"y":[0]}},{"t":7,"s":[274.972],"e":[274.972],"i":{"x":[0.515],"y":[0.955]},"o":{"x":[0.455],"y":[0.03]}},{"t":50}]},"y":{"a":0,"k":355.8687502334809}},"rx":{"a":0,"k":0},"ry":{"a":0,"k":0},"rz":{"a":0,"k":0},"s":{"a":1,"k":[{"t":0,"s":[194.4,194.4],"e":[175.5,174.5],"i":{"x":[0.49,0.375],"y":[0.995,0.98]},"o":{"x":[0.695,0.705],"y":[0.005,0.005]}},{"t":25,"s":[175.5,174.5],"e":[194.4,194.4],"i":{"x":[0.515,0.515],"y":[0.955,0.955]},"o":{"x":[0.795,0.76],"y":[-0.005,-0.01]}},{"t":50}]}},"shapes":[{"ty":"gr","nm":"shadow  shape group","it":[{"ty":"el","p":{"a":0,"k":[31,5]},"s":{"a":0,"k":[63,10]}},{"ty":"st","o":{"a":0,"k":0},"w":{"a":0,"k":0},"c":{"a":0,"k":[0,0,0,0]},"lc":3,"lj":1,"ml":1},{"ty":"fl","o":{"a":0,"k":100},"r":1,"c":{"a":0,"k":[0.8627450980392157,0.8745098039215686,0.8901960784313725,1]}},{"ty":"tr","o":{"a":0,"k":100},"a":{"a":0,"k":[0,0]},"s":{"a":0,"k":[100,100]},"p":{"a":0,"k":[0,0]},"r":{"a":0,"k":0}}]}],"op":75}],"op":75,"w":550,"h":400}
+--\ No newline at end of file
+--Index: app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.kt b/app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.kt
+--new file mode 100644
+----- /dev/null	(date 1678707802598)
+--+++ b/app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.kt	(date 1678707802598)
+--@@ -0,0 +1,17 @@
+--+package com.example.dsmabsen.model
+--+
+--+data class DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(
+--+    val current_page: Int,
+--+    val `data`: List<DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX>,
+--+    val first_page_url: String,
+--+    val from: Int,
+--+    val last_page: Int,
+--+    val last_page_url: String,
+--+    val links: List<Link>,
+--+    val next_page_url: Any,
+--+    val path: String,
+--+    val per_page: Int,
+--+    val prev_page_url: Any,
+--+    val to: Int,
+--+    val total: Int
+--+)
+--\ No newline at end of file
+--Index: app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.kt b/app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.kt
+--new file mode 100644
+----- /dev/null	(date 1678707802617)
+--+++ b/app/src/main/java/com/example/dsmabsen/model/DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.kt	(date 1678707802617)
+--@@ -0,0 +1,9 @@
+--+package com.example.dsmabsen.model
+--+
+--+data class DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(
+--+    val created_at: String,
+--+    val deskripsi: String,
+--+    val `file`: String,
+--+    val id: Int,
+--+    val judul: String
+--+)
+--\ No newline at end of file
+--Index: app/src/main/java/com/example/dsmabsen/model/Link.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/model/Link.kt b/app/src/main/java/com/example/dsmabsen/model/Link.kt
+--new file mode 100644
+----- /dev/null	(date 1678707802635)
+--+++ b/app/src/main/java/com/example/dsmabsen/model/Link.kt	(date 1678707802635)
+--@@ -0,0 +1,7 @@
+--+package com.example.dsmabsen.model
+--+
+--+data class Link(
+--+    val active: Boolean,
+--+    val label: String,
+--+    val url: Any
+--+)
+--\ No newline at end of file
+--Index: app/src/main/java/com/example/dsmabsen/model/Pengumuman.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/model/Pengumuman.kt b/app/src/main/java/com/example/dsmabsen/model/Pengumuman.kt
+--new file mode 100644
+----- /dev/null	(date 1678707802577)
+--+++ b/app/src/main/java/com/example/dsmabsen/model/Pengumuman.kt	(date 1678707802577)
+--@@ -0,0 +1,7 @@
+--+package com.example.dsmabsen.model
+--+
+--+data class Pengumuman(
+--+    val `data`: DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXX,
+--+    val message: String,
+--+    val status: Boolean
+--+)
+--\ No newline at end of file
+--Index: app/src/main/res/drawable/image_not_found.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/drawable/image_not_found.xml b/app/src/main/res/drawable/image_not_found.xml
+--new file mode 100644
+----- /dev/null	(date 1678723483288)
+--+++ b/app/src/main/res/drawable/image_not_found.xml	(date 1678723483288)
+--@@ -0,0 +1,117 @@
+--+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+--+    android:width="289dp"
+--+    android:height="100dp"
+--+    android:viewportWidth="289"
+--+    android:viewportHeight="100">
+--+  <path
+--+      android:pathData="M123.9,37.91C123.91,36.35 125.56,34.99 127.36,34.99C140.41,35.01 153.48,35 166.53,35C168.3,35 169.88,36.3 169.88,37.77C169.87,38.04 169.87,38.3 169.81,38.61C168.56,38.66 167.36,38.66 166.14,38.63C165.76,38.04 165.13,38 164.48,38C153.54,38 142.62,38 131.68,38C130.52,38.01 129.35,38.06 128.15,38.08C127.89,38.01 127.66,37.92 127.43,37.91C126.26,37.9 125.08,37.91 123.9,37.91Z"
+--+      android:fillColor="#87D1FE"/>
+--+  <path
+--+      android:pathData="M156.15,67.06C146.75,67.06 137.35,67.05 127.95,67.07C125.99,67.08 124.48,66.16 124.06,64.75C134.54,64.72 144.96,64.72 155.4,64.75C155.46,64.98 155.51,65.18 155.56,65.42C155.76,65.99 155.96,66.53 156.15,67.06Z"
+--+      android:fillColor="#56A7FF"/>
+--+  <path
+--+      android:pathData="M156.17,67.09C155.96,66.53 155.76,65.99 155.62,65.42C156.92,65.38 158.17,65.37 159.43,65.38C159.66,65.39 159.9,65.51 160.14,65.61C160.08,66.2 160.15,66.69 160.85,66.95C161.59,67.22 162.07,66.87 162.51,66.46C162.92,66.1 163.32,65.73 163.8,65.28C164.37,65.78 164.82,66.17 165.26,66.57C165.67,66.94 166.16,67.1 166.73,66.93C167.32,66.75 167.51,66.33 167.56,65.84C167.81,65.8 168.01,65.75 168.21,65.75C169.49,65.75 170.76,65.75 172.04,65.75C171.86,66.69 171.31,67.5 170.65,68.25C169.26,69.8 167.37,70.73 165.1,70.97C162.61,71.23 160.29,70.78 158.31,69.38C157.4,68.73 156.74,67.97 156.17,67.09Z"
+--+      android:fillColor="#FE9C63"/>
+--+  <path
+--+      android:pathData="M169.86,59.06C170.77,59.68 171.24,60.54 171.73,61.41C171.38,61.47 171.06,61.52 170.75,61.53C169.62,61.54 168.5,61.53 167.34,61.51C166.7,60.83 165.98,60.78 165.26,61.37C164.8,61.76 164.37,62.17 163.82,62.65C163.3,62.18 162.9,61.8 162.46,61.43C161.62,60.72 161.29,60.7 160.22,61.25C159.93,61.21 159.69,61.16 159.45,61.16C158.58,61.15 157.71,61.17 156.85,61.15C156.64,61.14 156.44,61.05 156.24,60.97C157.25,59.2 158.89,58.05 161.05,57.39C162.76,56.88 164.49,56.93 166.26,57.27C167.65,57.64 168.82,58.26 169.86,59.06Z"
+--+      android:fillColor="#FFAE68"/>
+--+  <path
+--+      android:pathData="M155.38,64.72C144.96,64.72 134.54,64.72 124.07,64.72C123.97,63.44 123.93,62.15 123.94,60.82C124.27,60.75 124.54,60.7 124.82,60.69C125.72,60.68 126.61,60.69 127.51,60.73C127.52,61.43 127.51,62.09 127.52,62.74C127.53,63.57 128,63.98 128.99,64.05C129.17,64.06 129.36,64.05 129.55,64.05C138.15,64.06 146.76,64.06 155.37,64.1C155.38,64.33 155.38,64.53 155.38,64.72Z"
+--+      android:fillColor="#5AAAFF"/>
+--+  <path
+--+      android:pathData="M123.9,48.59C123.9,46.56 123.89,44.53 123.94,42.45C125.2,42.41 126.39,42.41 127.59,42.45C127.61,43 127.61,43.5 127.61,44.04C127.61,45.21 127.62,46.34 127.62,47.51C127.6,47.93 127.59,48.31 127.53,48.69C126.28,48.66 125.09,48.63 123.9,48.59Z"
+--+      android:fillColor="#78C4FE"/>
+--+  <path
+--+      android:pathData="M167.37,61.53C168.5,61.53 169.62,61.54 170.75,61.53C171.06,61.52 171.38,61.47 171.74,61.44C172.16,62.34 172.42,63.26 172.36,64.22C172.32,64.72 172.2,65.22 172.08,65.73C170.76,65.75 169.49,65.75 168.21,65.75C168.01,65.75 167.81,65.8 167.55,65.81C166.86,65.17 166.23,64.57 165.53,63.89C165.98,63.55 166.44,63.18 166.91,62.83C167.39,62.47 167.59,62.06 167.37,61.53Z"
+--+      android:fillColor="#FEA566"/>
+--+  <path
+--+      android:pathData="M123.89,48.64C125.09,48.63 126.28,48.66 127.54,48.73C127.6,49.56 127.61,50.34 127.62,51.17C127.6,52.4 127.59,53.59 127.53,54.78C126.28,54.78 125.09,54.78 123.9,54.78C123.9,52.75 123.89,50.71 123.89,48.64Z"
+--+      android:fillColor="#6EBBFF"/>
+--+  <path
+--+      android:pathData="M123.89,54.82C125.09,54.78 126.28,54.78 127.54,54.83C127.6,55.21 127.61,55.56 127.58,55.94C127.54,56.14 127.52,56.31 127.52,56.48C127.51,57.88 127.51,59.28 127.51,60.69C126.61,60.69 125.72,60.68 124.82,60.69C124.54,60.7 124.27,60.75 123.95,60.78C123.9,58.81 123.89,56.84 123.89,54.82Z"
+--+      android:fillColor="#64B2FF"/>
+--+  <path
+--+      android:pathData="M169.86,43.53C169.86,45.38 169.87,47.22 169.81,49.11C168.59,49.16 167.43,49.16 166.26,49.11C166.25,48.57 166.24,48.06 166.24,47.52C166.24,46.28 166.24,45.1 166.24,43.87C166.25,43.73 166.26,43.63 166.32,43.53C167.53,43.53 168.69,43.53 169.86,43.53Z"
+--+      android:fillColor="#78C4FE"/>
+--+  <path
+--+      android:pathData="M166.27,49.16C167.43,49.16 168.59,49.16 169.8,49.16C169.86,50.78 169.87,52.41 169.81,54.08C168.59,54.13 167.43,54.13 166.26,54.08C166.25,53.34 166.24,52.65 166.24,51.91C166.25,50.97 166.26,50.06 166.27,49.16Z"
+--+      android:fillColor="#6EBBFF"/>
+--+  <path
+--+      android:pathData="M169.86,43.49C168.69,43.53 167.53,43.53 166.31,43.49C166.25,42.66 166.24,41.88 166.24,41.05C166.22,40.22 166.19,39.44 166.16,38.66C167.36,38.66 168.56,38.66 169.8,38.66C169.86,40.25 169.87,41.85 169.86,43.49Z"
+--+      android:fillColor="#80CBFE"/>
+--+  <path
+--+      android:pathData="M127.58,42.41C126.39,42.41 125.2,42.41 123.95,42.41C123.9,40.93 123.89,39.46 123.89,37.95C125.08,37.91 126.26,37.9 127.43,37.91C127.66,37.92 127.89,38.01 128.13,38.1C127.71,38.33 127.62,38.65 127.61,39C127.61,39.7 127.62,40.4 127.62,41.14C127.6,41.59 127.59,42 127.58,42.41Z"
+--+      android:fillColor="#85CCFD"/>
+--+  <path
+--+      android:pathData="M166.26,54.13C167.43,54.13 168.59,54.13 169.8,54.12C169.86,55.74 169.87,57.36 169.87,59.02C168.82,58.26 167.65,57.64 166.26,57.23C166.25,56.15 166.25,55.14 166.26,54.13Z"
+--+      android:fillColor="#66B4FE"/>
+--+  <path
+--+      android:pathData="M119.46,63.03C118.92,63.03 118.43,63.03 117.93,63.03C117.29,63.03 116.7,62.73 116.67,62.21C116.61,61.37 116.64,60.51 116.77,59.67C116.85,59.12 117.54,58.88 118.3,59C118.78,59.07 119.12,59.47 119.13,59.96C119.13,60.28 119.13,60.61 119.13,60.97C119.37,60.97 119.57,60.97 119.78,60.97C121.06,60.97 121.6,61.27 121.62,61.98C121.63,62.7 121.04,63.03 119.75,63.03C119.67,63.03 119.59,63.03 119.46,63.03Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M116.63,31.79C116.63,31.23 116.63,30.71 116.63,30.2C116.63,29.37 117.08,29 118.07,29C118.84,29 119.62,29 120.39,29C121.06,29 121.59,29.43 121.62,30C121.64,30.52 121.07,31.04 120.43,31.06C120.02,31.07 119.61,31.06 119.13,31.06C119.13,31.38 119.09,31.69 119.13,31.99C119.22,32.67 118.68,32.96 118.04,33.02C117.28,33.09 116.71,32.68 116.63,32.07C116.62,31.99 116.63,31.91 116.63,31.79Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M162.16,31.06C161.67,31.01 161.21,31.02 160.81,30.9C160.3,30.75 160.03,30.22 160.15,29.81C160.29,29.33 160.77,29 161.36,29C162.19,29 163.02,29 163.85,29C164.57,29 165.1,29.41 165.11,30.01C165.13,30.68 165.13,31.35 165.11,32.02C165.1,32.62 164.53,33.04 163.82,33.03C163.02,33.02 162.63,32.68 162.63,31.99C162.63,31.79 162.6,31.58 162.63,31.38C162.67,31.1 162.52,31.02 162.16,31.06Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M133.4,31.06C133.01,31.06 132.66,31.07 132.33,31.06C131.68,31.04 131.12,30.53 131.13,30.01C131.15,29.44 131.68,29 132.35,29C133.2,29 134.05,29 134.9,29C135.57,29 136.09,29.43 136.12,30C136.14,30.53 135.57,31.04 134.93,31.06C134.44,31.07 133.95,31.06 133.4,31.06Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M139.57,31.06C138.91,30.99 138.52,30.67 138.4,30.2C138.29,29.78 138.5,29.41 138.93,29.17C139.09,29.08 139.29,29.01 139.47,29.01C140.39,28.99 141.31,29 142.23,29C142.73,29 143.2,29.33 143.34,29.79C143.46,30.15 143.21,30.71 142.82,30.86C142.55,30.97 142.23,31.04 141.93,31.05C141.16,31.08 140.39,31.06 139.57,31.06Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M150.19,29.25C150.59,29.58 150.72,29.92 150.53,30.35C150.32,30.82 149.91,31.05 149.32,31.06C148.55,31.07 147.78,31.05 147.01,31.07C146.3,31.08 145.86,30.74 145.65,30.25C145.5,29.9 145.82,29.32 146.29,29.07C146.41,29.01 146.57,29 146.71,29C147.65,29 148.59,28.99 149.53,29.01C149.74,29.02 149.95,29.15 150.19,29.25Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M157.62,30.65C157.26,30.95 156.88,31.08 156.4,31.07C155.69,31.05 154.97,31.05 154.26,31.07C153.53,31.08 153.1,30.73 152.9,30.25C152.75,29.9 153.08,29.32 153.55,29.07C153.66,29.01 153.82,29 153.96,29C154.85,29 155.73,29 156.62,29C157.59,29 158.15,29.77 157.71,30.5C157.68,30.53 157.66,30.58 157.62,30.65Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M126.71,31.06C126.17,31.06 125.67,31.06 125.18,31.06C124.42,31.07 123.9,30.56 123.89,30.05C123.87,29.44 124.41,29 125.16,29C125.97,29 126.78,29 127.6,29C128.32,29 128.85,29.42 128.87,30.01C128.89,30.55 128.29,31.05 127.62,31.06C127.33,31.07 127.05,31.06 126.71,31.06Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M117,53.31C117.42,52.84 117.96,52.95 118.45,53.07C118.93,53.19 119.15,53.52 119.13,53.97C119.11,54.64 119.13,55.31 119.13,55.98C119.13,56.62 118.79,56.96 118.12,57.03C117.42,57.1 116.73,56.8 116.68,56.23C116.6,55.37 116.71,54.5 116.75,53.64C116.76,53.53 116.89,53.43 117,53.31Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M117.4,47C117.73,47 118.02,46.98 118.29,47.01C118.74,47.05 119.12,47.46 119.12,47.86C119.13,48.58 119.07,49.3 119.14,50.01C119.2,50.67 118.58,51.01 117.96,51.03C117.24,51.05 116.66,50.64 116.64,50.05C116.61,49.37 116.64,48.68 116.63,47.99C116.63,47.54 117.02,47.29 117.4,47Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M116.69,41.75C116.92,41.15 117.39,40.92 118.22,41C118.75,41.05 119.12,41.43 119.12,41.94C119.13,42.63 119.13,43.32 119.13,44C119.12,44.68 118.72,45.02 117.92,45.03C117.21,45.04 116.65,44.61 116.64,44.02C116.63,43.27 116.65,42.52 116.69,41.75Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M118.34,38.98C117.13,39.08 116.63,38.7 116.63,37.73C116.63,37.18 116.6,36.64 116.64,36.09C116.7,35.18 117.36,34.84 118.36,35.03C118.82,35.11 119.13,35.42 119.13,35.87C119.12,36.59 119.1,37.31 119.13,38.02C119.15,38.51 118.93,38.82 118.34,38.98Z"
+--+      android:fillColor="#D7E9F7"/>
+--+  <path
+--+      android:pathData="M127.62,41.09C127.62,40.4 127.61,39.7 127.61,39C127.62,38.65 127.71,38.33 128.16,38.12C129.35,38.06 130.52,38.01 131.68,38C142.62,38 153.54,38 164.48,38C165.13,38 165.76,38.04 166.14,38.63C166.19,39.44 166.22,40.22 166.19,41.05C160.05,41.09 153.97,41.09 147.9,41.09C147.56,41.09 147.21,41.1 146.83,41.11C145.93,40.92 145.11,41 144.24,41.18C143.96,41.14 143.71,41.1 143.47,41.1C138.19,41.09 132.91,41.09 127.62,41.09Z"
+--+      android:fillColor="#EEF6FC"/>
+--+  <path
+--+      android:pathData="M155.4,64.75C155.38,64.53 155.38,64.33 155.37,64.06C155.4,62.93 155.62,61.92 156.24,61C156.44,61.05 156.64,61.14 156.85,61.15C157.71,61.17 158.58,61.15 159.45,61.16C159.69,61.16 159.93,61.21 160.21,61.29C159.99,61.87 160.11,62.32 160.62,62.73C161.12,63.13 161.58,63.56 162.01,63.94C161.36,64.5 160.75,65.04 160.14,65.57C159.9,65.51 159.66,65.39 159.43,65.38C158.17,65.37 156.92,65.38 155.61,65.38C155.51,65.18 155.46,64.98 155.4,64.75Z"
+--+      android:fillColor="#FEA766"/>
+--+  <path
+--+      android:pathData="M160.14,65.61C160.75,65.04 161.36,64.5 162.01,63.94C161.58,63.56 161.12,63.13 160.62,62.73C160.11,62.32 159.99,61.87 160.26,61.29C161.29,60.7 161.62,60.72 162.46,61.43C162.9,61.8 163.3,62.18 163.82,62.65C164.37,62.17 164.8,61.76 165.26,61.37C165.98,60.78 166.7,60.83 167.34,61.51C167.59,62.06 167.39,62.47 166.91,62.83C166.44,63.18 165.98,63.55 165.53,63.89C166.23,64.57 166.86,65.17 167.5,65.81C167.51,66.33 167.32,66.75 166.73,66.93C166.16,67.1 165.67,66.94 165.26,66.57C164.82,66.17 164.37,65.78 163.8,65.28C163.32,65.73 162.92,66.1 162.51,66.46C162.07,66.87 161.59,67.22 160.85,66.95C160.15,66.69 160.08,66.2 160.14,65.61Z"
+--+      android:fillColor="#F0F6FB"/>
+--+  <path
+--+      android:pathData="M156.24,60.97C155.61,61.92 155.4,62.93 155.37,64.02C146.76,64.06 138.15,64.06 129.55,64.05C129.36,64.05 129.17,64.06 128.99,64.05C128,63.98 127.53,63.57 127.52,62.74C127.51,62.09 127.52,61.43 127.51,60.73C127.51,59.28 127.51,57.88 127.52,56.48C127.52,56.31 127.54,56.14 127.62,55.93C129,55.07 130.31,54.24 131.61,53.4C132.78,52.65 133.94,51.88 135.13,51.11C135.41,50.93 135.67,50.77 135.91,50.59C137.24,49.64 139.24,49.58 140.63,50.51C142.22,51.57 143.79,52.67 145.36,53.76C145.57,53.91 145.73,53.99 145.98,53.8C146.73,53.23 147.49,52.67 148.24,52.11C149.23,51.38 150.22,50.66 151.19,49.93C152.26,49.12 153.31,48.29 154.41,47.47C154.66,47.31 154.88,47.17 155.08,47.01C156.36,45.98 158.23,45.84 159.69,46.68C160.14,46.93 160.52,47.26 160.95,47.59C162.72,49.06 164.48,50.51 166.23,51.96C166.24,52.65 166.25,53.34 166.26,54.08C166.25,55.14 166.25,56.15 166.23,57.2C164.49,56.93 162.76,56.88 161.05,57.39C158.89,58.05 157.25,59.2 156.24,60.97Z"
+--+      android:fillColor="#B4CDE1"/>
+--+  <path
+--+      android:pathData="M160.93,47.56C160.52,47.26 160.14,46.93 159.69,46.68C158.23,45.84 156.36,45.98 155.08,47.01C154.88,47.17 154.66,47.31 154.35,47.47C145.38,47.47 136.5,47.47 127.62,47.47C127.62,46.34 127.61,45.21 127.67,44.04C132.52,44 137.31,44 142.11,44.04C141.95,46.03 144.57,47.58 146.91,46.82C148.51,46.3 149.26,45.29 149.42,43.91C155.06,43.91 160.65,43.91 166.23,43.91C166.24,45.1 166.24,46.28 166.19,47.52C164.4,47.56 162.66,47.56 160.93,47.56Z"
+--+      android:fillColor="#E7F2FA"/>
+--+  <path
+--+      android:pathData="M127.62,47.51C136.5,47.47 145.38,47.47 154.31,47.47C153.31,48.29 152.26,49.12 151.19,49.93C150.22,50.66 149.23,51.38 148.24,52.11C147.49,52.67 146.73,53.23 145.98,53.8C145.73,53.99 145.57,53.91 145.36,53.76C143.79,52.67 142.22,51.57 140.63,50.51C139.24,49.58 137.24,49.64 135.91,50.59C135.67,50.77 135.41,50.93 135.09,51.11C134.64,51.12 134.27,51.12 133.9,51.12C131.8,51.13 129.71,51.13 127.62,51.13C127.61,50.34 127.6,49.56 127.59,48.73C127.59,48.31 127.6,47.93 127.62,47.51Z"
+--+      android:fillColor="#E3EFF9"/>
+--+  <path
+--+      android:pathData="M142.1,44C137.31,44 132.52,44 127.67,44C127.61,43.5 127.61,43 127.59,42.45C127.59,42 127.6,41.59 127.62,41.14C132.91,41.09 138.19,41.09 143.47,41.1C143.71,41.1 143.96,41.14 144.21,41.2C142.9,41.83 142.12,42.71 142.1,44Z"
+--+      android:fillColor="#EBF4FB"/>
+--+  <path
+--+      android:pathData="M127.62,51.17C129.71,51.13 131.8,51.13 133.9,51.12C134.27,51.12 134.64,51.12 135.05,51.12C133.94,51.88 132.78,52.65 131.61,53.4C130.31,54.24 129,55.07 127.65,55.9C127.61,55.56 127.6,55.21 127.58,54.83C127.59,53.59 127.6,52.4 127.62,51.17Z"
+--+      android:fillColor="#E0EDF8"/>
+--+  <path
+--+      android:pathData="M166.24,43.87C160.65,43.91 155.06,43.91 149.41,43.87C149.16,43.37 149.04,42.88 148.77,42.44C148.38,41.79 147.63,41.43 146.87,41.11C147.21,41.1 147.56,41.09 147.9,41.09C153.97,41.09 160.05,41.09 166.18,41.09C166.24,41.88 166.25,42.66 166.26,43.49C166.26,43.63 166.25,43.73 166.24,43.87Z"
+--+      android:fillColor="#EBF4FB"/>
+--+  <path
+--+      android:pathData="M160.95,47.59C162.66,47.56 164.4,47.56 166.18,47.56C166.24,48.06 166.25,48.57 166.26,49.11C166.26,50.06 166.25,50.97 166.24,51.91C164.48,50.51 162.72,49.06 160.95,47.59Z"
+--+      android:fillColor="#E3EFF9"/>
+--+  <path
+--+      android:pathData="M146.83,41.11C147.63,41.43 148.38,41.79 148.77,42.44C149.04,42.88 149.16,43.37 149.36,43.87C149.26,45.29 148.51,46.3 146.91,46.82C144.57,47.58 141.95,46.03 142.11,44.04C142.12,42.71 142.9,41.83 144.26,41.22C145.11,41 145.93,40.92 146.83,41.11Z"
+--+      android:fillColor="#B4CDE1"/>
+--+</vector>
+--Index: app/src/main/res/values/strings.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+><resources>\r\n    <string name=\"app_name\">DSM Absen</string>\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n    <string name=\"failed_connect\">failed_connect</string>\r\n    <string name=\"tidak_berada_diwaktu_presensi\">{\"status\":true,\"message\":\"Success\",\"data\":{\"status\":\"Error\",\"messages\":\"Anda tidak berada diwaktu presensi\"}}</string>\r\n    <string name=\"bad_connection\">bad_connection</string>\r\n    <string name=\"no_connection\">Tidak ada koneksi internet</string>\r\n    <string name=\"ok\">OK</string>\r\n    <string name=\"simpan\">Simpan</string>\r\n    <string name=\"add\">ADD</string>\r\n    <string name=\"attention\">\"Perhatian: Aplikasi Ini Memerlukan Akses Lokasi, IMEI, dan Kamera\"</string>\r\n</resources>
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+----- a/app/src/main/res/values/strings.xml	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/res/values/strings.xml	(date 1678707522283)
+--@@ -5,7 +5,7 @@
+--     <string name="failed_connect">failed_connect</string>
+--     <string name="tidak_berada_diwaktu_presensi">{"status":true,"message":"Success","data":{"status":"Error","messages":"Anda tidak berada diwaktu presensi"}}</string>
+--     <string name="bad_connection">bad_connection</string>
+---    <string name="no_connection">Tidak ada koneksi internet</string>
+--+    <!--    <string name="no_connection">Tidak ada koneksi internet</string>-->
+--     <string name="ok">OK</string>
+--     <string name="simpan">Simpan</string>
+--     <string name="add">ADD</string>
+--Index: app/src/main/java/com/example/dsmabsen/network/PengumumanApi.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/network/PengumumanApi.kt b/app/src/main/java/com/example/dsmabsen/network/PengumumanApi.kt
+--new file mode 100644
+----- /dev/null	(date 1678708519732)
+--+++ b/app/src/main/java/com/example/dsmabsen/network/PengumumanApi.kt	(date 1678708519732)
+--@@ -0,0 +1,13 @@
+--+package com.example.dsmabsen.network
+--+
+--+import com.example.dsmabsen.model.Pengumuman
+--+import retrofit2.Response
+--+import retrofit2.http.GET
+--+import retrofit2.http.Path
+--+
+--+interface PengumumanApi {
+--+
+--+    @GET("pengumuman")
+--+    suspend fun getPengumuman(
+--+    ) : Response<Pengumuman>
+--+}
+--\ No newline at end of file
+--Index: app/src/main/java/com/example/dsmabsen/di/NetworkModule.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+>package com.example.dsmabsen.di\r\n\r\nimport com.example.dsmabsen.helper.AuthInterceptor\r\nimport com.example.dsmabsen.helper.Constans\r\nimport com.example.dsmabsen.network.*\r\nimport com.google.gson.GsonBuilder\r\nimport dagger.Module\r\nimport dagger.Provides\r\nimport dagger.hilt.InstallIn\r\nimport dagger.hilt.components.SingletonComponent\r\nimport okhttp3.OkHttpClient\r\nimport okhttp3.logging.HttpLoggingInterceptor\r\nimport retrofit2.Retrofit\r\nimport retrofit2.converter.gson.GsonConverterFactory\r\nimport retrofit2.converter.moshi.MoshiConverterFactory\r\nimport java.util.concurrent.TimeUnit\r\nimport javax.inject.Singleton\r\n\r\n\r\n@Module\r\n@InstallIn(SingletonComponent::class)\r\nobject NetworkModule {\r\n\r\n    @Singleton\r\n    @Provides\r\n    fun providesRetrofit(): Retrofit.Builder {\r\n        val gson = GsonBuilder().setLenient().create()\r\n\r\n        return Retrofit.Builder()\r\n            .baseUrl(Constans.BASE_URL)\r\n            .addConverterFactory(GsonConverterFactory.create(gson))\r\n            .addConverterFactory(MoshiConverterFactory.create().asLenient())\r\n    }\r\n\r\n    @Singleton\r\n    @Provides\r\n    fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {\r\n        val interceptor = HttpLoggingInterceptor()\r\n        interceptor.level = HttpLoggingInterceptor.Level.BODY\r\n        return OkHttpClient.Builder()\r\n            .addInterceptor(interceptor)\r\n            .addInterceptor(authInterceptor)\r\n            .connectTimeout(30, TimeUnit.SECONDS)\r\n            .readTimeout(30, TimeUnit.SECONDS)\r\n            .writeTimeout(30, TimeUnit.SECONDS)\r\n            .build()\r\n    }\r\n\r\n    @Singleton\r\n    @Provides\r\n    fun providesUserAPI(retrofitBuilder: Retrofit.Builder): AuthApi {\r\n        return retrofitBuilder.build()\r\n            .create(AuthApi::class.java)\r\n    }\r\n\r\n    @Singleton\r\n    @Provides\r\n    fun providesHomeAPI(retrofitBuilder: Retrofit.Builder, okHttpClient: OkHttpClient): HomeApi {\r\n        return retrofitBuilder.client(okHttpClient).build().create(HomeApi::class.java)\r\n    }\r\n\r\n    @Singleton\r\n    @Provides\r\n    fun attendanceHistory(\r\n        retrofitBuilder: Retrofit.Builder,\r\n        okHttpClient: OkHttpClient\r\n    ): DataAttendanceApi {\r\n        return retrofitBuilder.client(okHttpClient).build().create(DataAttendanceApi::class.java)\r\n    }\r\n\r\n    @Singleton\r\n    @Provides\r\n    fun userProfile(retrofitBuilder: Retrofit.Builder, okHttpClient: OkHttpClient): UserProfileApi {\r\n        return retrofitBuilder.client(okHttpClient).build().create(UserProfileApi::class.java)\r\n    }\r\n\r\n    @Singleton\r\n    @Provides\r\n    fun providesReimbursement(\r\n        retrofitBuilder: Retrofit.Builder,\r\n        okHttpClient: OkHttpClient\r\n    ): ReimbursementApi {\r\n        return retrofitBuilder.client(okHttpClient).build().create(ReimbursementApi::class.java)\r\n    }\r\n    @Singleton\r\n    @Provides\r\n    fun providesPerizinan(\r\n        retrofitBuilder: Retrofit.Builder,\r\n        okHttpClient: OkHttpClient\r\n    ): PerizinanApi {\r\n        return retrofitBuilder.client(okHttpClient).build().create(PerizinanApi::class.java)\r\n    }\r\n\r\n    @Singleton\r\n    @Provides\r\n    fun providesShift(\r\n        retrofitBuilder: Retrofit.Builder,\r\n        okHttpClient: OkHttpClient\r\n    ): ShiftApi {\r\n        return retrofitBuilder.client(okHttpClient).build().create(ShiftApi::class.java)\r\n    }\r\n\r\n}
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/di/NetworkModule.kt b/app/src/main/java/com/example/dsmabsen/di/NetworkModule.kt
+----- a/app/src/main/java/com/example/dsmabsen/di/NetworkModule.kt	(revision 637074fddf8e52010ba39be73b6c801aa764c1c3)
+--+++ b/app/src/main/java/com/example/dsmabsen/di/NetworkModule.kt	(date 1678708519760)
+--@@ -100,4 +100,13 @@
+--         return retrofitBuilder.client(okHttpClient).build().create(ShiftApi::class.java)
+--     }
+-- 
+--+    @Singleton
+--+    @Provides
+--+    fun providesPengumuman(
+--+        retrofitBuilder: Retrofit.Builder,
+--+        okHttpClient: OkHttpClient
+--+    ): PengumumanApi {
+--+        return retrofitBuilder.client(okHttpClient).build().create(PengumumanApi::class.java)
+--+    }
+--+
+-- }
+--\ No newline at end of file
+--Index: app/src/main/java/com/example/dsmabsen/repository/PengumumanRepository.kt
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/app/src/main/java/com/example/dsmabsen/repository/PengumumanRepository.kt b/app/src/main/java/com/example/dsmabsen/repository/PengumumanRepository.kt
+--new file mode 100644
+----- /dev/null	(date 1678708519775)
+--+++ b/app/src/main/java/com/example/dsmabsen/repository/PengumumanRepository.kt	(date 1678708519775)
+--@@ -0,0 +1,15 @@
+--+package com.example.dsmabsen.repository
+--+
+--+import com.example.dsmabsen.network.PengumumanApi
+--+import com.example.dsmabsen.network.UserProfileApi
+--+import javax.inject.Inject
+--+
+--+class PengumumanRepository @Inject constructor(private val api: PengumumanApi) :
+--+    BaseRepository() {
+--+
+--+    suspend fun getPengumuman() =
+--+        safeApiCall {
+--+            api.getPengumuman()
+--+        }
+--+
+--+}
+--\ No newline at end of file
+-Index: .idea/shelf/Uncommitted_changes_before_Update_at_14_03_2023_7_50__Changes_.xml
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2023_7_50__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2023_7_50__Changes_.xml
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2023_7_50__Changes_.xml	(revision 665a28e49b7fc6a9b949e8d290fe67e8f31c8bbc)
+-+++ /dev/null	(revision 665a28e49b7fc6a9b949e8d290fe67e8f31c8bbc)
+-@@ -1,9 +0,0 @@
+--<changelist name="Uncommitted_changes_before_Update_at_14_03_2023_7_50_[Changes]" date="1678755183774" recycled="true" deleted="true">
+--  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2023_7_50_[Changes]/shelved.patch" />
+--  <option name="DESCRIPTION" value="Uncommitted changes before Update at 14/03/2023 7:50 [Changes]" />
+--  <binary>
+--    <option name="BEFORE_PATH" />
+--    <option name="AFTER_PATH" value="app/src/main/res/drawable/loading_image.png" />
+--    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2023_7_50_[Changes]/loading_image.png" />
+--  </binary>
+--</changelist>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_22_03_2023_20_24__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_22_03_2023_20_24__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_22_03_2023_20_24__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_22_03_2023_20_24__Changes_.xml	
++++ /dev/null	
+@@ -1,9 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_22_03_2023_20_24_[Changes]" date="1679491451774" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_03_2023_20_24_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 22/03/2023 20:24 [Changes]" />
+-  <binary>
+-    <option name="BEFORE_PATH" value=".idea/shelf/Uncommitted_changes_before_Update_at_14_03_2023_7_50_[Changes]/loading_image.png" />
+-    <option name="AFTER_PATH" />
+-    <option name="SHELVED_PATH" />
+-  </binary>
+-</changelist>
+\ No newline at end of file
