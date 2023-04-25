@@ -297,7 +297,7 @@ class AttendanceFragment :
         val kordinatRequestBody =
             MultipartBody.Part.createFormData("kordinat", "$latittudeUser1,$longitudeUser2")
         val kodeShiftRequestBody =
-            MultipartBody.Part.createFormData("kode_shift", savedUser!!.shift!!)
+            MultipartBody.Part.createFormData("kode_shift", savedUser?.shift ?: "")
         val kodeTingkatRequestBody = MultipartBody.Part.createFormData("kode_tingkat", "0")
 
         Log.d(

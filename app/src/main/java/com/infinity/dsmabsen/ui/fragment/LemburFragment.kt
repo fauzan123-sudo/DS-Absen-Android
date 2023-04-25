@@ -68,7 +68,10 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
                                 reclembur.isVisible = false
                                 imgNoData.isVisible = true
                             }else{
-                                adapter = LemburAdapter(requireContext(), response.data.data)
+                                adapter = LemburAdapter(requireContext(), response.data.data){ lembur ->
+                                    val action = LemburFragmentDirections.actionLemburFragmentToDetailLemburFragment(lembur)
+                                    findNavController().navigate(action)
+                                }
                                 recyclerView = reclembur
                                 recyclerView.adapter = adapter
                                 recyclerView.layoutManager = LinearLayoutManager(requireContext())

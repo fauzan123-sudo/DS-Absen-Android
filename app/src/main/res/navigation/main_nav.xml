@@ -105,6 +105,13 @@
         <action
             android:id="@+id/action_dataAbsenFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_dataAbsenFragment_to_detailDataAbsenFragment"
+            app:destination="@id/detailDataAbsenFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -389,6 +396,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            android:id="@+id/action_lemburFragment_to_detailLemburFragment"
+            app:destination="@id/detailLemburFragment" />
     </fragment>
     <fragment
         android:id="@+id/pengajuanLemburFragment"
@@ -546,5 +560,27 @@
     <fragment
         android:id="@+id/detailReimbursementFragment"
         android:name="com.infinity.dsmabsen.ui.fragment.DetailReimbursementFragment"
-        tools:layout="@layout/fragment_detail_reimbursement" />
+        tools:layout="@layout/fragment_detail_reimbursement" >
+        <argument
+            android:name="detailReimbursement"
+            app:argType="com.infinity.dsmabsen.model.DataXXXXXXX" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailDataAbsenFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.DetailDataAbsenFragment"
+        android:label="fragment_detail_data_absen"
+        tools:layout="@layout/fragment_detail_data_absen" >
+        <argument
+            android:name="dataAbsen"
+            app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailLemburFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.DetailLemburFragment"
+        android:label="fragment_detail_lembur"
+        tools:layout="@layout/fragment_detail_lembur" >
+        <argument
+            android:name="dataLembur"
+            app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXX" />
+    </fragment>
 </navigation>

@@ -56,8 +56,17 @@ class ReimbursementFragment :
                                 recReimbursement.isVisible = false
                                 imgNoData.isVisible = true
                             } else {
-                                Log.d("semua reimburement", response.data.data.toString())
-                                adapter = ReimbursementAdapter(requireContext(), response.data.data)
+                                Log.d("semua reimbursement", response.data.data.toString())
+                                adapter = ReimbursementAdapter(requireContext(), response.data.data){ reimbursement ->
+                                    val action = ReimbursementFragmentDirections.actionReimbursementFragmentToDetailReimbursementFragment(reimbursement)
+                                    findNavController().navigate(action)
+//                                    val action =
+//                                        AktivitasFragmentDirections.actionAktivitasFragmentToDetailAktivitasFragment(
+//                                            aktivitas
+//                                        )
+//                                    findNavController().navigate(action)
+
+                                }
                                 recyclerView = recReimbursement
                                 recyclerView.adapter = adapter
                                 recyclerView.layoutManager = LinearLayoutManager(requireContext())

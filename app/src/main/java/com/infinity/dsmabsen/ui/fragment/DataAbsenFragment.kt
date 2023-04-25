@@ -76,7 +76,10 @@ class DataAbsenFragment :
                             binding.imgNoData.visibility = View.VISIBLE
                         } else {
                             adapter =
-                                AttendanceAdapter(requireContext(),attendance)
+                                AttendanceAdapter(requireContext(),attendance){ data ->
+                                    val action = DataAbsenFragmentDirections.actionDataAbsenFragmentToDetailDataAbsenFragment(data)
+                                    findNavController().navigate(action)
+                                }
                             recyclerView = recAttendance
                             recyclerView.adapter = adapter
                             recyclerView.layoutManager = LinearLayoutManager(requireContext())

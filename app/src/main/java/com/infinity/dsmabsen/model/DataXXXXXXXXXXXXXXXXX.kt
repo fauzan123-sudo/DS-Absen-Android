@@ -1,5 +1,9 @@
 package com.infinity.dsmabsen.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class DataXXXXXXXXXXXXXXXXX(
     val `file`: String?,
     val id: Int?,
@@ -10,4 +14,4 @@ data class DataXXXXXXXXXXXXXXXXX(
     val status: String?,
     val tanggal: String?,
     val created_at:String?
-)
+) : Parcelable
