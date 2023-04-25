@@ -479,6 +479,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            android:id="@+id/action_visitFragment2_to_detailVisitFragment"
+            app:destination="@id/detailVisitFragment" />
     </fragment>
     <fragment
         android:id="@+id/penganjuanVisitFragment"
@@ -613,5 +620,14 @@
         <argument
             android:name="detailShift"
             app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXX" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailVisitFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.DetailVisitFragment"
+        android:label="fragment_detail_visit"
+        tools:layout="@layout/fragment_detail_visit" >
+        <argument
+            android:name="detailVisit"
+            app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
     </fragment>
 </navigation>

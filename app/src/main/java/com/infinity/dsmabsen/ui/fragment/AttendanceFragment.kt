@@ -52,6 +52,7 @@ class AttendanceFragment :
     private lateinit var locationManager: LocationManager
     private val viewModel: AttendanceViewModel by viewModels()
     private val handler = Handler()
+
     //    private val args by navArgs<PengajuanReimbursementFragmentArgs>()
     private val args by navArgs<AttendanceFragmentArgs>()
     var latittudeUser1: String? = null
@@ -317,7 +318,7 @@ class AttendanceFragment :
         viewModel.presensiLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
-                    binding.loadingInclude.loading.isVisible = false
+                    binding.loadingInclude.loading.visibility = View.GONE
 
                     val response = it.data!!
                     val statusServer = response.status
@@ -353,10 +354,11 @@ class AttendanceFragment :
 
                 }
                 is NetworkResult.Loading -> {
-                    binding.loadingInclude.loading.isVisible = true
+                    binding.loadingInclude.loading.visibility = View.VISIBLE
                 }
 
                 is NetworkResult.Error -> {
+                    binding.loadingInclude.loading.visibility = View.GONE
                     handleApiError(it.message)
                 }
             }
