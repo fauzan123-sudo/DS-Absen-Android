@@ -1,11 +1,15 @@
 package com.infinity.dsmabsen.ui.fragment
 
+import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
@@ -13,6 +17,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.infinity.dsmabsen.R
+import com.infinity.dsmabsen.databinding.CustomUbahPasswordBinding
 import com.infinity.dsmabsen.databinding.FragmentBerandaBinding
 import com.infinity.dsmabsen.helper.*
 import com.infinity.dsmabsen.helper.Constans.IMAGE_URL
@@ -20,6 +25,7 @@ import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.activity.MainActivity
 import com.infinity.dsmabsen.ui.viewModel.HomeViewModel
+import com.infinity.dsmabsen.ui.viewModel.PasswordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 import java.text.SimpleDateFormat
@@ -29,6 +35,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBinding::inflate) {
     private val viewModel: HomeViewModel by viewModels()
+    private val passwordViewModel: PasswordViewModel by viewModels()
     private val cacheManager = CacheManager()
     private lateinit var customAnalogClock: CustomAnalogClock
     private val handler = Handler()
@@ -44,7 +51,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
         super.onViewCreated(view, savedInstanceState)
 
         hideToolbar()
-
+//        checkPassword(savedUser)
         val myActivities = activity as MainActivity
         myActivities.showMyBottomNav()
 
@@ -142,6 +149,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                             .load(savedUser!!.image)
                             .into(imageView3)
 
+
                         textView8.text = dataHome.nama_shift
                         textView9.text = dataHome.jam_shift
                         if (Build.VERSION.SDK_INT < 26) {
@@ -213,7 +221,6 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Navigasi kembali ke halaman sebelumnya jika tidak berada di halaman awal (DefaultFragment)
                 val navController = findNavController()
                 if (navController.currentDestination?.id == R.id.berandaFragment) {
 //                    activity?.finish()
@@ -225,6 +232,8 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
+
+
 
 
     fun showExitConfirmationDialog() {
