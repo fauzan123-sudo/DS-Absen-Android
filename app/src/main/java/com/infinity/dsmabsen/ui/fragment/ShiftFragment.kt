@@ -53,11 +53,18 @@ class ShiftFragment : BaseFragment<FragmentShiftBinding>(FragmentShiftBinding::i
                         val response = it.data!!
                         val status = response.status
                         if (status) {
-                            if(response.data.data.isEmpty()){
+                            if (response.data.data.isEmpty()) {
                                 recyclerShift.isVisible = false
                                 imgNoData.isVisible = true
-                            }else{
-                                adapter = ShiftAdapter(requireContext(), response.data.data)
+                            } else {
+                                adapter =
+                                    ShiftAdapter(requireContext(), response.data.data) { shift ->
+                                        val action =
+                                            ShiftFragmentDirections.actionShiftFragmentToDetailShiftFragment(
+                                                shift
+                                            )
+                                        findNavController().navigate(action)
+                                    }
                                 recyclerView = recyclerShift
                                 recyclerView.adapter = adapter
                                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -98,6 +105,7 @@ class ShiftFragment : BaseFragment<FragmentShiftBinding>(FragmentShiftBinding::i
             }
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
         val menuSave = menu.findItem(R.id.save)

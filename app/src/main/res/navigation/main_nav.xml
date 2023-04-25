@@ -377,6 +377,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            android:id="@+id/action_menuPerizinanFragment_to_detailPerizinanFragment"
+            app:destination="@id/detailPerizinanFragment" />
     </fragment>
     <fragment
         android:id="@+id/lemburFragment"
@@ -419,6 +426,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            android:id="@+id/action_shiftFragment_to_detailShiftFragment"
+            app:destination="@id/detailShiftFragment" />
     </fragment>
     <fragment
         android:id="@+id/pengajuanReimbursementFragment"
@@ -582,5 +596,22 @@
         <argument
             android:name="dataLembur"
             app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXX" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPerizinanFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.DetailPerizinanFragment"
+        tools:layout="@layout/fragment_detail_perizinan" >
+        <argument
+            android:name="detailPerizinan"
+            app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXX" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailShiftFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.DetailShiftFragment"
+        android:label="fragment_detail_shift"
+        tools:layout="@layout/fragment_detail_shift" >
+        <argument
+            android:name="detailShift"
+            app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXX" />
     </fragment>
 </navigation>

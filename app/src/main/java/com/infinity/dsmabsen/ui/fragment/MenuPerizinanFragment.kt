@@ -58,9 +58,14 @@ class MenuPerizinanFragment :
                                 recPerizinan.isVisible = false
                                 imgNoData.isVisible = true
                             } else {
-                                adapter = PerizinanAdapter(requireContext(), data.data.data){
-
-                                }
+                                adapter =
+                                    PerizinanAdapter(requireContext(), data.data.data) { data ->
+                                        val action =
+                                            MenuPerizinanFragmentDirections.actionMenuPerizinanFragmentToDetailPerizinanFragment(
+                                                data
+                                            )
+                                        findNavController().navigate(action)
+                                    }
                                 recyclerView = recPerizinan
                                 recyclerView.adapter = adapter
                                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
