@@ -1,0 +1,44 @@
+Index: app/src/main/java/com/infinity/dsmabsen/helper/Constans.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.infinity.dsmabsen.helper\r\n\r\nobject Constans {\r\n    const val BASE_URL = \"http://192.168.1.6/ngastaa/api/\"\r\n    const val IMAGE_URL = \"\"\r\n//    const val BASE_URL = \"https://ngastaa.com/api/\"\r\n//    const val IMAGE_URL = \"\"\r\n    const val TAG = \"fauzanapp\"\r\n    const val USER_TOKEN = \"user_token\"\r\n    const val PREFS_TOKEN_FILE = \"prefs_token_file\"\r\n    const val USER_SAVED = \"user\"\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/infinity/dsmabsen/helper/Constans.kt b/app/src/main/java/com/infinity/dsmabsen/helper/Constans.kt
+--- a/app/src/main/java/com/infinity/dsmabsen/helper/Constans.kt	(revision 58d192096c9ee63af0b7ca77e56e2dd8d7bf5727)
++++ b/app/src/main/java/com/infinity/dsmabsen/helper/Constans.kt	(date 1682380174559)
+@@ -1,7 +1,7 @@
+ package com.infinity.dsmabsen.helper
+ 
+ object Constans {
+-    const val BASE_URL = "http://192.168.1.6/ngastaa/api/"
++    const val BASE_URL = "http://192.168.0.108/ngastaa/api/"
+     const val IMAGE_URL = ""
+ //    const val BASE_URL = "https://ngastaa.com/api/"
+ //    const val IMAGE_URL = ""
+Index: .idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"deploymentTargetDropDown\">\r\n    <targetSelectedWithDropDown>\r\n      <Target>\r\n        <type value=\"QUICK_BOOT_TARGET\" />\r\n        <deviceKey>\r\n          <Key>\r\n            <type value=\"VIRTUAL_DEVICE_PATH\" />\r\n            <value value=\"C:\\Users\\Alfa\\.android\\avd\\Pixel_6_API_33.avd\" />\r\n          </Key>\r\n        </deviceKey>\r\n      </Target>\r\n    </targetSelectedWithDropDown>\r\n    <timeTargetWasSelectedWithDropDown value=\"2023-04-24T05:13:00.067982100Z\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+--- a/.idea/deploymentTargetDropDown.xml	(revision 58d192096c9ee63af0b7ca77e56e2dd8d7bf5727)
++++ b/.idea/deploymentTargetDropDown.xml	(date 1682380174574)
+@@ -7,11 +7,11 @@
+         <deviceKey>
+           <Key>
+             <type value="VIRTUAL_DEVICE_PATH" />
+-            <value value="C:\Users\Alfa\.android\avd\Pixel_6_API_33.avd" />
++            <value value="C:\Users\ASUS\.android\avd\Nexus_5_API_33_1.avd" />
+           </Key>
+         </deviceKey>
+       </Target>
+     </targetSelectedWithDropDown>
+-    <timeTargetWasSelectedWithDropDown value="2023-04-24T05:13:00.067982100Z" />
++    <timeTargetWasSelectedWithDropDown value="2023-04-21T14:02:57.763991300Z" />
+   </component>
+ </project>
+\ No newline at end of file

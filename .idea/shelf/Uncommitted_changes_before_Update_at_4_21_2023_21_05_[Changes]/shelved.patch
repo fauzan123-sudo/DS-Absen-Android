@@ -1,0 +1,47 @@
+Index: app/src/main/java/com/infinity/dsmabsen/helper/Constans.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.infinity.dsmabsen.helper\r\n\r\nobject Constans {\r\n//    const val BASE_URL = \"http://192.168.1.8/ngastaa/api/\"\r\n//    const val IMAGE_URL = \"\"\r\n    const val BASE_URL = \"http://ngastaa.com/api/\"\r\n    const val IMAGE_URL = \"\"\r\n    const val TAG = \"fauzanapp\"\r\n    const val USER_TOKEN = \"user_token\"\r\n    const val PREFS_TOKEN_FILE = \"prefs_token_file\"\r\n    const val USER_SAVED = \"user\"\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/infinity/dsmabsen/helper/Constans.kt b/app/src/main/java/com/infinity/dsmabsen/helper/Constans.kt
+--- a/app/src/main/java/com/infinity/dsmabsen/helper/Constans.kt	(revision 8b339676ca7e75536dc67b911134f292adf1dfb8)
++++ b/app/src/main/java/com/infinity/dsmabsen/helper/Constans.kt	(date 1681699491946)
+@@ -3,7 +3,7 @@
+ object Constans {
+ //    const val BASE_URL = "http://192.168.1.8/ngastaa/api/"
+ //    const val IMAGE_URL = ""
+-    const val BASE_URL = "http://ngastaa.com/api/"
++    const val BASE_URL = "https://ngastaa.com/api/"
+     const val IMAGE_URL = ""
+     const val TAG = "fauzanapp"
+     const val USER_TOKEN = "user_token"
+Index: .idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+new file mode 100644
+--- /dev/null	(date 1682085783733)
++++ b/.idea/deploymentTargetDropDown.xml	(date 1682085783733)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="deploymentTargetDropDown">
++    <targetSelectedWithDropDown>
++      <Target>
++        <type value="QUICK_BOOT_TARGET" />
++        <deviceKey>
++          <Key>
++            <type value="VIRTUAL_DEVICE_PATH" />
++            <value value="C:\Users\ASUS\.android\avd\Nexus_5_API_33_1.avd" />
++          </Key>
++        </deviceKey>
++      </Target>
++    </targetSelectedWithDropDown>
++    <timeTargetWasSelectedWithDropDown value="2023-04-21T14:02:57.763991300Z" />
++  </component>
++</project>
+\ No newline at end of file
