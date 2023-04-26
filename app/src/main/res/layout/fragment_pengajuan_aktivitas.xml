@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradiend_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
     tools:context=".ui.fragment.PengajuanAktivitasFragment">
 
 <include
@@ -30,7 +29,6 @@
         android:clipToPadding="true">
 
         <TextView
-            android:layout_marginStart="@dimen/_10sdp"
             android:id="@+id/label_keterangan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +40,6 @@
             android:layout_marginStart="@dimen/_10sdp"/>
 
         <EditText
-            android:layout_marginHorizontal="@dimen/_10sdp"
             android:hint="Tulis keterangan disini"
             android:textColorHint="@color/_muted"
             android:id="@+id/edtKeterangan"
