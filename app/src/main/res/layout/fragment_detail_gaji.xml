@@ -13,7 +13,6 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"/>
 
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         android:backgroundTint="@color/white"

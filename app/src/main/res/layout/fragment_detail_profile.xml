@@ -36,7 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Data Pribadi"
-                android:textColor="@color/_grey" />
+                android:textColor="@color/_grey"
+                android:fontFamily="@font/poppins_light"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -60,7 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jabatan dan Posisi"
-                android:textColor="@color/_grey" />
+                android:textColor="@color/_grey"
+                android:fontFamily="@font/poppins_light"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -84,7 +86,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lokasi Kerja"
-                android:textColor="@color/_grey" />
+                android:textColor="@color/_grey"
+                android:fontFamily="@font/poppins_light"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -108,7 +111,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pendidikan"
-                android:textColor="@color/_grey" />
+                android:textColor="@color/_grey"
+                android:fontFamily="@font/poppins_light"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -132,7 +136,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Penguasaan Bahasa"
-                android:textColor="@color/_grey" />
+                android:textColor="@color/_grey"
+                android:fontFamily="@font/poppins_light"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -156,7 +161,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pengalaman Kerja"
-                android:textColor="@color/_grey" />
+                android:textColor="@color/_grey"
+                android:fontFamily="@font/poppins_light"/>
 
             <ImageView
                 android:layout_width="wrap_content"

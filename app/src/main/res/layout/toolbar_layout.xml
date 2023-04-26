@@ -8,6 +8,7 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/_10sdp"
     android:elevation="0dp"
+    android:fontFamily="@font/poppins_regular"
     android:theme="@style/MyThemeOverlay_Toolbar"
     android:navigationIcon="@drawable/ic_back"
     app:navigationIconTint="@color/_dark"

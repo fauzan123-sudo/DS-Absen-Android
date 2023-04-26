@@ -168,7 +168,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_toEndOf="@id/iv_profile_lengkap"
-                android:text="Profile Lengkap" />
+                android:text="Profile Lengkap"
+                android:fontFamily="@font/poppins_regular"/>
 
             <ImageView
                 android:id="@+id/arrow1"

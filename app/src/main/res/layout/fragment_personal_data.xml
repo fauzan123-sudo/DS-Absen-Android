@@ -59,7 +59,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NIP"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_nip"
@@ -96,7 +97,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Gelar Depan"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_gelar_depan"
@@ -132,7 +134,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nama"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_nama"
@@ -168,7 +171,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Gelar Belakang"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_gelar_belakang"
@@ -204,7 +208,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tempat Lahir"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_tempat_lahir"
@@ -240,7 +245,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tanggal Lahir"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_tanggal_lahir"
@@ -276,7 +282,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Jenis Kelamin"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_jenis_kelamin"
@@ -312,7 +319,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Agama"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_agama"
@@ -348,7 +356,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Status Perkawinan"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_status_perkawinan"
@@ -384,7 +393,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Golongan Darah"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_golongan"
@@ -420,7 +430,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NIK"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_no_ktp"
@@ -469,7 +480,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nomor HP"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_no_hp"
@@ -506,7 +518,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Email"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:fontFamily="@font/poppins_light"/>
 
                     <TextView
                         android:id="@+id/tv_email"

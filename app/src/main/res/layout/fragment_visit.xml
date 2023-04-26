@@ -9,10 +9,9 @@
     android:background="@drawable/gradiend_background">
 
     <include
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_image_user"
+        android:layout_margin="@dimen/_15sdp"
+        android:id="@+id/toolbar_user"
+        layout="@layout/toolbsr_user"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -27,13 +26,14 @@
         app:layout_constraintTop_toBottomOf="@id/recVisit" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:paddingHorizontal="@dimen/_20sdp"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginBottom="@dimen/_45sdp"
         android:id="@+id/recVisit"
         tools:listitem="@layout/item_visit"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_user"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <include
@@ -50,17 +50,17 @@
         android:backgroundTint="@color/_info"
         android:clickable="true"
         android:src="@drawable/ic_big_add"
-        android:tint="@color/_muted"
+        android:foregroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-        <include
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/loadingInclude"
-        layout="@layout/loading" />
+            <include
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/loadingInclude"
+                layout="@layout/loading" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -140,14 +140,14 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
 
                     binding.apply {
                         val dataHome = it.data!!.data
-                        textView6.text = dataHome.nama
-                        textView6.invalidate()
-                        textView6.requestLayout()
-                        textView7.text = dataHome.jabatan
+                        toolbarUser.namaUser.text = dataHome.nama
+                        toolbarUser.namaUser.invalidate()
+                        toolbarUser.namaUser.requestLayout()
+                        toolbarUser.jabatan.text = dataHome.jabatan
 
                         Glide.with(requireContext())
                             .load(savedUser!!.image)
-                            .into(imageView3)
+                            .into(toolbarUser.imageUser)
 
 
                         textView8.text = dataHome.nama_shift

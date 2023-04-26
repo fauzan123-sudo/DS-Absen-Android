@@ -21,7 +21,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,44 +32,15 @@
                 android:id="@+id/infoUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_20sdp"
+                android:padding="@dimen/_15sdp"
                 android:visibility="visible"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="0dp">
+                tools:layout_editor_absoluteX="0dp"
+                android:clipToPadding="false">
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fauzan Almaterzz"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_10ssp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:text="UI Designer"
-                    android:textColor="#7F838B"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintStart_toStartOf="@+id/textView6"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="4dp"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView7"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView6"
-                    android:src="@drawable/user" />
+                <include
+                    android:id="@+id/toolbar_user"
+                    layout="@layout/toolbsr_user"/>
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/materialCardView"
@@ -77,14 +49,16 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
                     app:layout_constraintEnd_toStartOf="@+id/materialCardView2"
-                    app:layout_constraintStart_toStartOf="@+id/textView6"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7">
+                    app:layout_constraintStart_toStartOf="@+id/toolbar_user"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar_user"
+                    app:cardElevation="20dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
-                        android:padding="@dimen/_15sdp">
+                        android:padding="@dimen/_15sdp"
+                        >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/box_custon_analog"
@@ -129,7 +103,7 @@
                             android:text="Shift malam"
                             android:textAlignment="textStart"
                             android:textColor="@color/grey"
-                            android:textSize="@dimen/_12ssp"
+                            android:textSize="@dimen/_11ssp"
                             app:layout_constraintBottom_toTopOf="@+id/textView9"
                             app:layout_constraintStart_toEndOf="@+id/view"
                             app:layout_constraintStart_toStartOf="@+id/textView9"
@@ -159,7 +133,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7">
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar_user"
+                    app:cardElevation="20dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -196,7 +171,7 @@
                             android:text="22"
                             android:textAlignment="center"
                             android:textColor="@color/black_text"
-                            android:textSize="@dimen/_28ssp"
+                            android:textSize="@dimen/_24ssp"
                             app:layout_constraintBottom_toTopOf="@+id/textView11"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -208,6 +183,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/poppins_light"
                             android:text="2023"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -221,13 +197,14 @@
                     android:backgroundTint="@color/white"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
                     android:background="@color/white"
                     app:layout_constraintEnd_toEndOf="@id/guideline"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/materialCardView"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView">
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+                    app:cardElevation="20dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -250,6 +227,7 @@
                             android:textColor="@color/_grey"
                             android:layout_height="wrap_content"
                             android:paddingStart="@dimen/_10sdp"
+                            android:fontFamily="@font/poppins_light"
                             android:text="Datang"
                             android:textAlignment="textStart"
                             app:layout_constraintBottom_toBottomOf="@+id/icon_cardCheckin"
@@ -276,7 +254,7 @@
                             android:layout_height="wrap_content"
                             android:text="On Time"
                             android:textColor="@color/_grey"
-                            android:textSize="@dimen/_10ssp"
+                            android:textSize="@dimen/_8ssp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_checkin" />
 
@@ -286,7 +264,8 @@
                             android:layout_height="wrap_content"
                             android:text="+120 pt"
                             android:textColor="@color/_success"
-                            android:textSize="@dimen/_10ssp"
+                            android:textSize="@dimen/_8ssp"
+                            android:fontFamily="@font/poppins_light"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="1.0"
                             app:layout_constraintStart_toEndOf="@+id/footerText_cardCheckin"
@@ -299,15 +278,16 @@
                     android:layout_width="0dp"
                     android:backgroundTint="@color/white"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:background="@drawable/shadow_bg"
                     android:clipToOutline="false"
                     android:clipToPadding="false"
                     app:layout_constraintEnd_toEndOf="@+id/materialCardView2"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@id/guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
+                    app:cardElevation="20dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -330,6 +310,7 @@
                             android:textColor="@color/_grey"
                             android:layout_height="wrap_content"
                             android:paddingStart="@dimen/_10sdp"
+                            android:fontFamily="@font/poppins_light"
                             android:text="Istirahat"
                             android:textAlignment="textStart"
                             app:layout_constraintBottom_toBottomOf="@+id/icon_cardBreak"
@@ -356,8 +337,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="On Time"
+                            android:fontFamily="@font/poppins_light"
                             android:textColor="@color/_grey"
-                            android:textSize="@dimen/_10ssp"
+                            android:textSize="@dimen/_8ssp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_break" />
 
@@ -367,7 +349,7 @@
                             android:layout_height="wrap_content"
                             android:text="+120 pt"
                             android:textColor="@color/_success"
-                            android:textSize="@dimen/_10ssp"
+                            android:textSize="@dimen/_8ssp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_break" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -379,13 +361,14 @@
                     android:layout_width="0dp"
                     android:backgroundTint="@color/white"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
                     android:background="@color/white"
                     app:layout_constraintEnd_toEndOf="@id/guideline"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/cardCheckin"
-                    app:layout_constraintTop_toBottomOf="@+id/cardCheckin">
+                    app:layout_constraintTop_toBottomOf="@+id/cardCheckin"
+                    app:cardElevation="20dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -408,6 +391,7 @@
                             android:textColor="@color/_grey"
                             android:layout_height="wrap_content"
                             android:paddingStart="@dimen/_10sdp"
+                            android:fontFamily="@font/poppins_light"
                             android:text="Pulang"
                             android:textAlignment="textStart"
                             app:layout_constraintBottom_toBottomOf="@+id/icon_cardCheackOut"
@@ -433,8 +417,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="On Time"
+                            android:fontFamily="@font/poppins_light"
                             android:textColor="@color/_grey"
-                            android:textSize="@dimen/_10ssp"
+                            android:textSize="@dimen/_8ssp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_checkout" />
 
@@ -443,8 +428,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="+120 pt"
+                            android:fontFamily="@font/poppins_light"
                             android:textColor="@color/_success"
-                            android:textSize="@dimen/_10ssp"
+                            android:textSize="@dimen/_8ssp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="1.0"
                             app:layout_constraintStart_toEndOf="@+id/textView15"
@@ -457,15 +443,15 @@
                     android:backgroundTint="@color/white"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/poppins_light"
                     android:background="@drawable/shadow_bg"
-                    android:clipToOutline="false"
-                    android:clipToPadding="false"
                     app:layout_constraintEnd_toEndOf="@+id/cardBreak"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@id/guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/cardBreak">
+                    app:layout_constraintTop_toBottomOf="@+id/cardBreak"
+                    app:cardElevation="20dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -514,8 +500,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="On Time"
+                            android:fontFamily="@font/poppins_light"
                             android:textColor="@color/_grey"
-                            android:textSize="@dimen/_10ssp"
+                            android:textSize="@dimen/_8ssp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_visit" />
 
@@ -524,8 +511,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="+120 pt"
+                            android:fontFamily="@font/poppins_light"
                             android:textColor="@color/_success"
-                            android:textSize="@dimen/_10ssp"
+                            android:textSize="@dimen/_8ssp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_visit" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -553,7 +541,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:padding="@dimen/_20sdp">
+                    android:paddingHorizontal="@dimen/_20sdp"
+                    android:paddingTop="@dimen/_20sdp">
 
                     <TextView
                         android:id="@+id/textView12"
@@ -621,6 +610,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_40sdp"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -649,7 +639,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:paddingHorizontal="@dimen/_5sdp"
-                                android:paddingVertical="@dimen/_10sdp">
+                                android:paddingVertical="@dimen/_10sdp"
+                                >
 
                                 <ImageView
                                     android:id="@+id/imageView5"
@@ -662,7 +653,7 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintVertical_bias="1.0"
                                     app:layout_constraintVertical_chainStyle="packed"
-                                    app:srcCompat="@drawable/perizinan" />
+                                    app:srcCompat="@drawable/icon_izin" />
 
                                 <TextView
                                     android:id="@+id/textView21"
@@ -711,7 +702,7 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintVertical_bias="1.0"
                                     app:layout_constraintVertical_chainStyle="packed"
-                                    app:srcCompat="@drawable/lembur" />
+                                    app:srcCompat="@drawable/icon_lembur" />
 
                                 <TextView
                                     android:textColor="@color/_grey"
@@ -760,7 +751,7 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintVertical_bias="1.0"
                                     app:layout_constraintVertical_chainStyle="packed"
-                                    app:srcCompat="@drawable/shift" />
+                                    app:srcCompat="@drawable/icon_shift" />
 
                                 <TextView
                                     android:id="@+id/textView23"
