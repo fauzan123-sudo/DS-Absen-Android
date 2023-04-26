@@ -138,8 +138,6 @@ class PengajuanLemburFragment :
     }
 
     private fun takePictureFromCamera() {
-//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//        startActivityForResult(intent, CAMERA_REQUEST_CODE)
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         putPhoto.launch(intent)
     }
@@ -147,8 +145,6 @@ class PengajuanLemburFragment :
     private fun choosePictureFromGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         putImage.launch(intent)
-//        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-//        startActivityForResult(intent, GALLERY_REQUEST_CODE)
     }
 
     private val putImage =
@@ -159,7 +155,8 @@ class PengajuanLemburFragment :
                     binding.imgUpload.setImageURI(imageUri)
                     binding.imgUpload.visibility = View.VISIBLE
                 } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
@@ -200,24 +197,16 @@ class PengajuanLemburFragment :
             when (it) {
                 is NetworkResult.Success -> {
                     val response = it.data!!
-                    val status = response.status
                     val messages = response.data.messages
-                    binding.apply {
-                        binding.loadingInclude.loading.visibility = View.GONE
-                        scrollView2.visibility = View.VISIBLE
-                    }
-                    if (messages != null) {
-                        val builder = AlertDialog.Builder(requireContext())
-                        builder.setMessage(messages)
-                            .setPositiveButton("Ok") { dialog, _ ->
-                                dialog.cancel()
-                            }
-//                            .setNegativeButton("Tidak") { dialog, _ ->
-//                                dialog.dismiss()
-//                            }
-                        val alert = builder.create()
-                        alert.show()
-                    }
+                    binding.loadingInclude.loading.visibility = View.GONE
+                    binding.scrollView2.visibility = View.VISIBLE
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setMessage(messages)
+                        .setPositiveButton("Ok") { dialog, _ ->
+                            dialog.cancel()
+                        }
+                    val alert = builder.create()
+                    alert.show()
                     findNavController().popBackStack()
 //                    requireActivity().onBackPressed()
 

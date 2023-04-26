@@ -278,6 +278,7 @@
         layout="@layout/fake"
         android:visibility="gone" />
     <include
+        android:visibility="gone"
         android:id="@+id/loading_include"
         layout="@layout/loading"
         />
