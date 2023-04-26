@@ -19,14 +19,13 @@ interface VisitApi {
     suspend fun spinnerVisit(
     ): Response<SpinnerVisit>
 
-    @FormUrlEncoded
+    @Multipart
     @POST("visit/store")
     suspend fun sendDataVisit(
-        @Field("nip") nip: String,
-        @Field("kode_visit") kode_visit: String,
-//        @Field("time_zone") time_zone: RequestBody,
-        @Field("kordinat") kordinat: String,
-//        @Field image: MultipartBody.Part
+        @Part("nip") nip: RequestBody,
+        @Part("kode_visit") kode_visit: RequestBody,
+        @Part("kordinat") kordinat: RequestBody,
+        @Part image: MultipartBody.Part
     ) : Response<ResponsePengajuanIzin>
 
 }

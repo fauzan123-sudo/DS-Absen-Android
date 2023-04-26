@@ -1,21 +1,26 @@
 package com.infinity.dsmabsen.ui.fragment
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.location.Criteria
 //import org.osmdroid.views.util.constants.MapViewConstants
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -36,6 +41,9 @@ import com.infinity.dsmabsen.ui.activity.MainActivity
 import com.infinity.dsmabsen.ui.viewModel.VisitViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.osmdroid.api.IMapController
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -44,6 +52,7 @@ import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
+import java.io.ByteArrayOutputStream
 
 
 @AndroidEntryPoint
@@ -133,6 +142,24 @@ class PenganjuanVisitFragment :
         }
     }
 
+    private fun camera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        putPhoto.launch(intent)
+    }
+
+    private val putPhoto =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                val bitmap = it?.data?.extras?.get("data") as Bitmap
+                binding.imgUpload.setImageBitmap(bitmap)            /* imgPhoto.load(bitmap) */
+            } else if (it == null) {
+                binding.imgUpload.setImageResource(R.drawable.ic_launcher_background)
+            } else {
+                Toast.makeText(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
     private fun sendData() {
         AlertDialog.Builder(requireContext())
             .setMessage("Anda yakin ingin mengajukan visit")
@@ -169,11 +196,18 @@ class PenganjuanVisitFragment :
                     if (selectedItem != null) {
                         Log.d("MyActivity", "Current Visit Code: ${selectedItem.kode_visit}")
                     }
-                    val nip = savedUser!!.nip
+                    val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
+                    val kodeVisitRequestBody =
+                        MultipartBody.Part.createFormData("kode_visit", selectedItem!!.kode_visit)
+                    val koordinatVisitRequestBody =
+                        MultipartBody.Part.createFormData("kordinat", kordinat!!)
+                    val bitmap: Bitmap = (binding.imgUpload.drawable as BitmapDrawable).bitmap
+                    val photo = uriToMultipartBody(bitmap)
                     viewModel.sendDataVisitRequest(
-                        nip,
-                        selectedItem!!.kode_visit,
-                        kordinat!!
+                        nipRequestBody.body,
+                        kodeVisitRequestBody.body,
+                        koordinatVisitRequestBody.body,
+                        photo
                     )
 
                     viewModel.sendDataVisitLiveData.observe(viewLifecycleOwner) {
@@ -235,6 +269,14 @@ class PenganjuanVisitFragment :
             }
 
         }
+    }
+
+    private fun uriToMultipartBody(bitmap: Bitmap): MultipartBody.Part {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        val requestFile = byteArray.toRequestBody("image/png".toMediaTypeOrNull())
+        return MultipartBody.Part.createFormData("image", "image.png", requestFile)
     }
 
     private fun getFirstLocation() {

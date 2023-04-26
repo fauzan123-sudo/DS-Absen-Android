@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.hardware.camera2.CameraCharacteristics
+import android.hardware.camera2.CameraManager
 import android.location.*
 import android.os.Build
 import android.os.Bundle
@@ -94,9 +96,9 @@ class AttendanceFragment :
 
             Log.d("foto", Constans.IMAGE_URL + savedUser.image)
 
-            imageUser.setOnClickListener {
-                findNavController().navigate(R.id.action_attendanceFragment_to_profileFragment)
-            }
+//            imageUser.setOnClickListener {
+//                findNavController().navigate(R.id.action_attendanceFragment_to_profileFragment)
+//            }
             btnRefresh.setOnClickListener {
                 cekGPS()
                 getLocation()
@@ -217,11 +219,24 @@ class AttendanceFragment :
         locationManager
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun camera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        intent.putExtra("android.intent.extras.CAMERA_FACING", 1)
-        putPhoto.launch(intent)
+        if (intent.resolveActivity(requireContext().packageManager) != null) {
+            val manager = requireContext().getSystemService(Context.CAMERA_SERVICE) as CameraManager
+            var cameraId = ""
+            for (id in manager.cameraIdList) {
+                val characteristics = manager.getCameraCharacteristics(id)
+                val facing = characteristics.get(CameraCharacteristics.LENS_FACING)
+                if (facing == CameraCharacteristics.LENS_FACING_FRONT) {
+                    cameraId = id
+                    break
+                }
+            }
+            intent.putExtra("android.intent.extras.CAMERA_FACING", 1)
+            intent.putExtra("android.intent.extras.CAMERA_LENS_FACING_FRONT", 1)
+            intent.putExtra("camera_id", cameraId)
+            putPhoto.launch(intent)
+        }
     }
 
     private val putPhoto =

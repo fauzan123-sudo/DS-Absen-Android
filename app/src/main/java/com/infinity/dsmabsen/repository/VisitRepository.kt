@@ -17,14 +17,14 @@ class VisitRepository @Inject constructor(private val api: VisitApi) :
         }
 
     suspend fun sendDataVisit(
-        nip: String,
-        kode_visit: String,
+        nip: RequestBody,
+        kode_visit: RequestBody,
 //        timezone:RequestBody,
-        kordinat:String,
-//        image: MultipartBody.Part
+        kordinat:RequestBody,
+        image: MultipartBody.Part
     ) =
         safeApiCall {
-            api.sendDataVisit(nip, kode_visit, kordinat)
+            api.sendDataVisit(nip, kode_visit, kordinat, image)
         }
 
 }

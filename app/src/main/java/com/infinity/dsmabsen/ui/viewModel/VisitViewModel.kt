@@ -58,16 +58,17 @@ class VisitViewModel @Inject constructor(private val repository: VisitRepository
         }
     }
 
-    fun sendDataVisitRequest(nip: String,
-                      kode_visit: String,
-                      kordinat: String,
-                     )
-    {
+    fun sendDataVisitRequest(
+        nip: RequestBody,
+        kode_visit: RequestBody,
+        kordinat: RequestBody,
+        image: MultipartBody.Part
+    ) {
         viewModelScope.launch {
             val connected = CheckInternet().check()
             if (connected) {
                 _sendDataVisit.value = NetworkResult.Loading()
-                _sendDataVisit.value = repository.sendDataVisit(nip,kode_visit, kordinat)
+                _sendDataVisit.value = repository.sendDataVisit(nip, kode_visit, kordinat, image)
             } else {
                 _sendDataVisit.value = NetworkResult.Error("Tidak ada koneksi internet")
             }
