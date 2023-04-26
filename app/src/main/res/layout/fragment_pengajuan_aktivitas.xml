@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradiend_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.PengajuanAktivitasFragment">
 
@@ -27,6 +28,7 @@
         android:paddingVertical="@dimen/_10sdp">
 
         <TextView
+            android:layout_marginStart="@dimen/_10sdp"
             android:id="@+id/label_keterangan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,6 +39,9 @@
             android:textSize="@dimen/_11ssp" />
 
         <EditText
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:hint="Tulis keterangan disini"
+            android:textColorHint="@color/_muted"
             android:id="@+id/edtKeterangan"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_109sdp"
@@ -45,7 +50,7 @@
             android:backgroundTint="@color/white"
             android:dropDownSelector="@drawable/arrow_bottom"
             android:fontFamily="@font/poppins"
-            android:gravity="start|top"
+            android:gravity="end|top"
             android:lines="4"
             android:paddingHorizontal="@dimen/_10sdp"
             android:paddingVertical="@dimen/_15sdp" />
