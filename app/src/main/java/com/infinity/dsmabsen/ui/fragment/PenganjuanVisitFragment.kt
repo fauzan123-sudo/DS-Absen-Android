@@ -83,7 +83,9 @@ class PenganjuanVisitFragment :
         locationListener = this
 
         with(binding) {
-
+            addImage.setOnClickListener {
+                camera()
+            }
 //            getCurrentLocation()
             getFirstLocation()
             bottomNavigationView.visibility = View.GONE

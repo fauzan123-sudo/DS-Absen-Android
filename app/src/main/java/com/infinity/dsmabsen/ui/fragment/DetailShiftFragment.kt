@@ -21,7 +21,7 @@ class DetailShiftFragment :
             setupToolbar("Detail Shift")
             tvDurasi.text = data.shift
             tvKeterangan.text = data.keterangan
-            tvStatus.text = data.status
+            tvStatus.text = data.status_api
             tvTangalDetailPerizinan.text = data.created_at
         }
     }

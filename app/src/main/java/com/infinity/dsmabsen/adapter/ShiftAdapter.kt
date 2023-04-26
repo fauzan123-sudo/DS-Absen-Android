@@ -21,7 +21,7 @@ class ShiftAdapter(
             with(item) {
                 tvKeteranganShift.text = keterangan
                 tvTanggalShift.text = created_at
-                tvShift2.text = shift
+                tvShift2.text = status_api
 
                 when (status_api) {
                     "Diajukan" -> {
