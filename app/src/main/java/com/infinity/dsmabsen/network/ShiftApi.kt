@@ -21,7 +21,7 @@ interface ShiftApi {
     @POST("pengajuan/shift/store")
     suspend fun pengajuanShift(
         @Field("nip") nip: String,
-        @Field("kode_cuti") kode_cuti: String,
+        @Field("kode_shift") kode_shift: String,
         @Field("file") file: String,
         @Field("keterangan") keterangan: String
     ) : Response<PengajuanShift>

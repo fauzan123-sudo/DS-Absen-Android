@@ -3,9 +3,10 @@ package com.infinity.dsmabsen.ui.fragment
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import android.widget.AdapterView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
@@ -33,6 +34,7 @@ class PengajuanShiftFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
+
             val myActivities = activity as MainActivity
             myActivities.hideMyBottomNav()
             viewModel.requestSpinnerShift()
@@ -126,9 +128,15 @@ class PengajuanShiftFragment :
 
 
     private fun saveShift(savedUser: DataX?) {
+        val selectedItem =
+            binding.spinnerShift.selectedItem as DataXXXXXXXXXXXXXXXXXXXXXXX?
+        if (selectedItem != null) {
+            Toast.makeText(requireContext(), selectedItem.kode_shift, Toast.LENGTH_SHORT).show()
+            Log.d("MyActivity", "Current Visit Code: ${selectedItem.kode_shift}")
+        }
         viewModel.requestShiftPengajuan(
             savedUser!!.nip,
-            selectedShift!!,
+            selectedItem!!.kode_shift,
             "",
             binding.edtKeterangan.text.toString()
         )
