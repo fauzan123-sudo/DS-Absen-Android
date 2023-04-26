@@ -13,8 +13,6 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"/>
 
-
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -101,6 +99,7 @@
     </ScrollView>
 
     <include
+        android:visibility="gone"
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
         />
