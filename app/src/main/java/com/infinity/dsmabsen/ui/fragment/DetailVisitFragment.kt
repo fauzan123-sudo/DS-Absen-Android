@@ -30,9 +30,7 @@ class DetailVisitFragment :
             (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
             toolbar.toolbarImage.title = "Detail Visit"
-            toolbar.toolbarImageView.setOnClickListener {
-                Toast.makeText(requireContext(), "ya", Toast.LENGTH_SHORT).show()
-            }
+            toolbar.toolbarImageView.visibility = View.INVISIBLE
 
             val data = args.detailVisit
             val koordinat = data.kordinat

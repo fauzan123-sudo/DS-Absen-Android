@@ -102,30 +102,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_gaji_pokok_presensi" />
 
             <TextView
-                android:id="@+id/txt_pada_tgl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/poppins"
-                android:text="Pada Tanggal"
-                android:textColor="@color/grey"
-                android:textSize="@dimen/_10ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_durasi" />
-
-            <TextView
-                android:id="@+id/tv_pada_tgl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/poppins"
-                android:text="-"
-                android:textColor="@color/grey"
-                android:textSize="@dimen/_10ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_durasi" />
-
-            <TextView
                 android:id="@+id/tv_kehadiran"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -135,7 +111,7 @@
                 android:textColor="@color/grey"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_pada_tgl" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_durasi" />
 
             <TextView
                 android:id="@+id/tv_keterangan"
@@ -147,7 +123,7 @@
                 android:textColor="@color/grey"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_pada_tgl" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_durasi" />
 
             <TextView
                 android:id="@+id/txt_status"

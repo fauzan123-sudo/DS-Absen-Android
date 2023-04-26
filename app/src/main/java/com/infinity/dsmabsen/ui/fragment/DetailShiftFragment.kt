@@ -22,7 +22,7 @@ class DetailShiftFragment :
             tvDurasi.text = data.shift
             tvKeterangan.text = data.keterangan
             tvStatus.text = data.status
-            tvPadaTgl.text = data.created_at
+            tvTangalDetailPerizinan.text = data.created_at
         }
     }
 

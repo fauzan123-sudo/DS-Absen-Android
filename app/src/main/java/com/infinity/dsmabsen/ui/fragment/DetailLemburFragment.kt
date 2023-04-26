@@ -23,6 +23,7 @@ class DetailLemburFragment :
             tvPadaTgl.text = data.tanggal
             tvKeterangan.text = data.keterangan
             tvStatus.text = data.status
+            tvTangalDetailPenggajian.text = data.created_at
 
         }
 
