@@ -36,39 +36,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="0dp">
 
-                <TextView
-                    android:id="@+id/namaUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fauzan Almaterzz"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_10ssp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/jabatan"
-                    android:textColor="#7F838B"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:text="UI Designer"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintStart_toStartOf="@+id/namaUser"
-                    app:layout_constraintTop_toBottomOf="@+id/namaUser" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageUser"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="4dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/jabatan"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/namaUser"
-                    tools:src="@drawable/man" />
+                <include
+                    android:id="@+id/toolbar_user"
+                    layout="@layout/toolbsr_user"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -192,10 +162,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <include
-        android:visibility="visible"
-        android:id="@+id/loadingInclude"
-        layout="@layout/loading" />
+<!--    <include-->
+<!--        android:visibility="visible"-->
+<!--        android:id="@+id/loadingInclude"-->
+<!--        layout="@layout/loading" />-->
     
     <include
         android:visibility="gone"

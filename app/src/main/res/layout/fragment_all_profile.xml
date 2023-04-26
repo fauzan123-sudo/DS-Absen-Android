@@ -34,7 +34,8 @@
                 android:textColor="@color/black_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data Pribadi" />
+                android:text="Data Pribadi"
+                android:fontFamily="@font/poppins_light"/>
 
             <ImageView
                 android:layout_width="wrap_content"

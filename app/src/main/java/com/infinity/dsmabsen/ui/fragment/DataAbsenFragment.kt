@@ -51,13 +51,13 @@ class DataAbsenFragment :
         hideToolbar()
 
         binding.apply {
-            namaUser.text = savedUser!!.name
-            jabatan.text = savedUser!!.nama_jabatan
+            toolbarUser.namaUser.text = savedUser!!.name
+            toolbarUser.jabatan.text = savedUser!!.nama_jabatan
             Glide.with(requireContext())
                 .load(Constans.IMAGE_URL + savedUser.image)
-                .into(imageUser)
+                .into(toolbarUser.imageUser)
 
-            imageUser.setOnClickListener {
+            toolbarUser.imageUser.setOnClickListener {
                 findNavController().navigate(R.id.action_dataAbsenFragment_to_profileFragment)
             }
 

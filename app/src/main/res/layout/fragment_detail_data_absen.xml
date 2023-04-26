@@ -48,7 +48,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
                         android:text="ID : "
-                        android:textColor="@color/primary"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
                         android:text="20220717072145zEwdw8U01t"
-                        android:textColor="@color/primary"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintStart_toEndOf="@id/tv_id"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
                         android:text="Senin, 20-Maret-2023"
-                        android:textColor="@color/primary"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_id_detail_penggajian" />

@@ -48,7 +48,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
                         android:text="Senin, 20-Maret-2023"
-                        android:textColor="@color/primary"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

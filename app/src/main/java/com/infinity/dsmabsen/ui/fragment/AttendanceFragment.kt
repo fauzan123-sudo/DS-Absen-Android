@@ -86,15 +86,15 @@ class AttendanceFragment :
             btnAbsen.setOnClickListener {
                 camera()
             }
-            namaUser.text = savedUser!!.name
-            jabatan.text = savedUser!!.nama_jabatan
+            toolbarUser.namaUser.text = savedUser!!.name
+            toolbarUser.jabatan.text = savedUser!!.nama_jabatan
             Glide.with(requireContext())
                 .load(savedUser.image)
-                .into(imageUser)
+                .into(toolbarUser.imageUser)
 
             Log.d("foto", Constans.IMAGE_URL + savedUser.image)
 
-            imageUser.setOnClickListener {
+            toolbarUser.imageUser.setOnClickListener {
                 findNavController().navigate(R.id.action_attendanceFragment_to_profileFragment)
             }
             btnRefresh.setOnClickListener {

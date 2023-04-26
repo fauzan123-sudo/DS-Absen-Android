@@ -45,7 +45,7 @@ class VisitFragment : BasesFragment<FragmentVisitBinding>(FragmentVisitBinding::
             loadingInclude.loading.visibility = View.VISIBLE
             imgNoData.isVisible = false
 //            val toolbar = toolbar
-            toolbar.toolbarImage.title = "Visit"
+
 
             userProfileViewModel.profileUserRequest(savedUser!!.nip)
             userProfileViewModel.profileUserLivedata.observe(viewLifecycleOwner) {
@@ -56,12 +56,14 @@ class VisitFragment : BasesFragment<FragmentVisitBinding>(FragmentVisitBinding::
                         val response = it.data!!
                         val status = response.status
                         val imageUser = response.data.foto
+                        toolbarUser.namaUser.text = response.data.nama
+                        toolbarUser.jabatan.text = response.data.jabatan
                         if (status) {
                             Glide.with(requireContext())
                                 .load(imageUser)
                                 .circleCrop()
                                 .placeholder(R.drawable.user)
-                                .into(toolbar.toolbarImageView)
+                                .into(toolbarUser.imageUser)
                         }
                     }
 
