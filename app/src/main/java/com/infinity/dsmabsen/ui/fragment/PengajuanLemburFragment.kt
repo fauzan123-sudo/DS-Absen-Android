@@ -180,11 +180,11 @@ class PengajuanLemburFragment :
         val bitmap: Bitmap = (binding.imgUpload.drawable as BitmapDrawable).bitmap
         val photo = uriToMultipartBody(bitmap)
         val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
-        val jamMulaiRequestBody = MultipartBody.Part.createFormData("jam_mulai", savedUser!!.nip)
+        val jamMulaiRequestBody = MultipartBody.Part.createFormData("jam_mulai", binding.jamMulai.text.toString())
         val jamSelesaiRequestBody =
-            MultipartBody.Part.createFormData("jam_selesai", savedUser!!.nip)
-        val tanggalRequestBody = MultipartBody.Part.createFormData("tanggal", savedUser!!.nip)
-        val keteranganRequestBody = MultipartBody.Part.createFormData("keterangan", savedUser!!.nip)
+            MultipartBody.Part.createFormData("jam_selesai", binding.jamSelesai.text.toString())
+        val tanggalRequestBody = MultipartBody.Part.createFormData("tanggal", binding.tanggalPenggajuan.text.toString())
+        val keteranganRequestBody = MultipartBody.Part.createFormData("keterangan", binding.keteranganPenggajuan.text.toString())
         viewModel.requestPengajuanLembur(
             nipRequestBody.body,
             jamMulaiRequestBody.body,
@@ -311,7 +311,7 @@ class PengajuanLemburFragment :
         }
     }
 
-    private fun openTimePickerUntil() {
+    private fun openTimePickerUntil()  {
         val isSystem24Hour = DateFormat.is24HourFormat(requireContext())
         val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
 
