@@ -37,7 +37,7 @@
             android:text="Keterangan"
             android:textColor="@color/black_text"
             android:textSize="@dimen/_11ssp"
-            android:layout_marginStart="@dimen/_2sdp"/>
+            android:layout_marginStart="@dimen/_10sdp"/>
 
         <EditText
             android:id="@+id/edtKeterangan"
@@ -121,9 +121,9 @@
     </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    <include-->
-<!--        android:visibility="gone"-->
-<!--        android:id="@+id/loading_include"-->
-<!--        layout="@layout/loading"-->
-<!--        />-->
+    <include
+        android:visibility="gone"
+        android:id="@+id/loading_include"
+        layout="@layout/loading"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
