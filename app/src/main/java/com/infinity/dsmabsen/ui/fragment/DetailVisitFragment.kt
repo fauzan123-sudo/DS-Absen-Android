@@ -39,7 +39,7 @@ class DetailVisitFragment :
 
             tvTanggal.text = data.tanggal
             tvJam.text = data.jam
-            tvKodeVisit.text = data.kode_visit
+//            tvKodeVisit.text = data.kode_visit
             tvLokasiVisit.text = data.visit?:""
 
             val context: Context = requireContext()
