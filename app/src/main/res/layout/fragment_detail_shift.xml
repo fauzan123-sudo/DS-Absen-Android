@@ -168,6 +168,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins"
                 android:text="-"
+                android:textAlignment="textEnd"
                 android:textColor="@color/grey"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintEnd_toEndOf="parent"

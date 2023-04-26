@@ -21,7 +21,7 @@ class DetailPerizinanFragment :
             setupToolbar("Detail Perizinan")
             tvDurasi.text = data.tanggal_mulai + "-" + data.tanggal_selesai
             tvKeterangan.text = data.keterangan
-            tvPadaTgl.text = data.created_at
+            tvTangalDetailPerizinan.text = data.created_at
             tvStatus.text = data.status
         }
     }

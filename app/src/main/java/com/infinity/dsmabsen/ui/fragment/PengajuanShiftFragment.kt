@@ -141,15 +141,13 @@ class PengajuanShiftFragment :
                     }
                     val response = it.data!!
                     val messages = response.data.messages
-                    if(messages != null){
-                        val builder = AlertDialog.Builder(requireContext())
-                        builder.setMessage(messages)
-                            .setNegativeButton("Ya") { dialog, _ ->
-                                dialog.cancel()
-                            }
-                        val alert = builder.create()
-                        alert.show()
-                    }
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setMessage(messages)
+                        .setNegativeButton("Ya") { dialog, _ ->
+                            dialog.cancel()
+                        }
+                    val alert = builder.create()
+                    alert.show()
                     findNavController().popBackStack()
 //                    requireActivity().onBackPressed()
                 }
@@ -158,7 +156,6 @@ class PengajuanShiftFragment :
                         scrollView2.visibility = View.GONE
                         binding.loadingInclude.loading.visibility = View.VISIBLE
                     }
-                    requireActivity().onBackPressed()
                 }
 
                 is NetworkResult.Error -> {
