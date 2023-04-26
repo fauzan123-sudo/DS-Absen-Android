@@ -191,23 +191,17 @@
             </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <include
+        android:visibility="visible"
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading" />
+    
     <include
         android:visibility="gone"
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
         />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/bounce_loading" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

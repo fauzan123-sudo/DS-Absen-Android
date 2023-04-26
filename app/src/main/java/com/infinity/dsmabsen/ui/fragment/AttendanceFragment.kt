@@ -317,7 +317,7 @@ class AttendanceFragment :
         viewModel.presensiLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
-                    binding.loadingInclude.loading.isVisible = false
+                    binding.loadingInclude.loading.visibility = View.GONE
 
                     val response = it.data!!
                     val statusServer = response.status
@@ -353,7 +353,7 @@ class AttendanceFragment :
 
                 }
                 is NetworkResult.Loading -> {
-                    binding.loadingInclude.loading.isVisible = true
+                    binding.loadingInclude.loading.visibility = View.GONE
                 }
 
                 is NetworkResult.Error -> {

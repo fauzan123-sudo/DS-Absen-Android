@@ -67,7 +67,7 @@ class DataAbsenFragment :
             viewModel.attendanceHistoryLiveData2.observe(viewLifecycleOwner) {
                 when (it) {
                     is NetworkResult.Success -> {
-                        loading.visibility = View.GONE
+                        loadingInclude.loading.visibility = View.GONE
                         rcycleview.visibility = View.VISIBLE
                         val attendance = it.data!!.data
                         Log.d("data_absen", attendance.toString())
@@ -90,12 +90,12 @@ class DataAbsenFragment :
                     }
 
                     is NetworkResult.Loading -> {
-                        loading.visibility = View.VISIBLE
+                        loadingInclude.loading.visibility = View.VISIBLE
                         rcycleview.visibility = View.GONE
                     }
 
                     is NetworkResult.Error -> {
-                        loading.visibility = View.GONE
+                        loadingInclude.loading.visibility = View.GONE
                         rcycleview.visibility = View.VISIBLE
                         Toast.makeText(requireContext(), "Set Adabter Error", Toast.LENGTH_SHORT)
                         handleApiError(it.message)
@@ -108,7 +108,7 @@ class DataAbsenFragment :
 
                 when (it) {
                     is NetworkResult.Success -> {
-                        loading.visibility = View.GONE
+                        loadingInclude.loading.visibility = View.GONE
                         rcycleview.visibility = View.VISIBLE
                         val data = it.data!!.data
                         val totalAbsen = data.alfa + data.izin + data.masuk + data.telat
@@ -123,14 +123,14 @@ class DataAbsenFragment :
                     }
 
                     is NetworkResult.Loading -> {
-                        loading.visibility = View.VISIBLE
+                        loadingInclude.loading.visibility = View.VISIBLE
                         rcycleview.visibility = View.GONE
                         binding.imgNoData1.visibility = View.GONE
                         binding.pieChart.visibility = View.GONE
                     }
 
                     is NetworkResult.Error -> {
-                        loading.visibility = View.GONE
+                        loadingInclude.loading.visibility = View.GONE
                         rcycleview.visibility = View.VISIBLE
                         binding.imgNoData1.visibility = View.VISIBLE
                         binding.pieChart.visibility = View.GONE

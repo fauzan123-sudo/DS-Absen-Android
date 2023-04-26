@@ -13,11 +13,6 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout" />
 
-    <include
-        android:visibility="visible"
-        android:id="@+id/loadingInclude"
-        layout="@layout/loading" />
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -948,6 +943,12 @@
         <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
         <!--    </com.facebook.shimmer.ShimmerFrameLayout>-->
     </ScrollView>
+
+    <include
+        android:visibility="visible"
+        android:id="@+id/loadingInclude"
+        layout="@layout/loading" />
+
     <include
         android:visibility="gone"
         android:id="@+id/noInternetConnection"

@@ -11,6 +11,7 @@
         android:id="@+id/visitFragment2"
         android:enabled="true"
         android:icon="@drawable/locate"
+
         android:title="Visit" />
 
     <item

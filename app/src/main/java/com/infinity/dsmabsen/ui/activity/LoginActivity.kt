@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.util.Log
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
@@ -97,7 +98,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             viewModel.userResponseLiveData.observe(this@LoginActivity) {
-                loadingInclude.loading.isVisible = false
+                loadingInclude.loading.visibility = View.GONE
                 when (it) {
                     is NetworkResult.Success -> {
                         if (it.data!!.status) {
@@ -124,7 +125,7 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     is NetworkResult.Loading -> {
-                        binding.loadingInclude.loading.isVisible = true
+                        binding.loadingInclude.loading.visibility = View.GONE
                     }
                 }
             }
