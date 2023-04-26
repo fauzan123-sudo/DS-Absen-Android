@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E2EBF0"
-    android:padding="@dimen/_20sdp"
+
     tools:context=".ui.activity.LoginActivity">
 
 
@@ -13,7 +13,7 @@
         android:id="@+id/rcycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/_45sdp"
+        android:padding="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -139,14 +139,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:hint="Nomor Induk Pegawai"
                 android:textColorHint="@color/_grey"
                 app:hintTextColor="@color/_primary"
                 app:layout_constraintTop_toBottomOf="@+id/view_line"
                 app:passwordToggleEnabled="false"
                 app:startIconDrawable="@drawable/ic_user"
                 app:startIconTint="@color/black"
+                app:hintEnabled="false"
                 tools:layout_editor_absoluteX="26dp">
+
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nip"
@@ -156,6 +157,7 @@
                     android:imeOptions="actionGo"
                     android:inputType="textPassword"
                     android:singleLine="true"
+                    android:hint="Nomor Induk Pegawai"
                     android:textColor="@color/black_text"
                     android:fontFamily="@font/poppins_light"
                     app:boxStrokeColor="@android:color/transparent" />
@@ -168,14 +170,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:hint="Password"
                 android:textColorHint="@color/_grey"
                 app:hintTextColor="@color/_primary"
                 app:layout_constraintTop_toBottomOf="@+id/username"
                 app:passwordToggleEnabled="true"
                 app:startIconDrawable="@drawable/lock"
                 app:startIconTint="@color/black"
-                tools:layout_editor_absoluteX="26dp">
+                app:hintEnabled="false"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
@@ -185,6 +187,7 @@
                     android:imeOptions="actionGo"
                     android:inputType="textPassword"
                     android:singleLine="true"
+                    android:hint="Password"
                     android:textColor="@color/black_text"
                     android:fontFamily="@font/poppins_light"
                     app:boxStrokeColor="@android:color/transparent" />
@@ -194,7 +197,7 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@color/blue"
                 android:elevation="0dp"
                 android:fontFamily="@font/poppins_bold"

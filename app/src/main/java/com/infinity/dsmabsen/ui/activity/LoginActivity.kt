@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.util.Log
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
@@ -41,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding.loadingInclude.loading.visibility = View.GONE
         setContentView(binding.root)
         val rootView = binding.root
 //        checkNetworkConnection()
@@ -97,7 +99,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             viewModel.userResponseLiveData.observe(this@LoginActivity) {
-                loadingInclude.loading.isVisible = false
+                loadingInclude.loading.visibility = View.VISIBLE
                 when (it) {
                     is NetworkResult.Success -> {
                         if (it.data!!.status) {
@@ -114,17 +116,21 @@ class LoginActivity : AppCompatActivity() {
                             val alertDialogHelper = AlertDialogHelper(this@LoginActivity)
                             alertDialogHelper.showAlertDialog("", message)
                         }
+                        binding.loadingInclude.loading.visibility = View.GONE
+
                     }
                     is NetworkResult.Error -> {
                         constrain.isVisible = true
-//
 //                        handleApiErrorActivity(error)
                         Snackbar.make(rootView, it.message!!, Snackbar.LENGTH_SHORT).show()
                         Log.d("login error response", (it.message.toString()))
+                        binding.loadingInclude.loading.visibility = View.GONE
+
                     }
 
                     is NetworkResult.Loading -> {
-                        binding.loadingInclude.loading.isVisible = true
+                        Log.d("login","loading .... ")
+                        binding.loadingInclude.loading.visibility = View.VISIBLE
                     }
                 }
             }

@@ -85,7 +85,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                 findNavController().navigate(R.id.action_berandaFragment_to_pengumumanFragment)
             }
 
-            loadingInclude.loading.isVisible = false
+            loadingInclude.loading.visibility = View.GONE
             val customAnalogClock = binding.customAnalogClock
             // Set waktu pada custom analog clock
             val calendar = Calendar.getInstance()
@@ -131,10 +131,10 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
         }
         viewModel.homeRequest(savedUser!!.nip)
         viewModel.homeLiveData.observe(viewLifecycleOwner) {
-            binding.loadingInclude.loading.isVisible = true
+            binding.loadingInclude.loading.visibility = View.GONE
             when (it) {
                 is NetworkResult.Success -> {
-                    binding.loadingInclude.loading.isVisible = false
+                    binding.loadingInclude.loading.visibility = View.GONE
                     binding.infoUser.isVisible = true
                     binding.materialCardView11.isVisible = true
 
@@ -172,12 +172,12 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                     }
                 }
                 is NetworkResult.Error -> {
-                    binding.loadingInclude.loading.isVisible = false
+                    binding.loadingInclude.loading.visibility = View.GONE
                     handleApiError(it.message)
                 }
 
                 is NetworkResult.Loading -> {
-                    binding.loadingInclude.loading.isVisible = true
+                    binding.loadingInclude.loading.visibility = View.VISIBLE
                     binding.infoUser.isVisible = false
                     binding.materialCardView11.isVisible = false
                 }
@@ -191,7 +191,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
         viewModel.getAbsenLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
-                    binding.loadingInclude.loading.isVisible = false
+                    binding.loadingInclude.loading.visibility = View.GONE
                     binding.infoUser.isVisible = true
                     binding.materialCardView11.isVisible = true
                     binding.apply {
@@ -205,13 +205,13 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
                 }
 
                 is NetworkResult.Loading -> {
-                    binding.loadingInclude.loading.isVisible = true
+                    binding.loadingInclude.loading.visibility = View.VISIBLE
                     binding.infoUser.isVisible = false
                     binding.materialCardView11.isVisible = false
                 }
 
                 is NetworkResult.Error -> {
-                    binding.loadingInclude.loading.isVisible = false
+                    binding.loadingInclude.loading.visibility = View.GONE
                     binding.infoUser.isVisible = true
                     binding.materialCardView11.isVisible = true
                     handleApiError(it.message)

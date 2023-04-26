@@ -109,11 +109,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
 //                Toast.makeText(requireContext(), "$nips", Toast.LENGTH_SHORT).show()
                 viewModels.requestLogout(nipUser)
                 viewModels.logOutLiveData.observe(viewLifecycleOwner) {
-                    binding.loadingInclude.loading.isVisible = false
+                    binding.loadingInclude.loading.visibility = View.GONE
                     when (it) {
                         is NetworkResult.Success -> {
                             val data = it.data!!
-                            binding.loadingInclude.loading.isVisible = false
+                            binding.loadingInclude.loading.visibility = View.GONE
                             binding.constraintLayout3.isVisible = true
                             requireActivity().startActivity(
                                 Intent(
@@ -127,13 +127,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
 
                         is NetworkResult.Loading -> {
                             binding.constraintLayout3.isVisible = false
-                            binding.loadingInclude.loading.isVisible = true
+                            binding.loadingInclude.loading.visibility = View.GONE
                         }
 
                         is NetworkResult.Error -> {
                             handleApiError(it.message)
                             Log.d("TAG", it.message.toString())
-                            binding.loadingInclude.loading.isVisible = false
+                            binding.loadingInclude.loading.visibility = View.GONE
                             //                            Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG).show()
                         }
                     }
