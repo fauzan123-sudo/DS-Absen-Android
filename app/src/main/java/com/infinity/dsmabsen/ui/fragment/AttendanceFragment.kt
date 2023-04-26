@@ -224,7 +224,6 @@ class AttendanceFragment :
         putPhoto.launch(intent)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private val putPhoto =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
