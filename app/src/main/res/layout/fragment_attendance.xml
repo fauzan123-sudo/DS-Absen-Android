@@ -8,15 +8,10 @@
     android:background="@drawable/gradiend_background"
     tools:context=".ui.fragment.AttendanceFragment">
 
-    <include
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout" />
-
     <ScrollView
         android:id="@+id/rcycleview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

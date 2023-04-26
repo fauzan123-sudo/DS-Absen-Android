@@ -35,6 +35,7 @@ import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.viewModel.AttendanceViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.infinity.dsmabsen.ui.viewModel.UserProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -49,26 +50,28 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class AttendanceFragment :
-    BaseFragment<FragmentAttendanceBinding>(FragmentAttendanceBinding::inflate) {
+    BasesFragment<FragmentAttendanceBinding>(FragmentAttendanceBinding::inflate) {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var locationManager: LocationManager
     private val viewModel: AttendanceViewModel by viewModels()
     private val handler = Handler()
+    private val userProfileViewModel: UserProfileViewModel by viewModels()
 
     private val args by navArgs<AttendanceFragmentArgs>()
     var latittudeUser1: String? = null
     var longitudeUser2: String? = null
     private lateinit var runnable: Runnable
 
+
     @Inject
     lateinit var tokenManager: TokenManager
     private val savedUser = Paper.book().read<DataX>("user")
+    val nip = savedUser!!.nip
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
-        hideToolbar()
         timeRun()
 
         binding.apply {
@@ -88,17 +91,41 @@ class AttendanceFragment :
             btnAbsen.setOnClickListener {
                 camera()
             }
-            namaUser.text = savedUser!!.name
-            jabatan.text = savedUser!!.nama_jabatan
-            Glide.with(requireContext())
-                .load(savedUser.image)
-                .into(imageUser)
 
-            Log.d("foto", Constans.IMAGE_URL + savedUser.image)
+            userProfileViewModel.profileUserRequest(nip)
+            userProfileViewModel.profileUserLivedata.observe(viewLifecycleOwner) {
+                when (it) {
+                    is NetworkResult.Success -> {
+                        loadingInclude.loading.visibility = View.GONE
+                        val response = it.data!!
+                        val status = response.status
+                        val imageUser = response.data.foto
+                        toolbarUser.namaUser.text = response.data.nama
+                        toolbarUser.jabatan.text = response.data.jabatan
+                        if (status) {
+                            Glide.with(requireContext())
+                                .load(imageUser)
+                                .circleCrop()
+                                .placeholder(R.drawable.user)
+                                .into(toolbarUser.imageUser)
+                        }
+                    }
 
-//            imageUser.setOnClickListener {
-//                findNavController().navigate(R.id.action_attendanceFragment_to_profileFragment)
-//            }
+                    is NetworkResult.Loading -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.VISIBLE
+                        }
+                    }
+
+                    is NetworkResult.Error -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                        }
+                        handleApiError(it.message)
+                    }
+                }
+            }
+
             btnRefresh.setOnClickListener {
                 cekGPS()
                 getLocation()
@@ -255,12 +282,11 @@ class AttendanceFragment :
 
         }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun absen(uri: Bitmap) {
         val photo = uriToMultipartBody(uri)
         Log.d("gambar", photo.toString())
         val timeNow = getTime()
-        val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
+        val nipRequestBody = MultipartBody.Part.createFormData("nip",nip)
         val dateRequestBody = MultipartBody.Part.createFormData("date", timeNow)
         val timezoneRequestBody = MultipartBody.Part.createFormData("timezone", "")
         val kordinatRequestBody =
@@ -584,30 +610,30 @@ class AttendanceFragment :
         handler.removeCallbacks(runnable)
     }
 
-    fun runLoading() {
+    private fun runLoading() {
         binding.searchLocationLoading.visibility = View.VISIBLE
     }
 
-    fun stopLoading() {
+    private fun stopLoading() {
         binding.searchLocationLoading.visibility = View.GONE
         binding.searchLocationLoading.cancelAnimation()
     }
 
-    override fun onConnectionAvailable() {
-        super.onConnectionAvailable()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            rcycleview.visibility = View.VISIBLE
-            noInternetConnection.ivNoConnection.visibility = View.GONE
-        }
-    }
-
-    override fun onConnectionLost() {
-        super.onConnectionLost()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            rcycleview.visibility = View.GONE
-            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-        }
-    }
+//    override fun onConnectionAvailable() {
+//        super.onConnectionAvailable()
+//        binding.apply {
+//            toolbar.toolbar.visibility = View.GONE
+//            rcycleview.visibility = View.VISIBLE
+//            noInternetConnection.ivNoConnection.visibility = View.GONE
+//        }
+//    }
+//
+//    override fun onConnectionLost() {
+//        super.onConnectionLost()
+//        binding.apply {
+////            toolbar.toolbar.visibility = View.GONE
+//            rcycleview.visibility = View.GONE
+//            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+//        }
+//    }
 }

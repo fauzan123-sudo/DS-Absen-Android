@@ -21,6 +21,7 @@ import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.adapter.AttendanceAdapter
 import com.infinity.dsmabsen.databinding.FragmentDataAbsenBinding
 import com.infinity.dsmabsen.helper.Constans
+import com.infinity.dsmabsen.helper.Constans.IMAGE_URL
 import com.infinity.dsmabsen.helper.TokenManager
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
@@ -28,47 +29,60 @@ import com.infinity.dsmabsen.model.DataXX
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXX
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.viewModel.AttendanceViewModel
+import com.infinity.dsmabsen.ui.viewModel.UserProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class DataAbsenFragment :
-    BaseFragment<FragmentDataAbsenBinding>(FragmentDataAbsenBinding::inflate) {
+    BasesFragment<FragmentDataAbsenBinding>(FragmentDataAbsenBinding::inflate) {
 
     private val viewModel: AttendanceViewModel by viewModels()
 
     @Inject
     lateinit var tokenManager: TokenManager
     private val savedUser = Paper.book().read<DataX>("user")
-
+    private val userProfileViewModel: UserProfileViewModel by viewModels()
     private lateinit var adapter: AttendanceAdapter
     private lateinit var recyclerView: RecyclerView
+    val nip = savedUser!!.nip
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        hideToolbar()
-
         binding.apply {
-            toolbarUser.namaUser.text = savedUser!!.name
-            toolbarUser.jabatan.text = savedUser!!.nama_jabatan
-            Glide.with(requireContext())
-                .load(Constans.IMAGE_URL + savedUser.image)
-                .into(toolbarUser.imageUser)
 
-            toolbarUser.imageUser.setOnClickListener {
-                findNavController().navigate(R.id.action_dataAbsenFragment_to_profileFragment)
+
+            userProfileViewModel.profileUserRequest(nip)
+            userProfileViewModel.profileUserLivedata.observe(viewLifecycleOwner) {
+                when (it) {
+                    is NetworkResult.Success -> {
+                        val response = it.data!!.data
+                        toolbarUser.namaUser.text = response.nama
+                        toolbarUser.jabatan.text = response.jabatan
+                        Glide.with(requireContext())
+                            .load(response.foto)
+                            .into(toolbarUser.imageUser)
+                    }
+
+                    is NetworkResult.Loading -> {
+                        loadingInclude.loading.visibility = View.VISIBLE
+                    }
+
+                    is NetworkResult.Error -> {
+                        handleApiError(it.message)
+                    }
+                }
             }
 
-
-            val savedUser = Paper.book().read<DataX>("user")
-            viewModel.attendanceHistoryRequest2(savedUser!!.nip)
+//            val savedUser = Paper.book().read<DataX>("user")
+            viewModel.attendanceHistoryRequest2(nip)
             viewModel.attendanceHistoryLiveData2.observe(viewLifecycleOwner) {
                 when (it) {
                     is NetworkResult.Success -> {
                         loadingInclude.loading.visibility = View.GONE
-                        rcycleview.visibility = View.VISIBLE
+                        scrollView.visibility = View.VISIBLE
                         val attendance = it.data!!.data
                         Log.d("data_absen", attendance.toString())
                         if (attendance.isEmpty()) {
@@ -76,8 +90,11 @@ class DataAbsenFragment :
                             binding.imgNoData.visibility = View.VISIBLE
                         } else {
                             adapter =
-                                AttendanceAdapter(requireContext(),attendance){ data ->
-                                    val action = DataAbsenFragmentDirections.actionDataAbsenFragmentToDetailDataAbsenFragment(data)
+                                AttendanceAdapter(requireContext(), attendance) { data ->
+                                    val action =
+                                        DataAbsenFragmentDirections.actionDataAbsenFragmentToDetailDataAbsenFragment(
+                                            data
+                                        )
                                     findNavController().navigate(action)
                                 }
                             recyclerView = recAttendance
@@ -91,64 +108,57 @@ class DataAbsenFragment :
 
                     is NetworkResult.Loading -> {
                         loadingInclude.loading.visibility = View.VISIBLE
-                        rcycleview.visibility = View.GONE
+                        scrollView.visibility = View.GONE
                     }
 
                     is NetworkResult.Error -> {
                         loadingInclude.loading.visibility = View.GONE
-                        rcycleview.visibility = View.VISIBLE
+                        scrollView.visibility = View.VISIBLE
                         Toast.makeText(requireContext(), "Set Adabter Error", Toast.LENGTH_SHORT)
                         handleApiError(it.message)
                     }
                 }
             }
 
-            viewModel.attendanceTotalRequest(savedUser!!.nip)
+            viewModel.attendanceTotalRequest(nip)
             viewModel.totalAttendanceLiveData.observe(viewLifecycleOwner) {
-
                 when (it) {
                     is NetworkResult.Success -> {
                         loadingInclude.loading.visibility = View.GONE
-                        rcycleview.visibility = View.VISIBLE
+                        scrollView.visibility = View.VISIBLE
                         val data = it.data!!.data
-                        val totalAbsen = data.alfa + data.izin + data.masuk + data.telat
-                        if(totalAbsen != 0){
-                            binding.imgNoData1.visibility = View.GONE
-                            binding.pieChart.visibility = View.VISIBLE
-                            setPieChart(data)
-                        }else{
-                            binding.imgNoData1.visibility = View.VISIBLE
-                            binding.pieChart.visibility = View.GONE
-                        }
+                        binding.imgNoData1.visibility = View.GONE
+                        binding.pieChart.visibility = View.VISIBLE
+                        setPieChart(data)
+
                     }
 
                     is NetworkResult.Loading -> {
                         loadingInclude.loading.visibility = View.VISIBLE
-                        rcycleview.visibility = View.GONE
+                        scrollView.visibility = View.GONE
                         binding.imgNoData1.visibility = View.GONE
                         binding.pieChart.visibility = View.GONE
                     }
 
                     is NetworkResult.Error -> {
                         loadingInclude.loading.visibility = View.GONE
-                        rcycleview.visibility = View.VISIBLE
+                        scrollView.visibility = View.VISIBLE
                         binding.imgNoData1.visibility = View.VISIBLE
                         binding.pieChart.visibility = View.GONE
                         handleApiError(it.message)
                     }
                 }
             }
-
         }
-
     }
 
     private fun FragmentDataAbsenBinding.setPieChart(data: DataXX) {
         val pieEntries = ArrayList<PieEntry>()
-        pieEntries.add(PieEntry(data.masuk.toFloat(), "Masuk"))
-        pieEntries.add(PieEntry(data.izin.toFloat(), "Izin"))
-        pieEntries.add(PieEntry(data.alfa.toFloat(), "Alfa"))
-        pieEntries.add(PieEntry(data.telat.toFloat(), "Telat"))
+        Log.d("data absen", data.toString())
+        pieEntries.add(PieEntry(data.masuk?.toFloat() ?: 0f, "Masuk"))
+        pieEntries.add(PieEntry(data.izin?.toFloat() ?: 0f, "Izin"))
+        pieEntries.add(PieEntry(data.alfa?.toFloat() ?: 0f, "Alfa"))
+        pieEntries.add(PieEntry(data.telat?.toFloat() ?: 0f, "Telat"))
 
         val colors = ArrayList<Int>()
         colors.add(ContextCompat.getColor(requireContext(), R.color._success))
@@ -200,22 +210,22 @@ class DataAbsenFragment :
             }
         }
     }
-    override fun onConnectionAvailable() {
-        super.onConnectionAvailable()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            rcycleview.visibility = View.VISIBLE
-            noInternetConnection.ivNoConnection.visibility = View.GONE
-        }
-    }
-
-    override fun onConnectionLost() {
-        super.onConnectionLost()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            rcycleview.visibility = View.GONE
-            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-        }
-    }
+//    override fun onConnectionAvailable() {
+//        super.onConnectionAvailable()
+//        binding.apply {
+//            toolbarUser.visibility = View.GONE
+//            rcycleview.visibility = View.VISIBLE
+//            noInternetConnection.ivNoConnection.visibility = View.GONE
+//        }
+//    }
+//
+//    override fun onConnectionLost() {
+//        super.onConnectionLost()
+//        binding.apply {
+//            toolbar.visibility = View.GONE
+//            rcycleview.visibility = View.GONE
+//            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+//        }
+//    }
 
 }
