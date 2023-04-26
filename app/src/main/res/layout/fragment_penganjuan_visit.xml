@@ -47,91 +47,103 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Keterangan"
+                    android:text="Kode visit"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <Spinner
+                    tools:listitem="@layout/item_spinner"
+                    android:id="@+id/spinner_kode_visit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_47sdp"
+                    android:background="@color/white"
+                    android:backgroundTint="@color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_keterangan_perizinan_create"
+                    android:dropDownSelector="@drawable/arrow_bottom"
+                    android:textAlignment="textEnd" />
+
                 <org.osmdroid.views.MapView
                     android:id="@+id/mapView"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_keterangan_perizinan_create" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_kode_visit" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <RelativeLayout
-                android:id="@+id/rv_tanggal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_perizinan_create">
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/rv_tanggal"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_45sdp"-->
+<!--                android:background="@drawable/retangle_stroke"-->
+<!--                android:padding="@dimen/_15sdp"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/rv_keterangan_perizinan_create">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tanggal"
-                    android:textSize="@dimen/_11ssp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Tanggal"-->
+<!--                    android:textSize="@dimen/_11ssp" />-->
 
-                <TextView
-                    android:id="@+id/tv_tanggal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow1"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_tanggal"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                    android:layout_toStartOf="@+id/arrow1"-->
+<!--                    android:fontFamily="@font/poppins"-->
+<!--                    android:text="-"-->
+<!--                    android:textColor="@color/black_text"-->
+<!--                    android:textSize="@dimen/_11ssp" />-->
 
-                <ImageView
-                    android:id="@+id/arrow1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/arrow1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:src="@drawable/vector" />-->
 
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/rv_lokasi"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/retangle_stroke"
-                android:padding="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@+id/rv_tanggal">
+<!--            </RelativeLayout>-->
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/rv_lokasi"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_45sdp"-->
+<!--                android:background="@drawable/retangle_stroke"-->
+<!--                android:padding="@dimen/_15sdp"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/rv_tanggal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lokasi"
-                    android:textSize="@dimen/_11ssp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Lokasi"-->
+<!--                    android:textSize="@dimen/_11ssp" />-->
 
-                <TextView
-                    android:id="@+id/tv_lokasi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toStartOf="@+id/arrow2"
-                    android:fontFamily="@font/poppins"
-                    android:text="-"
-                    android:textColor="@color/black_text"
-                    android:textSize="@dimen/_11ssp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_lokasi"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                    android:layout_toStartOf="@+id/arrow2"-->
+<!--                    android:fontFamily="@font/poppins"-->
+<!--                    android:text="-"-->
+<!--                    android:textColor="@color/black_text"-->
+<!--                    android:textSize="@dimen/_11ssp" />-->
 
-                <ImageView
-                    android:id="@+id/arrow2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/vector" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/arrow2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:src="@drawable/vector" />-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

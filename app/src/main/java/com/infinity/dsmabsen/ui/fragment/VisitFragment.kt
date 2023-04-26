@@ -40,7 +40,7 @@ class VisitFragment : BasesFragment<FragmentVisitBinding>(FragmentVisitBinding::
         with(binding) {
 
             btnAddVisit.setOnClickListener {
-                findNavController().navigate(R.id.action_visitFragment2_to_scanFragment)
+                findNavController().navigate(R.id.action_visitFragment2_to_penganjuanVisitFragment)
             }
             loadingInclude.loading.visibility = View.VISIBLE
             imgNoData.isVisible = false
@@ -52,6 +52,7 @@ class VisitFragment : BasesFragment<FragmentVisitBinding>(FragmentVisitBinding::
                 when (it) {
                     is NetworkResult.Success -> {
                         loadingInclude.loading.visibility = View.GONE
+                        binding.btnAddVisit.visibility = View.VISIBLE
                         val response = it.data!!
                         val status = response.status
                         val imageUser = response.data.foto
@@ -66,6 +67,7 @@ class VisitFragment : BasesFragment<FragmentVisitBinding>(FragmentVisitBinding::
 
                     is NetworkResult.Loading -> {
                         binding.apply {
+                            binding.btnAddVisit.visibility = View.GONE
                             loadingInclude.loading.visibility = View.VISIBLE
                             recVisit.visibility = View.GONE
                         }
@@ -73,6 +75,7 @@ class VisitFragment : BasesFragment<FragmentVisitBinding>(FragmentVisitBinding::
 
                     is NetworkResult.Error -> {
                         binding.apply {
+                            binding.btnAddVisit.visibility = View.VISIBLE
                             loadingInclude.loading.visibility = View.GONE
                             recVisit.visibility = View.VISIBLE
                         }

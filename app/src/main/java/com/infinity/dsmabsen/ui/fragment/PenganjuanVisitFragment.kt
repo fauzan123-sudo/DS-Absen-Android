@@ -24,10 +24,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.preference.PreferenceManager
 import com.infinity.dsmabsen.R
+import com.infinity.dsmabsen.adapter.SpinnerVisitAdapter
 import com.infinity.dsmabsen.databinding.FragmentPenganjuanVisitBinding
 import com.infinity.dsmabsen.helper.Helper
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
+import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.activity.MainActivity
 import com.infinity.dsmabsen.ui.viewModel.VisitViewModel
@@ -54,15 +57,17 @@ class PenganjuanVisitFragment :
     private val data = arguments?.getString("data")
     private lateinit var mapView: MapView
     private var provider: String? = null
-
+    private lateinit var adapter: SpinnerVisitAdapter
 
     private val argss by navArgs<PenganjuanVisitFragmentArgs>()
     val viewModel: VisitViewModel by viewModels()
     val savedUser = Paper.book().read<DataX>("user")
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        getSpinnerVisit()
+
         Configuration.getInstance().userAgentValue = "DSM-Absen"
         locationManager =
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -74,7 +79,7 @@ class PenganjuanVisitFragment :
             getFirstLocation()
             bottomNavigationView.visibility = View.GONE
             Log.d("args", argss.barcodes)
-            tvTanggal.text = Helper().getThisDay()
+//            tvTanggal.text = Helper().getThisDay()
         }
 
         setHasOptionsMenu(true)
@@ -82,13 +87,48 @@ class PenganjuanVisitFragment :
         toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.save -> {
-                    Log.d("tombol", "onViewCreated: ")
+
+//                    Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
+//                    Log.d("tombol", "onViewCreated: ")
                     sendData()
 //                    getLocations()
                     true
                 }
 
                 else -> false
+            }
+        }
+    }
+
+    private fun getSpinnerVisit() {
+        viewModel.spinnerVisitRequest()
+        viewModel.spinnerVisitLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is NetworkResult.Success -> {
+                    val responses = it.data!!
+                    with(binding) {
+                        loadingInclude.loading.visibility = View.GONE
+                        scrollView2.visibility = View.VISIBLE
+                        adapter = SpinnerVisitAdapter(requireContext(), responses.data)
+                        binding.spinnerKodeVisit.adapter = adapter
+                    }
+                }
+
+                is NetworkResult.Loading -> {
+                    with(binding) {
+                        loadingInclude.loading.visibility = View.VISIBLE
+                        scrollView2.visibility = View.GONE
+
+                    }
+                }
+
+                is NetworkResult.Error -> {
+                    with(binding) {
+                        loadingInclude.loading.visibility = View.GONE
+                        scrollView2.visibility = View.VISIBLE
+
+                    }
+                }
             }
         }
     }
@@ -106,6 +146,7 @@ class PenganjuanVisitFragment :
     }
 
     private fun sendVisit() {
+
         val locationManager =
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
@@ -121,12 +162,17 @@ class PenganjuanVisitFragment :
                     val longitude = location.longitude
 
                     val kordinat: String? = "$latitude, $longitude"
-                    binding.tvLokasi.text = "$kordinat"
+//                    binding.tvLokasi.text = "$kordinat"
                     Log.d("TAG", "sendVisit: $kordinat")
+                    val selectedItem =
+                        binding.spinnerKodeVisit.selectedItem as DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX?
+                    if (selectedItem != null) {
+                        Log.d("MyActivity", "Current Visit Code: ${selectedItem.kode_visit}")
+                    }
                     val nip = savedUser!!.nip
                     viewModel.sendDataVisitRequest(
                         nip,
-                        argss.barcodes,
+                        selectedItem!!.kode_visit,
                         kordinat!!
                     )
 
@@ -142,7 +188,7 @@ class PenganjuanVisitFragment :
                                     AlertDialog.Builder(requireContext())
                                         .setMessage(message)
                                         //    .setIcon(R.drawable.ic_warning)
-                                        .setPositiveButton("Ya") { _, _ ->
+                                        .setPositiveButton("Ok") { _, _ ->
                                             val action =
                                                 PenganjuanVisitFragmentDirections.actionPenganjuanVisitFragmentToVisitFragment2()
                                             if (action.actionId != R.id.action_penganjuanVisitFragment_to_visitFragment2) {
@@ -159,9 +205,9 @@ class PenganjuanVisitFragment :
 //                                                findNavController().navigate(R.id.action_penganjuanVisitFragment_to_visitFragment2)
 //                                            findNavController().navigate(R.id.action_penganjuanVisitFragment_to_visitFragment2)
                                         }
-                                        .setNegativeButton("Kembali") { dialog, _ ->
-                                            dialog.dismiss()
-                                        }
+//                                        .setNegativeButton("Kembali") { dialog, _ ->
+//                                            dialog.dismiss()
+//                                        }
                                         .create().show()
                                 }
                             }

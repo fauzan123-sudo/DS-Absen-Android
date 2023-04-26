@@ -27,17 +27,17 @@ class SpinnerVisitAdapter(context: Context, list: List<DataXXXXXXXXXXXXXXXXXXXXX
             R.layout.item_spinner, parent, false
         )
 
-        if (position == 0) {
-            val textPermission = view.findViewById<TextView>(R.id.permissions)
-            textPermission.text = "Pilih Lokasi Visit"
-            textPermission.setTextColor(ContextCompat.getColor(context, R.color._grey))
-        } else {
+//        if (position == 0) {
+//            val textPermission = view.findViewById<TextView>(R.id.permissions)
+//            textPermission.text = "Pilih Lokasi Visit"
+//            textPermission.setTextColor(ContextCompat.getColor(context, R.color._grey))
+//        } else {
             list.let {
                 val textPermission = view.findViewById<TextView>(R.id.permissions)
                 textPermission.text = list!!.nama
                 textPermission.setTextColor(ContextCompat.getColor(context, R.color.black))
             }
-        }
+//        }
 
         return view
     }

@@ -53,7 +53,6 @@ class AttendanceFragment :
     private val viewModel: AttendanceViewModel by viewModels()
     private val handler = Handler()
 
-    //    private val args by navArgs<PengajuanReimbursementFragmentArgs>()
     private val args by navArgs<AttendanceFragmentArgs>()
     var latittudeUser1: String? = null
     var longitudeUser2: String? = null
@@ -108,7 +107,6 @@ class AttendanceFragment :
 
     override fun onStart() {
         super.onStart()
-
         getLocation()
     }
 
@@ -121,11 +119,6 @@ class AttendanceFragment :
             }
 
             if (areAllGranted) {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Permintaan Izin di aktifkan",
-//                    Toast.LENGTH_SHORT
-//                ).show()
                 val locationListener = object : LocationListener {
                     override fun onLocationChanged(location: Location) {
                         // Do something with the new location
@@ -135,20 +128,11 @@ class AttendanceFragment :
 
                     override fun onProviderEnabled(provider: String) {
                         if (provider == LocationManager.GPS_PROVIDER) {
-//                            Toast.makeText(
-//                                requireContext(),
-//                                "Provider $provider enabled",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
+
                         }
                     }
 
                     override fun onProviderDisabled(provider: String) {
-//                        Toast.makeText(
-//                            requireContext(),
-//                            "Provider $provider disabled",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
                     }
                 }
                 requestLocationPermission()
@@ -161,11 +145,6 @@ class AttendanceFragment :
 
                 getLocation()
             } else {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Permintaan Izin di nonaktifkan",
-//                    Toast.LENGTH_SHORT
-//                ).show()
             }
         }
 
@@ -240,24 +219,9 @@ class AttendanceFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun camera() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            checkCameraPermission()
-//        }else {
-
-
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         intent.putExtra("android.intent.extras.CAMERA_FACING", 1)
         putPhoto.launch(intent)
-//        }
-    }
-
-    private fun checkCameraPermission() {
-        if (ContextCompat.checkSelfPermission(requireContext(), CAMERA)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            val permission = CAMERA
-            singlePermissionLaunch.launch(permission)
-        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -266,32 +230,22 @@ class AttendanceFragment :
             if (it.resultCode == Activity.RESULT_OK) {
 
                 val selectedImageUris = it?.data?.extras?.get("data") as Bitmap
-                val uri = it?.data?.data
                 absen(selectedImageUris!!)
 
-//                binding.photo.setImageBitmap(selectedImageUris)            /* imgPhoto.load(bitmap) */
-//                binding.photo.isVisible = true
             } else if (it == null) {
-                Toast.makeText(requireContext(), "Gambar tida dapat di set", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), "Gambar tidak dapat di set", Toast.LENGTH_SHORT)
                     .show()
             } else {
                 Log.d("TAG", "Task Cancelled")
-//                Toast.makeText(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
 
         }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun absen(uri: Bitmap) {
-
-
         val photo = uriToMultipartBody(uri)
-
-
         Log.d("gambar", photo.toString())
-
         val timeNow = getTime()
-
         val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
         val dateRequestBody = MultipartBody.Part.createFormData("date", timeNow)
         val timezoneRequestBody = MultipartBody.Part.createFormData("timezone", "")
@@ -442,22 +396,8 @@ class AttendanceFragment :
                         }
                         stopLoading()
                     } else {
-                        // Tidak dapat menemukan lokasi terkini
                     }
 
-
-//                    geocoder.getFromLocation(
-//                        location?.latitude ?: 0.0,
-//                        location?.longitude ?: 0.0,
-//                        1
-//                    ).also { addresses ->
-//
-//                        val address: String? = addresses!![0].getAddressLine(0)
-//                        Log.d("ambil_lokasi","Selesai : $address")
-//
-//                        binding.currentLocation.text =
-//                            "$address"
-//                    }
                 } catch (e: Exception) {
                     Log.d("ambil_lokasi", "Error : ${e.message}")
                 }
@@ -499,19 +439,8 @@ class AttendanceFragment :
     private fun requestLocationPermission() {
         if (isLocationPermissionGranted()) {
 
-//            Toast.makeText(
-//                requireContext(),
-//                "Anda telah memberikan izin lokasi",
-//                Toast.LENGTH_SHORT
-//            )
-//                .show()
         }
         if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {
-//            Toast.makeText(
-//                requireContext(),
-//                "Izin lokasi dibutuhkan untuk melakukan absensi",
-//                Toast.LENGTH_SHORT
-//            ).show()
         } else {
             requestPermissionLauncher.launch(ACCESS_FINE_LOCATION)
         }
