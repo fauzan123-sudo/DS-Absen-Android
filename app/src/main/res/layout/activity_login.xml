@@ -154,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow_bg"
                     android:imeOptions="actionGo"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:singleLine="true"
                     android:hint="Nomor Induk Pegawai"
                     android:textColor="@color/black_text"
