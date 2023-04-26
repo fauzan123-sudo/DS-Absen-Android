@@ -1,6 +1,7 @@
 package com.infinity.dsmabsen.helper
 
 object Constans {
+
     const val BASE_URL = "http://192.168.0.108/ngastaa/api/"
     const val IMAGE_URL = ""
 //    const val BASE_URL = "https://ngastaa.com/api/"

@@ -15,7 +15,15 @@ class DetailDataAbsenFragment :
         setupToolbar("Detail Absen")
         val data = args.dataAbsen
 
-
+        with(binding){
+            tvAbsen.text = data.absen?: "-"
+            if (data.status == 1) {
+                tvStatus.text = "Check in"
+            } else {
+                tvStatus.text = "Check out"
+            }
+            tvPadaTgl.text = data.tanggal
+        }
     }
 
 }

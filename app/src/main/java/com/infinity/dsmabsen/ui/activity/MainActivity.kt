@@ -20,9 +20,11 @@ import com.infinity.dsmabsen.databinding.ActivityMainBinding
 import com.infinity.dsmabsen.databinding.CustomUbahPasswordBinding
 import com.infinity.dsmabsen.helper.ConnectionLiveData
 import com.infinity.dsmabsen.helper.TokenManager
+import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.helper.handleApiErrorActivity
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.repository.NetworkResult
+import com.infinity.dsmabsen.ui.fragment.BerandaFragmentDirections
 import com.infinity.dsmabsen.ui.viewModel.PasswordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
@@ -63,16 +65,16 @@ class MainActivity : AppCompatActivity() {
                     R.id.homeFragment -> {
                         binding.bottomNavigationView.visibility = View.VISIBLE
                         Log.d("in beranda", "")
-                                         }
-                    R.id.visitFragment2 ->{
+                    }
+                    R.id.visitFragment2 -> {
                         binding.bottomNavigationView.visibility = View.VISIBLE
                         Log.d("in in visit", "")
                     }
-                    R.id.attendanceFragment->{
+                    R.id.attendanceFragment -> {
                         binding.bottomNavigationView.visibility = View.VISIBLE
                         Log.d("in attendance", "")
                     }
-                    R.id.dataAbsenFragment ->{
+                    R.id.dataAbsenFragment -> {
                         binding.bottomNavigationView.visibility = View.VISIBLE
                         Log.d("in data absen", "")
                     }
@@ -137,22 +139,56 @@ class MainActivity : AppCompatActivity() {
                         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
                             val oldPassword = dialogBinding.etOldPassword.text.toString()
                             val newPassword = dialogBinding.etNewPassword.text.toString()
+                            val loadings = dialogBinding.loadings.loading
                             if (oldPassword.isNotEmpty() && newPassword.isNotEmpty()) {
-                                val messages = "Berhasil"
-                                if (oldPassword == newPassword) {
-                                    dialogBinding.errorText.text =
-                                        "Password lama dan baru tidak boleh sama"
-                                } else {
-                                    dialogBinding.errorText.text = messages
-                                    dialogBinding.errorText.visibility = View.VISIBLE
-                                    viewModel.ubahPasswordRequest(
-                                        savedUser!!.nip,
-                                        oldPassword,
-                                        newPassword
-                                    )
+                                viewModel.ubahPasswordRequest(
+                                    savedUser!!.nip,
+                                    oldPassword, newPassword
+                                )
+                                viewModel.ubahPasswordLiveData.observe(this) { ubahPassword ->
+                                    loadings.visibility = View.GONE
+                                    when (ubahPassword) {
+                                        is NetworkResult.Success -> {
+                                            val responses = ubahPassword.data!!
+                                            val message = responses.data.message
+                                            val statuses = responses.data.status
 
-                                    dialog.dismiss()
+                                            if (statuses == 0) {
+                                                loadings.visibility = View.GONE
+                                                dialogBinding.errorText.visibility = View.VISIBLE
+                                                dialogBinding.errorText.text = message
+                                            } else {
+                                                dialog.dismiss()
+                                                Toast.makeText(this, message, Toast.LENGTH_SHORT)
+                                                    .show()
+                                            }
+                                        }
+
+                                        is NetworkResult.Loading -> {
+                                            loadings.visibility = View.VISIBLE
+                                        }
+
+                                        is NetworkResult.Error -> {
+                                            handleApiErrorActivity(ubahPassword.message)
+                                            loadings.visibility = View.GONE
+                                        }
+                                    }
                                 }
+//                                val messages = "Berhasil"
+//                                if (oldPassword == newPassword) {
+//                                    dialogBinding.errorText.text =
+//                                        "Password lama dan baru tidak boleh sama"
+//                                } else {
+//                                    dialogBinding.errorText.text = messages
+//                                    dialogBinding.errorText.visibility = View.VISIBLE
+//                                    viewModel.ubahPasswordRequest(
+//                                        savedUser!!.nip,
+//                                        oldPassword,
+//                                        newPassword
+//                                    )
+//
+//                                    dialog.dismiss()
+//                                }
                             } else {
                                 val messages = "Isi semua kolom password terlebih dahulu"
                                 dialogBinding.errorText.text = messages
@@ -175,6 +211,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private fun showBottomNav(visit: DataX?) {
         val visited = visit!!.eselon
         if (visited < "3") {
@@ -192,10 +229,10 @@ class MainActivity : AppCompatActivity() {
         cld.observe(this) { isConnected ->
 //            navController.addOnDestinationChangedListener { _, destination, _ ->
 
-                if (isConnected) {
-                    Log.d("is connect", "bottom nav show")
-                    binding.fragmentContainerView2.visibility = View.VISIBLE
-                    binding.noInternetConnection.ivNoConnection.visibility = View.GONE
+            if (isConnected) {
+                Log.d("is connect", "bottom nav show")
+                binding.fragmentContainerView2.visibility = View.VISIBLE
+                binding.noInternetConnection.ivNoConnection.visibility = View.GONE
 //                    binding.bottomNavigationView.visibility = View.VISIBLE
 //                        if (destination.id == R.id.berandaFragment) {
 //                            binding.bottomNavigationView.visibility = View.VISIBLE
@@ -212,12 +249,12 @@ class MainActivity : AppCompatActivity() {
 //                        } else {
 //                            binding.bottomNavigationView.visibility = View.VISIBLE
 //                        }
-                } else {
-                    Log.d("no connect ", "bottom nav hide")
-                    binding.fragmentContainerView2.visibility = View.GONE
-                    binding.bottomNavigationView.visibility = View.GONE
-                    binding.noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-                }
+            } else {
+                Log.d("no connect ", "bottom nav hide")
+                binding.fragmentContainerView2.visibility = View.GONE
+                binding.bottomNavigationView.visibility = View.GONE
+                binding.noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+            }
 //            }
         }
     }

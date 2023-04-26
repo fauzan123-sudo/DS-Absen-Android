@@ -1,29 +1,35 @@
 package com.infinity.dsmabsen.ui.fragment
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
+import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.adapter.VisitAdapter
 import com.infinity.dsmabsen.databinding.FragmentVisitBinding
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.repository.NetworkResult
+import com.infinity.dsmabsen.ui.viewModel.UserProfileViewModel
 import com.infinity.dsmabsen.ui.viewModel.VisitViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import de.hdodenhof.circleimageview.CircleImageView
 import io.paperdb.Paper
 
 @AndroidEntryPoint
-class VisitFragment : BaseFragment<FragmentVisitBinding>(FragmentVisitBinding::inflate) {
+class VisitFragment : BasesFragment<FragmentVisitBinding>(FragmentVisitBinding::inflate) {
 
     private val viewModel: VisitViewModel by viewModels()
+    private val userProfileViewModel: UserProfileViewModel by viewModels()
     private lateinit var adapter: VisitAdapter
     private lateinit var recyclerView: RecyclerView
     val savedUser = Paper.book().read<DataX>("user")
@@ -32,16 +38,51 @@ class VisitFragment : BaseFragment<FragmentVisitBinding>(FragmentVisitBinding::i
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            (activity as AppCompatActivity).setSupportActionBar(toolbar.toolbar)
-            (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+            btnAddVisit.setOnClickListener {
+                findNavController().navigate(R.id.action_visitFragment2_to_scanFragment)
+            }
             loadingInclude.loading.visibility = View.VISIBLE
             imgNoData.isVisible = false
+//            val toolbar = toolbar
+            toolbar.toolbarImage.title = "Visit"
 
+            userProfileViewModel.profileUserRequest(savedUser!!.nip)
+            userProfileViewModel.profileUserLivedata.observe(viewLifecycleOwner) {
+                when (it) {
+                    is NetworkResult.Success -> {
+                        loadingInclude.loading.visibility = View.GONE
+                        val response = it.data!!
+                        val status = response.status
+                        val imageUser = response.data.foto
+                        if (status) {
+                            Glide.with(requireContext())
+                                .load(imageUser)
+                                .circleCrop()
+                                .placeholder(R.drawable.user)
+                                .into(toolbar.toolbarImageView)
+                        }
+                    }
 
+                    is NetworkResult.Loading -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.VISIBLE
+                            recVisit.visibility = View.GONE
+                        }
+                    }
+
+                    is NetworkResult.Error -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            recVisit.visibility = View.VISIBLE
+                        }
+                        handleApiError(it.message)
+                    }
+                }
+            }
 
             viewModel.visitRequest(savedUser!!.nip)
             viewModel.visitLiveData.observe(viewLifecycleOwner) {
-
                 when (it) {
                     is NetworkResult.Success -> {
                         loadingInclude.loading.visibility = View.GONE
@@ -52,7 +93,13 @@ class VisitFragment : BaseFragment<FragmentVisitBinding>(FragmentVisitBinding::i
                                 recVisit.isVisible = false
                                 imgNoData.isVisible = true
                             } else {
-                                adapter = VisitAdapter(requireContext(), response.data)
+                                adapter = VisitAdapter(requireContext(), response.data) { visit ->
+                                    val action =
+                                        VisitFragmentDirections.actionVisitFragment2ToDetailVisitFragment(
+                                            visit
+                                        )
+                                    findNavController().navigate(action)
+                                }
                                 recyclerView = recVisit
                                 recyclerView.adapter = adapter
                                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -81,49 +128,11 @@ class VisitFragment : BaseFragment<FragmentVisitBinding>(FragmentVisitBinding::i
                 }
             }
         }
-        setupToolbar("Visit")
-        toolbar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.scan -> {
-                    findNavController().navigate(R.id.action_visitFragment2_to_scanFragment)
-                    true
-                }
-
-                else -> false
-            }
-        }
-        setHasOptionsMenu(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.toolbar_menu, menu)
-        val menuSave = menu.findItem(R.id.save)
-        val menuPlus = menu.findItem(R.id.add)
-        val menuLogout = menu.findItem(R.id.logout)
-        val menuScan = menu.findItem(R.id.scan)
-
-        menuScan.isVisible = true
-        menuLogout.isVisible = false
-        menuSave?.isVisible = false
-        menuPlus?.isVisible = false
-    }
-
-    override fun onConnectionAvailable() {
-        super.onConnectionAvailable()
-        binding.apply {
-            toolbar.toolbar.visibility = View.VISIBLE
-            recVisit.visibility = View.VISIBLE
-            noInternetConnection.ivNoConnection.visibility = View.GONE
-        }
-    }
-
-    override fun onConnectionLost() {
-        super.onConnectionLost()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            recVisit.visibility = View.GONE
-            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
 

@@ -18,7 +18,7 @@ class DetailShiftFragment :
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             val data = args.detailShift
-
+            setupToolbar("Detail Shift")
             tvDurasi.text = data.shift
             tvKeterangan.text = data.keterangan
             tvStatus.text = data.status

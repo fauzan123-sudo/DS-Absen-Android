@@ -52,6 +52,7 @@ class AttendanceFragment :
     private lateinit var locationManager: LocationManager
     private val viewModel: AttendanceViewModel by viewModels()
     private val handler = Handler()
+
     //    private val args by navArgs<PengajuanReimbursementFragmentArgs>()
     private val args by navArgs<AttendanceFragmentArgs>()
     var latittudeUser1: String? = null
@@ -353,10 +354,11 @@ class AttendanceFragment :
 
                 }
                 is NetworkResult.Loading -> {
-                    binding.loadingInclude.loading.visibility = View.GONE
+                    binding.loadingInclude.loading.visibility = View.VISIBLE
                 }
 
                 is NetworkResult.Error -> {
+                    binding.loadingInclude.loading.visibility = View.GONE
                     handleApiError(it.message)
                 }
             }
