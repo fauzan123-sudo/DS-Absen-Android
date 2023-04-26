@@ -154,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow_bg"
                     android:imeOptions="actionGo"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:singleLine="true"
                     android:hint="Nomor Induk Pegawai"
                     android:textColor="@color/black_text"
@@ -227,4 +227,5 @@
     <include
         android:id="@+id/loadingInclude"
         layout="@layout/loading" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
