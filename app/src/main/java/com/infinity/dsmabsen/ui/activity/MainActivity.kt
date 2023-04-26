@@ -141,39 +141,50 @@ class MainActivity : AppCompatActivity() {
                             val newPassword = dialogBinding.etNewPassword.text.toString()
                             val loadings = dialogBinding.loadings.loading
                             if (oldPassword.isNotEmpty() && newPassword.isNotEmpty()) {
-                                viewModel.ubahPasswordRequest(
-                                    savedUser!!.nip,
-                                    oldPassword, newPassword
-                                )
-                                viewModel.ubahPasswordLiveData.observe(this) { ubahPassword ->
-                                    loadings.visibility = View.GONE
-                                    when (ubahPassword) {
-                                        is NetworkResult.Success -> {
-                                            val responses = ubahPassword.data!!
-                                            val message = responses.data.message
-                                            val statuses = responses.data.status
+                                if (oldPassword == newPassword) {
+                                    dialogBinding.errorText.text =
+                                        "Password lama dan baru tidak boleh sama"
+                                    dialogBinding.errorText.visibility =
+                                        View.VISIBLE
+                                } else {
+                                    viewModel.ubahPasswordRequest(
+                                        savedUser!!.nip,
+                                        oldPassword, newPassword
+                                    )
+                                    viewModel.ubahPasswordLiveData.observe(this) { ubahPassword ->
+                                        loadings.visibility = View.GONE
+                                        when (ubahPassword) {
+                                            is NetworkResult.Success -> {
+                                                val responses = ubahPassword.data!!
+                                                val message = responses.data.message
+                                                val statuses = responses.data.status
 
-                                            if (statuses == 0) {
+                                                if (statuses == 0) {
+                                                    loadings.visibility = View.GONE
+                                                    dialogBinding.errorText.visibility =
+                                                        View.VISIBLE
+                                                    dialogBinding.errorText.text = message
+                                                } else {
+                                                    dialog.dismiss()
+                                                    Toast.makeText(
+                                                        this,
+                                                        message,
+                                                        Toast.LENGTH_SHORT
+                                                    )
+                                                        .show()
+                                                }
+                                            }
+
+                                            is NetworkResult.Loading -> {
+                                                loadings.visibility = View.VISIBLE
+                                            }
+
+                                            is NetworkResult.Error -> {
+                                                handleApiErrorActivity(ubahPassword.message)
                                                 loadings.visibility = View.GONE
-                                                dialogBinding.errorText.visibility = View.VISIBLE
-                                                dialogBinding.errorText.text = message
-                                            } else {
-                                                dialog.dismiss()
-                                                Toast.makeText(this, message, Toast.LENGTH_SHORT)
-                                                    .show()
                                             }
                                         }
-
-                                        is NetworkResult.Loading -> {
-                                            loadings.visibility = View.VISIBLE
-                                        }
-
-                                        is NetworkResult.Error -> {
-                                            handleApiErrorActivity(ubahPassword.message)
-                                            loadings.visibility = View.GONE
-                                        }
                                     }
-                                }
 //                                val messages = "Berhasil"
 //                                if (oldPassword == newPassword) {
 //                                    dialogBinding.errorText.text =
@@ -189,6 +200,7 @@ class MainActivity : AppCompatActivity() {
 //
 //                                    dialog.dismiss()
 //                                }
+                                }
                             } else {
                                 val messages = "Isi semua kolom password terlebih dahulu"
                                 dialogBinding.errorText.text = messages

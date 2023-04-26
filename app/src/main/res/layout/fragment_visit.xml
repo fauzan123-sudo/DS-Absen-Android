@@ -8,7 +8,6 @@
     tools:context=".ui.fragment.VisitFragment"
     android:background="@drawable/gradiend_background">
 
-
     <include
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_20sdp"
@@ -46,11 +45,13 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_add_visit"
         android:layout_width="wrap_content"
-        android:layout_margin="@dimen/_20sdp"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
         android:clickable="true"
-        android:src="@drawable/add_primary"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:tint="@color/_muted"
+        android:backgroundTint="@color/_info"
+        android:src="@drawable/ic_big_add"
+        app:layout_constraintBottom_toBottomOf="@+id/recVisit"
         app:layout_constraintEnd_toEndOf="parent" />
 
         <include
