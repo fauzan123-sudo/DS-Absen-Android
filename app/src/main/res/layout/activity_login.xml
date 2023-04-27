@@ -147,7 +147,6 @@
                 app:hintEnabled="false"
                 tools:layout_editor_absoluteX="26dp">
 
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nip"
                     android:layout_width="match_parent"
@@ -157,6 +156,7 @@
                     android:inputType="text"
                     android:singleLine="true"
                     android:hint="Nomor Induk Pegawai"
+                    android:textColorHint="@color/black_text"
                     android:textColor="@color/black_text"
                     android:fontFamily="@font/poppins_light"
                     app:boxStrokeColor="@android:color/transparent" />
@@ -175,8 +175,7 @@
                 app:passwordToggleEnabled="true"
                 app:startIconDrawable="@drawable/lock"
                 app:startIconTint="@color/black"
-                app:hintEnabled="false"
-                >
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
@@ -187,6 +186,7 @@
                     android:inputType="textPassword"
                     android:singleLine="true"
                     android:hint="Password"
+                    android:textColorHint="@color/black_text"
                     android:textColor="@color/black_text"
                     android:fontFamily="@font/poppins_light"
                     app:boxStrokeColor="@android:color/transparent" />

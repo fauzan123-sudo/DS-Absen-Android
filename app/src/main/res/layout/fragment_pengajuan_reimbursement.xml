@@ -107,6 +107,8 @@
                         android:gravity="end|top"
                         android:textAlignment="textEnd"
                         android:textSize="@dimen/_11ssp"
+                        android:textColorHint="@color/_grey"
+                        android:textColor="@color/_grey"
                         android:textCursorDrawable="@null" />
 
                 </LinearLayout>
@@ -142,6 +144,8 @@
                     android:backgroundTint="@color/white"
                     android:dropDownSelector="@drawable/arrow_bottom"
                     android:fontFamily="@font/poppins"
+                    android:textColorHint="@color/_grey"
+                    android:textColor="@color/_grey"
                     android:gravity="start|top"
                     android:lines="4"
                     android:paddingHorizontal="@dimen/_10sdp"

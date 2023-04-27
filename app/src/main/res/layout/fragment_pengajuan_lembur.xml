@@ -67,6 +67,8 @@
                         android:layout_height="@dimen/_47sdp"
                         android:background="@null"
                         android:fontFamily="@font/poppins"
+                        android:textColorHint="@color/_grey"
+                        android:textColor="@color/_grey"
                         android:gravity="end|center_vertical"
                         android:hint="dd/mm/yyyy" />
 
@@ -116,7 +118,9 @@
                         android:background="@null"
                         android:fontFamily="@font/poppins"
                         android:gravity="end|center_vertical"
+                        android:textColorHint="@color/_grey"
                         android:hint="--:--"
+                        android:textColor="@color/_grey"
                         android:textAlignment="textEnd" />
 
                 </LinearLayout>
@@ -166,6 +170,8 @@
                         android:fontFamily="@font/poppins"
                         android:gravity="end|center_vertical"
                         android:hint="--:--"
+                        android:textColorHint="@color/_grey"
+                        android:textColor="@color/_grey"
                         android:textAlignment="textEnd" />
 
                 </LinearLayout>
@@ -198,6 +204,8 @@
                     android:layout_below="@+id/tv_keterangan_lembur_create"
                     android:background="@drawable/rounded_menu"
                     android:backgroundTint="@color/white"
+                    android:textColorHint="@color/_grey"
+                    android:textColor="@color/_grey"
                     android:dropDownSelector="@drawable/arrow_bottom"
                     android:lines="4"
                     android:paddingHorizontal="@dimen/_10sdp"
@@ -224,7 +232,7 @@
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Gambar"
-                    android:textColor="@color/black_text"
+                    android:textColor="@color/_grey"
                     android:textSize="@dimen/_11ssp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -277,9 +285,9 @@
         android:id="@+id/noInternetConnection"
         layout="@layout/fake"
         android:visibility="gone" />
+
     <include
         android:visibility="gone"
         android:id="@+id/loading_include"
-        layout="@layout/loading"
-        />
+        layout="@layout/loading" />
 </androidx.constraintlayout.widget.ConstraintLayout>

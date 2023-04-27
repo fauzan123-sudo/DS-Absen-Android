@@ -55,12 +55,15 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="@color/white"
+          android:backgroundTint="@color/white"
           android:paddingEnd="@dimen/_15sdp"
           android:textSize="@dimen/_12sdp"
           android:layout_marginVertical="@dimen/_10sdp"
           android:textAlignment="textEnd"
           android:layout_centerVertical="true"
-          tools:ignore="RtlSymmetry" />
+          tools:ignore="RtlSymmetry"
+          android:dropDownSelector="@drawable/arrow_bottom"
+          />
 
       <Button
           android:visibility="gone"

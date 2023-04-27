@@ -87,6 +87,8 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/rounded_menu"
                     android:backgroundTint="@color/white"
+                    android:textColorHint="@color/_grey"
+                    android:textColor="@color/_grey"
                     android:gravity="top|start"
                     android:imeOptions="actionGo"
                     android:lines="4"

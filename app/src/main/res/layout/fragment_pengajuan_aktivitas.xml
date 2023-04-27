@@ -49,6 +49,8 @@
             android:dropDownSelector="@drawable/arrow_bottom"
             android:fontFamily="@font/poppins"
             android:gravity="start|top"
+            android:textColorHint="@color/_grey"
+            android:textColor="@color/_grey"
             android:lines="4"
             android:paddingHorizontal="@dimen/_10sdp"
             android:paddingVertical="@dimen/_15sdp"
