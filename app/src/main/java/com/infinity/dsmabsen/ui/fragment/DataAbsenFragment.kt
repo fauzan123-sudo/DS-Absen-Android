@@ -155,10 +155,10 @@ class DataAbsenFragment :
     private fun FragmentDataAbsenBinding.setPieChart(data: DataXX) {
         val pieEntries = ArrayList<PieEntry>()
         Log.d("data absen", data.toString())
-        pieEntries.add(PieEntry(data.masuk?.toFloat() ?: 0f, "Masuk"))
-        pieEntries.add(PieEntry(data.izin?.toFloat() ?: 0f, "Izin"))
-        pieEntries.add(PieEntry(data.alfa?.toFloat() ?: 0f, "Alfa"))
-        pieEntries.add(PieEntry(data.telat?.toFloat() ?: 0f, "Telat"))
+        pieEntries.add(PieEntry(data.masuk.toFloat(), "Masuk"))
+        pieEntries.add(PieEntry(data.izin.toFloat(), "Izin"))
+        pieEntries.add(PieEntry(data.alfa.toFloat(), "Alfa"))
+        pieEntries.add(PieEntry(data.telat.toFloat(), "Telat"))
 
         val colors = ArrayList<Int>()
         colors.add(ContextCompat.getColor(requireContext(), R.color._success))
