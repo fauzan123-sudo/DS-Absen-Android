@@ -127,8 +127,14 @@ class DataAbsenFragment :
                         loadingInclude.loading.visibility = View.GONE
                         scrollView.visibility = View.VISIBLE
                         val data = it.data!!.data
-                        binding.imgNoData1.visibility = View.GONE
+//                        binding.imgNoData1.visibility = View.GONE
                         binding.pieChart.visibility = View.VISIBLE
+                        if (data.masuk == 0 && data.izin == 0 && data.telat == 0 && data.alfa == 0) {
+                            binding.pieChart.visibility = View.GONE
+                            binding.imgNoData1.visibility = View.VISIBLE
+                        }
+                        binding.pieChart.visibility = View.VISIBLE
+                        binding.imgNoData1.visibility = View.VISIBLE
                         setPieChart(data)
 
                     }

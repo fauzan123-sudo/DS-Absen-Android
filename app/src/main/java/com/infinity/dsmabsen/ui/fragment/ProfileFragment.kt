@@ -98,7 +98,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
     }
 
     private fun logout(nipUser: String) {
-        AlertDialog.Builder(requireContext())
+        AlertDialog.Builder(requireContext(), R.style.MyAlertDialogTheme)
             .setTitle("LogOut")
             .setMessage("Anda Yakin ingin logout")
             .setPositiveButton("Ya") { _, _ ->
