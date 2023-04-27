@@ -1,21 +1,24 @@
 package com.infinity.dsmabsen.ui.fragment
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.FragmentProfileBinding
-import com.infinity.dsmabsen.helper.Constans
+import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
 import com.infinity.dsmabsen.helper.TokenManager
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
@@ -27,6 +30,7 @@ import com.infinity.dsmabsen.ui.viewModel.UserProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
@@ -49,7 +53,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 findNavController().navigate(R.id.action_profileFragment_to_allProfileFragment)
             }
             logout.setOnClickListener {
-                logout(nipUser)
+//                logout(nipUser)
+                loginOut()
             }
         }
 
@@ -97,8 +102,67 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         }
     }
 
+    private fun loginOut() {
+        val dialogBinding = LayoutWarningDailogBinding.inflate(layoutInflater)
+
+        val alertDialog = AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+            .setView(dialogBinding.root)
+            .create()
+
+        dialogBinding.textTitle.text = "Konfirmasi Keluar"
+        dialogBinding.textMessage.text = "Anda yakin Ingin keluar dari aplikasi"
+        dialogBinding.buttonYes.text = "Ya"
+        dialogBinding.buttonNo.text = "Batal"
+        dialogBinding.imageIcon.setImageResource(R.drawable.ic_baseline_warning_24)
+
+        dialogBinding.buttonYes.setOnClickListener {
+            alertDialog.dismiss()
+            viewModels.requestLogout(nipUser)
+            viewModels.logOutLiveData.observe(viewLifecycleOwner) {
+                binding.loadingInclude.loading.visibility = View.GONE
+                when (it) {
+                    is NetworkResult.Success -> {
+                        val data = it.data!!
+                        binding.loadingInclude.loading.visibility = View.GONE
+                        binding.constraintLayout3.isVisible = true
+                        requireActivity().startActivity(
+                            Intent(
+                                requireActivity(),
+                                LoginActivity::class.java
+                            )
+                        )
+                        Paper.book().delete("user")
+                        tokenManager.deleteToken()
+                    }
+
+                    is NetworkResult.Loading -> {
+                        binding.constraintLayout3.isVisible = false
+                        binding.loadingInclude.loading.visibility = View.GONE
+                    }
+
+                    is NetworkResult.Error -> {
+                        handleApiError(it.message)
+                        Log.d("TAG", it.message.toString())
+                        binding.loadingInclude.loading.visibility = View.GONE
+                        //                            Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
+
+        dialogBinding.buttonNo.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        if (alertDialog.window != null) {
+            alertDialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+
+        alertDialog.show()
+    }
+
     private fun logout(nipUser: String) {
-        AlertDialog.Builder(requireContext(), R.style.MyAlertDialogTheme)
+        AlertDialog.Builder(requireContext())
             .setTitle("LogOut")
             .setMessage("Anda Yakin ingin logout")
             .setPositiveButton("Ya") { _, _ ->
@@ -107,37 +171,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 )
 
 //                Toast.makeText(requireContext(), "$nips", Toast.LENGTH_SHORT).show()
-                viewModels.requestLogout(nipUser)
-                viewModels.logOutLiveData.observe(viewLifecycleOwner) {
-                    binding.loadingInclude.loading.visibility = View.GONE
-                    when (it) {
-                        is NetworkResult.Success -> {
-                            val data = it.data!!
-                            binding.loadingInclude.loading.visibility = View.GONE
-                            binding.constraintLayout3.isVisible = true
-                            requireActivity().startActivity(
-                                Intent(
-                                    requireActivity(),
-                                    LoginActivity::class.java
-                                )
-                            )
-                            Paper.book().delete("user")
-                            tokenManager.deleteToken()
-                        }
 
-                        is NetworkResult.Loading -> {
-                            binding.constraintLayout3.isVisible = false
-                            binding.loadingInclude.loading.visibility = View.GONE
-                        }
-
-                        is NetworkResult.Error -> {
-                            handleApiError(it.message)
-                            Log.d("TAG", it.message.toString())
-                            binding.loadingInclude.loading.visibility = View.GONE
-                            //                            Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG).show()
-                        }
-                    }
-                }
             }
             .setNegativeButton("Kembali") { _, _ ->
             }
