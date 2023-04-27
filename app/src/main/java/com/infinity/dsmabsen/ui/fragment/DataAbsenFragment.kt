@@ -132,10 +132,11 @@ class DataAbsenFragment :
                         if (data.masuk == 0 && data.izin == 0 && data.telat == 0 && data.alfa == 0) {
                             binding.pieChart.visibility = View.GONE
                             binding.imgNoData1.visibility = View.VISIBLE
+                        } else {
+                            binding.pieChart.visibility = View.VISIBLE
+                            binding.imgNoData1.visibility = View.VISIBLE
+                            setPieChart(data)
                         }
-                        binding.pieChart.visibility = View.VISIBLE
-                        binding.imgNoData1.visibility = View.VISIBLE
-                        setPieChart(data)
 
                     }
 

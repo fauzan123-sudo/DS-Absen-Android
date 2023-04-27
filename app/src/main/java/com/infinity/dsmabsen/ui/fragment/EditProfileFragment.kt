@@ -79,7 +79,7 @@ class EditProfileFragment :
                     val bloodTypes = resources.getStringArray(R.array.blood_types)
                     val adapter = ArrayAdapter(
                         requireContext(),
-                        android.R.layout.simple_spinner_item,
+                        R.layout.item_spinner,
                         bloodTypes
                     )
                     spinnerGolonganDarah.adapter = adapter
