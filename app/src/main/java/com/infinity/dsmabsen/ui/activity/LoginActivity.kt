@@ -29,7 +29,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private val viewModel: AuthViewModel by viewModels()
-//    private lateinit var imei: String
+
     private lateinit var telephonyManager: TelephonyManager
     private lateinit var cld: ConnectionLiveData
 
@@ -77,29 +77,12 @@ class LoginActivity : AppCompatActivity() {
                         constrain.isVisible = false
                         Log.d(TAG, "else button")
                         viewModel.login(myUserName, myPassword, mId)
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-//                            viewModel.login(myUserName, myPassword, mId)
-//                        } else {
-//                            viewModel.login(myUserName, myPassword, imeinya)
-//                        }
                     }
                 }
-
-//                Log.d(
-//                    "data login", "Nip : $myUserName" +
-//                            "Password : $myPassword" +
-//                            "imei : $mId"
-//                )
-//
-//                Log.d(
-//                    "data login2", "Nip : $myUserName" +
-//                            "Password : $myPassword" +
-//                            "imei : $imeinya"
-//                )
             }
 
             viewModel.userResponseLiveData.observe(this@LoginActivity) {
-                loadingInclude.loading.visibility = View.VISIBLE
+                loadingInclude.loading.visibility = View.GONE
                 when (it) {
                     is NetworkResult.Success -> {
                         if (it.data!!.status) {
@@ -129,7 +112,7 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     is NetworkResult.Loading -> {
-                        Log.d("login","loading .... ")
+                        Log.d("login", "loading .... ")
                         binding.loadingInclude.loading.visibility = View.VISIBLE
                     }
                 }

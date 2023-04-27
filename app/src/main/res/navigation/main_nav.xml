@@ -114,7 +114,7 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"/>
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -222,12 +222,12 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
         <action
+            android:id="@+id/action_allMenuFragment_to_aktivitasFragment"
+            app:destination="@id/aktivitasFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"
-            android:id="@+id/action_allMenuFragment_to_aktivitasFragment"
-            app:destination="@id/aktivitasFragment" />
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/allProfileFragment"
@@ -289,12 +289,12 @@
             android:defaultValue="value"
             app:argType="string" />
         <action
+            android:id="@+id/action_editProfileFragment_to_personalDataFragment"
+            app:destination="@id/personalDataFragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right"
             app:popEnterAnim="@anim/from_right"
             app:popExitAnim="@anim/to_left"
-            android:id="@+id/action_editProfileFragment_to_personalDataFragment"
-            app:destination="@id/personalDataFragment"
             app:popUpTo="@id/personalDataFragment"
             app:popUpToInclusive="true" />
         <argument
@@ -345,12 +345,12 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
         <action
+            android:id="@+id/action_reimbursementFragment_to_detailReimbursementFragment"
+            app:destination="@id/detailReimbursementFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            android:id="@+id/action_reimbursementFragment_to_detailReimbursementFragment"
-            app:destination="@id/detailReimbursementFragment" />
+            app:popExitAnim="@anim/slide_out_right" />
         <!--        <argument-->
         <!--            android:name="BarcodeCode"-->
         <!--            app:argType="string" />-->
@@ -381,12 +381,12 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
         <action
+            android:id="@+id/action_menuPerizinanFragment_to_detailPerizinanFragment"
+            app:destination="@id/detailPerizinanFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"
-            android:id="@+id/action_menuPerizinanFragment_to_detailPerizinanFragment"
-            app:destination="@id/detailPerizinanFragment" />
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/lemburFragment"
@@ -407,12 +407,12 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
         <action
+            android:id="@+id/action_lemburFragment_to_detailLemburFragment"
+            app:destination="@id/detailLemburFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            android:id="@+id/action_lemburFragment_to_detailLemburFragment"
-            app:destination="@id/detailLemburFragment" />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/pengajuanLemburFragment"
@@ -430,12 +430,12 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
         <action
+            android:id="@+id/action_shiftFragment_to_detailShiftFragment"
+            app:destination="@id/detailShiftFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"
-            android:id="@+id/action_shiftFragment_to_detailShiftFragment"
-            app:destination="@id/detailShiftFragment" />
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/pengajuanReimbursementFragment"
@@ -463,7 +463,15 @@
     <fragment
         android:id="@+id/pengumumanFragment"
         android:name="com.infinity.dsmabsen.ui.fragment.PengumumanFragment"
-        tools:layout="@layout/fragment_pengumuman" />
+        tools:layout="@layout/fragment_pengumuman">
+        <action
+            android:id="@+id/action_pengumumanFragment_to_detailPengumumanFragment"
+            app:destination="@id/detailPengumumanFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
     <fragment
         android:id="@+id/visitFragment2"
         android:name="com.infinity.dsmabsen.ui.fragment.VisitFragment"
@@ -483,12 +491,12 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
         <action
+            android:id="@+id/action_visitFragment2_to_detailVisitFragment"
+            app:destination="@id/detailVisitFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"
-            android:id="@+id/action_visitFragment2_to_detailVisitFragment"
-            app:destination="@id/detailVisitFragment" />
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/penganjuanVisitFragment"
@@ -563,7 +571,7 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"/>
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_aktivitasFragment_to_pengajuanAktivitasFragment"
             app:destination="@id/pengajuanAktivitasFragment" />
@@ -571,7 +579,7 @@
     <fragment
         android:id="@+id/detailAktivitasFragment"
         android:name="com.infinity.dsmabsen.ui.fragment.DetailAktivitasFragment"
-        tools:layout="@layout/fragment_detail_aktivitas" >
+        tools:layout="@layout/fragment_detail_aktivitas">
         <argument
             android:name="detailAktivitas"
             app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
@@ -584,7 +592,7 @@
     <fragment
         android:id="@+id/detailReimbursementFragment"
         android:name="com.infinity.dsmabsen.ui.fragment.DetailReimbursementFragment"
-        tools:layout="@layout/fragment_detail_reimbursement" >
+        tools:layout="@layout/fragment_detail_reimbursement">
         <argument
             android:name="detailReimbursement"
             app:argType="com.infinity.dsmabsen.model.DataXXXXXXX" />
@@ -593,7 +601,7 @@
         android:id="@+id/detailDataAbsenFragment"
         android:name="com.infinity.dsmabsen.ui.fragment.DetailDataAbsenFragment"
         android:label="fragment_detail_data_absen"
-        tools:layout="@layout/fragment_detail_data_absen" >
+        tools:layout="@layout/fragment_detail_data_absen">
         <argument
             android:name="dataAbsen"
             app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXX" />
@@ -602,7 +610,7 @@
         android:id="@+id/detailLemburFragment"
         android:name="com.infinity.dsmabsen.ui.fragment.DetailLemburFragment"
         android:label="fragment_detail_lembur"
-        tools:layout="@layout/fragment_detail_lembur" >
+        tools:layout="@layout/fragment_detail_lembur">
         <argument
             android:name="dataLembur"
             app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXX" />
@@ -610,7 +618,7 @@
     <fragment
         android:id="@+id/detailPerizinanFragment"
         android:name="com.infinity.dsmabsen.ui.fragment.DetailPerizinanFragment"
-        tools:layout="@layout/fragment_detail_perizinan" >
+        tools:layout="@layout/fragment_detail_perizinan">
         <argument
             android:name="detailPerizinan"
             app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXX" />
@@ -619,7 +627,7 @@
         android:id="@+id/detailShiftFragment"
         android:name="com.infinity.dsmabsen.ui.fragment.DetailShiftFragment"
         android:label="fragment_detail_shift"
-        tools:layout="@layout/fragment_detail_shift" >
+        tools:layout="@layout/fragment_detail_shift">
         <argument
             android:name="detailShift"
             app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXX" />
@@ -628,7 +636,7 @@
         android:id="@+id/detailVisitFragment"
         android:name="com.infinity.dsmabsen.ui.fragment.DetailVisitFragment"
         android:label="fragment_detail_visit"
-        tools:layout="@layout/fragment_detail_visit" >
+        tools:layout="@layout/fragment_detail_visit">
         <argument
             android:name="detailVisit"
             app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
@@ -638,4 +646,13 @@
         android:name="com.infinity.dsmabsen.ui.fragment.UbahPasswordFragment"
         android:label="fragment_ubah_password"
         tools:layout="@layout/fragment_ubah_password" />
+    <fragment
+        android:id="@+id/detailPengumumanFragment"
+        android:name="com.infinity.dsmabsen.ui.fragment.DetailPengumumanFragment"
+        android:label="fragment_detail_pengumuman"
+        tools:layout="@layout/fragment_detail_pengumuman">
+        <argument
+            android:name="detailPengumuman"
+            app:argType="com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+    </fragment>
 </navigation>

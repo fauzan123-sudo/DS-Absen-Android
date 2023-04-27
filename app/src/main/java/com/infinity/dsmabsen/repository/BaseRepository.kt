@@ -31,16 +31,22 @@ abstract class BaseRepository {
 //                No Connection or URL error or bad connection
                 when (e) {
                     is ConnectException -> {
+                        val errorMessage =
+                            "Gagal terhubung ke server. Mohon periksa koneksi internet Anda dan coba lagi."
                         Log.d("ConnectException", "safeApiCall: $e ")
-                        NetworkResult.Error("koneksi internet buruk harap periksa kembali koneksi anda")
+                        NetworkResult.Error(errorMessage)
                     }
                     is SocketTimeoutException -> {
+                        val errorMessage =
+                            "Waktu permintaan habis. Mohon periksa koneksi internet Anda dan coba lagi."
                         Log.d("SocketTimeoutException", "safeApiCall: $e ")
-                        NetworkResult.Error("koneksi internet buruk harap periksa kembali koneksi anda")
+                        NetworkResult.Error(errorMessage)
                     }
                     else -> {
+                        val errorMessage =
+                            "Terjadi kesalahan saat berkomunikasi dengan server. Mohon coba lagi nanti."
                         Log.d("IOException", "safeApiCall: $e")
-                        NetworkResult.Error("koneksi internet buruk harap periksa kembali koneksi anda")
+                        NetworkResult.Error(errorMessage)
                     }
                 }
 //                NetworkResult.Error("Request Time Out")

@@ -25,5 +25,4 @@ class DetailPerizinanFragment :
             tvStatus.text = data.status
         }
     }
-
 }

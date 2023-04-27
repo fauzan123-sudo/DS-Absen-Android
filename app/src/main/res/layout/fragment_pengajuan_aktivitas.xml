@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradiend_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
     tools:context=".ui.fragment.PengajuanAktivitasFragment">
 
 <include
@@ -48,7 +48,7 @@
             android:backgroundTint="@color/white"
             android:dropDownSelector="@drawable/arrow_bottom"
             android:fontFamily="@font/poppins"
-            android:gravity="start|top"
+            android:gravity="end|top"
             android:textColorHint="@color/_grey"
             android:textColor="@color/_grey"
             android:lines="4"
