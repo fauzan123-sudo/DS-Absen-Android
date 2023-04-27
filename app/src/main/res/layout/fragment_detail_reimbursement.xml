@@ -15,12 +15,12 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
+        app:cardElevation="@dimen/_10sdp"
+        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_15sdp"
-        android:background="@drawable/shadow_bg"
-        android:backgroundTint="@color/white"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Rp5.300.000,-"
+                android:text="-"
                 android:textColor="@color/black_text"
                 android:textSize="@dimen/_20ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -90,29 +90,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nominal_detail_reimbursement" />
 
-            <TextView
-                android:id="@+id/txt_nominal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/poppins"
-                android:text="Nominal"
-                android:textColor="@color/grey"
-                android:textSize="@dimen/_10ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_gaji_pokok_presensi" />
-
-            <TextView
-                android:id="@+id/tv_nominal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/poppins"
-                android:text="-"
-                android:textColor="@color/grey"
-                android:textSize="@dimen/_10ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_gaji_pokok_presensi" />
 
             <TextView
                 android:id="@+id/tv_kehadiran"
@@ -124,7 +101,7 @@
                 android:textColor="@color/grey"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nominal" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_gaji_pokok_presensi" />
 
             <TextView
                 android:id="@+id/tv_keterangan"
@@ -136,7 +113,7 @@
                 android:textColor="@color/grey"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nominal" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_gaji_pokok_presensi" />
 
 
             <TextView

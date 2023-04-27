@@ -23,12 +23,12 @@ class DetailReimbursementFragment :
         setupToolbar("Detail Reimbursement")
         binding.apply {
             with(data) {
-                tvNominal.text = nilai
+
+                tvNominalDetailReimbursement.text = "Rp "+ nilai
                 tvStatus.text = status
                 tvKeterangan.text = keterangan
                 tvTangalDetailPenggajian.text = created_at
             }
         }
     }
-
 }

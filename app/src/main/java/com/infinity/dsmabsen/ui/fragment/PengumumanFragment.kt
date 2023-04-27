@@ -46,7 +46,13 @@ class PengumumanFragment :
                             binding.apply {
                                 imgNoData.visibility = View.GONE
                                 recPengumuman.visibility = View.VISIBLE
-                                adapter = PengumumanAdapter(requireContext(), data)
+                                adapter = PengumumanAdapter(requireContext(), data) { pengumuman ->
+                                    val action =
+                                        PengumumanFragmentDirections.actionPengumumanFragmentToDetailPengumumanFragment(
+                                            pengumuman
+                                        )
+                                    findNavController().navigate(action)
+                                }
                                 recyclerView = recPengumuman
                                 recyclerView.adapter = adapter
                                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
