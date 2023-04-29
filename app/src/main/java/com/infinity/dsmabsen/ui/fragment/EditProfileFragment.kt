@@ -3,15 +3,14 @@ package com.infinity.dsmabsen.ui.fragment
 import android.os.Bundle
 import android.text.method.DigitsKeyListener
 import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -79,7 +78,7 @@ class EditProfileFragment :
                     val bloodTypes = resources.getStringArray(R.array.blood_types)
                     val adapter = ArrayAdapter(
                         requireContext(),
-                        R.layout.item_spinner,
+                        android.R.layout.simple_spinner_item,
                         bloodTypes
                     )
                     spinnerGolonganDarah.adapter = adapter

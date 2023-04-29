@@ -8,6 +8,7 @@ class AlertDialogHelper(private val context: Context) {
         AlertDialog.Builder(context)
             .setTitle(title)
             .setMessage(message)
+            .setCancelable(false)
             .setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
             }

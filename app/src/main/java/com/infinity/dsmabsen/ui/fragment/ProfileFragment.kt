@@ -4,14 +4,11 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -22,7 +19,6 @@ import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
 import com.infinity.dsmabsen.helper.TokenManager
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
-import com.infinity.dsmabsen.model.RequestNip
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.activity.LoginActivity
 import com.infinity.dsmabsen.ui.viewModel.AuthViewModel
@@ -127,7 +123,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 binding.loadingInclude.loading.visibility = View.GONE
                 when (it) {
                     is NetworkResult.Success -> {
-                        val data = it.data!!
                         binding.loadingInclude.loading.visibility = View.GONE
                         binding.constraintLayout3.isVisible = true
                         requireActivity().startActivity(

@@ -25,16 +25,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.FragmentAttendanceBinding
 import com.infinity.dsmabsen.helper.*
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.viewModel.AttendanceViewModel
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.infinity.dsmabsen.ui.viewModel.UserProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
@@ -45,7 +44,6 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -56,46 +54,73 @@ class AttendanceFragment :
     private val viewModel: AttendanceViewModel by viewModels()
     private val handler = Handler()
     private val userProfileViewModel: UserProfileViewModel by viewModels()
+    private lateinit var dialog: AlertDialog
 
-    private val args by navArgs<AttendanceFragmentArgs>()
     var latittudeUser1: String? = null
     var longitudeUser2: String? = null
     private lateinit var runnable: Runnable
 
-
-    @Inject
-    lateinit var tokenManager: TokenManager
     private val savedUser = Paper.book().read<DataX>("user")
     val nip = savedUser!!.nip
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
         timeRun()
 
         binding.apply {
-            Log.d("TAG", args.hasilScan)
-
+            btnAbsen.setOnClickListener {
+                camera()
+            }
             btnScanWajah.setOnClickListener {
                 findNavController().navigate(R.id.action_attendanceFragment_to_faceScanningFragment3)
             }
-            val permission =
-                arrayOf(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, ACCESS_BACKGROUND_LOCATION)
+            btnRefresh.setOnClickListener {
+                if (!isGpsEnabled()) {
+                    dialog.show()
+                }
+                getLocation()
+            }
+            getProfileUser()
             requestLocationPermission()
             locationManager =
                 requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-            cekGPS()
+            locationManager =
+                requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-            btnAbsen.setOnClickListener {
-                camera()
+            dialog = AlertDialog.Builder(requireContext())
+                .setMessage("GPS tidak aktif, silakan aktifkan GPS.")
+                .setPositiveButton("Pengaturan") { _, _ ->
+                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                }
+                .setNegativeButton("Batal") { _, _ ->
+                    gpsNoActive()
+                }
+                .setCancelable(false)
+                .create()
+
+            if (!isGpsEnabled()) {
+                dialog.show()
             }
 
-            userProfileViewModel.profileUserRequest(nip)
-            userProfileViewModel.profileUserLivedata.observe(viewLifecycleOwner) {
-                when (it) {
-                    is NetworkResult.Success -> {
+
+        }
+    }
+
+    private fun isGpsEnabled(): Boolean {
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    }
+
+    private fun gpsNoActive() {
+        disableAbsen()
+    }
+
+    private fun getProfileUser() {
+        userProfileViewModel.profileUserRequest(nip)
+        userProfileViewModel.profileUserLivedata.observe(viewLifecycleOwner) {
+            when (it) {
+                is NetworkResult.Success -> {
+                    binding.apply {
                         loadingInclude.loading.visibility = View.GONE
                         val response = it.data!!
                         val status = response.status
@@ -110,75 +135,26 @@ class AttendanceFragment :
                                 .into(toolbarUser.imageUser)
                         }
                     }
+                }
 
-                    is NetworkResult.Loading -> {
-                        binding.apply {
-                            loadingInclude.loading.visibility = View.VISIBLE
-                        }
-                    }
-
-                    is NetworkResult.Error -> {
-                        binding.apply {
-                            loadingInclude.loading.visibility = View.GONE
-                        }
-                        handleApiError(it.message)
+                is NetworkResult.Loading -> {
+                    binding.apply {
+                        loadingInclude.loading.visibility = View.VISIBLE
                     }
                 }
-            }
 
-            btnRefresh.setOnClickListener {
-                cekGPS()
-                getLocation()
-                enableAbsen()
+                is NetworkResult.Error -> {
+                    binding.apply {
+                        loadingInclude.loading.visibility = View.GONE
+                    }
+                    handleApiError(it.message)
+                }
             }
         }
     }
-
-    override fun onStart() {
-        super.onStart()
-        getLocation()
-    }
-
-    private val permissionMultiRequest =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
-            var areAllGranted = true
-            for (isGranted in result.values) {
-//                Toast.makeText(requireContext(), "Granted is $isGranted", Toast.LENGTH_SHORT).show()
-                areAllGranted = areAllGranted && isGranted
-            }
-
-            if (areAllGranted) {
-                val locationListener = object : LocationListener {
-                    override fun onLocationChanged(location: Location) {
-                        // Do something with the new location
-                    }
-
-                    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
-
-                    override fun onProviderEnabled(provider: String) {
-                        if (provider == LocationManager.GPS_PROVIDER) {
-
-                        }
-                    }
-
-                    override fun onProviderDisabled(provider: String) {
-                    }
-                }
-                requestLocationPermission()
-                locationManager.requestLocationUpdates(
-                    LocationManager.GPS_PROVIDER,
-                    0,
-                    0f,
-                    locationListener
-                )
-
-                getLocation()
-            } else {
-            }
-        }
-
 
     private fun getLocationUser() {
+        runLoading()
         locationManager =
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         fusedLocationProviderClient =
@@ -186,6 +162,7 @@ class AttendanceFragment :
         Log.d("ambil_lokasi", "On2 Proses")
         val task = fusedLocationProviderClient.lastLocation
         task.addOnSuccessListener {
+            stopLoading()
             if (it != null) {
                 with(binding) {
                     latittudeUser1 = it.latitude.toString()
@@ -221,29 +198,87 @@ class AttendanceFragment :
 
     private val locationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
-            // Mendapatkan latitude dan longitude
+            stopLoading()
             val latitude = location.latitude
             val longitude = location.longitude
+            if (location != null) {
+                val geocoder = Geocoder(requireContext(), Locale.getDefault())
+                try {
+                    val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+                    if (addresses != null && addresses.isNotEmpty()) {
+                        val address = addresses[0].getAddressLine(0)
+                        binding.currentLocation.text = address.toString()
 
-            binding.lattitudeUser.text = latitude.toString()
-            binding.longitudeUser.text = longitude.toString()
+                    } else {
+                        binding.currentLocation.text = "-"
+                        disableAbsen()
+                        handleApiError("Lokasi tidak ditemukan")
+                    }
 
+                    binding.lattitudeUser.text = latitude.toString()
+                    binding.longitudeUser.text = longitude.toString()
+                } catch (e: Exception) {
+                    handleApiError(e.toString())
+                }
+
+            } else {
+                runLoading()
+                handleApiError("lokasi tidak dapat ditemukan")
+            }
+
+            if (isGpsEnabled()) {
+                dialog.dismiss()
+                enableAbsen()
+            } else {
+                runLoading()
+            }
         }
 
-        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
         override fun onProviderEnabled(provider: String) {
-            getLocationUser()
-            enableAbsen()
+
         }
 
         override fun onProviderDisabled(provider: String) {
-            cekGPS()
+            dialog.show()
+            runLoading()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        getLocation()
     }
 
     override fun onStop() {
         super.onStop()
         locationManager
+    }
+
+    override fun onResume() {
+        super.onResume()
+        handler.postDelayed(runnable, 0)
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        locationManager.requestLocationUpdates(
+            LocationManager.GPS_PROVIDER,
+            0,
+            0f,
+            locationListener
+        )
+    }
+
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacks(runnable)
+        locationManager.removeUpdates(locationListener)
     }
 
     private fun camera() {
@@ -266,27 +301,11 @@ class AttendanceFragment :
         }
     }
 
-    private val putPhoto =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK) {
-
-                val selectedImageUris = it?.data?.extras?.get("data") as Bitmap
-                absen(selectedImageUris!!)
-
-            } else if (it == null) {
-                Toast.makeText(requireContext(), "Gambar tidak dapat di set", Toast.LENGTH_SHORT)
-                    .show()
-            } else {
-                Log.d("TAG", "Task Cancelled")
-            }
-
-        }
-
     private fun absen(uri: Bitmap) {
         val photo = uriToMultipartBody(uri)
         Log.d("gambar", photo.toString())
         val timeNow = getTime()
-        val nipRequestBody = MultipartBody.Part.createFormData("nip",nip)
+        val nipRequestBody = MultipartBody.Part.createFormData("nip", nip)
         val dateRequestBody = MultipartBody.Part.createFormData("date", timeNow)
         val timezoneRequestBody = MultipartBody.Part.createFormData("timezone", "")
         val kordinatRequestBody =
@@ -315,7 +334,6 @@ class AttendanceFragment :
                     binding.loadingInclude.loading.visibility = View.GONE
 
                     val response = it.data!!
-                    val statusServer = response.status
                     val statusPresensi = response.data.status
                     val message = response.data.messages
                     if (statusPresensi == "Error") {
@@ -361,11 +379,21 @@ class AttendanceFragment :
 
     }
 
-    private fun getTime(): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        val date = Date()
-        return dateFormat.format(date)
-    }
+    private val putPhoto =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+
+                val selectedImageUris = it?.data?.extras?.get("data") as Bitmap
+                absen(selectedImageUris!!)
+
+            } else if (it == null) {
+                Toast.makeText(requireContext(), "Gambar tidak dapat di set", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Log.d("TAG", "Task Cancelled")
+            }
+
+        }
 
     private fun uriToMultipartBody(bitmap: Bitmap): MultipartBody.Part {
         val byteArrayOutputStream = ByteArrayOutputStream()
@@ -375,20 +403,11 @@ class AttendanceFragment :
         return MultipartBody.Part.createFormData("image", "image.png", requestFile)
     }
 
-    private val singlePermissionLaunch =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            Log.d(Constans.TAG, "permission is Granted: $isGranted")
-            if (isGranted) {
-                Log.d("TAG", "permission granted")
-//                Toast.makeText(requireContext(), "Permission camera is granted", Toast.LENGTH_SHORT)
-//                    .show()
-
-            } else {
-                Log.d(Constans.TAG, "Permission camera  : Permission Denied ")
-//                Toast.makeText(requireContext(), "Permission camera Denied ", Toast.LENGTH_SHORT)
-//                    .show()
-            }
-        }
+    private fun getTime(): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val date = Date()
+        return dateFormat.format(date)
+    }
 
     private fun getAddressAboveSDK29() {
         if (ActivityCompat.checkSelfPermission(
@@ -445,30 +464,6 @@ class AttendanceFragment :
             }
     }
 
-    private fun getAddressBelowSDK29() {
-        fusedLocationProviderClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                // Mendapatkan alamat pengguna berdasarkan lokasi yang diperoleh
-                val geocoder = Geocoder(requireContext(), Locale.getDefault())
-
-                val addresses = geocoder.getFromLocation(
-                    location?.latitude ?: 0.0,
-                    location?.longitude ?: 0.0,
-                    1
-                )
-                // Mengambil alamat dari objek Address dan menampilkannya pada TextView
-                val address: String? = addresses!![0].getAddressLine(0)
-                val city: String? = addresses[0].locality
-                val state: String? = addresses[0].adminArea
-                val country: String? = addresses[0].countryName
-                val postalCode: String? = addresses[0].postalCode
-                val knownName: String? = addresses[0].featureName
-
-                binding.currentLocation.text =
-                    "$address"
-            }
-    }
-
     private fun isLocationPermissionGranted(): Boolean {
         return ContextCompat.checkSelfPermission(
             requireActivity(),
@@ -498,7 +493,6 @@ class AttendanceFragment :
             }
         }
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     fun timeRun() {
 
@@ -526,12 +520,6 @@ class AttendanceFragment :
                 val formattedDateJam = sdfJam.format(Date(timestamp))
                 val formattedDateMenit = sdfMenit.format(Date(timestamp))
                 val formattedDateDetik = sdfDetik.format(Date(timestamp))
-//                Log.d("run jam", "Formatted date with system timezone: $formattedDate")
-
-//                val currentTime = System.currentTimeMillis()
-//                val seconds = (currentTime / 1000) % 60
-//                val minutes = (currentTime / (1000 * 60)) % 60
-//                val hours = (currentTime / (1000 * 60 * 60)) % 24
                 binding.tvTime.text =
                     "$formattedDateJam : $formattedDateMenit : $formattedDateDetik"
 
@@ -546,50 +534,6 @@ class AttendanceFragment :
         }
     }
 
-    fun cekGPS() {
-        // Cek apakah GPS sedang aktif
-        val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        if (!isGpsEnabled) {
-            // GPS tidak aktif, tampilkan dialog untuk meminta pengguna mengaktifkannya
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setMessage("GPS tidak aktif, aktifkan GPS?")
-                .setCancelable(false)
-                .setPositiveButton("Ya") { _, _ ->
-                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-                    enableAbsen()
-                }
-                .setNegativeButton("Tidak") { dialog, _ ->
-                    disableAbsen()
-                    dialog.cancel()
-                }
-            val alert = builder.create()
-            alert.show()
-        }
-    }
-
-
-    fun mematikanGPS() {
-        val locationManager =
-            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)?.let { isGPSOn ->
-            if (isGPSOn) {
-                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                startActivity(intent)
-            }
-        }
-    }
-
-    fun menyalakanGPS() {
-        val locationManager =
-            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)?.let { isGPSOn ->
-            if (!isGPSOn) {
-                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                startActivity(intent)
-            }
-        }
-    }
-
     fun enableAbsen() {
         binding.imgFinger.background = resources.getDrawable(R.color._danger)
         binding.btnAbsen.isClickable = true
@@ -600,40 +544,16 @@ class AttendanceFragment :
         binding.btnAbsen.isClickable = false
     }
 
-    override fun onResume() {
-        super.onResume()
-        handler.postDelayed(runnable, 0)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        handler.removeCallbacks(runnable)
-    }
-
     private fun runLoading() {
         binding.searchLocationLoading.visibility = View.VISIBLE
+        binding.searchLocationLoading.playAnimation()
     }
 
     private fun stopLoading() {
-        binding.searchLocationLoading.visibility = View.GONE
-        binding.searchLocationLoading.cancelAnimation()
+        handler.postDelayed({
+            binding.searchLocationLoading.visibility = View.GONE
+            binding.searchLocationLoading.cancelAnimation()
+        }, 2000)
     }
 
-//    override fun onConnectionAvailable() {
-//        super.onConnectionAvailable()
-//        binding.apply {
-//            toolbar.toolbar.visibility = View.GONE
-//            rcycleview.visibility = View.VISIBLE
-//            noInternetConnection.ivNoConnection.visibility = View.GONE
-//        }
-//    }
-//
-//    override fun onConnectionLost() {
-//        super.onConnectionLost()
-//        binding.apply {
-////            toolbar.toolbar.visibility = View.GONE
-//            rcycleview.visibility = View.GONE
-//            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-//        }
-//    }
 }

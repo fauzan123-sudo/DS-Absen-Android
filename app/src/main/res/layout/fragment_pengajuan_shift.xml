@@ -96,6 +96,33 @@
                     android:paddingVertical="@dimen/_15sdp"
                     app:layout_constraintTop_toBottomOf="@+id/tv_keterangan_perizinan_create" />
 
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:id="@+id/linearView"
+                    app:layout_constraintTop_toBottomOf="@+id/edtKeterangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_jam"
+                        android:textColor="@color/_dark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/tv_menit"
+                        android:textColor="@color/_dark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/tv_detik"
+                        android:textColor="@color/_dark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

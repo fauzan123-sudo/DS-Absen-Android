@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.infinity.dsmabsen.model.*
+import com.infinity.dsmabsen.model.AktivitasResponse
+import com.infinity.dsmabsen.model.SendAktivitasResponse
 import com.infinity.dsmabsen.repository.AktivitasRepository
-import com.infinity.dsmabsen.repository.AttendanceRepository
 import com.infinity.dsmabsen.repository.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

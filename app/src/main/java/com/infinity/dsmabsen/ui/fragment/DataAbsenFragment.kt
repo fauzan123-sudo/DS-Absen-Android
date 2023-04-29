@@ -20,13 +20,10 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.adapter.AttendanceAdapter
 import com.infinity.dsmabsen.databinding.FragmentDataAbsenBinding
-import com.infinity.dsmabsen.helper.Constans
-import com.infinity.dsmabsen.helper.Constans.IMAGE_URL
 import com.infinity.dsmabsen.helper.TokenManager
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.model.DataXX
-import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXX
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.viewModel.AttendanceViewModel
 import com.infinity.dsmabsen.ui.viewModel.UserProfileViewModel
@@ -52,7 +49,6 @@ class DataAbsenFragment :
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-
 
             userProfileViewModel.profileUserRequest(nip)
             userProfileViewModel.profileUserLivedata.observe(viewLifecycleOwner) {
@@ -134,10 +130,9 @@ class DataAbsenFragment :
                             binding.imgNoData1.visibility = View.VISIBLE
                         } else {
                             binding.pieChart.visibility = View.VISIBLE
-                            binding.imgNoData1.visibility = View.VISIBLE
+                            binding.imgNoData1.visibility = View.GONE
                             setPieChart(data)
                         }
-
                     }
 
                     is NetworkResult.Loading -> {
@@ -159,80 +154,64 @@ class DataAbsenFragment :
         }
     }
 
-    private fun FragmentDataAbsenBinding.setPieChart(data: DataXX) {
-        val pieEntries = ArrayList<PieEntry>()
-        Log.d("data absen", data.toString())
-        pieEntries.add(PieEntry(data.masuk.toFloat(), "Masuk"))
-        pieEntries.add(PieEntry(data.izin.toFloat(), "Izin"))
-        pieEntries.add(PieEntry(data.alfa.toFloat(), "Alfa"))
-        pieEntries.add(PieEntry(data.telat.toFloat(), "Telat"))
+    private fun setPieChart(data: DataXX) {
+        binding.apply {
+            val pieEntries = ArrayList<PieEntry>()
+            Log.d("data absen", data.toString())
+            pieEntries.add(PieEntry(data.masuk.toFloat(), "Masuk"))
+            pieEntries.add(PieEntry(data.izin.toFloat(), "Izin"))
+            pieEntries.add(PieEntry(data.alfa.toFloat(), "Alfa"))
+            pieEntries.add(PieEntry(data.telat.toFloat(), "Telat"))
 
-        val colors = ArrayList<Int>()
-        colors.add(ContextCompat.getColor(requireContext(), R.color._success))
-        colors.add(ContextCompat.getColor(requireContext(), R.color._primary))
-        colors.add(ContextCompat.getColor(requireContext(), R.color._danger))
-        colors.add(ContextCompat.getColor(requireContext(), R.color._secondary))
+            val colors = ArrayList<Int>()
+            colors.add(ContextCompat.getColor(requireContext(), R.color._success))
+            colors.add(ContextCompat.getColor(requireContext(), R.color._primary))
+            colors.add(ContextCompat.getColor(requireContext(), R.color._danger))
+            colors.add(ContextCompat.getColor(requireContext(), R.color._secondary))
 
-        val pieDataSet = PieDataSet(pieEntries, "")
-        pieDataSet.colors = colors
-        pieDataSet.sliceSpace = 1f
-        val boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD)
-        pieDataSet.valueTypeface = boldTypeface
+            val pieDataSet = PieDataSet(pieEntries, "")
+            pieDataSet.colors = colors
+            pieDataSet.sliceSpace = 1f
+            val boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD)
+            pieDataSet.valueTypeface = boldTypeface
 
-        val pieData = PieData(pieDataSet)
-        pieData.setDrawValues(true)
-        pieData.setValueTextColor(Color.WHITE)
-        pieData.setValueFormatter(PercentFormatter())
-        pieData.setValueTextSize(14f)
+            val pieData = PieData(pieDataSet)
+            pieData.setDrawValues(true)
+            pieData.setValueTextColor(Color.WHITE)
+            pieData.setValueFormatter(PercentFormatter())
+            pieData.setValueTextSize(14f)
 
 //        Atur deskripsi chart
-        pieChart.description.isEnabled = false
-        pieChart.setEntryLabelTextSize(134f)
-        pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
-        pieChart.dragDecelerationFrictionCoef = 0.95f
-        pieChart.isDrawHoleEnabled = true
-        pieChart.setHoleColor(Color.WHITE)
+            pieChart.description.isEnabled = false
+            pieChart.setEntryLabelTextSize(134f)
+            pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+            pieChart.dragDecelerationFrictionCoef = 0.95f
+            pieChart.isDrawHoleEnabled = true
+            pieChart.setHoleColor(Color.WHITE)
 
-        // on below line we are setting circle color and alpha
-        pieChart.setTransparentCircleColor(Color.WHITE)
-        pieChart.setTransparentCircleAlpha(110)
+            // on below line we are setting circle color and alpha
+            pieChart.setTransparentCircleColor(Color.WHITE)
+            pieChart.setTransparentCircleAlpha(110)
 
-        // on  below line we are setting hole radius
-        pieChart.holeRadius = 58f
-        pieChart.transparentCircleRadius = 61f
+            // on  below line we are setting hole radius
+            pieChart.holeRadius = 58f
+            pieChart.transparentCircleRadius = 61f
 
-        // on below line we are setting center text
-        pieChart.setDrawCenterText(true)
+            // on below line we are setting center text
+            pieChart.setDrawCenterText(true)
 
-        pieChart.setDrawEntryLabels(false)
+            pieChart.setDrawEntryLabels(false)
 
-        // Atur data yang akan ditampilkan pada chart
-        pieChart.data = pieData
-        pieChart.invalidate()
+            // Atur data yang akan ditampilkan pada chart
+            pieChart.data = pieData
+            pieChart.invalidate()
 
-        //             set value formatter
-        pieDataSet.valueFormatter = object : ValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                return value.toInt().toString()
+            //             set value formatter
+            pieDataSet.valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return value.toInt().toString()
+                }
             }
         }
     }
-//    override fun onConnectionAvailable() {
-//        super.onConnectionAvailable()
-//        binding.apply {
-//            toolbarUser.visibility = View.GONE
-//            rcycleview.visibility = View.VISIBLE
-//            noInternetConnection.ivNoConnection.visibility = View.GONE
-//        }
-//    }
-//
-//    override fun onConnectionLost() {
-//        super.onConnectionLost()
-//        binding.apply {
-//            toolbar.visibility = View.GONE
-//            rcycleview.visibility = View.GONE
-//            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-//        }
-//    }
-
 }

@@ -1,0 +1,306 @@
+Index: app/src/main/java/com/infinity/dsmabsen/ui/activity/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.infinity.dsmabsen.ui.activity\r\n\r\nimport android.content.DialogInterface\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.widget.Toast\r\nimport androidx.activity.OnBackPressedCallback\r\nimport androidx.activity.viewModels\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.appcompat.content.res.AppCompatResources\r\nimport androidx.navigation.NavController\r\nimport androidx.navigation.fragment.NavHostFragment\r\nimport androidx.navigation.fragment.findNavController\r\nimport androidx.navigation.ui.setupWithNavController\r\nimport com.infinity.dsmabsen.R\r\nimport com.infinity.dsmabsen.databinding.ActivityMainBinding\r\nimport com.infinity.dsmabsen.databinding.CustomUbahPasswordBinding\r\nimport com.infinity.dsmabsen.helper.ConnectionLiveData\r\nimport com.infinity.dsmabsen.helper.TokenManager\r\nimport com.infinity.dsmabsen.helper.handleApiError\r\nimport com.infinity.dsmabsen.helper.handleApiErrorActivity\r\nimport com.infinity.dsmabsen.model.DataX\r\nimport com.infinity.dsmabsen.repository.NetworkResult\r\nimport com.infinity.dsmabsen.ui.fragment.BerandaFragmentDirections\r\nimport com.infinity.dsmabsen.ui.viewModel.PasswordViewModel\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\nimport javax.inject.Inject\r\n\r\n@AndroidEntryPoint\r\nclass MainActivity : AppCompatActivity() {\r\n\r\n//    Todo Gone lek\r\n\r\n    @Inject\r\n    lateinit var tokenManager: TokenManager\r\n\r\n    private val viewModel: PasswordViewModel by viewModels()\r\n    lateinit var navController: NavController\r\n    private lateinit var cld: ConnectionLiveData\r\n    lateinit var binding: ActivityMainBinding\r\n    val savedUser = Paper.book().read<DataX>(\"user\")\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityMainBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n        checkNetworkConnection()\r\n        checkPassword(savedUser)\r\n        showBottomNav(savedUser)\r\n\r\n\r\n        val navHostFragment =\r\n            supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment\r\n        navController = navHostFragment.findNavController()\r\n\r\n//        Bottom Navigation\r\n        with(binding) {\r\n            bottomNavigationView.setupWithNavController(navController)\r\n            navController.addOnDestinationChangedListener { _, destination, _ ->\r\n//                Log.d(\"Destination\", \"bottom nav show\")\r\n                when (destination.id) {\r\n                    R.id.homeFragment -> {\r\n                        binding.bottomNavigationView.visibility = View.VISIBLE\r\n                        Log.d(\"in beranda\", \"\")\r\n                    }\r\n                    R.id.visitFragment2 -> {\r\n                        binding.bottomNavigationView.visibility = View.VISIBLE\r\n                        Log.d(\"in in visit\", \"\")\r\n                    }\r\n                    R.id.attendanceFragment -> {\r\n                        binding.bottomNavigationView.visibility = View.VISIBLE\r\n                        Log.d(\"in attendance\", \"\")\r\n                    }\r\n                    R.id.dataAbsenFragment -> {\r\n                        binding.bottomNavigationView.visibility = View.VISIBLE\r\n                        Log.d(\"in data absen\", \"\")\r\n                    }\r\n                    R.id.profileFragment -> {\r\n                        binding.bottomNavigationView.visibility = View.VISIBLE\r\n                        Log.d(\"in profile\", \"\")\r\n                    }\r\n                    else -> {\r\n                        binding.bottomNavigationView.visibility = View.GONE\r\n                    }\r\n                }\r\n            }\r\n\r\n            val callback = object : OnBackPressedCallback(true) {\r\n                override fun handleOnBackPressed() {\r\n                    if (navController.currentDestination?.id == R.id.berandaFragment) {\r\n                        val builder = AlertDialog.Builder(this@MainActivity)\r\n                        builder.setTitle(\"Konfirmasi\")\r\n                        builder.setMessage(\"Apakah Anda yakin ingin keluar dari aplikasi?\")\r\n                        builder.setPositiveButton(\"Ya\") { _, _ ->\r\n                            finish()\r\n                        }\r\n\r\n                        builder.setNegativeButton(\"Tidak\") { dialog, _ ->\r\n                            dialog.dismiss()\r\n                        }\r\n\r\n                        val dialog = builder.create()\r\n                        dialog.show()\r\n                    } else {\r\n                        navController.navigateUp()\r\n                    }\r\n                }\r\n            }\r\n            onBackPressedDispatcher.addCallback(this@MainActivity, callback)\r\n        }\r\n    }\r\n\r\n    private fun checkPassword(savedUser: DataX?) {\r\n        viewModel.passwordCheckRequest(savedUser!!.nip)\r\n        viewModel.passwordCheckLiveData.observe(this) {\r\n            when (it) {\r\n                is NetworkResult.Success -> {\r\n                    val response = it.data!!\r\n                    val status = response.data.status\r\n                    if (status == 0) {\r\n                        val dialogBinding =\r\n                            CustomUbahPasswordBinding.inflate(LayoutInflater.from(this))\r\n\r\n                        val builder = AlertDialog.Builder(this)\r\n                        builder\r\n                            .setTitle(\"Ubah Password\")\r\n                            .setView(dialogBinding.root)\r\n                            .setCancelable(false)\r\n                            .setPositiveButton(\"Ubah\") { dialog, which ->\r\n                            }\r\n\r\n\r\n                        // Show the dialog\r\n                        val dialog = builder.create()\r\n                        dialog.show()\r\n                        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {\r\n                            val oldPassword = dialogBinding.etOldPassword.text.toString()\r\n                            val newPassword = dialogBinding.etNewPassword.text.toString()\r\n                            val loadings = dialogBinding.loadings.loading\r\n                            if (oldPassword.isNotEmpty() && newPassword.isNotEmpty()) {\r\n                                if (oldPassword == newPassword) {\r\n                                    dialogBinding.errorText.text =\r\n                                        \"Password lama dan baru tidak boleh sama\"\r\n                                    dialogBinding.errorText.visibility =\r\n                                        View.VISIBLE\r\n                                } else {\r\n                                    viewModel.ubahPasswordRequest(\r\n                                        savedUser!!.nip,\r\n                                        oldPassword, newPassword\r\n                                    )\r\n                                    viewModel.ubahPasswordLiveData.observe(this) { ubahPassword ->\r\n                                        loadings.visibility = View.GONE\r\n                                        when (ubahPassword) {\r\n                                            is NetworkResult.Success -> {\r\n                                                val responses = ubahPassword.data!!\r\n                                                val message = responses.data.message\r\n                                                val statuses = responses.data.status\r\n\r\n                                                if (statuses == 0) {\r\n                                                    loadings.visibility = View.GONE\r\n                                                    dialogBinding.errorText.visibility =\r\n                                                        View.VISIBLE\r\n                                                    dialogBinding.errorText.text = message\r\n                                                } else {\r\n                                                    dialog.dismiss()\r\n                                                    Toast.makeText(\r\n                                                        this,\r\n                                                        message,\r\n                                                        Toast.LENGTH_SHORT\r\n                                                    )\r\n                                                        .show()\r\n                                                }\r\n                                            }\r\n\r\n                                            is NetworkResult.Loading -> {\r\n                                                loadings.visibility = View.VISIBLE\r\n                                            }\r\n\r\n                                            is NetworkResult.Error -> {\r\n                                                handleApiErrorActivity(ubahPassword.message)\r\n                                                loadings.visibility = View.GONE\r\n                                            }\r\n                                        }\r\n                                    }\r\n//                                val messages = \"Berhasil\"\r\n//                                if (oldPassword == newPassword) {\r\n//                                    dialogBinding.errorText.text =\r\n//                                        \"Password lama dan baru tidak boleh sama\"\r\n//                                } else {\r\n//                                    dialogBinding.errorText.text = messages\r\n//                                    dialogBinding.errorText.visibility = View.VISIBLE\r\n//                                    viewModel.ubahPasswordRequest(\r\n//                                        savedUser!!.nip,\r\n//                                        oldPassword,\r\n//                                        newPassword\r\n//                                    )\r\n//\r\n//                                    dialog.dismiss()\r\n//                                }\r\n                                }\r\n                            } else {\r\n                                val messages = \"Isi semua kolom password terlebih dahulu\"\r\n                                dialogBinding.errorText.text = messages\r\n                                dialogBinding.errorText.visibility = View.VISIBLE\r\n                            }\r\n                        }\r\n                    }\r\n                }\r\n\r\n\r\n                is NetworkResult.Loading -> {\r\n\r\n                }\r\n\r\n                is NetworkResult.Error -> {\r\n                    Log.d(\"TAG\", it.message.toString())\r\n                    handleApiErrorActivity(it.message)\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n    private fun showBottomNav(visit: DataX?) {\r\n        val visited = visit!!.eselon\r\n        if (visited < \"3\") {\r\n            binding.bottomNavigationView.menu.removeItem(R.id.visitFragment2)\r\n        }\r\n    }\r\n\r\n    override fun onSupportNavigateUp(): Boolean {\r\n        return navController.navigateUp() || super.onSupportNavigateUp()\r\n    }\r\n\r\n    private fun checkNetworkConnection() {\r\n        cld = ConnectionLiveData(application)\r\n\r\n        cld.observe(this) { isConnected ->\r\n//            navController.addOnDestinationChangedListener { _, destination, _ ->\r\n\r\n            if (isConnected) {\r\n                Log.d(\"is connect\", \"bottom nav show\")\r\n                binding.fragmentContainerView2.visibility = View.VISIBLE\r\n                binding.noInternetConnection.ivNoConnection.visibility = View.GONE\r\n//                    binding.bottomNavigationView.visibility = View.VISIBLE\r\n//                        if (destination.id == R.id.berandaFragment) {\r\n//                            binding.bottomNavigationView.visibility = View.VISIBLE\r\n//                            Log.d(\"fragment\", \"sekarang diberanda\")\r\n//                        }\r\n\r\n//                        if (destination.id == R.id.homeFragment ||\r\n//                            destination.id == R.id.visitFragment2 ||\r\n//                            destination.id == R.id.attendanceFragment ||\r\n//                            destination.id == R.id.dataAbsenFragment ||\r\n//                            destination.id == R.id.profileFragment\r\n//                        ) {\r\n//                            binding.bottomNavigationView.visibility = View.VISIBLE\r\n//                        } else {\r\n//                            binding.bottomNavigationView.visibility = View.VISIBLE\r\n//                        }\r\n            } else {\r\n                Log.d(\"no connect \", \"bottom nav hide\")\r\n                binding.fragmentContainerView2.visibility = View.GONE\r\n                binding.bottomNavigationView.visibility = View.GONE\r\n                binding.noInternetConnection.ivNoConnection.visibility = View.VISIBLE\r\n            }\r\n//            }\r\n        }\r\n    }\r\n\r\n    fun toast() {\r\n        Toast.makeText(this, \"fauzan\", Toast.LENGTH_SHORT).show()\r\n    }\r\n\r\n    fun hideMyBottomNav() {\r\n        Log.d(\"BN\", \"HIDE IN MAIN\")\r\n        binding.bottomNavigationView.visibility = View.GONE\r\n    }\r\n\r\n    fun showMyBottomNav() {\r\n        Log.d(\"BN\", \"SHOW IN MAIN\")\r\n        binding.bottomNavigationView.visibility = View.VISIBLE\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/infinity/dsmabsen/ui/activity/MainActivity.kt b/app/src/main/java/com/infinity/dsmabsen/ui/activity/MainActivity.kt
+--- a/app/src/main/java/com/infinity/dsmabsen/ui/activity/MainActivity.kt	
++++ b/app/src/main/java/com/infinity/dsmabsen/ui/activity/MainActivity.kt	
+@@ -1,7 +1,11 @@
+ package com.infinity.dsmabsen.ui.activity
+ 
++import android.content.Context
+ import android.content.DialogInterface
++import android.content.Intent
++import android.location.LocationManager
+ import android.os.Bundle
++import android.provider.Settings
+ import android.util.Log
+ import android.view.LayoutInflater
+ import android.view.View
+@@ -10,7 +14,6 @@
+ import androidx.activity.viewModels
+ import androidx.appcompat.app.AlertDialog
+ import androidx.appcompat.app.AppCompatActivity
+-import androidx.appcompat.content.res.AppCompatResources
+ import androidx.navigation.NavController
+ import androidx.navigation.fragment.NavHostFragment
+ import androidx.navigation.fragment.findNavController
+@@ -20,11 +23,9 @@
+ import com.infinity.dsmabsen.databinding.CustomUbahPasswordBinding
+ import com.infinity.dsmabsen.helper.ConnectionLiveData
+ import com.infinity.dsmabsen.helper.TokenManager
+-import com.infinity.dsmabsen.helper.handleApiError
+ import com.infinity.dsmabsen.helper.handleApiErrorActivity
+ import com.infinity.dsmabsen.model.DataX
+ import com.infinity.dsmabsen.repository.NetworkResult
+-import com.infinity.dsmabsen.ui.fragment.BerandaFragmentDirections
+ import com.infinity.dsmabsen.ui.viewModel.PasswordViewModel
+ import dagger.hilt.android.AndroidEntryPoint
+ import io.paperdb.Paper
+@@ -33,10 +34,9 @@
+ @AndroidEntryPoint
+ class MainActivity : AppCompatActivity() {
+ 
+-//    Todo Gone lek
+-
+     @Inject
+     lateinit var tokenManager: TokenManager
++//    private lateinit var gpsStatusLiveData: GPSStatusLiveData
+ 
+     private val viewModel: PasswordViewModel by viewModels()
+     lateinit var navController: NavController
+@@ -50,6 +50,7 @@
+         checkNetworkConnection()
+         checkPassword(savedUser)
+         showBottomNav(savedUser)
++//        checkGps()
+ 
+ 
+         val navHostFragment =
+@@ -223,7 +224,6 @@
+         }
+     }
+ 
+-
+     private fun showBottomNav(visit: DataX?) {
+         val visited = visit!!.eselon
+         if (visited < "3") {
+@@ -235,6 +235,37 @@
+         return navController.navigateUp() || super.onSupportNavigateUp()
+     }
+ 
++    private fun checkGps(){
++        val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
++
++        var gps_enabled = false
++        var network_enabled = false
++
++        // Check if GPS provider is enabled
++        try {
++            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
++        } catch (ex: Exception) {
++            Toast.makeText(this, "chat1", Toast.LENGTH_SHORT).show()
++        }
++        // Check if network provider is enabled
++        try {
++            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
++        } catch (ex: Exception) {
++            Toast.makeText(this, "chat2", Toast.LENGTH_SHORT).show()
++        }
++
++        // If both GPS and Network providers are disabled, prompt the user to enable them
++        if (!gps_enabled && !network_enabled) {
++            AlertDialog.Builder(this)
++                .setMessage("gps tidak aktif")
++                .setPositiveButton("Ya") { _, _ ->
++                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
++                }
++                .setNegativeButton("Batal", null)
++                .show()
++        }
++    }
++
+     private fun checkNetworkConnection() {
+         cld = ConnectionLiveData(application)
+ 
+@@ -245,22 +276,7 @@
+                 Log.d("is connect", "bottom nav show")
+                 binding.fragmentContainerView2.visibility = View.VISIBLE
+                 binding.noInternetConnection.ivNoConnection.visibility = View.GONE
+-//                    binding.bottomNavigationView.visibility = View.VISIBLE
+-//                        if (destination.id == R.id.berandaFragment) {
+-//                            binding.bottomNavigationView.visibility = View.VISIBLE
+-//                            Log.d("fragment", "sekarang diberanda")
+-//                        }
+ 
+-//                        if (destination.id == R.id.homeFragment ||
+-//                            destination.id == R.id.visitFragment2 ||
+-//                            destination.id == R.id.attendanceFragment ||
+-//                            destination.id == R.id.dataAbsenFragment ||
+-//                            destination.id == R.id.profileFragment
+-//                        ) {
+-//                            binding.bottomNavigationView.visibility = View.VISIBLE
+-//                        } else {
+-//                            binding.bottomNavigationView.visibility = View.VISIBLE
+-//                        }
+             } else {
+                 Log.d("no connect ", "bottom nav hide")
+                 binding.fragmentContainerView2.visibility = View.GONE
+Index: app/src/main/java/com/infinity/dsmabsen/ui/fragment/PengajuanReimbursementFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.infinity.dsmabsen.ui.fragment\r\n\r\nimport DataSpinnerAdapter\r\nimport android.Manifest\r\nimport android.app.Activity\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport android.content.pm.PackageManager\r\nimport android.graphics.Bitmap\r\nimport android.graphics.drawable.BitmapDrawable\r\nimport android.location.LocationManager\r\nimport android.net.Uri\r\nimport android.os.Bundle\r\nimport android.provider.MediaStore\r\nimport android.util.Log\r\nimport android.view.*\r\nimport android.widget.AdapterView\r\nimport android.widget.TextView\r\nimport android.widget.Toast\r\nimport androidx.activity.result.contract.ActivityResultContracts\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.appcompat.widget.Toolbar\r\nimport androidx.core.app.ActivityCompat\r\nimport androidx.core.content.ContextCompat\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.navigation.fragment.findNavController\r\nimport androidx.navigation.fragment.navArgs\r\nimport com.infinity.dsmabsen.R\r\nimport com.infinity.dsmabsen.databinding.FragmentPengajuanReimbursementBinding\r\nimport com.infinity.dsmabsen.helper.handleApiError\r\nimport com.infinity.dsmabsen.model.DataX\r\nimport com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXX\r\nimport com.infinity.dsmabsen.repository.NetworkResult\r\nimport com.infinity.dsmabsen.ui.activity.MainActivity\r\nimport com.infinity.dsmabsen.ui.viewModel.ReimbursementViewModel\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\nimport okhttp3.MediaType.Companion.toMediaTypeOrNull\r\nimport okhttp3.MultipartBody\r\nimport okhttp3.RequestBody.Companion.toRequestBody\r\nimport java.io.ByteArrayOutputStream\r\n\r\n@AndroidEntryPoint\r\nclass PengajuanReimbursementFragment :\r\n    BaseFragment<FragmentPengajuanReimbursementBinding>(FragmentPengajuanReimbursementBinding::inflate) {\r\n    private lateinit var adapter: DataSpinnerAdapter\r\n    private lateinit var locationManager: LocationManager\r\n\r\n    private val GALLERY_PERMISSION_CODE = 101\r\n\r\n    // Konstanta untuk kode permintaan gambar\r\n    private val CAMERA_REQUEST_CODE = 200\r\n    private val GALLERY_REQUEST_CODE = 201\r\n\r\n    private var selectedJenisReimbursement: DataXXXXXXXXXXXXXXXXXXXXXXXXXXX? = null\r\n    var kodeReimbursement2: String? = null\r\n    val viewModel: ReimbursementViewModel by viewModels()\r\n    val savedUser = Paper.book().read<DataX>(\"user\")\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n        hideBottomNavigation()\r\n        setHasOptionsMenu(true)\r\n        setupToolbar(\"Ajukan Reimbursement\")\r\n        binding.apply {\r\n            val myActivities = activity as MainActivity\r\n            myActivities.hideMyBottomNav()\r\n            addImage.setOnClickListener {\r\n                uploadFiles()\r\n            }\r\n\r\n            viewModel.requestSpinnerReimbursement()\r\n            viewModel.getSpinnerReimbursementLiveData.observe(viewLifecycleOwner) {\r\n                when (it) {\r\n                    is NetworkResult.Success -> {\r\n                        loadingInclude.loading.visibility = View.GONE\r\n                        val response = it.data!!\r\n                        val data = response.data\r\n                        adapter = DataSpinnerAdapter(requireContext(), data)\r\n                        spinnerJenisReimbursement.adapter = adapter\r\n                        spinnerJenisReimbursement.onItemSelectedListener =\r\n                            object : AdapterView.OnItemSelectedListener {\r\n                                override fun onItemSelected(\r\n                                    parent: AdapterView<*>?, view: View?, position: Int, id: Long\r\n                                ) {\r\n                                    val clickedItem: DataXXXXXXXXXXXXXXXXXXXXXXXXXXX =\r\n                                        parent?.getItemAtPosition(position) as DataXXXXXXXXXXXXXXXXXXXXXXXXXXX\r\n                                    val kodeReimbursement = clickedItem.kode_reimbursement\r\n                                    kodeReimbursement2 = kodeReimbursement\r\n                                }\r\n\r\n                                override fun onNothingSelected(p0: AdapterView<*>?) {\r\n                                    selectedJenisReimbursement = null\r\n                                }\r\n\r\n                            }\r\n                    }\r\n\r\n                    is NetworkResult.Loading -> {\r\n                        loadingInclude.loading.visibility = View.VISIBLE\r\n\r\n                    }\r\n\r\n                    is NetworkResult.Error -> {\r\n                        loadingInclude.loading.visibility = View.GONE\r\n                        handleApiError(it.message)\r\n                    }\r\n                }\r\n            }\r\n\r\n        }\r\n        toolbar.setOnMenuItemClickListener { menuItem ->\r\n            var i = 0\r\n            when (menuItem.itemId) {\r\n                R.id.save -> {\r\n                    if (binding.edtNominal.text.isEmpty()) {\r\n                        binding.edtNominal.error = \"Harap isi bidang ini!!\"\r\n                        binding.edtNominal.requestFocus()\r\n                        i++\r\n                    }\r\n                    if (binding.edtKeterangan.text.isEmpty()) {\r\n                        binding.edtKeterangan.error = \"Harap isi bidang ini!!\"\r\n                        binding.edtKeterangan.requestFocus()\r\n                        i++\r\n                    }\r\n                    if (binding.imgUpload.drawable.constantState == resources.getDrawable(R.drawable.take_a_photo).constantState) {\r\n                        AlertDialog.Builder(requireContext())\r\n                            .setTitle(\"Peringatan!!\")\r\n                            .setMessage(\"Silahkan ambil gambar terlebih dahulu\")\r\n                            //    .setIcon(R.drawable.ic_warning)\r\n                            .setPositiveButton(\"Ok\") { _, _ ->\r\n                            }\r\n                            .create().show()\r\n                        i++\r\n                    }\r\n\r\n//                    if (args.codeBarcode == \"\" || args.codeBarcode.isEmpty()) {\r\n//                        Toast.makeText(requireContext(), \"args kosong\", Toast.LENGTH_SHORT).show()\r\n//                        i++\r\n//                    }\r\n\r\n                    if (i == 0) {\r\n                        saveReimbursement(savedUser)\r\n                    }\r\n                    true\r\n                }\r\n//\r\n//                R.id.scan -> {\r\n//                    scanBarcode()\r\n//                    true\r\n//                }\r\n\r\n                else -> false\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun uploadFiles() {\r\n        val pictureDialog = AlertDialog.Builder(requireContext())\r\n        pictureDialog.setTitle(\"Select Action\")\r\n        val pictureDialogItems = arrayOf(\"Take Photo With Camera\", \"Select Photo From Gallery\")\r\n        pictureDialog.setItems(pictureDialogItems) { _, which ->\r\n            when (which) {\r\n                0 -> takePictureFromCamera()\r\n                1 -> choosePictureFromGallery()\r\n            }\r\n        }\r\n        pictureDialog.show()\r\n    }\r\n\r\n    private fun takePictureFromCamera() {\r\n        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)\r\n        putPhoto.launch(intent)\r\n//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)\r\n//        startActivityForResult(intent, CAMERA_REQUEST_CODE)\r\n    }\r\n\r\n    private fun choosePictureFromGallery() {\r\n        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)\r\n        putImage.launch(intent)\r\n//        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)\r\n//        startActivityForResult(intent, GALLERY_REQUEST_CODE)\r\n    }\r\n\r\n    private val putImage =\r\n        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {\r\n            if (it.resultCode == Activity.RESULT_OK) {\r\n                try {\r\n                    val imageUri = it?.data?.data\r\n                    binding.imgUpload.setImageURI(imageUri)\r\n                    binding.imgUpload.visibility = View.VISIBLE\r\n                } catch (e: Exception) {\r\n                    Toast.makeText(requireContext(), \"Gagal memuat gambar\", Toast.LENGTH_SHORT).show()\r\n                }\r\n            }\r\n        }\r\n\r\n    private val putPhoto =\r\n        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {\r\n            if (it.resultCode == AppCompatActivity.RESULT_OK) {\r\n                val bitmap = it?.data?.extras?.get(\"data\") as Bitmap\r\n                binding.imgUpload.setImageBitmap(bitmap)\r\n                binding.imgUpload.visibility = View.VISIBLE\r\n            } else if (it == null) {\r\n//                binding.imageView.setImageResource(R.drawable.ic_launcher_background)\r\n                binding.imgUpload.visibility = View.GONE\r\n            } else {\r\n                Log.d(\"TAG\", \"Task Cancelled\")\r\n//                Toast.makeText(this, \"Task Cancelled\", Toast.LENGTH_SHORT).show()\r\n            }\r\n        }\r\n\r\n    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {\r\n        inflater.inflate(R.menu.toolbar_menu, menu)\r\n        val menuSave = menu.findItem(R.id.save)\r\n        val menuPlus = menu.findItem(R.id.add)\r\n        val menuLogout = menu.findItem(R.id.logout)\r\n        val menuScan = menu.findItem(R.id.scan)\r\n\r\n        menuScan.isVisible = false\r\n        menuLogout.isVisible = false\r\n        menuSave?.isVisible = true\r\n        menuPlus?.isVisible = false\r\n\r\n    }\r\n\r\n    private fun saveReimbursement(savedUser: DataX?) {\r\n\r\n        Log.d(\"click send reimbursement\", \"here\")\r\n        AlertDialog.Builder(requireContext())\r\n            .setMessage(\"Anda yakin ingin mengajukan reimbursement\")\r\n            //    .setIcon(R.drawable.ic_warning)\r\n            .setPositiveButton(\"Ya\") { _, _ ->\r\n                val nipRequestBody = MultipartBody.Part.createFormData(\"nip\", savedUser!!.nip)\r\n                val kodeReimbursementRequestBody =\r\n                    MultipartBody.Part.createFormData(\"kode_reimbursement\", kodeReimbursement2!!)\r\n                val nominalRequestBody =\r\n                    MultipartBody.Part.createFormData(\r\n                        \"nilai\",\r\n                        binding.edtNominal.text.toString()\r\n                    )\r\n                val keteranganRequestBody =\r\n                    MultipartBody.Part.createFormData(\r\n                        \"keterangan\",\r\n                        binding.edtKeterangan.text.toString()\r\n                    )\r\n\r\n                val bitmap: Bitmap = (binding.imgUpload.drawable as BitmapDrawable).bitmap\r\n                val photo = uriToMultipartBody(bitmap)\r\n                Log.d(\"sendData\", savedUser!!.nip)\r\n                Log.d(\r\n                    \"saveReimbursement\",\r\n                    \"nip = $nipRequestBody \\n \" +\r\n                            \"kodeReimbursement = $kodeReimbursementRequestBody \\n\" +\r\n                            \"nominal = $nominalRequestBody \\n\" +\r\n                            \"photo =  $photo \\n\" +\r\n                            \"keterangan = $keteranganRequestBody\"\r\n                )\r\n                viewModel.requestPengajuanReimbursement(\r\n                    nipRequestBody.body,\r\n                    kodeReimbursementRequestBody.body,\r\n                    nominalRequestBody.body,\r\n                    photo,\r\n                    keteranganRequestBody.body\r\n                )\r\n                viewModel.getPengajuanLiveData.observe(viewLifecycleOwner) {\r\n                    when (it) {\r\n                        is NetworkResult.Success -> {\r\n                            binding.apply {\r\n                                binding.loadingInclude.loading.visibility = View.GONE\r\n                                scrollView2.visibility = View.VISIBLE\r\n                            }\r\n                            val response = it.data!!\r\n                            val messages = response.data.messages\r\n                            val builders = AlertDialog.Builder(requireContext())\r\n                            Log.d(\"pesan\", messages)\r\n                            builders.setMessage(messages)\r\n                                .setNegativeButton(\"Ya\") { dialog, _ ->\r\n                                    dialog.cancel()\r\n                                }\r\n                            val alert = builders.create()\r\n                            alert.show()\r\n                            findNavController().popBackStack()\r\n//                            requireActivity().onBackPressed()\r\n                        }\r\n\r\n                        is NetworkResult.Loading -> {\r\n                            binding.apply {\r\n                                scrollView2.visibility = View.GONE\r\n                                binding.loadingInclude.loading.visibility = View.VISIBLE\r\n                            }\r\n                        }\r\n\r\n                        is NetworkResult.Error -> {\r\n                            binding.apply {\r\n                                scrollView2.visibility = View.VISIBLE\r\n                                binding.loadingInclude.loading.visibility = View.GONE\r\n                            }\r\n                            handleApiError(it.message)\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n            .setNegativeButton(\"Tidak\") { dialog, _ ->\r\n                dialog.dismiss()\r\n            }\r\n            .create().show()\r\n    }\r\n\r\n    private fun uriToMultipartBody(bitmap: Bitmap): MultipartBody.Part {\r\n        val byteArrayOutputStream = ByteArrayOutputStream()\r\n        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)\r\n        val byteArray = byteArrayOutputStream.toByteArray()\r\n        val requestFile = byteArray.toRequestBody(\"image/png\".toMediaTypeOrNull())\r\n        return MultipartBody.Part.createFormData(\"file\", \"image.png\", requestFile)\r\n    }\r\n\r\n    override fun onConnectionAvailable() {\r\n        super.onConnectionAvailable()\r\n        binding.apply {\r\n            toolbar.toolbar.visibility = View.VISIBLE\r\n            scrollView2.visibility = View.VISIBLE\r\n            noInternetConnection.ivNoConnection.visibility = View.GONE\r\n        }\r\n    }\r\n\r\n    override fun onConnectionLost() {\r\n        super.onConnectionLost()\r\n        binding.apply {\r\n            toolbar.toolbar.visibility = View.GONE\r\n            scrollView2.visibility = View.GONE\r\n            noInternetConnection.ivNoConnection.visibility = View.VISIBLE\r\n        }\r\n    }\r\n\r\n    override fun onResume() {\r\n        Log.d(\"TAG\", \"onResume: \")\r\n        hideBottomNavigation()\r\n        val myActivities = activity as MainActivity\r\n        myActivities.hideMyBottomNav()\r\n        super.onResume()\r\n    }\r\n\r\n    override fun onStart() {\r\n        Log.d(\"TAG\", \"onStart: \")\r\n        hideBottomNavigation()\r\n        val myActivities = activity as MainActivity\r\n        myActivities.hideMyBottomNav()\r\n        super.onStart()\r\n    }\r\n\r\n    override fun onPause() {\r\n        Log.d(\"TAG\", \"onPause: \")\r\n        hideBottomNavigation()\r\n        val myActivities = activity as MainActivity\r\n        myActivities.hideMyBottomNav()\r\n        super.onPause()\r\n    }\r\n\r\n    override fun onStop() {\r\n        Log.d(\"TAG\", \"onStop: \")\r\n        hideBottomNavigation()\r\n        val myActivities = activity as MainActivity\r\n        myActivities.hideMyBottomNav()\r\n        super.onStop()\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        Log.d(\"TAG\", \"onDestroyView: \")\r\n        showBottomNavigation()\r\n        super.onDestroyView()\r\n    }\r\n\r\n    override fun onDetach() {\r\n        super.onDetach()\r\n        Log.d(\"TAG\", \"onDetach: \")\r\n    }\r\n\r\n    override fun onAttach(context: Context) {\r\n        super.onAttach(context)\r\n        Log.d(\"TAG\", \"onAttach: \")\r\n    }\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n//        hideBottomNavigation()\r\n        Log.d(\"TAG\", \"onCreate: \")\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/infinity/dsmabsen/ui/fragment/PengajuanReimbursementFragment.kt b/app/src/main/java/com/infinity/dsmabsen/ui/fragment/PengajuanReimbursementFragment.kt
+--- a/app/src/main/java/com/infinity/dsmabsen/ui/fragment/PengajuanReimbursementFragment.kt	
++++ b/app/src/main/java/com/infinity/dsmabsen/ui/fragment/PengajuanReimbursementFragment.kt	
+@@ -31,6 +31,7 @@
+ import com.infinity.dsmabsen.helper.handleApiError
+ import com.infinity.dsmabsen.model.DataX
+ import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXX
++import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ import com.infinity.dsmabsen.repository.NetworkResult
+ import com.infinity.dsmabsen.ui.activity.MainActivity
+ import com.infinity.dsmabsen.ui.viewModel.ReimbursementViewModel
+@@ -45,14 +46,6 @@
+ class PengajuanReimbursementFragment :
+     BaseFragment<FragmentPengajuanReimbursementBinding>(FragmentPengajuanReimbursementBinding::inflate) {
+     private lateinit var adapter: DataSpinnerAdapter
+-    private lateinit var locationManager: LocationManager
+-
+-    private val GALLERY_PERMISSION_CODE = 101
+-
+-    // Konstanta untuk kode permintaan gambar
+-    private val CAMERA_REQUEST_CODE = 200
+-    private val GALLERY_REQUEST_CODE = 201
+-
+     private var selectedJenisReimbursement: DataXXXXXXXXXXXXXXXXXXXXXXXXXXX? = null
+     var kodeReimbursement2: String? = null
+     val viewModel: ReimbursementViewModel by viewModels()
+@@ -92,7 +85,6 @@
+                                 override fun onNothingSelected(p0: AdapterView<*>?) {
+                                     selectedJenisReimbursement = null
+                                 }
+-
+                             }
+                     }
+ 
+@@ -190,7 +182,8 @@
+                     binding.imgUpload.setImageURI(imageUri)
+                     binding.imgUpload.visibility = View.VISIBLE
+                 } catch (e: Exception) {
+-                    Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT).show()
++                    Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT)
++                        .show()
+                 }
+             }
+         }
+@@ -225,15 +218,22 @@
+     }
+ 
+     private fun saveReimbursement(savedUser: DataX?) {
+-
+         Log.d("click send reimbursement", "here")
++        val selectedItem =
++            binding.spinnerJenisReimbursement.selectedItem as DataXXXXXXXXXXXXXXXXXXXXXXXXXXX?
++        if (selectedItem != null) {
++            Log.d("MyActivity", "Current Visit Code: ${selectedItem.kode_reimbursement}")
++        }
+         AlertDialog.Builder(requireContext())
+             .setMessage("Anda yakin ingin mengajukan reimbursement")
+             //    .setIcon(R.drawable.ic_warning)
+             .setPositiveButton("Ya") { _, _ ->
+                 val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
+                 val kodeReimbursementRequestBody =
+-                    MultipartBody.Part.createFormData("kode_reimbursement", kodeReimbursement2!!)
++                    MultipartBody.Part.createFormData(
++                        "kode_reimbursement",
++                        selectedItem!!.kode_reimbursement
++                    )
+                 val nominalRequestBody =
+                     MultipartBody.Part.createFormData(
+                         "nilai",
+@@ -271,16 +271,16 @@
+                                 scrollView2.visibility = View.VISIBLE
+                             }
+                             val response = it.data!!
+-                            val messages = response.data.messages
++                            val messages = response.data.messages ?: ""
+                             val builders = AlertDialog.Builder(requireContext())
+                             Log.d("pesan", messages)
+                             builders.setMessage(messages)
+-                                .setNegativeButton("Ya") { dialog, _ ->
+-                                    dialog.cancel()
++                                .setPositiveButton("Ya") { dialog, _ ->
++                                    dialog.dismiss()
++                                    findNavController().popBackStack()
+                                 }
+                             val alert = builders.create()
+                             alert.show()
+-                            findNavController().popBackStack()
+ //                            requireActivity().onBackPressed()
+                         }
+ 
+Index: app/src/main/java/com/infinity/dsmabsen/ui/fragment/PengajuanShiftFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.infinity.dsmabsen.ui.fragment\r\n\r\nimport android.content.Context\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.Menu\r\nimport android.view.MenuInflater\r\nimport android.view.View\r\nimport android.widget.AdapterView\r\nimport android.widget.Toast\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.navigation.fragment.findNavController\r\nimport com.infinity.dsmabsen.R\r\nimport com.infinity.dsmabsen.adapter.SpinnerShiftAdapter\r\nimport com.infinity.dsmabsen.databinding.FragmentPengajuanShiftBinding\r\nimport com.infinity.dsmabsen.helper.handleApiError\r\nimport com.infinity.dsmabsen.model.DataX\r\nimport com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXX\r\nimport com.infinity.dsmabsen.repository.NetworkResult\r\nimport com.infinity.dsmabsen.ui.activity.MainActivity\r\nimport com.infinity.dsmabsen.ui.viewModel.ShiftViewModel\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport io.paperdb.Paper\r\n\r\n@AndroidEntryPoint\r\nclass PengajuanShiftFragment :\r\n    BaseFragment<FragmentPengajuanShiftBinding>(FragmentPengajuanShiftBinding::inflate) {\r\n    val savedUser = Paper.book().read<DataX>(\"user\")\r\n    val viewModel: ShiftViewModel by viewModels()\r\n\r\n    private var selectedShift: String? = null\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n        with(binding) {\r\n\r\n            val myActivities = activity as MainActivity\r\n            myActivities.hideMyBottomNav()\r\n            viewModel.requestSpinnerShift()\r\n            viewModel.spinnerShiftLiveData.observe(viewLifecycleOwner) {\r\n                when (it) {\r\n                    is NetworkResult.Success -> {\r\n                        val response = it.data!!\r\n                        val status = response.status\r\n                        val data = response.data\r\n                        if (status) {\r\n                            val list: ArrayList<DataXXXXXXXXXXXXXXXXXXXXXXX> = ArrayList()\r\n                            data.map {\r\n                                list.add(\r\n                                    DataXXXXXXXXXXXXXXXXXXXXXXX(\r\n                                        it.kode_shift,\r\n                                        it.label,\r\n                                        it.value\r\n                                    )\r\n                                )\r\n                            }\r\n\r\n                            val adapter = SpinnerShiftAdapter(requireContext(), list)\r\n                            spinnerShift.adapter = adapter\r\n                            spinnerShift.onItemSelectedListener =\r\n                                object : AdapterView.OnItemSelectedListener {\r\n                                    override fun onItemSelected(\r\n                                        parent: AdapterView<*>?,\r\n                                        view: View?,\r\n                                        position: Int,\r\n                                        id: Long\r\n                                    ) {\r\n                                        val clickedItem: DataXXXXXXXXXXXXXXXXXXXXXXX =\r\n                                            parent?.getItemAtPosition(position) as DataXXXXXXXXXXXXXXXXXXXXXXX\r\n                                        val idSpinner = clickedItem.label\r\n                                        val koCuti = clickedItem.kode_shift\r\n                                        selectedShift = koCuti\r\n                                        Log.d(\"idSpinner\", idSpinner)\r\n                                    }\r\n\r\n                                    override fun onNothingSelected(p0: AdapterView<*>?) {\r\n                                        Log.d(\"select\", \"onNothingSelected: \")\r\n                                    }\r\n\r\n                                }\r\n                            binding.apply {\r\n                                loadingInclude.loading.visibility = View.GONE\r\n                                scrollView2.visibility = View.VISIBLE\r\n                            }\r\n                        }\r\n                    }\r\n\r\n                    is NetworkResult.Loading -> {\r\n                        binding.apply {\r\n                            loadingInclude.loading.visibility = View.VISIBLE\r\n                            scrollView2.visibility = View.GONE\r\n                        }\r\n                    }\r\n\r\n                    is NetworkResult.Error -> {\r\n                        binding.apply {\r\n                            loadingInclude.loading.visibility = View.GONE\r\n                            scrollView2.visibility = View.VISIBLE\r\n                        }\r\n                        handleApiError(it.message)\r\n                    }\r\n                }\r\n            }\r\n\r\n\r\n        }\r\n\r\n        setHasOptionsMenu(true)\r\n        setupToolbar(\"Ajukan Shift\")\r\n        toolbar.setOnMenuItemClickListener { menuItem ->\r\n            when (menuItem.itemId) {\r\n                R.id.save -> {\r\n                    val keterangan = binding.edtKeterangan.text.toString()\r\n                    if (keterangan.isEmpty()) {\r\n                        binding.edtKeterangan.error = \"Harap isi bidang ini!!\"\r\n                        binding.edtKeterangan.requestFocus()\r\n                    } else {\r\n                        saveShift(savedUser)\r\n                    }\r\n                    true\r\n                }\r\n\r\n                else -> false\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n    private fun saveShift(savedUser: DataX?) {\r\n        val selectedItem =\r\n            binding.spinnerShift.selectedItem as DataXXXXXXXXXXXXXXXXXXXXXXX?\r\n        if (selectedItem != null) {\r\n            Toast.makeText(requireContext(), selectedItem.kode_shift, Toast.LENGTH_SHORT).show()\r\n            Log.d(\"MyActivity\", \"Current Visit Code: ${selectedItem.kode_shift}\")\r\n        }\r\n        viewModel.requestShiftPengajuan(\r\n            savedUser!!.nip,\r\n            selectedItem!!.kode_shift,\r\n            \"\",\r\n            binding.edtKeterangan.text.toString()\r\n        )\r\n        viewModel.pengajuanShiftLiveData.observe(viewLifecycleOwner) {\r\n            when (it) {\r\n                is NetworkResult.Success -> {\r\n                    binding.apply {\r\n                        binding.loadingInclude.loading.visibility = View.GONE\r\n                        scrollView2.visibility = View.VISIBLE\r\n                    }\r\n                    val response = it.data!!\r\n                    val messages = response.data.messages\r\n                    val builder = AlertDialog.Builder(requireContext())\r\n                    builder.setMessage(messages)\r\n                        .setNegativeButton(\"Ya\") { dialog, _ ->\r\n                            dialog.cancel()\r\n                        }\r\n                    val alert = builder.create()\r\n                    alert.show()\r\n                    findNavController().popBackStack()\r\n//                    requireActivity().onBackPressed()\r\n                }\r\n                is NetworkResult.Loading -> {\r\n                    binding.apply {\r\n                        scrollView2.visibility = View.GONE\r\n                        binding.loadingInclude.loading.visibility = View.VISIBLE\r\n                    }\r\n                }\r\n\r\n                is NetworkResult.Error -> {\r\n                    binding.apply {\r\n                        scrollView2.visibility = View.VISIBLE\r\n                        binding.loadingInclude.loading.visibility = View.GONE\r\n                    }\r\n                    handleApiError(it.message)\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {\r\n        inflater.inflate(R.menu.toolbar_menu, menu)\r\n        val menuSave = menu.findItem(R.id.save)\r\n        val menuPlus = menu.findItem(R.id.add)\r\n        val menuLogout = menu.findItem(R.id.logout)\r\n        val menuScan = menu.findItem(R.id.scan)\r\n\r\n        menuScan?.isVisible = false\r\n        menuLogout.isVisible = false\r\n        menuSave?.isVisible = true // menyembunyikan menu tertentu\r\n        menuPlus?.isVisible = false // menyembunyikan menu tertentu\r\n    }\r\n\r\n    override fun onConnectionAvailable() {\r\n        super.onConnectionAvailable()\r\n        binding.apply {\r\n            toolbar.toolbar.visibility = View.VISIBLE\r\n            scrollView2.visibility = View.VISIBLE\r\n            noInternetConnection.ivNoConnection.visibility = View.GONE\r\n        }\r\n    }\r\n\r\n    override fun onConnectionLost() {\r\n        super.onConnectionLost()\r\n        binding.apply {\r\n            toolbar.toolbar.visibility = View.GONE\r\n            scrollView2.visibility = View.GONE\r\n            noInternetConnection.ivNoConnection.visibility = View.VISIBLE\r\n        }\r\n    }\r\n\r\n    override fun onResume() {\r\n        Log.d(\"TAG\", \"onResume: \")\r\n        hideBottomNavigation()\r\n        val myActivities = activity as MainActivity\r\n        myActivities.hideMyBottomNav()\r\n        super.onResume()\r\n    }\r\n\r\n    override fun onStart() {\r\n        Log.d(\"TAG\", \"onStart: \")\r\n        hideBottomNavigation()\r\n        val myActivities = activity as MainActivity\r\n        myActivities.hideMyBottomNav()\r\n        super.onStart()\r\n    }\r\n\r\n    override fun onPause() {\r\n        Log.d(\"TAG\", \"onPause: \")\r\n        hideBottomNavigation()\r\n        val myActivities = activity as MainActivity\r\n        myActivities.hideMyBottomNav()\r\n        super.onPause()\r\n    }\r\n\r\n    override fun onStop() {\r\n        Log.d(\"TAG\", \"onStop: \")\r\n        hideBottomNavigation()\r\n        val myActivities = activity as MainActivity\r\n        myActivities.hideMyBottomNav()\r\n        super.onStop()\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        Log.d(\"TAG\", \"onDestroyView: \")\r\n        showBottomNavigation()\r\n        super.onDestroyView()\r\n    }\r\n\r\n    override fun onDetach() {\r\n        super.onDetach()\r\n        Log.d(\"TAG\", \"onDetach: \")\r\n    }\r\n\r\n    override fun onAttach(context: Context) {\r\n        super.onAttach(context)\r\n        Log.d(\"TAG\", \"onAttach: \")\r\n    }\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n//        hideBottomNavigation()\r\n        Log.d(\"TAG\", \"onCreate: \")\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/infinity/dsmabsen/ui/fragment/PengajuanShiftFragment.kt b/app/src/main/java/com/infinity/dsmabsen/ui/fragment/PengajuanShiftFragment.kt
+--- a/app/src/main/java/com/infinity/dsmabsen/ui/fragment/PengajuanShiftFragment.kt	
++++ b/app/src/main/java/com/infinity/dsmabsen/ui/fragment/PengajuanShiftFragment.kt	
+@@ -14,6 +14,7 @@
+ import com.infinity.dsmabsen.R
+ import com.infinity.dsmabsen.adapter.SpinnerShiftAdapter
+ import com.infinity.dsmabsen.databinding.FragmentPengajuanShiftBinding
++import com.infinity.dsmabsen.helper.LocationUtils
+ import com.infinity.dsmabsen.helper.handleApiError
+ import com.infinity.dsmabsen.model.DataX
+ import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXX
+@@ -22,6 +23,8 @@
+ import com.infinity.dsmabsen.ui.viewModel.ShiftViewModel
+ import dagger.hilt.android.AndroidEntryPoint
+ import io.paperdb.Paper
++import java.util.*
++import kotlin.collections.ArrayList
+ 
+ @AndroidEntryPoint
+ class PengajuanShiftFragment :
+@@ -34,7 +37,7 @@
+     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+         super.onViewCreated(view, savedInstanceState)
+         with(binding) {
+-
++            thisTime()
+             val myActivities = activity as MainActivity
+             myActivities.hideMyBottomNav()
+             viewModel.requestSpinnerShift()
+@@ -126,6 +129,41 @@
+         }
+     }
+ 
++    private fun thisTime() {
++        with(binding) {
++            Log.d("jalan", "thisTime: ")
++            try {
++                LocationUtils.getActualLocation(requireContext(),
++                    { latitude, longitude ->
++                        val timeZone = TimeZone.getDefault()
++                        val calendar = Calendar.getInstance()
++                        calendar.timeInMillis = System.currentTimeMillis()
++                        calendar.timeZone = timeZone
++
++                        // Ambil jam, menit, dan detik dari waktu yang didapatkan
++                        val hour = calendar.get(Calendar.HOUR_OF_DAY)
++                        val minute = calendar.get(Calendar.MINUTE)
++                        val second = calendar.get(Calendar.SECOND)
++
++                        tvJam.text = hour.toString().padStart(2, '0')
++                        tvMenit.text = minute.toString().padStart(2, '0')
++                        tvDetik.text = second.toString().padStart(2, '0')
++
++                    },
++                    {
++                        Toast.makeText(
++                            requireContext(),
++                            "Gagal mendapatkan lokasi",
++                            Toast.LENGTH_SHORT
++                        ).show()
++                    })
++            } catch (e: java.lang.Exception) {
++                e.printStackTrace()
++            }
++
++        }
++    }
++
+ 
+     private fun saveShift(savedUser: DataX?) {
+         val selectedItem =

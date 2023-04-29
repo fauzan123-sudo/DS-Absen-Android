@@ -92,13 +92,6 @@ class FormPerizinanFragment :
                         }
                         if (status) {
                             val list = data.data.toMutableList()
-                            val defaultItem = DataXXXXXXXXXXXXX(
-                                "",
-                                "pilih jenis perizinan",
-                                0
-                            )
-
-                            list += listOf(defaultItem)
 
                             val spinnerAdapter = SpinnerAdapter(requireContext(), list)
                             spinnerJenisIzin.adapter = spinnerAdapter

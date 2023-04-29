@@ -234,7 +234,7 @@ Silahkan Hubungi Admin"
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -242,8 +242,10 @@ Silahkan Hubungi Admin"
                 tools:layout_editor_absoluteX="26dp">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:visibility="visible"
                     android:id="@+id/btn_refresh"
                     android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toStartOf="@+id/btn_absen"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -259,10 +261,30 @@ Silahkan Hubungi Admin"
                         android:src="@drawable/refresh_locate" />
 
                 </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn_activeGPS"
+                    android:visibility="gone"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_absen"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/_info"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:src="@drawable/refresh_locate" />
+
+                </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_absen"
                     android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -304,7 +326,7 @@ Silahkan Hubungi Admin"
 
                 </com.google.android.material.card.MaterialCardView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
 
 

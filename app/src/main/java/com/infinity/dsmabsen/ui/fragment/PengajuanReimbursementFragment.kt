@@ -1,32 +1,26 @@
 package com.infinity.dsmabsen.ui.fragment
 
 import DataSpinnerAdapter
-import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.location.LocationManager
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import android.widget.AdapterView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.FragmentPengajuanReimbursementBinding
 import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
@@ -284,7 +278,7 @@ class PengajuanReimbursementFragment :
                         val response = it.data!!
                         val messages = response.data.messages
                         val builders = AlertDialog.Builder(requireContext())
-                        Log.d("pesan", messages)
+                        Log.d("pesan", messages!!)
                         builders.setMessage(messages)
                             .setNegativeButton("Ya") { dialog, _ ->
                                 dialog.cancel()

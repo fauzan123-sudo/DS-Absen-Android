@@ -3,7 +3,6 @@ package com.infinity.dsmabsen.ui.fragment
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.SurfaceHolder
 import android.view.View
@@ -11,15 +10,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.face.Face
 import com.google.android.gms.vision.face.FaceDetector
-import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.FragmentFaceScanningBinding
-import com.infinity.dsmabsen.databinding.FragmentScanWajahBinding
 import com.infinity.dsmabsen.ui.activity.MainActivity
 import com.infinity.dsmabsen.ui.viewModel.AttendanceViewModel
 
@@ -42,7 +39,7 @@ class FaceScanningFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val myActivities = activity as MainActivity
-        myActivities.toast()
+//        myActivities.toast()
         if (ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.CAMERA
@@ -133,9 +130,9 @@ class FaceScanningFragment : Fragment() {
 //                            activity.onBackPressed()
 
                             val data = "hasilScanWajah"
-                            val action =
-                                FaceScanningFragmentDirections.faceScanningToAttendance(data)
-                            findNavController().navigate(action)
+//                            val action =
+//                                FaceScanningFragmentDirections.faceScanningToAttendance(data)
+//                            findNavController().navigate(action)
                         } else {
                             Toast.makeText(
                                 requireContext(),

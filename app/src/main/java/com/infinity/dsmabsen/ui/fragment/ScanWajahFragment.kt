@@ -46,7 +46,7 @@ class ScanWajahFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val myActivities = activity as MainActivity
-        myActivities.toast()
+//        myActivities.toast()
         if (ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.CAMERA

@@ -1,15 +1,12 @@
 package com.infinity.dsmabsen.ui.fragment
 
-import android.content.DialogInterface
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
@@ -17,10 +14,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.infinity.dsmabsen.R
-import com.infinity.dsmabsen.databinding.CustomUbahPasswordBinding
 import com.infinity.dsmabsen.databinding.FragmentBerandaBinding
+import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
 import com.infinity.dsmabsen.helper.*
-import com.infinity.dsmabsen.helper.Constans.IMAGE_URL
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.activity.MainActivity
@@ -237,19 +233,34 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
 
 
     fun showExitConfirmationDialog() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Konfirmasi")
-        builder.setMessage("Apakah Anda yakin ingin keluar dari aplikasi?")
-        builder.setPositiveButton("Ya") { _, _ ->
-            activity?.finish()
+        val dialogBinding = LayoutWarningDailogBinding.inflate(layoutInflater)
+
+        val alertDialog =
+            AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+                .setView(dialogBinding.root)
+                .create()
+
+        dialogBinding.textTitle.text = "Konfirmasi Keluar"
+        dialogBinding.textMessage.text =
+            "Anda yakin Ingin keluar dari this aplikasi"
+        dialogBinding.buttonYes.text = "Ya"
+        dialogBinding.buttonNo.text = "Batal"
+        dialogBinding.imageIcon.setImageResource(R.drawable.ic_baseline_warning_24)
+
+        dialogBinding.buttonYes.setOnClickListener {
+            alertDialog.dismiss()
+            requireActivity().finish()
+
+        }
+        dialogBinding.buttonNo.setOnClickListener {
+            alertDialog.dismiss()
         }
 
-        builder.setNegativeButton("Tidak") { dialog, _ ->
-            dialog.dismiss()
+        if (alertDialog.window != null) {
+            alertDialog.window!!.setBackgroundDrawable(ColorDrawable(0))
         }
 
-        val dialog = builder.create()
-        dialog.show()
+        alertDialog.show()
 
     }
 

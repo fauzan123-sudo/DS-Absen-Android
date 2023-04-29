@@ -11,7 +11,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -22,11 +21,9 @@ import com.infinity.dsmabsen.databinding.CustomUbahPasswordBinding
 import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
 import com.infinity.dsmabsen.helper.ConnectionLiveData
 import com.infinity.dsmabsen.helper.TokenManager
-import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.helper.handleApiErrorActivity
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.repository.NetworkResult
-import com.infinity.dsmabsen.ui.fragment.BerandaFragmentDirections
 import com.infinity.dsmabsen.ui.viewModel.PasswordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
@@ -39,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var tokenManager: TokenManager
-
+    private var alertDialog: AlertDialog? = null
     private val viewModel: PasswordViewModel by viewModels()
     lateinit var navController: NavController
     private lateinit var cld: ConnectionLiveData
@@ -90,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            val callback = object : OnBackPressedCallback(true) {
+            object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     if (navController.currentDestination?.id == R.id.berandaFragment) {
                         val dialogBinding = LayoutWarningDailogBinding.inflate(layoutInflater)
@@ -126,8 +123,14 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-            onBackPressedDispatcher.addCallback(this@MainActivity, callback)
+
+
         }
+    }
+
+    override fun onDestroy() {
+        alertDialog?.dismiss()
+        super.onDestroy()
     }
 
     private fun checkPassword(savedUser: DataX?) {
@@ -202,21 +205,6 @@ class MainActivity : AppCompatActivity() {
                                             }
                                         }
                                     }
-//                                val messages = "Berhasil"
-//                                if (oldPassword == newPassword) {
-//                                    dialogBinding.errorText.text =
-//                                        "Password lama dan baru tidak boleh sama"
-//                                } else {
-//                                    dialogBinding.errorText.text = messages
-//                                    dialogBinding.errorText.visibility = View.VISIBLE
-//                                    viewModel.ubahPasswordRequest(
-//                                        savedUser!!.nip,
-//                                        oldPassword,
-//                                        newPassword
-//                                    )
-//
-//                                    dialog.dismiss()
-//                                }
                                 }
                             } else {
                                 val messages = "Isi semua kolom password terlebih dahulu"
@@ -262,22 +250,6 @@ class MainActivity : AppCompatActivity() {
                 Log.d("is connect", "bottom nav show")
                 binding.fragmentContainerView2.visibility = View.VISIBLE
                 binding.noInternetConnection.ivNoConnection.visibility = View.GONE
-//                    binding.bottomNavigationView.visibility = View.VISIBLE
-//                        if (destination.id == R.id.berandaFragment) {
-//                            binding.bottomNavigationView.visibility = View.VISIBLE
-//                            Log.d("fragment", "sekarang diberanda")
-//                        }
-
-//                        if (destination.id == R.id.homeFragment ||
-//                            destination.id == R.id.visitFragment2 ||
-//                            destination.id == R.id.attendanceFragment ||
-//                            destination.id == R.id.dataAbsenFragment ||
-//                            destination.id == R.id.profileFragment
-//                        ) {
-//                            binding.bottomNavigationView.visibility = View.VISIBLE
-//                        } else {
-//                            binding.bottomNavigationView.visibility = View.VISIBLE
-//                        }
             } else {
                 Log.d("no connect ", "bottom nav hide")
                 binding.fragmentContainerView2.visibility = View.GONE
@@ -286,10 +258,6 @@ class MainActivity : AppCompatActivity() {
             }
 //            }
         }
-    }
-
-    fun toast() {
-        Toast.makeText(this, "fauzan", Toast.LENGTH_SHORT).show()
     }
 
     fun hideMyBottomNav() {
