@@ -1,6 +1,7 @@
 package com.infinity.dsmabsen.ui.fragment
 
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.adapter.SpinnerShiftAdapter
 import com.infinity.dsmabsen.databinding.FragmentPengajuanShiftBinding
+import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXX
@@ -128,53 +130,80 @@ class PengajuanShiftFragment :
 
 
     private fun saveShift(savedUser: DataX?) {
-        val selectedItem =
-            binding.spinnerShift.selectedItem as DataXXXXXXXXXXXXXXXXXXXXXXX?
-        if (selectedItem != null) {
-            Toast.makeText(requireContext(), selectedItem.kode_shift, Toast.LENGTH_SHORT).show()
-            Log.d("MyActivity", "Current Visit Code: ${selectedItem.kode_shift}")
-        }
-        viewModel.requestShiftPengajuan(
-            savedUser!!.nip,
-            selectedItem!!.kode_shift,
-            "",
-            binding.edtKeterangan.text.toString()
-        )
-        viewModel.pengajuanShiftLiveData.observe(viewLifecycleOwner) {
-            when (it) {
-                is NetworkResult.Success -> {
-                    binding.apply {
-                        binding.loadingInclude.loading.visibility = View.GONE
-                        scrollView2.visibility = View.VISIBLE
-                    }
-                    val response = it.data!!
-                    val messages = response.data.messages
-                    val builder = AlertDialog.Builder(requireContext())
-                    builder.setMessage(messages)
-                        .setNegativeButton("Ya") { dialog, _ ->
-                            dialog.cancel()
-                        }
-                    val alert = builder.create()
-                    alert.show()
-                    findNavController().popBackStack()
-//                    requireActivity().onBackPressed()
-                }
-                is NetworkResult.Loading -> {
-                    binding.apply {
-                        scrollView2.visibility = View.GONE
-                        binding.loadingInclude.loading.visibility = View.VISIBLE
-                    }
-                }
+        val dialogBinding = LayoutWarningDailogBinding.inflate(layoutInflater)
 
-                is NetworkResult.Error -> {
-                    binding.apply {
-                        scrollView2.visibility = View.VISIBLE
-                        binding.loadingInclude.loading.visibility = View.GONE
+        val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+            .setView(dialogBinding.root)
+            .create()
+
+        dialogBinding.textTitle.text = "Pengajuan shift"
+        dialogBinding.textMessage.text =
+            "Apakah anda yakin ingin mengajukan shift?"
+        dialogBinding.buttonYes.text = "Ya"
+        dialogBinding.buttonNo.text = "tidak"
+        dialogBinding.imageIcon.setImageResource(R.drawable.ic_baseline_warning_24)
+
+        dialogBinding.buttonYes.setOnClickListener {
+            val selectedItem =
+                binding.spinnerShift.selectedItem as DataXXXXXXXXXXXXXXXXXXXXXXX?
+            if (selectedItem != null) {
+                Toast.makeText(requireContext(), selectedItem.kode_shift, Toast.LENGTH_SHORT).show()
+                Log.d("MyActivity", "Current Visit Code: ${selectedItem.kode_shift}")
+            }
+            viewModel.requestShiftPengajuan(
+                savedUser!!.nip,
+                selectedItem!!.kode_shift,
+                "",
+                binding.edtKeterangan.text.toString()
+            )
+            viewModel.pengajuanShiftLiveData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is NetworkResult.Success -> {
+                        binding.apply {
+                            binding.loadingInclude.loading.visibility = View.GONE
+                            scrollView2.visibility = View.VISIBLE
+                        }
+                        val response = it.data!!
+                        val messages = response.data.messages
+                        val builder = AlertDialog.Builder(requireContext())
+                        builder.setMessage(messages)
+                            .setNegativeButton("Ya") { dialog, _ ->
+                                dialog.cancel()
+                            }
+                        val alert = builder.create()
+                        alert.show()
+                        findNavController().popBackStack()
+//                    requireActivity().onBackPressed()
                     }
-                    handleApiError(it.message)
+                    is NetworkResult.Loading -> {
+                        binding.apply {
+                            scrollView2.visibility = View.GONE
+                            binding.loadingInclude.loading.visibility = View.VISIBLE
+                        }
+                    }
+
+                    is NetworkResult.Error -> {
+                        binding.apply {
+                            scrollView2.visibility = View.VISIBLE
+                            binding.loadingInclude.loading.visibility = View.GONE
+                        }
+                        handleApiError(it.message)
+                    }
                 }
             }
+            builder.dismiss()
         }
+        dialogBinding.buttonNo.setOnClickListener {
+            builder.dismiss()
+        }
+
+        if (builder.window != null) {
+            builder.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+
+        builder.show()
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

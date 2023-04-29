@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -22,6 +23,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.adapter.SpinnerAdapter
 import com.infinity.dsmabsen.databinding.FragmentFormPerizinanBinding
+import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
 import com.infinity.dsmabsen.helper.AlertDialogHelper
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
@@ -290,93 +292,194 @@ class FormPerizinanFragment :
     }
 
     private fun savePerizinan(savedUser: DataX?) {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setMessage("Apakah anda yakin ingin mengajukan Perizinan?")
-            .setPositiveButton("Ya") { dialog, _ ->
-                val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
-                val kodePerizinanRequestBody =
-                    MultipartBody.Part.createFormData("kode_cuti", kode_perizinan!!)
-                val tanggalMulaiRequestBody =
-                    MultipartBody.Part.createFormData(
-                        "tanggal_mulai",
-                        binding.etTanggalMulai.text.toString()
-                    )
-                val tanggalSelesaiRequestBody =
-                    MultipartBody.Part.createFormData(
-                        "tanggal_selesai",
-                        binding.etTanggalSelesai.text.toString()
-                    )
-                val keteranganRequestBody =
-                    MultipartBody.Part.createFormData(
-                        "keterangan",
-                        binding.etKeterangan.text.toString()
-                    )
+        val dialogBinding = LayoutWarningDailogBinding.inflate(layoutInflater)
 
-                val bitmap: Bitmap = (binding.uploadFile.drawable as BitmapDrawable).bitmap
-                val photo = uriToMultipartBody(bitmap)
-                Log.d("sendData", savedUser!!.nip)
-                viewModel.requestSendPermission(
-                    nipRequestBody.body,
-                    kodePerizinanRequestBody.body,
-                    tanggalMulaiRequestBody.body,
-                    tanggalSelesaiRequestBody.body,
-                    photo,
-                    keteranganRequestBody.body
+        val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+            .setView(dialogBinding.root)
+            .create()
+
+        dialogBinding.textTitle.text = "Pengajuan perizinan"
+        dialogBinding.textMessage.text =
+            "Apakah anda yakin ingin mengajukan perizinan?"
+        dialogBinding.buttonYes.text = "Ya"
+        dialogBinding.buttonNo.text = "tidak"
+        dialogBinding.imageIcon.setImageResource(R.drawable.ic_baseline_warning_24)
+
+        dialogBinding.buttonYes.setOnClickListener {
+            val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
+            val kodePerizinanRequestBody =
+                MultipartBody.Part.createFormData("kode_cuti", kode_perizinan!!)
+            val tanggalMulaiRequestBody =
+                MultipartBody.Part.createFormData(
+                    "tanggal_mulai",
+                    binding.etTanggalMulai.text.toString()
+                )
+            val tanggalSelesaiRequestBody =
+                MultipartBody.Part.createFormData(
+                    "tanggal_selesai",
+                    binding.etTanggalSelesai.text.toString()
+                )
+            val keteranganRequestBody =
+                MultipartBody.Part.createFormData(
+                    "keterangan",
+                    binding.etKeterangan.text.toString()
                 )
 
-                viewModel.sendPermissionLiveData.observe(viewLifecycleOwner) {
-                    when (it) {
-                        is NetworkResult.Success -> {
-                            binding.apply {
-                                loadingInclude.loading.visibility = View.GONE
-                                scrollView.visibility = View.VISIBLE
-                            }
-                            val response = it.data!!
-                            val status = response.data.status
-                            val messages = response.data.messages
-                            if (status) {
-                                val alertDialogHelper = AlertDialogHelper(requireContext())
-                                alertDialogHelper.showAlertDialog("", messages)
-                                findNavController().popBackStack()
-//                                findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
-                            }
+            val bitmap: Bitmap = (binding.uploadFile.drawable as BitmapDrawable).bitmap
+            val photo = uriToMultipartBody(bitmap)
+            Log.d("sendData", savedUser!!.nip)
+            viewModel.requestSendPermission(
+                nipRequestBody.body,
+                kodePerizinanRequestBody.body,
+                tanggalMulaiRequestBody.body,
+                tanggalSelesaiRequestBody.body,
+                photo,
+                keteranganRequestBody.body
+            )
+
+            viewModel.sendPermissionLiveData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is NetworkResult.Success -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            scrollView.visibility = View.VISIBLE
+                        }
+                        val response = it.data!!
+                        val status = response.data.status
+                        val messages = response.data.messages
+                        if (status) {
                             val alertDialogHelper = AlertDialogHelper(requireContext())
                             alertDialogHelper.showAlertDialog("", messages)
                             findNavController().popBackStack()
+//                                findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
+                        }
+                        val alertDialogHelper = AlertDialogHelper(requireContext())
+                        alertDialogHelper.showAlertDialog("", messages)
+                        findNavController().popBackStack()
 //                            findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
 
 
 //                            Log.d("pesan", messages)
 //                                    requireActivity().onBackPressed()
-                        }
+                    }
 
-                        is NetworkResult.Loading -> {
-                            binding.apply {
-                                loadingInclude.loading.visibility = View.VISIBLE
-                                scrollView.visibility = View.GONE
-                            }
-                        }
-
-                        is NetworkResult.Error -> {
-                            binding.apply {
-                                loadingInclude.loading.visibility = View.GONE
-                                scrollView.visibility = View.VISIBLE
-                            }
-                            handleApiError(it.message)
+                    is NetworkResult.Loading -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.VISIBLE
+                            scrollView.visibility = View.GONE
                         }
                     }
 
+                    is NetworkResult.Error -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            scrollView.visibility = View.VISIBLE
+                        }
+                        handleApiError(it.message)
+                    }
                 }
-                Log.d("Uri", "null uri $bitmap")
-            }
 
-            .setNegativeButton("tidak")
-            { dialog, _ ->
-                dialog.cancel()
             }
+            Log.d("Uri", "null uri $bitmap")
 
-        val alert = builder.create()
-        alert.show()
+            builder.dismiss()
+        }
+        dialogBinding.buttonNo.setOnClickListener {
+            builder.dismiss()
+        }
+
+        if (builder.window != null) {
+            builder.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+
+        builder.show()
+
+//        builder.setMessage("Apakah anda yakin ingin mengajukan Perizinan?")
+//            .setPositiveButton("Ya") { dialog, _ ->
+//                val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
+//                val kodePerizinanRequestBody =
+//                    MultipartBody.Part.createFormData("kode_cuti", kode_perizinan!!)
+//                val tanggalMulaiRequestBody =
+//                    MultipartBody.Part.createFormData(
+//                        "tanggal_mulai",
+//                        binding.etTanggalMulai.text.toString()
+//                    )
+//                val tanggalSelesaiRequestBody =
+//                    MultipartBody.Part.createFormData(
+//                        "tanggal_selesai",
+//                        binding.etTanggalSelesai.text.toString()
+//                    )
+//                val keteranganRequestBody =
+//                    MultipartBody.Part.createFormData(
+//                        "keterangan",
+//                        binding.etKeterangan.text.toString()
+//                    )
+//
+//                val bitmap: Bitmap = (binding.uploadFile.drawable as BitmapDrawable).bitmap
+//                val photo = uriToMultipartBody(bitmap)
+//                Log.d("sendData", savedUser!!.nip)
+//                viewModel.requestSendPermission(
+//                    nipRequestBody.body,
+//                    kodePerizinanRequestBody.body,
+//                    tanggalMulaiRequestBody.body,
+//                    tanggalSelesaiRequestBody.body,
+//                    photo,
+//                    keteranganRequestBody.body
+//                )
+//
+//                viewModel.sendPermissionLiveData.observe(viewLifecycleOwner) {
+//                    when (it) {
+//                        is NetworkResult.Success -> {
+//                            binding.apply {
+//                                loadingInclude.loading.visibility = View.GONE
+//                                scrollView.visibility = View.VISIBLE
+//                            }
+//                            val response = it.data!!
+//                            val status = response.data.status
+//                            val messages = response.data.messages
+//                            if (status) {
+//                                val alertDialogHelper = AlertDialogHelper(requireContext())
+//                                alertDialogHelper.showAlertDialog("", messages)
+//                                findNavController().popBackStack()
+////                                findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
+//                            }
+//                            val alertDialogHelper = AlertDialogHelper(requireContext())
+//                            alertDialogHelper.showAlertDialog("", messages)
+//                            findNavController().popBackStack()
+////                            findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
+//
+//
+////                            Log.d("pesan", messages)
+////                                    requireActivity().onBackPressed()
+//                        }
+//
+//                        is NetworkResult.Loading -> {
+//                            binding.apply {
+//                                loadingInclude.loading.visibility = View.VISIBLE
+//                                scrollView.visibility = View.GONE
+//                            }
+//                        }
+//
+//                        is NetworkResult.Error -> {
+//                            binding.apply {
+//                                loadingInclude.loading.visibility = View.GONE
+//                                scrollView.visibility = View.VISIBLE
+//                            }
+//                            handleApiError(it.message)
+//                        }
+//                    }
+//
+//                }
+//                Log.d("Uri", "null uri $bitmap")
+//            }
+//
+//            .setNegativeButton("tidak")
+//            { dialog, _ ->
+//                dialog.cancel()
+//            }
+//
+//        val alert = builder.create()
+//        alert.show()
 
 
     }

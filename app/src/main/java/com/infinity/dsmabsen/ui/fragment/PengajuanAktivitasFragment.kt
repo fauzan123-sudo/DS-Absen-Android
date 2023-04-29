@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -18,6 +19,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.FragmentPengajuanAktivitasBinding
+import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
 import com.infinity.dsmabsen.helper.AlertDialogHelper
 import com.infinity.dsmabsen.helper.LocationUtils
 import com.infinity.dsmabsen.helper.handleApiError
@@ -156,82 +158,96 @@ class PengajuanAktivitasFragment :
 //                Toast.makeText(requireContext(), "Kembali", Toast.LENGTH_SHORT).show()
 //            }
 //            .create().show()
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setMessage("Apakah anda yakin ingin mengajukan aktivitas?")
-            .setPositiveButton("Ya") { _, _ ->
-                val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
-                val namaBodyRequest =
-                    MultipartBody.Part.createFormData("nama", binding.edtKeterangan.text.toString())
-                val koordinatRequestBody =
-                    MultipartBody.Part.createFormData(
-                        "koordinat",
-                        koordinat
-                    )
 
-                val bitmap: Bitmap = (binding.imgUpload.drawable as BitmapDrawable).bitmap
-                val photo = uriToMultipartBody(bitmap)
-                Log.d("sendData", savedUser!!.nip)
-                viewModel.sendAktivitasRequest(
-                    nipRequestBody.body,
-                    namaBodyRequest.body,
-                    koordinatRequestBody.body,
-                    photo
+        val dialogBinding = LayoutWarningDailogBinding.inflate(layoutInflater)
+
+        val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+            .setView(dialogBinding.root)
+            .create()
+
+        dialogBinding.textTitle.text = "Pengajuan aerizinan"
+        dialogBinding.textMessage.text =
+            "Apakah anda yakin ingin mengajukan aktivitas?"
+        dialogBinding.buttonYes.text = "Ya"
+        dialogBinding.buttonNo.text = "tidak"
+        dialogBinding.imageIcon.setImageResource(R.drawable.ic_baseline_warning_24)
+
+        dialogBinding.buttonYes.setOnClickListener {
+            val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
+            val namaBodyRequest =
+                MultipartBody.Part.createFormData("nama", binding.edtKeterangan.text.toString())
+            val koordinatRequestBody =
+                MultipartBody.Part.createFormData(
+                    "koordinat",
+                    koordinat
                 )
 
-                viewModel.sendAktivitasLiveData.observe(viewLifecycleOwner) {
-                    when (it) {
-                        is NetworkResult.Success -> {
-                            binding.apply {
-                                loadingInclude.loading.visibility = View.GONE
-                                scrollView2.visibility = View.VISIBLE
-                            }
-                            val response = it.data!!
-                            val status = response.data.status
-                            val messages = response.data.messages
-                            if (status == "Success") {
-                                val alertDialogHelper = AlertDialogHelper(requireContext())
-                                alertDialogHelper.showAlertDialog("", messages)
-                                findNavController().popBackStack()
-//                                findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
-                            }
+            val bitmap: Bitmap = (binding.imgUpload.drawable as BitmapDrawable).bitmap
+            val photo = uriToMultipartBody(bitmap)
+            Log.d("sendData", savedUser!!.nip)
+            viewModel.sendAktivitasRequest(
+                nipRequestBody.body,
+                namaBodyRequest.body,
+                koordinatRequestBody.body,
+                photo
+            )
+
+            viewModel.sendAktivitasLiveData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is NetworkResult.Success -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            scrollView2.visibility = View.VISIBLE
+                        }
+                        val response = it.data!!
+                        val status = response.data.status
+                        val messages = response.data.messages
+                        if (status == "Success") {
                             val alertDialogHelper = AlertDialogHelper(requireContext())
                             alertDialogHelper.showAlertDialog("", messages)
                             findNavController().popBackStack()
+//                                findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
+                        }
+                        val alertDialogHelper = AlertDialogHelper(requireContext())
+                        alertDialogHelper.showAlertDialog("", messages)
+                        findNavController().popBackStack()
 //                            findNavController().navigate(R.id.action_formPerizinanFragment_to_menuPerizinanFragment)
 
 
 //                            Log.d("pesan", messages)
 //                                    requireActivity().onBackPressed()
-                        }
+                    }
 
-                        is NetworkResult.Loading -> {
-                            binding.apply {
-                                loadingInclude.loading.visibility = View.VISIBLE
-                                scrollView2.visibility = View.GONE
-                            }
-                        }
-
-                        is NetworkResult.Error -> {
-                            binding.apply {
-                                loadingInclude.loading.visibility = View.GONE
-                                scrollView2.visibility = View.VISIBLE
-                            }
-                            handleApiError(it.message)
+                    is NetworkResult.Loading -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.VISIBLE
+                            scrollView2.visibility = View.GONE
                         }
                     }
 
+                    is NetworkResult.Error -> {
+                        binding.apply {
+                            loadingInclude.loading.visibility = View.GONE
+                            scrollView2.visibility = View.VISIBLE
+                        }
+                        handleApiError(it.message)
+                    }
                 }
-                Log.d("Uri", "null uri $bitmap")
+
             }
+            Log.d("Uri", "null uri $bitmap")
 
-            .setNegativeButton("tidak")
-            { dialog, _ ->
-                dialog.cancel()
-            }
+            builder.dismiss()
+        }
+        dialogBinding.buttonNo.setOnClickListener {
+            builder.dismiss()
+        }
 
-        val alert = builder.create()
-        alert.show()
+        if (builder.window != null) {
+            builder.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
 
+        builder.show()
 
     }
 

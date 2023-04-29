@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
@@ -28,6 +29,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.FragmentPengajuanReimbursementBinding
+import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -225,86 +227,112 @@ class PengajuanReimbursementFragment :
     }
 
     private fun saveReimbursement(savedUser: DataX?) {
+        val dialogBinding = LayoutWarningDailogBinding.inflate(layoutInflater)
 
-        Log.d("click send reimbursement", "here")
-        AlertDialog.Builder(requireContext())
-            .setMessage("Anda yakin ingin mengajukan reimbursement")
-            //    .setIcon(R.drawable.ic_warning)
-            .setPositiveButton("Ya") { _, _ ->
-                val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
-                val kodeReimbursementRequestBody =
-                    MultipartBody.Part.createFormData("kode_reimbursement", kodeReimbursement2!!)
-                val nominalRequestBody =
-                    MultipartBody.Part.createFormData(
-                        "nilai",
-                        binding.edtNominal.text.toString()
-                    )
-                val keteranganRequestBody =
-                    MultipartBody.Part.createFormData(
-                        "keterangan",
-                        binding.edtKeterangan.text.toString()
-                    )
+        val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+            .setView(dialogBinding.root)
+            .create()
 
-                val bitmap: Bitmap = (binding.imgUpload.drawable as BitmapDrawable).bitmap
-                val photo = uriToMultipartBody(bitmap)
-                Log.d("sendData", savedUser!!.nip)
-                Log.d(
-                    "saveReimbursement",
-                    "nip = $nipRequestBody \n " +
-                            "kodeReimbursement = $kodeReimbursementRequestBody \n" +
-                            "nominal = $nominalRequestBody \n" +
-                            "photo =  $photo \n" +
-                            "keterangan = $keteranganRequestBody"
+        dialogBinding.textTitle.text = "Pengajuan reimbursement"
+        dialogBinding.textMessage.text =
+            "Apakah anda yakin ingin mengajukan reimbursement?"
+        dialogBinding.buttonYes.text = "Ya"
+        dialogBinding.buttonNo.text = "tidak"
+        dialogBinding.imageIcon.setImageResource(R.drawable.ic_baseline_warning_24)
+
+        dialogBinding.buttonYes.setOnClickListener {
+            Log.d("click send reimbursement", "here")
+            val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
+            val kodeReimbursementRequestBody =
+                MultipartBody.Part.createFormData("kode_reimbursement", kodeReimbursement2!!)
+            val nominalRequestBody =
+                MultipartBody.Part.createFormData(
+                    "nilai",
+                    binding.edtNominal.text.toString()
                 )
-                viewModel.requestPengajuanReimbursement(
-                    nipRequestBody.body,
-                    kodeReimbursementRequestBody.body,
-                    nominalRequestBody.body,
-                    photo,
-                    keteranganRequestBody.body
+            val keteranganRequestBody =
+                MultipartBody.Part.createFormData(
+                    "keterangan",
+                    binding.edtKeterangan.text.toString()
                 )
-                viewModel.getPengajuanLiveData.observe(viewLifecycleOwner) {
-                    when (it) {
-                        is NetworkResult.Success -> {
-                            binding.apply {
-                                binding.loadingInclude.loading.visibility = View.GONE
-                                scrollView2.visibility = View.VISIBLE
+
+            val bitmap: Bitmap = (binding.imgUpload.drawable as BitmapDrawable).bitmap
+            val photo = uriToMultipartBody(bitmap)
+            Log.d("sendData", savedUser!!.nip)
+            Log.d(
+                "saveReimbursement",
+                "nip = $nipRequestBody \n " +
+                        "kodeReimbursement = $kodeReimbursementRequestBody \n" +
+                        "nominal = $nominalRequestBody \n" +
+                        "photo =  $photo \n" +
+                        "keterangan = $keteranganRequestBody"
+            )
+            viewModel.requestPengajuanReimbursement(
+                nipRequestBody.body,
+                kodeReimbursementRequestBody.body,
+                nominalRequestBody.body,
+                photo,
+                keteranganRequestBody.body
+            )
+            viewModel.getPengajuanLiveData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is NetworkResult.Success -> {
+                        binding.apply {
+                            binding.loadingInclude.loading.visibility = View.GONE
+                            scrollView2.visibility = View.VISIBLE
+                        }
+                        val response = it.data!!
+                        val messages = response.data.messages
+                        val builders = AlertDialog.Builder(requireContext())
+                        Log.d("pesan", messages)
+                        builders.setMessage(messages)
+                            .setNegativeButton("Ya") { dialog, _ ->
+                                dialog.cancel()
                             }
-                            val response = it.data!!
-                            val messages = response.data.messages
-                            val builders = AlertDialog.Builder(requireContext())
-                            Log.d("pesan", messages)
-                            builders.setMessage(messages)
-                                .setNegativeButton("Ya") { dialog, _ ->
-                                    dialog.cancel()
-                                }
-                            val alert = builders.create()
-                            alert.show()
-                            findNavController().popBackStack()
+                        val alert = builders.create()
+                        alert.show()
+                        findNavController().popBackStack()
 //                            requireActivity().onBackPressed()
-                        }
+                    }
 
-                        is NetworkResult.Loading -> {
-                            binding.apply {
-                                scrollView2.visibility = View.GONE
-                                binding.loadingInclude.loading.visibility = View.VISIBLE
-                            }
+                    is NetworkResult.Loading -> {
+                        binding.apply {
+                            scrollView2.visibility = View.GONE
+                            binding.loadingInclude.loading.visibility = View.VISIBLE
                         }
+                    }
 
-                        is NetworkResult.Error -> {
-                            binding.apply {
-                                scrollView2.visibility = View.VISIBLE
-                                binding.loadingInclude.loading.visibility = View.GONE
-                            }
-                            handleApiError(it.message)
+                    is NetworkResult.Error -> {
+                        binding.apply {
+                            scrollView2.visibility = View.VISIBLE
+                            binding.loadingInclude.loading.visibility = View.GONE
                         }
+                        handleApiError(it.message)
                     }
                 }
             }
-            .setNegativeButton("Tidak") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .create().show()
+            builder.dismiss()
+        }
+        dialogBinding.buttonNo.setOnClickListener {
+            builder.dismiss()
+        }
+
+        if (builder.window != null) {
+            builder.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+
+        builder.show()
+
+//        AlertDialog.Builder(requireContext())
+//            .setMessage("Anda yakin ingin mengajukan reimbursement")
+//            //    .setIcon(R.drawable.ic_warning)
+//            .setPositiveButton("Ya") { _, _ ->
+//
+//            }
+//            .setNegativeButton("Tidak") { dialog, _ ->
+//                dialog.dismiss()
+//            }
+//            .create().show()
     }
 
     private fun uriToMultipartBody(bitmap: Bitmap): MultipartBody.Part {

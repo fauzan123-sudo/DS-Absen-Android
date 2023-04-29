@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -33,6 +34,7 @@ import com.infinity.dsmabsen.ui.viewModel.AttendanceViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
 import com.infinity.dsmabsen.ui.activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
@@ -114,7 +116,7 @@ class PengajuanLemburFragment :
                         i++
                     }
                     if (i == 0) {
-                        saveLembur()
+                        saveLembur(savedUser)
                     }
                     true
                 }
@@ -176,58 +178,82 @@ class PengajuanLemburFragment :
             }
         }
 
-    private fun saveLembur() {
-        val bitmap: Bitmap = (binding.imgUpload.drawable as BitmapDrawable).bitmap
-        val photo = uriToMultipartBody(bitmap)
-        val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
-        val jamMulaiRequestBody = MultipartBody.Part.createFormData("jam_mulai", binding.jamMulai.text.toString())
-        val jamSelesaiRequestBody =
-            MultipartBody.Part.createFormData("jam_selesai", binding.jamSelesai.text.toString())
-        val tanggalRequestBody = MultipartBody.Part.createFormData("tanggal", binding.tanggalPenggajuan.text.toString())
-        val keteranganRequestBody = MultipartBody.Part.createFormData("keterangan", binding.keteranganPenggajuan.text.toString())
-        viewModel.requestPengajuanLembur(
-            nipRequestBody.body,
-            jamMulaiRequestBody.body,
-            jamSelesaiRequestBody.body,
-            photo,
-            tanggalRequestBody.body,
-            keteranganRequestBody.body
-        )
-        viewModel.pengajuanLemburLiveData.observe(viewLifecycleOwner) {
-            when (it) {
-                is NetworkResult.Success -> {
-                    val response = it.data!!
-                    val messages = response.data.messages
-                    binding.loadingInclude.loading.visibility = View.GONE
-                    binding.scrollView2.visibility = View.VISIBLE
-                    val builder = AlertDialog.Builder(requireContext())
-                    builder.setMessage(messages)
-                        .setPositiveButton("Ok") { dialog, _ ->
-                            dialog.cancel()
-                        }
-                    val alert = builder.create()
-                    alert.show()
-                    findNavController().popBackStack()
+    private fun saveLembur(savedUser: DataX?) {
+        val dialogBinding = LayoutWarningDailogBinding.inflate(layoutInflater)
+
+        val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+            .setView(dialogBinding.root)
+            .create()
+
+        dialogBinding.textTitle.text = "Pengajuan lembur"
+        dialogBinding.textMessage.text =
+            "Apakah anda yakin ingin mengajukan lembur?"
+        dialogBinding.buttonYes.text = "Ya"
+        dialogBinding.buttonNo.text = "tidak"
+        dialogBinding.imageIcon.setImageResource(R.drawable.ic_baseline_warning_24)
+
+        dialogBinding.buttonYes.setOnClickListener {
+            val bitmap: Bitmap = (binding.imgUpload.drawable as BitmapDrawable).bitmap
+            val photo = uriToMultipartBody(bitmap)
+            val nipRequestBody = MultipartBody.Part.createFormData("nip", savedUser!!.nip)
+            val jamMulaiRequestBody = MultipartBody.Part.createFormData("jam_mulai", binding.jamMulai.text.toString())
+            val jamSelesaiRequestBody =
+                MultipartBody.Part.createFormData("jam_selesai", binding.jamSelesai.text.toString())
+            val tanggalRequestBody = MultipartBody.Part.createFormData("tanggal", binding.tanggalPenggajuan.text.toString())
+            val keteranganRequestBody = MultipartBody.Part.createFormData("keterangan", binding.keteranganPenggajuan.text.toString())
+            viewModel.requestPengajuanLembur(
+                nipRequestBody.body,
+                jamMulaiRequestBody.body,
+                jamSelesaiRequestBody.body,
+                photo,
+                tanggalRequestBody.body,
+                keteranganRequestBody.body
+            )
+            viewModel.pengajuanLemburLiveData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is NetworkResult.Success -> {
+                        val response = it.data!!
+                        val messages = response.data.messages
+                        binding.loadingInclude.loading.visibility = View.GONE
+                        binding.scrollView2.visibility = View.VISIBLE
+                        val builder = AlertDialog.Builder(requireContext())
+                        builder.setMessage(messages)
+                            .setPositiveButton("Ok") { dialog, _ ->
+                                dialog.cancel()
+                            }
+                        val alert = builder.create()
+                        alert.show()
+                        findNavController().popBackStack()
 //                    requireActivity().onBackPressed()
 
-                }
-
-                is NetworkResult.Loading -> {
-                    binding.apply {
-                        binding.loadingInclude.loading.visibility = View.VISIBLE
-                        scrollView2.visibility = View.GONE
                     }
-                }
 
-                is NetworkResult.Error -> {
-                    binding.apply {
-                        binding.loadingInclude.loading.visibility = View.GONE
-                        scrollView2.visibility = View.VISIBLE
+                    is NetworkResult.Loading -> {
+                        binding.apply {
+                            binding.loadingInclude.loading.visibility = View.VISIBLE
+                            scrollView2.visibility = View.GONE
+                        }
                     }
-                    handleApiError(it.message)
+
+                    is NetworkResult.Error -> {
+                        binding.apply {
+                            binding.loadingInclude.loading.visibility = View.GONE
+                            scrollView2.visibility = View.VISIBLE
+                        }
+                        handleApiError(it.message)
+                    }
                 }
             }
+            builder.dismiss()
         }
+
+        dialogBinding.buttonNo.setOnClickListener {
+            builder.dismiss()
+        }
+        if (builder.window != null) {
+            builder.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        builder.show()
     }
 
     private fun uriToMultipartBody(bitmap: Bitmap): MultipartBody.Part {

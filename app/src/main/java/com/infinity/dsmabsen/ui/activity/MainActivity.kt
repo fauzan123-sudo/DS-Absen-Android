@@ -1,6 +1,7 @@
 package com.infinity.dsmabsen.ui.activity
 
 import android.content.DialogInterface
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.ActivityMainBinding
 import com.infinity.dsmabsen.databinding.CustomUbahPasswordBinding
+import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
 import com.infinity.dsmabsen.helper.ConnectionLiveData
 import com.infinity.dsmabsen.helper.TokenManager
 import com.infinity.dsmabsen.helper.handleApiError
@@ -91,19 +93,34 @@ class MainActivity : AppCompatActivity() {
             val callback = object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     if (navController.currentDestination?.id == R.id.berandaFragment) {
-                        val builder = AlertDialog.Builder(this@MainActivity)
-                        builder.setTitle("Konfirmasi")
-                        builder.setMessage("Apakah Anda yakin ingin keluar dari aplikasi?")
-                        builder.setPositiveButton("Ya") { _, _ ->
+                        val dialogBinding = LayoutWarningDailogBinding.inflate(layoutInflater)
+
+                        val alertDialog =
+                            AlertDialog.Builder(this@MainActivity, R.style.AlertDialogTheme)
+                                .setView(dialogBinding.root)
+                                .create()
+
+                        dialogBinding.textTitle.text = "Konfirmasi Keluar"
+                        dialogBinding.textMessage.text =
+                            "Anda yakin Ingin keluar dari this aplikasi"
+                        dialogBinding.buttonYes.text = "Ya"
+                        dialogBinding.buttonNo.text = "Batal"
+                        dialogBinding.imageIcon.setImageResource(R.drawable.ic_baseline_warning_24)
+
+                        dialogBinding.buttonYes.setOnClickListener {
+                            alertDialog.dismiss()
                             finish()
+
+                        }
+                        dialogBinding.buttonNo.setOnClickListener {
+                            alertDialog.dismiss()
                         }
 
-                        builder.setNegativeButton("Tidak") { dialog, _ ->
-                            dialog.dismiss()
+                        if (alertDialog.window != null) {
+                            alertDialog.window!!.setBackgroundDrawable(ColorDrawable(0))
                         }
 
-                        val dialog = builder.create()
-                        dialog.show()
+                        alertDialog.show()
                     } else {
                         navController.navigateUp()
                     }

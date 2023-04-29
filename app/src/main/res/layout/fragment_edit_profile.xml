@@ -62,7 +62,6 @@
           android:textAlignment="textEnd"
           android:layout_centerVertical="true"
           tools:ignore="RtlSymmetry"
-          android:dropDownSelector="@drawable/arrow_bottom"
           />
 
       <Button
@@ -74,7 +73,6 @@
           android:background="#00FFFFFF"
           android:textAlignment="textEnd"
           tools:ignore="RtlSymmetry" />
-
 
    </RelativeLayout>
 

@@ -102,7 +102,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         }
     }
 
+//    ws lek jajal sue njirr wes lek
+//    iki fungsi logout ng ak kurang fokus wkwkwk
+
+
     private fun loginOut() {
+        Log.d("btn_logout", "loginOut: ")
         val dialogBinding = LayoutWarningDailogBinding.inflate(layoutInflater)
 
         val alertDialog = AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
@@ -110,7 +115,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
             .create()
 
         dialogBinding.textTitle.text = "Konfirmasi Keluar"
-        dialogBinding.textMessage.text = "Anda yakin Ingin keluar dari aplikasi"
+        dialogBinding.textMessage.text = "Anda yakin Ingin keluar dari this aplikasi"
         dialogBinding.buttonYes.text = "Ya"
         dialogBinding.buttonNo.text = "Batal"
         dialogBinding.imageIcon.setImageResource(R.drawable.ic_baseline_warning_24)
@@ -159,25 +164,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         }
 
         alertDialog.show()
-    }
-
-    private fun logout(nipUser: String) {
-        AlertDialog.Builder(requireContext())
-            .setTitle("LogOut")
-            .setMessage("Anda Yakin ingin logout")
-            .setPositiveButton("Ya") { _, _ ->
-                val nips = RequestNip(
-                    nipUser
-                )
-
-//                Toast.makeText(requireContext(), "$nips", Toast.LENGTH_SHORT).show()
-
-            }
-            .setNegativeButton("Kembali") { _, _ ->
-            }
-            .create().show()
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
