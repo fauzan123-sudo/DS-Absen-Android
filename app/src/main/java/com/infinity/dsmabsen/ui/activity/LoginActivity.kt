@@ -2,6 +2,7 @@ package com.infinity.dsmabsen.ui.activity
 
 import android.Manifest
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -11,13 +12,17 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
+import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.ActivityLoginBinding
+import com.infinity.dsmabsen.databinding.LayoutWarningDailogBinding
 import com.infinity.dsmabsen.helper.AlertDialogHelper
 import com.infinity.dsmabsen.helper.ConnectionLiveData
 import com.infinity.dsmabsen.helper.Constans.TAG
+import com.infinity.dsmabsen.helper.Helper
 import com.infinity.dsmabsen.helper.TokenManager
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.repository.NetworkResult
@@ -62,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
 
         with(binding) {
             btnLogin.setOnClickListener {
+                Helper.hideKeyboard(it)
                 val myUserName = nip.text.toString()
                 val myPassword = password.text.toString()
                 when {
@@ -120,39 +126,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-//    private fun getIMEI(context: Context): String {
-//        var imei: String? = ""
-//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-//            if (context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-//                val telephonyManager =
-//                    context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-//                imei = telephonyManager.imei
-//                return if (imei.isNullOrEmpty()) {
-//                    "IMEI tidak ditemukan"
-//                } else {
-//                    imei
-//                }
-//            }
-//        } else {
-//            if (context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-//                val subscriptionManager =
-//                    context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
-//                val subscriptionInfoList = subscriptionManager.activeSubscriptionInfoList
-//                if (subscriptionInfoList != null && subscriptionInfoList.isNotEmpty()) {
-//                    val subscriptionInfo = subscriptionInfoList[0]
-//                    imei = subscriptionInfo?.iccId
-//                    return if (imei.isNullOrEmpty()) {
-//                        "Nomor IMEI tidak ditemukan"
-//                    } else {
-//                        imei
-//                    }
-//                }
-//            }
-//        }
-//        return imei!!
-//    }
-
-
     private fun checkNetworkConnection() {
         cld = ConnectionLiveData(application)
 
@@ -188,5 +161,39 @@ class LoginActivity : AppCompatActivity() {
                 Log.d(TAG, "Permission Single : Permission Denied ")
             }
         }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+//        super.onBackPressed()
+        val dialogBinding = LayoutWarningDailogBinding.inflate(layoutInflater)
+
+        val alertDialog =
+            AlertDialog.Builder(this@LoginActivity, R.style.AlertDialogTheme)
+                .setView(dialogBinding.root)
+                .create()
+
+        dialogBinding.textTitle.text = "Konfirmasi Keluar"
+        dialogBinding.textMessage.text =
+            "Anda yakin Ingin keluar dari this aplikasi"
+        dialogBinding.buttonYes.text = "Ya"
+        dialogBinding.buttonNo.text = "Batal"
+        dialogBinding.imageIcon.setImageResource(R.drawable.ic_baseline_warning_24)
+
+        dialogBinding.buttonYes.setOnClickListener {
+            alertDialog.dismiss()
+            moveTaskToBack(true)
+            finishAffinity()
+
+        }
+        dialogBinding.buttonNo.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        if (alertDialog.window != null) {
+            alertDialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+
+        alertDialog.show()
+    }
 
 }

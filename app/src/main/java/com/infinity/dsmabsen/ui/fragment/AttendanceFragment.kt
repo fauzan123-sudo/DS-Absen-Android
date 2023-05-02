@@ -535,16 +535,17 @@ class AttendanceFragment :
     }
 
     fun enableAbsen() {
-        binding.imgFinger.background = resources.getDrawable(R.color._danger)
+        binding.imgFinger.background = ContextCompat.getDrawable(requireContext(), R.color._danger)
         binding.btnAbsen.isClickable = true
     }
 
     private fun disableAbsen() {
-        binding.imgFinger.background = resources.getDrawable(R.color._grey)
+        binding.imgFinger.background = ContextCompat.getDrawable(requireContext(), R.color._grey)
         binding.btnAbsen.isClickable = false
     }
 
     private fun runLoading() {
+        binding.currentLocation.text = "-"
         binding.searchLocationLoading.visibility = View.VISIBLE
         binding.searchLocationLoading.playAnimation()
     }

@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.location.Criteria
-//import org.osmdroid.views.util.constants.MapViewConstants
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -31,10 +30,8 @@ import androidx.preference.PreferenceManager
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.adapter.SpinnerVisitAdapter
 import com.infinity.dsmabsen.databinding.FragmentPenganjuanVisitBinding
-import com.infinity.dsmabsen.helper.Helper
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
-import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 import com.infinity.dsmabsen.model.DataXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.activity.MainActivity
@@ -86,11 +83,9 @@ class PenganjuanVisitFragment :
             addImage.setOnClickListener {
                 camera()
             }
-//            getCurrentLocation()
             getFirstLocation()
             bottomNavigationView.visibility = View.GONE
             Log.d("args", argss.barcodes)
-//            tvTanggal.text = Helper().getThisDay()
         }
 
         setHasOptionsMenu(true)
@@ -517,12 +512,5 @@ class PenganjuanVisitFragment :
         mapController.setCenter(GeoPoint(location.latitude, location.longitude))
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        myLocationNewOverlay = MyLocationNewOverlay(binding.mapView)
-//        if (::myLocationNewOverlay.isInitialized) {
-//            myLocationNewOverlay.disableMyLocation()
-//        }
-//    }
 }
 
