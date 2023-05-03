@@ -12,6 +12,7 @@ import android.location.*
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
@@ -22,7 +23,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import cn.pedant.SweetAlert.SweetAlertDialog
@@ -57,7 +57,8 @@ class AttendanceFragment :
     private val userProfileViewModel: UserProfileViewModel by viewModels()
     private lateinit var dialog: AlertDialog
 
-    private lateinit var progressDialog :SweetAlertDialog
+
+    private lateinit var progressDialog: SweetAlertDialog
 
     var latittudeUser1: String? = null
     var longitudeUser2: String? = null
@@ -313,6 +314,12 @@ class AttendanceFragment :
             "nip :$nipRequestBody date:$dateRequestBody timeZone:$timezoneRequestBody kordinat:$latittudeUser1,$longitudeUser2 kodeshift:$kodeShiftRequestBody kodetingkat:$kodeTingkatRequestBody"
         )
 
+        progressDialog.progressHelper.barColor =
+            ContextCompat.getColor(requireContext(), R.color._primary)
+        progressDialog.titleText = "Loading"
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+
         viewModel.attendanceToday2(
             photo,
             nipRequestBody.body,
@@ -322,48 +329,29 @@ class AttendanceFragment :
             kodeShiftRequestBody.body,
             kodeTingkatRequestBody.body
         )
+
         viewModel.presensiLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
-
-
-                    val response = it.data!!
-                    val statusPresensi = response.data.status
-                    val message = response.data.messages
-                    if (statusPresensi == "Error") {
+                    Handler(Looper.getMainLooper()).postDelayed({
                         progressDialog.dismiss()
-                        val sweetAlertDialog =
-                            SweetAlertDialog(requireContext(), SweetAlertDialog.SUCCESS_TYPE)
+                        viewModel.presensiLiveData.removeObservers(viewLifecycleOwner)
+                        val response = it.data!!
+                        val statusPresensi = response.data.status
+                        val message = response.data.messages
+
+                        val sweetAlertDialog = SweetAlertDialog(
+                            requireContext(),
+                            if (statusPresensi == "Error") SweetAlertDialog.ERROR_TYPE else SweetAlertDialog.SUCCESS_TYPE
+
+                        )
                         sweetAlertDialog.titleText = ""
                         sweetAlertDialog.contentText = message
-                        sweetAlertDialog.show()
-                        binding.apply {
-                            materialCardView21.isVisible = true
-                            notificationUser.isVisible = true
-                            informationLayout.isVisible = true
-                            notificationUser.text = message
-                            informationLayout.setBackgroundColor(
-                                ContextCompat.getColor(
-                                    requireContext(),
-                                    R.color._danger
-                                )
-                            )
-                        }
-                    } else {
-                        binding.apply {
-                            binding.materialCardView21.isVisible = true
-                            binding.notificationUser.isVisible = true
-                            binding.informationLayout.isVisible = true
-                            binding.notificationUser.text = message
-                            binding.informationLayout.setBackgroundColor(
-                                ContextCompat.getColor(
-                                    requireContext(),
-                                    R.color._success
-                                )
-                            )
-                        }
-                    }
+                        sweetAlertDialog.setCancelable(false)
 
+                        sweetAlertDialog.show()
+                    }, 2000)
+                    viewModel.presensiLiveData.removeObservers(viewLifecycleOwner)
                 }
                 is NetworkResult.Loading -> {
                     progressDialog.progressHelper.barColor =
@@ -372,9 +360,9 @@ class AttendanceFragment :
                     progressDialog.setCancelable(false)
                     progressDialog.show()
                 }
-
                 is NetworkResult.Error -> {
                     progressDialog.dismiss()
+                    viewModel.presensiLiveData.removeObservers(viewLifecycleOwner)
                     SweetAlertDialog(requireContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("Error")
                         .setContentText(it.message)
@@ -383,16 +371,14 @@ class AttendanceFragment :
                 }
             }
         }
-
-
     }
+
 
     private val putPhoto =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 val selectedImageUris = it?.data?.extras?.get("data") as Bitmap
                 absen(selectedImageUris!!)
-
             } else if (it == null) {
                 Toast.makeText(requireContext(), "Gambar tidak dapat di set", Toast.LENGTH_SHORT)
                     .show()
