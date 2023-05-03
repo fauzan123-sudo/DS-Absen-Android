@@ -67,6 +67,7 @@ class AttendanceViewModel @Inject constructor(private val repository: Attendance
         kode_shift: RequestBody,
         kode_tingkat: RequestBody
     ) = viewModelScope.launch {
+        _presensi.postValue(NetworkResult.Loading())
         _presensi.value = repository.attendanceToday(
             image,
             nip,

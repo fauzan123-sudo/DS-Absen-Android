@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.bumptech.glide.Glide
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -56,6 +57,8 @@ class AttendanceFragment :
     private val userProfileViewModel: UserProfileViewModel by viewModels()
     private lateinit var dialog: AlertDialog
 
+    private lateinit var progressDialog :SweetAlertDialog
+
     var latittudeUser1: String? = null
     var longitudeUser2: String? = null
     private lateinit var runnable: Runnable
@@ -65,6 +68,7 @@ class AttendanceFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progressDialog = SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE)
         timeRun()
 
         binding.apply {
@@ -319,15 +323,20 @@ class AttendanceFragment :
             kodeTingkatRequestBody.body
         )
         viewModel.presensiLiveData.observe(viewLifecycleOwner) {
-            stopLottie()
             when (it) {
                 is NetworkResult.Success -> {
-                    runLottie()
+
+
                     val response = it.data!!
                     val statusPresensi = response.data.status
                     val message = response.data.messages
                     if (statusPresensi == "Error") {
-                        stopLottie()
+                        progressDialog.dismiss()
+                        val sweetAlertDialog =
+                            SweetAlertDialog(requireContext(), SweetAlertDialog.SUCCESS_TYPE)
+                        sweetAlertDialog.titleText = ""
+                        sweetAlertDialog.contentText = message
+                        sweetAlertDialog.show()
                         binding.apply {
                             materialCardView21.isVisible = true
                             notificationUser.isVisible = true
@@ -342,7 +351,6 @@ class AttendanceFragment :
                         }
                     } else {
                         binding.apply {
-                            stopLottie()
                             binding.materialCardView21.isVisible = true
                             binding.notificationUser.isVisible = true
                             binding.informationLayout.isVisible = true
@@ -358,10 +366,19 @@ class AttendanceFragment :
 
                 }
                 is NetworkResult.Loading -> {
-                    runLottie()
+                    progressDialog.progressHelper.barColor =
+                        ContextCompat.getColor(requireContext(), R.color._primary)
+                    progressDialog.titleText = "Loading"
+                    progressDialog.setCancelable(false)
+                    progressDialog.show()
                 }
 
                 is NetworkResult.Error -> {
+                    progressDialog.dismiss()
+                    SweetAlertDialog(requireContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Error")
+                        .setContentText(it.message)
+                        .show()
                     handleApiError(it.message)
                 }
             }
@@ -548,21 +565,17 @@ class AttendanceFragment :
         }, 2000)
     }
 
-    private fun runLottie() {
-        binding.apply {
-            loadingInclude.loading.visibility = View.VISIBLE
-            scrollView.visibility = View.GONE
-        }
-    }
-
-    private fun stopLottie() {
-        handler.postDelayed({
-            binding.apply {
-                loadingInclude.loading.visibility = View.GONE
-                scrollView.visibility = View.VISIBLE
-            }
-        }, 3000)
-
-    }
+//    private fun runLottie() {
+//
+//    }
+//
+//    private fun stopLottie() {
+//        loadingDialog?.let {
+//            if (it.isShowing) {
+//                it.dismissWithAnimation()
+//            }
+//        }
+//
+//    }
 
 }
