@@ -9,7 +9,7 @@
     tools:context=".ui.fragment.AttendanceFragment">
 
     <ScrollView
-        android:id="@+id/rcycleview"
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -344,5 +344,5 @@ Silahkan Hubungi Admin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/loadingInclude"
-        layout="@layout/loading" />
+        layout="@layout/loading_absen" />
 </androidx.constraintlayout.widget.ConstraintLayout>

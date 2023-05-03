@@ -42,14 +42,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var cld: ConnectionLiveData
     lateinit var binding: ActivityMainBinding
     val savedUser = Paper.book().read<DataX>("user")
+    val nip = savedUser!!.nip
+    val eselon = savedUser!!.eselon
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         checkNetworkConnection()
-        checkPassword(savedUser)
-        showBottomNav(savedUser)
-
+        checkPassword()
+        showBottomNav()
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
@@ -59,7 +61,6 @@ class MainActivity : AppCompatActivity() {
         with(binding) {
             bottomNavigationView.setupWithNavController(navController)
             navController.addOnDestinationChangedListener { _, destination, _ ->
-//                Log.d("Destination", "bottom nav show")
                 when (destination.id) {
                     R.id.homeFragment -> {
                         binding.bottomNavigationView.visibility = View.VISIBLE
@@ -133,8 +134,8 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    private fun checkPassword(savedUser: DataX?) {
-        viewModel.passwordCheckRequest(savedUser!!.nip)
+    private fun checkPassword() {
+        viewModel.passwordCheckRequest(nip)
         viewModel.passwordCheckLiveData.observe(this) {
             when (it) {
                 is NetworkResult.Success -> {
@@ -149,7 +150,7 @@ class MainActivity : AppCompatActivity() {
                             .setTitle("Ubah Password")
                             .setView(dialogBinding.root)
                             .setCancelable(false)
-                            .setPositiveButton("Ubah") { dialog, which ->
+                            .setPositiveButton("Ubah") { _, _ ->
                             }
 
 
@@ -168,7 +169,7 @@ class MainActivity : AppCompatActivity() {
                                         View.VISIBLE
                                 } else {
                                     viewModel.ubahPasswordRequest(
-                                        savedUser!!.nip,
+                                        nip,
                                         oldPassword, newPassword
                                     )
                                     viewModel.ubahPasswordLiveData.observe(this) { ubahPassword ->
@@ -228,10 +229,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun showBottomNav(visit: DataX?) {
-        val visited = visit!!.eselon
-        if (visited < "3") {
+    private fun showBottomNav() {
+        if (eselon < "3") {
             binding.bottomNavigationView.menu.removeItem(R.id.visitFragment2)
         }
     }
@@ -244,19 +243,17 @@ class MainActivity : AppCompatActivity() {
         cld = ConnectionLiveData(application)
 
         cld.observe(this) { isConnected ->
-//            navController.addOnDestinationChangedListener { _, destination, _ ->
-
             if (isConnected) {
                 Log.d("is connect", "bottom nav show")
                 binding.fragmentContainerView2.visibility = View.VISIBLE
                 binding.noInternetConnection.ivNoConnection.visibility = View.GONE
+                binding.bottomNavigationView.visibility = View.VISIBLE
             } else {
                 Log.d("no connect ", "bottom nav hide")
                 binding.fragmentContainerView2.visibility = View.GONE
                 binding.bottomNavigationView.visibility = View.GONE
                 binding.noInternetConnection.ivNoConnection.visibility = View.VISIBLE
             }
-//            }
         }
     }
 

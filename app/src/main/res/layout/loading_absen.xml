@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/bounce_loading" />
+        app:lottie_rawRes="@raw/absen_loading" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -85,9 +85,6 @@ class AttendanceFragment :
             locationManager =
                 requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-            locationManager =
-                requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
             dialog = AlertDialog.Builder(requireContext())
                 .setMessage("GPS tidak aktif, silakan aktifkan GPS.")
                 .setPositiveButton("Pengaturan") { _, _ ->
@@ -121,7 +118,6 @@ class AttendanceFragment :
             when (it) {
                 is NetworkResult.Success -> {
                     binding.apply {
-                        loadingInclude.loading.visibility = View.GONE
                         val response = it.data!!
                         val status = response.status
                         val imageUser = response.data.foto
@@ -138,15 +134,10 @@ class AttendanceFragment :
                 }
 
                 is NetworkResult.Loading -> {
-                    binding.apply {
-                        loadingInclude.loading.visibility = View.VISIBLE
-                    }
+
                 }
 
                 is NetworkResult.Error -> {
-                    binding.apply {
-                        loadingInclude.loading.visibility = View.GONE
-                    }
                     handleApiError(it.message)
                 }
             }
@@ -159,7 +150,6 @@ class AttendanceFragment :
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireContext())
-        Log.d("ambil_lokasi", "On2 Proses")
         val task = fusedLocationProviderClient.lastLocation
         task.addOnSuccessListener {
             stopLoading()
@@ -329,14 +319,15 @@ class AttendanceFragment :
             kodeTingkatRequestBody.body
         )
         viewModel.presensiLiveData.observe(viewLifecycleOwner) {
+            stopLottie()
             when (it) {
                 is NetworkResult.Success -> {
-                    binding.loadingInclude.loading.visibility = View.GONE
-
+                    runLottie()
                     val response = it.data!!
                     val statusPresensi = response.data.status
                     val message = response.data.messages
                     if (statusPresensi == "Error") {
+                        stopLottie()
                         binding.apply {
                             materialCardView21.isVisible = true
                             notificationUser.isVisible = true
@@ -351,6 +342,7 @@ class AttendanceFragment :
                         }
                     } else {
                         binding.apply {
+                            stopLottie()
                             binding.materialCardView21.isVisible = true
                             binding.notificationUser.isVisible = true
                             binding.informationLayout.isVisible = true
@@ -366,11 +358,10 @@ class AttendanceFragment :
 
                 }
                 is NetworkResult.Loading -> {
-                    binding.loadingInclude.loading.visibility = View.VISIBLE
+                    runLottie()
                 }
 
                 is NetworkResult.Error -> {
-                    binding.loadingInclude.loading.visibility = View.GONE
                     handleApiError(it.message)
                 }
             }
@@ -382,7 +373,6 @@ class AttendanceFragment :
     private val putPhoto =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
-
                 val selectedImageUris = it?.data?.extras?.get("data") as Bitmap
                 absen(selectedImageUris!!)
 
@@ -551,10 +541,28 @@ class AttendanceFragment :
     }
 
     private fun stopLoading() {
+
         handler.postDelayed({
             binding.searchLocationLoading.visibility = View.GONE
             binding.searchLocationLoading.cancelAnimation()
         }, 2000)
+    }
+
+    private fun runLottie() {
+        binding.apply {
+            loadingInclude.loading.visibility = View.VISIBLE
+            scrollView.visibility = View.GONE
+        }
+    }
+
+    private fun stopLottie() {
+        handler.postDelayed({
+            binding.apply {
+                loadingInclude.loading.visibility = View.GONE
+                scrollView.visibility = View.VISIBLE
+            }
+        }, 3000)
+
     }
 
 }
