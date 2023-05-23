@@ -5,11 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -124,23 +120,23 @@ class ReimbursementFragment :
         menuPlus?.isVisible = true // menyembunyikan menu tertentu
     }
 
-    override fun onConnectionAvailable() {
-        super.onConnectionAvailable()
-        binding.apply {
-            toolbar.toolbar.visibility = View.VISIBLE
-            recReimbursement.visibility = View.VISIBLE
-            noInternetConnection.ivNoConnection.visibility = View.GONE
-        }
-    }
-
-    override fun onConnectionLost() {
-        super.onConnectionLost()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            recReimbursement.visibility = View.GONE
-            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-        }
-    }
+//    override fun onConnectionAvailable() {
+//        super.onConnectionAvailable()
+//        binding.apply {
+//            toolbar.toolbar.visibility = View.VISIBLE
+//            recReimbursement.visibility = View.VISIBLE
+//            noInternetConnection.ivNoConnection.visibility = View.GONE
+//        }
+//    }
+//
+//    override fun onConnectionLost() {
+//        super.onConnectionLost()
+//        binding.apply {
+//            toolbar.toolbar.visibility = View.GONE
+//            recReimbursement.visibility = View.GONE
+//            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+//        }
+//    }
 
     override fun onResume() {
         Log.d("TAG", "onResume: ")

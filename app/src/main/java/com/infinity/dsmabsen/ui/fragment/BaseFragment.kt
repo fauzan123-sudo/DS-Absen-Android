@@ -1,7 +1,5 @@
 package com.infinity.dsmabsen.ui.fragment
 
-import android.content.Context
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,10 +15,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.viewbinding.ViewBinding
-import com.infinity.dsmabsen.R
-import com.infinity.dsmabsen.helper.ConnectionLiveData
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.infinity.dsmabsen.ui.activity.MainActivity
+import com.infinity.dsmabsen.R
 
 abstract class BaseFragment<VB : ViewBinding>(
     private val bindingInflater: (inflater: LayoutInflater) -> VB
@@ -29,7 +25,7 @@ abstract class BaseFragment<VB : ViewBinding>(
     protected lateinit var toolbar: Toolbar
     var _binding: VB? = null
 
-    protected lateinit var connectionLiveData: ConnectionLiveData
+//    protected lateinit var connectionLiveData: ConnectionLiveData
     val binding: VB
         //        get() = _binding as VB
         get() = _binding ?: throw IllegalStateException("ViewBinding is not initialized.")
@@ -58,30 +54,30 @@ abstract class BaseFragment<VB : ViewBinding>(
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupConnection()
-    }
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+////        setupConnection()
+//    }
 
-    private fun setupConnection() {
-        connectionLiveData =
-            ConnectionLiveData(requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
-        connectionLiveData.observe(viewLifecycleOwner) { isConnected ->
-            if (isConnected) {
-                onConnectionAvailable()
-            } else {
-                onConnectionLost()
-            }
-        }
-    }
+//    private fun setupConnection() {
+//        connectionLiveData =
+//            ConnectionLiveData(requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
+//        connectionLiveData.observe(viewLifecycleOwner) { isConnected ->
+//            if (isConnected) {
+//                onConnectionAvailable()
+//            } else {
+//                onConnectionLost()
+//            }
+//        }
+//    }
 
-    protected open fun onConnectionAvailable() {
+//    protected open fun onConnectionAvailable() {
+//
+//    }
 
-    }
-
-    protected open fun onConnectionLost() {
-
-    }
+//    protected open fun onConnectionLost() {
+//
+//    }
 
     protected open fun setupToolbar(title: String) {
 

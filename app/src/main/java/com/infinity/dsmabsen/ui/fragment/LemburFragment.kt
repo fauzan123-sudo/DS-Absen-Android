@@ -3,11 +3,9 @@ package com.infinity.dsmabsen.ui.fragment
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.*
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,14 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.adapter.LemburAdapter
-import com.infinity.dsmabsen.adapter.SallaryAdapter
 import com.infinity.dsmabsen.databinding.FragmentLemburBinding
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.activity.MainActivity
 import com.infinity.dsmabsen.ui.viewModel.AttendanceViewModel
-import com.infinity.dsmabsen.ui.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 
@@ -115,23 +111,23 @@ class LemburFragment : BaseFragment<FragmentLemburBinding>(FragmentLemburBinding
         menuPlus?.isVisible = true // menyembunyikan menu tertentu
     }
 
-    override fun onConnectionAvailable() {
-        super.onConnectionAvailable()
-        binding.apply {
-            toolbar.toolbar.visibility = View.VISIBLE
-            reclembur.visibility = View.VISIBLE
-            noInternetConnection.ivNoConnection.visibility = View.GONE
-        }
-    }
-
-    override fun onConnectionLost() {
-        super.onConnectionLost()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            reclembur.visibility = View.GONE
-            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-        }
-    }
+//    override fun onConnectionAvailable() {
+//        super.onConnectionAvailable()
+//        binding.apply {
+//            toolbar.toolbar.visibility = View.VISIBLE
+//            reclembur.visibility = View.VISIBLE
+//            noInternetConnection.ivNoConnection.visibility = View.GONE
+//        }
+//    }
+//
+//    override fun onConnectionLost() {
+//        super.onConnectionLost()
+//        binding.apply {
+//            toolbar.toolbar.visibility = View.GONE
+//            reclembur.visibility = View.GONE
+//            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+//        }
+//    }
 
     override fun onResume() {
         Log.d("TAG", "onResume: ")

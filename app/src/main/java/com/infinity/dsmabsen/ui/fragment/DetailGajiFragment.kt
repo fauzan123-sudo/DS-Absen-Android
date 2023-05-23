@@ -1,7 +1,9 @@
 package com.infinity.dsmabsen.ui.fragment
 
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import com.infinity.dsmabsen.R
@@ -47,23 +49,23 @@ class DetailGajiFragment :BaseFragment<FragmentDetailGajiBinding>(FragmentDetail
         }
     }
 
-    override fun onConnectionAvailable() {
-        super.onConnectionAvailable()
-        binding.apply {
-            toolbar.toolbar.visibility = View.VISIBLE
-            card1.visibility = View.VISIBLE
-            noInternetConnection.ivNoConnection.visibility = View.GONE
-        }
-    }
-
-    override fun onConnectionLost() {
-        super.onConnectionLost()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            card1.visibility = View.GONE
-            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-        }
-    }
+//    override fun onConnectionAvailable() {
+//        super.onConnectionAvailable()
+//        binding.apply {
+//            toolbar.toolbar.visibility = View.VISIBLE
+//            card1.visibility = View.VISIBLE
+//            noInternetConnection.ivNoConnection.visibility = View.GONE
+//        }
+//    }
+//
+//    override fun onConnectionLost() {
+//        super.onConnectionLost()
+//        binding.apply {
+//            toolbar.toolbar.visibility = View.GONE
+//            card1.visibility = View.GONE
+//            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+//        }
+//    }
 
 
 }

@@ -1,28 +1,23 @@
 package com.infinity.dsmabsen.ui.fragment
 
-import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import android.view.*
-import android.widget.Toast
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.infinity.dsmabsen.R
 import com.infinity.dsmabsen.databinding.FragmentPersonalDataBinding
 import com.infinity.dsmabsen.helper.Helper
-import com.infinity.dsmabsen.helper.TokenManager
 import com.infinity.dsmabsen.helper.handleApiError
 import com.infinity.dsmabsen.model.DataX
-import com.infinity.dsmabsen.model.DataXXXXX
 import com.infinity.dsmabsen.repository.NetworkResult
 import com.infinity.dsmabsen.ui.activity.MainActivity
 import com.infinity.dsmabsen.ui.viewModel.UserProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class PersonalDataFragment :
@@ -404,13 +399,13 @@ class PersonalDataFragment :
 
     }
 
-    override fun onConnectionAvailable() {
-        super.onConnectionAvailable()
-    }
-
-    override fun onConnectionLost() {
-        super.onConnectionLost()
-    }
+//    override fun onConnectionAvailable() {
+//        super.onConnectionAvailable()
+//    }
+//
+//    override fun onConnectionLost() {
+//        super.onConnectionLost()
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

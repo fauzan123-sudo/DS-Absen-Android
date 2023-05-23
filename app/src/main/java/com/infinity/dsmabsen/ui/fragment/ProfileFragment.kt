@@ -174,19 +174,19 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         menuPlus?.isVisible = false // menyembunyikan menu tertentu
     }
 
-    override fun onConnectionAvailable() {
-        super.onConnectionAvailable()
-        binding.apply {
-            constraintLayout3.visibility = View.VISIBLE
-            noInternetConnection.ivNoConnection.visibility = View.GONE
-        }
-    }
-
-    override fun onConnectionLost() {
-        super.onConnectionLost()
-        binding.apply {
-            constraintLayout3.visibility = View.GONE
-            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-        }
-    }
+//    override fun onConnectionAvailable() {
+//        super.onConnectionAvailable()
+//        binding.apply {
+//            constraintLayout3.visibility = View.VISIBLE
+//            noInternetConnection.ivNoConnection.visibility = View.GONE
+//        }
+//    }
+//
+//    override fun onConnectionLost() {
+//        super.onConnectionLost()
+//        binding.apply {
+//            constraintLayout3.visibility = View.GONE
+//            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+//        }
+//    }
 }

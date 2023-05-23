@@ -264,21 +264,21 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>(FragmentBerandaBind
 
     }
 
-    override fun onConnectionAvailable() {
-        super.onConnectionAvailable()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            scrollView.visibility = View.VISIBLE
-            noInternetConnection.ivNoConnection.visibility = View.GONE
-        }
-    }
-
-    override fun onConnectionLost() {
-        super.onConnectionLost()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            scrollView.visibility = View.VISIBLE
-            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-        }
-    }
+//    override fun onConnectionAvailable() {
+//        super.onConnectionAvailable()
+//        binding.apply {
+//            toolbar.toolbar.visibility = View.GONE
+//            scrollView.visibility = View.VISIBLE
+//            noInternetConnection.ivNoConnection.visibility = View.GONE
+//        }
+//    }
+//
+//    override fun onConnectionLost() {
+//        super.onConnectionLost()
+//        binding.apply {
+//            toolbar.toolbar.visibility = View.GONE
+//            scrollView.visibility = View.VISIBLE
+//            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+//        }
+//    }
 }

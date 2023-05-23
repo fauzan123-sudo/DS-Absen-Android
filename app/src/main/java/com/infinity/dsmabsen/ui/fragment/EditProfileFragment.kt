@@ -362,23 +362,23 @@ class EditProfileFragment :
         menuPlus?.isVisible = false
     }
 
-    override fun onConnectionAvailable() {
-        super.onConnectionAvailable()
-        binding.apply {
-            toolbar.toolbar.visibility = View.VISIBLE
-            rvEditProfile.visibility = View.VISIBLE
-            noInternetConnection.ivNoConnection.visibility = View.GONE
-        }
-    }
-
-    override fun onConnectionLost() {
-        super.onConnectionLost()
-        binding.apply {
-            toolbar.toolbar.visibility = View.GONE
-            rvEditProfile.visibility = View.GONE
-            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
-        }
-    }
+//    override fun onConnectionAvailable() {
+//        super.onConnectionAvailable()
+//        binding.apply {
+//            toolbar.toolbar.visibility = View.VISIBLE
+//            rvEditProfile.visibility = View.VISIBLE
+//            noInternetConnection.ivNoConnection.visibility = View.GONE
+//        }
+//    }
+//
+//    override fun onConnectionLost() {
+//        super.onConnectionLost()
+//        binding.apply {
+//            toolbar.toolbar.visibility = View.GONE
+//            rvEditProfile.visibility = View.GONE
+//            noInternetConnection.ivNoConnection.visibility = View.VISIBLE
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
